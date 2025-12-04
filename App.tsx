@@ -1,3 +1,4 @@
+
 import React, { useMemo, useState } from 'react';
 import { ViewState } from './types';
 import { useNavigation } from './hooks/useNavigation';
@@ -14,6 +15,7 @@ import CompareModal from './components/CompareModal';
 import CompareView from './components/CompareView';
 import Footer from './components/Footer';
 import SamvadChat from './components/SamvadChat';
+import GlobalChat from './components/GlobalChat';
 
 export default function App() {
   const navigation = useNavigation();
@@ -37,7 +39,7 @@ export default function App() {
         
         return { 
             period: parentPeriod || null, 
-            id: parentId || null 
+            id: navigation.selectedEntityId // Pass the figure ID for more specific context
         };
     }
     return { period: null, id: null };
@@ -57,11 +59,15 @@ export default function App() {
              <span onClick={navigation.goHome} className="cursor-pointer hover:text-orange-600 font-medium">Home</span>
              
              {/* Show Period Breadcrumb (either selected or parent of figure) */}
-             {activeContext.period && activeContext.id && (
+             {activeContext.period && (
                 <>
                     <span className="mx-2 text-slate-300">/</span>
                     <span 
-                        onClick={() => navigation.selectPeriod(activeContext.id!)} 
+                        onClick={() => {
+                            // Find the ID of the period to navigate back
+                            const periodId = Object.keys(DYNASTY_DATA).find(key => DYNASTY_DATA[key] === activeContext.period);
+                            if(periodId) navigation.selectPeriod(periodId);
+                        }} 
                         className={`cursor-pointer hover:text-orange-600 ${!navigation.selectedFigure ? 'font-bold text-orange-800' : ''}`}
                     >
                         {activeContext.period.title.split(':')[0]}
@@ -97,7 +103,7 @@ export default function App() {
           <>
             {/* Timeline persists showing the Context Period */}
             <Timeline 
-              activePeriodId={activeContext.id} 
+              activePeriodId={navigation.selectedPeriod ? navigation.selectedEntityId : (activeContext.id && KINGS_DATA[activeContext.id] ? Object.keys(DYNASTY_DATA).find(key => DYNASTY_DATA[key] === activeContext.period) || null : null)} 
             />
             
             {navigation.selectedFigure ? (
@@ -124,6 +130,9 @@ export default function App() {
       </main>
 
       <Footer />
+
+      {/* Global AI Assistant (Itihaskar) */}
+      <GlobalChat activeContext={activeContext} />
 
       <SearchModal 
         isOpen={search.isOpen}
