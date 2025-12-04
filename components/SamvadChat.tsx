@@ -97,6 +97,9 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const sessionRef = useRef<any>(null);
   const nextStartTimeRef = useRef<number>(0);
   const audioQueueRef = useRef<AudioBufferSourceNode[]>([]);
+  
+  // Ref to track connection status strictly for the audio loop
+  const isConnectedRef = useRef<boolean>(false);
 
   // Refs for Visualizers
   const userAnalyserRef = useRef<AnalyserNode | null>(null);
@@ -109,6 +112,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
   // Cleanup function
   const cleanup = () => {
+    isConnectedRef.current = false; // Immediately stop sending audio
+    
     if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     
     if (sessionRef.current) {
@@ -269,6 +274,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         },
         callbacks: {
           onopen: async () => {
+            isConnectedRef.current = true;
             setStatus('connected');
             playSfx(audioContextRef.current, 'connect');
             
@@ -286,19 +292,28 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
               processorRef.current = audioContextRef.current!.createScriptProcessor(4096, 1, 1);
               
               processorRef.current.onaudioprocess = (e) => {
-                if (isMicMuted) return;
+                // GUARD: Strictly check if we are still connected and not muted
+                if (isMicMuted || !isConnectedRef.current) return;
 
                 const inputData = e.inputBuffer.getChannelData(0);
                 const pcm16 = floatTo16BitPCM(inputData);
                 const base64Data = arrayBufferToBase64(pcm16);
 
                 sessionPromise.then(session => {
-                    session.sendRealtimeInput({
-                        media: {
-                            mimeType: "audio/pcm;rate=16000",
-                            data: base64Data
-                        }
-                    });
+                    // Double check inside promise resolution
+                    if (!isConnectedRef.current) return;
+                    
+                    try {
+                        session.sendRealtimeInput({
+                            media: {
+                                mimeType: "audio/pcm;rate=16000",
+                                data: base64Data
+                            }
+                        });
+                    } catch (err) {
+                        // Suppress "WebSocket is already in CLOSING or CLOSED state" errors
+                        // console.warn("Socket send error:", err);
+                    }
                 });
               };
 
@@ -312,6 +327,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             }
           },
           onmessage: async (message: LiveServerMessage) => {
+            if (!isConnectedRef.current) return;
+
             const audioData = message.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
             if (audioData) {
               setAiSpeaking(true);
@@ -322,9 +339,11 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             }
           },
           onclose: () => {
+            isConnectedRef.current = false;
             setStatus('disconnected');
           },
           onerror: (err) => {
+            isConnectedRef.current = false;
             console.error(err);
             setStatus('error');
             setErrorMessage("Connection Error");
@@ -342,7 +361,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   };
 
   const playAudioChunk = async (base64Audio: string) => {
-    if (!audioContextRef.current) return;
+    if (!audioContextRef.current || !isConnectedRef.current) return;
 
     try {
       const audioBytes = base64ToUint8Array(base64Audio);
@@ -394,6 +413,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   };
 
   const handleClose = () => {
+    // Immediately set guard to false
+    isConnectedRef.current = false;
     playSfx(audioContextRef.current, 'disconnect');
     // Slight delay to let the sound play
     setTimeout(onClose, 200);
