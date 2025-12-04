@@ -20,6 +20,7 @@ interface Message {
   attachment?: {
     type: 'image' | 'audio' | 'pdf';
     name: string;
+    previewUrl?: string;
   };
 }
 
@@ -28,7 +29,6 @@ interface Attachment {
   previewUrl: string;
   type: 'image' | 'audio' | 'pdf';
   name: string;
-  base64Data?: string; // Cache the base64 string
   mimeType?: string;
 }
 
@@ -49,7 +49,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
   const [isRecording, setIsRecording] = useState(false);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -57,7 +57,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
   // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, attachment]); // Scroll when attachment is added too
 
   // Focus input when opened
   useEffect(() => {
@@ -65,6 +65,14 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (inputRef.current) {
+        inputRef.current.style.height = 'auto';
+        inputRef.current.style.height = Math.min(inputRef.current.scrollHeight, 120) + 'px';
+    }
+  }, [input]);
 
   const getContextDescription = () => {
     if (activeContext.id) {
@@ -195,7 +203,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
 
   const handleSend = async (textOverride?: string) => {
     const textToSend = textOverride || input.trim();
-    // Allow empty text if we have an attachment (e.g. audio only)
+    // Allow empty text if we have an attachment
     if ((!textToSend && !attachment) || !process.env.API_KEY) return;
 
     const userMsgId = Date.now().toString();
@@ -204,15 +212,20 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     const userMessage: Message = { 
         id: userMsgId, 
         role: 'user', 
-        text: textToSend || (attachment?.type === 'audio' ? "(Audio Input)" : "(Sent a file)"),
-        attachment: attachment ? { type: attachment.type, name: attachment.name } : undefined
+        text: textToSend,
+        attachment: attachment ? { 
+            type: attachment.type, 
+            name: attachment.name,
+            previewUrl: attachment.previewUrl 
+        } : undefined
     };
 
     setMessages(prev => [...prev, userMessage]);
     setInput('');
+    if (inputRef.current) inputRef.current.style.height = 'auto'; // Reset height
     setIsLoading(true);
     
-    // Capture current attachment to send, then clear state
+    // Capture current attachment to send, then clear state WITHOUT revoking url yet
     const currentAttachment = attachment;
     setAttachment(null);
 
@@ -239,8 +252,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
           });
       }
 
-      // Simplified history (Text only for now to avoid complexity in this demo, real app would keep multimodal history)
-      // We'll just send the current multimodal turn + text history
+      // Simplified history 
       const history = messages.filter(m => m.role === 'model').slice(-3).map(m => ({
           role: m.role,
           parts: [{ text: m.text }]
@@ -357,7 +369,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
         style={{ boxShadow: '0 20px 50px -12px rgba(0, 0, 0, 0.25)' }}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 p-4 pt-5 pb-5 text-white flex justify-between items-start relative overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 p-4 pt-5 pb-5 text-white flex justify-between items-start relative overflow-hidden flex-shrink-0">
             {/* Decorative BG pattern */}
             <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '20px 20px'}}></div>
             
@@ -403,10 +415,16 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                             </div>
                         )}
 
-                        {/* Attachment Indicator in History */}
-                        {msg.attachment && (
+                        {/* Render Images if present */}
+                        {msg.attachment && msg.attachment.type === 'image' && msg.attachment.previewUrl && (
+                            <div className="mb-3 rounded-lg overflow-hidden border border-white/20 shadow-sm">
+                                <img src={msg.attachment.previewUrl} alt="uploaded" className="w-full h-auto max-h-[250px] object-cover" />
+                            </div>
+                        )}
+
+                        {/* Attachment Indicator for other types */}
+                        {msg.attachment && msg.attachment.type !== 'image' && (
                             <div className={`mb-2 p-2 rounded-lg flex items-center gap-2 text-xs font-medium ${msg.role === 'user' ? 'bg-white/10' : 'bg-stone-100'}`}>
-                                {msg.attachment.type === 'image' && <Icons.Image />}
                                 {msg.attachment.type === 'audio' && <Icons.MusicNote />}
                                 {msg.attachment.type === 'pdf' && <Icons.FileText />}
                                 <span className="truncate max-w-[150px]">{msg.attachment.name}</span>
@@ -414,11 +432,13 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                         )}
 
                         {/* Markdown Rendering */}
-                        <div className="prose prose-sm prose-p:my-1 prose-ul:my-1 prose-li:my-0 max-w-none" dangerouslySetInnerHTML={{ 
-                            __html: msg.text
-                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                .replace(/\n/g, '<br/>') 
-                        }} />
+                        {msg.text && (
+                            <div className="prose prose-sm prose-p:my-1 prose-ul:my-1 prose-li:my-0 max-w-none" dangerouslySetInnerHTML={{ 
+                                __html: msg.text
+                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                    .replace(/\n/g, '<br/>') 
+                            }} />
+                        )}
                         
                         {/* Grounding Sources */}
                         {msg.groundingMetadata?.groundingChunks && (
@@ -485,77 +505,91 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
         {/* Input Area */}
         <div className="p-4 bg-white border-t border-stone-100 relative">
             
-            {/* Attachment Preview Chip */}
-            {attachment && (
-                <div className="absolute top-[-3rem] left-4 right-4 flex items-center justify-between bg-stone-800 text-white p-2 px-3 rounded-lg shadow-lg text-xs animate-in slide-in-from-bottom-2 duration-200">
-                    <div className="flex items-center gap-2 overflow-hidden">
-                        {attachment.type === 'image' ? (
-                            <img src={attachment.previewUrl} alt="preview" className="w-6 h-6 rounded object-cover border border-stone-600" />
-                        ) : attachment.type === 'audio' ? (
-                            <span className="text-orange-400"><Icons.MusicNote /></span>
-                        ) : (
-                            <span className="text-blue-300"><Icons.FileText /></span>
-                        )}
-                        <span className="truncate">{attachment.name}</span>
+            {/* Integrated Input Container */}
+            <div className={`relative flex flex-col shadow-sm bg-stone-50 border border-stone-200 focus-within:ring-2 focus-within:ring-indigo-100 focus-within:border-indigo-300 transition-all duration-300 ${attachment ? 'rounded-2xl' : 'rounded-3xl'}`}>
+                
+                {/* Preview Area Inside Input */}
+                {attachment && (
+                    <div className="p-3 pb-0 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                        <div className="relative inline-block group">
+                            {attachment.type === 'image' ? (
+                                <img src={attachment.previewUrl} alt="preview" className="h-20 w-20 rounded-xl object-cover border border-stone-200 shadow-sm" />
+                            ) : (
+                                <div className="h-16 w-16 rounded-xl bg-stone-200 flex items-center justify-center border border-stone-300 text-stone-500">
+                                    {attachment.type === 'audio' ? <Icons.MusicNote /> : <Icons.FileText />}
+                                </div>
+                            )}
+                            <button
+                                onClick={removeAttachment}
+                                className="absolute -top-2 -right-2 bg-stone-800 text-white rounded-full p-1 shadow-md hover:bg-red-500 transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100"
+                                title="Remove attachment"
+                            >
+                                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                            <span className="block text-[9px] text-stone-400 mt-1 truncate max-w-[80px]">{attachment.name}</span>
+                        </div>
                     </div>
-                    <button onClick={removeAttachment} className="ml-2 hover:text-red-300"><Icons.X /></button>
+                )}
+
+                {/* Input Controls Row */}
+                <div className="flex items-end p-1.5">
+                    {/* File Inputs (Hidden) */}
+                    <input 
+                        type="file" 
+                        ref={fileInputRef} 
+                        className="hidden" 
+                        accept="image/*,application/pdf"
+                        onChange={handleFileSelect}
+                    />
+
+                    {/* Tools */}
+                    <div className="flex items-center pb-2 pl-1">
+                        <button 
+                            onClick={() => fileInputRef.current?.click()}
+                            className="p-2 text-stone-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-full transition-colors disabled:opacity-50"
+                            disabled={isLoading || isRecording}
+                            title="Attach Image or PDF"
+                        >
+                            <Icons.Paperclip />
+                        </button>
+
+                        <button 
+                            onClick={handleMicClick}
+                            className={`p-2 rounded-full transition-colors flex-shrink-0
+                                ${isRecording 
+                                    ? 'text-red-500 bg-red-50 animate-pulse' 
+                                    : 'text-stone-400 hover:text-red-500 hover:bg-red-50'
+                                } disabled:opacity-50`}
+                            disabled={isLoading || !!attachment}
+                            title={isRecording ? "Stop Recording" : "Record Voice"}
+                        >
+                            {isRecording ? <Icons.StopCircle /> : <Icons.Microphone />}
+                        </button>
+                    </div>
+
+                    {/* Text Area */}
+                    <textarea
+                        ref={inputRef}
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        placeholder={isRecording ? "Recording..." : (attachment ? "Add a caption..." : "Ask history...")}
+                        className="flex-grow bg-transparent text-stone-800 text-sm px-3 py-3.5 focus:outline-none placeholder-stone-400 resize-none max-h-32 min-h-[44px]"
+                        rows={1}
+                        disabled={isLoading || isRecording}
+                    />
+                    
+                    {/* Send Button */}
+                    <div className="pb-1 pr-1">
+                        <button 
+                            onClick={() => handleSend()}
+                            disabled={isLoading || isRecording || (!input.trim() && !attachment)}
+                            className="p-2.5 rounded-full bg-stone-900 text-white hover:bg-indigo-600 transition-colors disabled:opacity-30 disabled:hover:bg-stone-900 disabled:cursor-not-allowed transform active:scale-95 shadow-md"
+                        >
+                            <Icons.Send />
+                        </button>
+                    </div>
                 </div>
-            )}
-
-            <div className="relative flex items-center shadow-sm rounded-full bg-stone-50 border border-stone-200 focus-within:ring-2 focus-within:ring-indigo-100 focus-within:border-indigo-300 transition-all">
-                
-                {/* File Inputs (Hidden) */}
-                <input 
-                    type="file" 
-                    ref={fileInputRef} 
-                    className="hidden" 
-                    accept="image/*,application/pdf"
-                    onChange={handleFileSelect}
-                />
-
-                {/* Attach Button */}
-                <button 
-                    onClick={() => fileInputRef.current?.click()}
-                    className="pl-3 p-2 text-stone-400 hover:text-indigo-600 transition-colors disabled:opacity-50"
-                    disabled={isLoading || isRecording}
-                    title="Attach Image or PDF"
-                >
-                    <Icons.Paperclip />
-                </button>
-
-                {/* Mic Button */}
-                <button 
-                    onClick={handleMicClick}
-                    className={`p-2 transition-colors flex-shrink-0
-                        ${isRecording 
-                            ? 'text-red-500 animate-pulse' 
-                            : 'text-stone-400 hover:text-red-500'
-                        } disabled:opacity-50`}
-                    disabled={isLoading || !!attachment}
-                    title={isRecording ? "Stop Recording" : "Record Voice"}
-                >
-                    {isRecording ? <Icons.StopCircle /> : <Icons.Microphone />}
-                </button>
-
-                <input
-                    ref={inputRef}
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder={isRecording ? "Recording..." : (attachment ? "Add a message..." : "Ask history...")}
-                    className="w-full bg-transparent text-stone-800 text-sm rounded-full px-3 py-3.5 focus:outline-none placeholder-stone-400"
-                    disabled={isLoading || isRecording}
-                />
-                
-                {/* Send Button */}
-                <button 
-                    onClick={() => handleSend()}
-                    disabled={isLoading || isRecording || (!input.trim() && !attachment)}
-                    className="absolute right-1.5 p-2 rounded-full bg-stone-900 text-white hover:bg-indigo-600 transition-colors disabled:opacity-30 disabled:hover:bg-stone-900 disabled:cursor-not-allowed transform active:scale-95"
-                >
-                    <Icons.Send />
-                </button>
             </div>
             
             <div className="flex justify-between mt-2 px-2">
