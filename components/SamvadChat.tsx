@@ -190,6 +190,10 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
     });
     audioQueueRef.current = [];
     
+    // CRITICAL: Clear analyser nodes to prevent 'different audio context' errors on retry
+    userAnalyserRef.current = null;
+    aiAnalyserRef.current = null;
+    
     setStatus('disconnected');
     setErrorMessage(null);
     setAiSpeaking(false);
@@ -493,14 +497,16 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       const source = audioContextRef.current.createBufferSource();
       source.buffer = audioBuffer;
 
-      if (!aiAnalyserRef.current) {
+      // Ensure analyser belongs to current context (Safeguard against 'different audio context' error)
+      if (!aiAnalyserRef.current || aiAnalyserRef.current.context !== audioContextRef.current) {
         aiAnalyserRef.current = audioContextRef.current.createAnalyser();
         aiAnalyserRef.current.fftSize = 64; 
         aiAnalyserRef.current.smoothingTimeConstant = 0.6;
+        aiAnalyserRef.current.connect(audioContextRef.current.destination);
       }
 
       source.connect(aiAnalyserRef.current);
-      aiAnalyserRef.current.connect(audioContextRef.current.destination);
+      // Removed redundant connect(destination) here, handled in creation block
 
       const currentTime = audioContextRef.current.currentTime;
       const startTime = Math.max(currentTime, nextStartTimeRef.current);
@@ -630,7 +636,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                             {aiSpeaking ? (
                                 <span className="text-orange-300 text-xs font-bold uppercase tracking-widest animate-pulse">Speaking...</span>
                             ) : (
-                                <span className="text-stone-500 text-xs uppercase tracking-widest">Listening...</span>
+                                <span className="text-stone-400 text-xs uppercase tracking-widest font-bold">Listening...</span>
                             )}
                         </div>
                     )}
