@@ -140,6 +140,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const aiAnalyserRef = useRef<AnalyserNode | null>(null);
   const userCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const aiVisualizerRef = useRef<HTMLDivElement | null>(null); // The glow element
+  const aiVisualizerRingRef = useRef<HTMLDivElement | null>(null); // The ripple ring
   const animationFrameRef = useRef<number>(0);
 
   const figure = figureId ? KINGS_DATA[figureId] : null;
@@ -221,20 +222,17 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           
-          const bars = 24; // Number of bars
-          const gap = 4;
+          const bars = 32; // More bars for smoother look
+          const gap = 3;
           const totalGap = (bars - 1) * gap;
           const barWidth = (canvas.width - totalGap) / bars;
           const step = Math.floor(bufferLength / bars);
 
           const isActive = !isMicMuted;
           
-          // Draw symmetric bars
           for (let i = 0; i < bars; i++) {
             let sum = 0;
-            // Aggregate frequency data for this bin
             for(let j=0; j<step; j++) {
-                // Use the lower half of frequencies which usually has voice data
                 const index = Math.floor(i * step + j);
                 if (index < dataArray.length) {
                     sum += dataArray[index];
@@ -243,54 +241,58 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             const avg = sum / step;
             
             // Normalize and boost
-            const val = isActive ? (avg / 255) : 0.05; 
-            // Add some minimum height variation even when silent for "alive" feel
-            const noise = isActive ? 0 : (Math.random() * 0.05);
+            const val = isActive ? (avg / 255) : 0; 
+            const noise = isActive ? 0.05 : (Math.random() * 0.02);
             
-            const barHeight = Math.max(4, (val + noise) * canvas.height * 1.5);
+            const barHeight = Math.max(2, (val * 1.5 + noise) * canvas.height);
             
-            // Dynamic Color
-            const opacity = 0.4 + (val * 0.6);
+            // Gradient Color
+            const opacity = 0.3 + (val * 0.7);
             ctx.fillStyle = isActive 
                 ? `rgba(249, 115, 22, ${opacity})` // Orange
-                : `rgba(120, 113, 108, ${opacity})`; // Stone
+                : `rgba(120, 113, 108, 0.2)`; // Stone
 
-            // Rounded Rect simulation
             const x = i * (barWidth + gap);
             const y = (canvas.height - barHeight) / 2;
             
             ctx.beginPath();
-            ctx.roundRect(x, y, barWidth, barHeight, 4);
+            ctx.roundRect(x, y, barWidth, barHeight, 20);
             ctx.fill();
           }
         }
       }
 
       // 2. Visualize AI Speech (Glow/Scale)
-      if (aiAnalyserRef.current && aiVisualizerRef.current) {
+      if (aiAnalyserRef.current && aiVisualizerRef.current && aiVisualizerRingRef.current) {
         const analyser = aiAnalyserRef.current;
         const bufferLength = analyser.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
         analyser.getByteFrequencyData(dataArray);
 
-        // Calculate average volume
         let sum = 0;
         for (let i = 0; i < bufferLength; i++) {
           sum += dataArray[i];
         }
         const average = sum / bufferLength;
         
-        // Map average (0-255) to scale (1.0 - 1.4)
         // Threshold: only animate if average > 10
-        const scale = average > 10 ? 1 + (average / 255) * 0.6 : 1;
-        const opacity = average > 10 ? 0.3 + (average / 255) * 0.7 : 0;
-
+        const isActive = average > 10;
+        const scale = isActive ? 1 + (average / 255) * 0.5 : 1;
+        const opacity = isActive ? 0.4 + (average / 255) * 0.6 : 0;
+        
+        // Inner Glow
         aiVisualizerRef.current.style.transform = `translate(-50%, -50%) scale(${scale})`;
         aiVisualizerRef.current.style.opacity = opacity.toString();
-        // Add a box-shadow based on volume for extra glow
-        if (average > 10) {
-            const spread = (average / 255) * 50;
-            aiVisualizerRef.current.style.boxShadow = `0 0 ${spread}px ${spread/2}px rgba(249, 115, 22, 0.5)`;
+        
+        // Outer Ring Ripple
+        const ringScale = isActive ? 1 + (average / 255) * 1.2 : 1;
+        const ringOpacity = isActive ? (average / 255) * 0.4 : 0;
+        aiVisualizerRingRef.current.style.transform = `translate(-50%, -50%) scale(${ringScale})`;
+        aiVisualizerRingRef.current.style.opacity = ringOpacity.toString();
+        
+        if (isActive) {
+            const spread = (average / 255) * 60;
+            aiVisualizerRef.current.style.boxShadow = `0 0 ${spread}px ${spread/2}px rgba(249, 115, 22, 0.6)`;
         } else {
             aiVisualizerRef.current.style.boxShadow = 'none';
         }
@@ -309,7 +311,6 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const startSession = async () => {
     if (!figure) return;
     
-    // Check for API Key first to prevent crash
     if (!process.env.API_KEY) {
       console.error("API Key missing");
       setStatus('error');
@@ -317,7 +318,6 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       return;
     }
 
-    // Set intention to connect (increment ID)
     const currentConnectionId = ++connectionIdRef.current;
     setStatus('connecting');
     setErrorMessage(null);
@@ -329,12 +329,10 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         sampleRate: 16000, 
       });
 
-      // 1.5 Resume context (browsers sometimes suspend it)
       if (audioContextRef.current.state === 'suspended') {
         await audioContextRef.current.resume();
       }
 
-      // 1.6 Setup AudioWorklet
       const blob = new Blob([AudioRecorderWorkletCode], { type: "application/javascript" });
       const workletUrl = URL.createObjectURL(blob);
       await audioContextRef.current.audioWorklet.addModule(workletUrl);
@@ -357,7 +355,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
       // 4. Connect to Live API
       const sessionPromise = ai.live.connect({
-        model: 'gemini-2.5-flash-native-audio-dialog',
+        model: 'gemini-2.5-flash-native-audio-preview-09-2025',
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
@@ -367,40 +365,33 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         },
         callbacks: {
           onopen: async () => {
-            // Guard: If cleaned up or restarted during connection, abort
             if (connectionIdRef.current !== currentConnectionId) return;
 
             isConnectedRef.current = true;
             setStatus('connected');
             playSfx(audioContextRef.current, 'connect');
             
-            // Start Microphone Stream
             try {
               mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
               
-              // Double check connection state after async getUserMedia
               if (connectionIdRef.current !== currentConnectionId || !audioContextRef.current) return;
 
               sourceNodeRef.current = audioContextRef.current.createMediaStreamSource(mediaStreamRef.current);
               
-              // Set up User Analyser
               userAnalyserRef.current = audioContextRef.current.createAnalyser();
-              userAnalyserRef.current.fftSize = 256;
+              userAnalyserRef.current.fftSize = 64; // Smaller FFT for fewer, chunkier bars
               sourceNodeRef.current.connect(userAnalyserRef.current);
 
-              // Use AudioWorkletNode instead of ScriptProcessorNode
               workletNodeRef.current = new AudioWorkletNode(audioContextRef.current, 'recorder-worklet');
               
               workletNodeRef.current.port.onmessage = (event) => {
-                // GUARD: Strictly check if we are still connected and not muted
                 if (isMicMuted || !isConnectedRef.current) return;
 
-                const inputData = event.data; // Float32Array
+                const inputData = event.data;
                 const pcm16 = floatTo16BitPCM(inputData);
                 const base64Data = arrayBufferToBase64(pcm16);
 
                 sessionPromise.then(session => {
-                    // Critical Guard: Ensure we are sending to the active session and haven't disconnected
                     if (!isConnectedRef.current || !session || connectionIdRef.current !== currentConnectionId) return;
                     
                     try {
@@ -411,14 +402,11 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                             }
                         });
                     } catch (err) {
-                        if (isConnectedRef.current) {
-                            console.warn("Socket send error:", err);
-                        }
+                        if (isConnectedRef.current) console.warn("Socket send error:", err);
                     }
                 });
               };
 
-              // Connect source -> analyser -> worklet -> destination (mute)
               sourceNodeRef.current.connect(userAnalyserRef.current);
               sourceNodeRef.current.connect(workletNodeRef.current);
               workletNodeRef.current.connect(audioContextRef.current.destination);
@@ -446,10 +434,10 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             if (connectionIdRef.current === currentConnectionId) {
                 isConnectedRef.current = false;
                 if (!hasErrorRef.current) {
-                    // Specific handling for 1008 Policy Violation (referer issues)
+                    // Specific check for Referrer Policy error (1008)
                     if (e.code === 1008) {
                         setStatus('error');
-                        setErrorMessage("Connection Restricted: Check API Key Referer settings.");
+                        setErrorMessage("Access Denied: Please check API Key Referrer/Domain restrictions.");
                     } else {
                         setStatus('disconnected');
                     }
@@ -471,7 +459,6 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
       const session = await sessionPromise;
       
-      // Post-resolve guard: If cleanup happened while awaiting, close immediately
       if (connectionIdRef.current !== currentConnectionId) {
         session.close();
         return;
@@ -480,7 +467,6 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       sessionRef.current = session;
 
     } catch (error) {
-      // Only log if we are still the active attempt
       if (connectionIdRef.current === currentConnectionId) {
           console.error("Failed to start session", error);
           hasErrorRef.current = true;
@@ -507,14 +493,12 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       const source = audioContextRef.current.createBufferSource();
       source.buffer = audioBuffer;
 
-      // Set up Output Analyser if not exists
       if (!aiAnalyserRef.current) {
         aiAnalyserRef.current = audioContextRef.current.createAnalyser();
-        aiAnalyserRef.current.fftSize = 256; 
-        aiAnalyserRef.current.smoothingTimeConstant = 0.7;
+        aiAnalyserRef.current.fftSize = 64; 
+        aiAnalyserRef.current.smoothingTimeConstant = 0.6;
       }
 
-      // Chain: Source -> Analyser -> Destination
       source.connect(aiAnalyserRef.current);
       aiAnalyserRef.current.connect(audioContextRef.current.destination);
 
@@ -543,20 +527,17 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   };
 
   const handleClose = () => {
-    // Immediately invalidate current session ID
     connectionIdRef.current++;
     isConnectedRef.current = false;
     playSfx(audioContextRef.current, 'disconnect');
-    // Slight delay to let the sound play
     setTimeout(onClose, 200);
   };
 
   const handleRetry = () => {
       cleanup();
-      // Slight delay to allow cleanup to finish
       setTimeout(() => {
           startSession();
-      }, 100);
+      }, 200);
   };
 
   if (!isOpen || !figure) return null;
@@ -593,10 +574,14 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             {/* Main Visualizer Area */}
             <div className="flex-grow relative flex flex-col items-center justify-center p-8 overflow-hidden bg-gradient-to-b from-[#1c1917] to-black">
                 
-                {/* AI Voice Visualizer (Glow) */}
+                {/* AI Voice Visualizer (Glow + Ring) */}
                 <div 
                     ref={aiVisualizerRef}
-                    className="absolute top-1/2 left-1/2 w-64 h-64 bg-orange-500 rounded-full blur-[80px] pointer-events-none transition-transform duration-75 ease-linear will-change-transform opacity-0"
+                    className="absolute top-1/2 left-1/2 w-64 h-64 bg-orange-500 rounded-full blur-[80px] pointer-events-none transition-transform duration-75 ease-linear will-change-transform opacity-0 z-0"
+                ></div>
+                <div 
+                    ref={aiVisualizerRingRef}
+                    className="absolute top-1/2 left-1/2 w-80 h-80 border-2 border-orange-400/50 rounded-full pointer-events-none transition-transform duration-100 ease-linear will-change-transform opacity-0 z-0"
                 ></div>
 
                 {/* Avatar Container */}
@@ -655,9 +640,9 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             {/* Controls */}
             <div className="p-8 bg-stone-900 border-t border-stone-800 relative">
                 
-                {/* User Mic Visualizer (Canvas) - New Position for clearer view */}
-                <div className="absolute top-[-50px] left-0 right-0 h-12 flex items-end justify-center px-4 pointer-events-none">
-                    <canvas ref={userCanvasRef} width={300} height={48} className="w-full h-full max-w-[300px]"></canvas>
+                {/* User Mic Visualizer (Canvas) */}
+                <div className="absolute top-[-60px] left-0 right-0 h-16 flex items-end justify-center px-4 pointer-events-none">
+                    <canvas ref={userCanvasRef} width={300} height={64} className="w-full h-full max-w-[300px]"></canvas>
                 </div>
 
                 <div className="flex items-center justify-center gap-6">
