@@ -4,11 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ea580c" />
+    <meta name="description" content="An interactive, educational platform exploring the vast history of India. Features dynamic timelines, detailed profiles of dynasties and kings, and accessibility tools." />
     <!-- Updated referrer policy to ensure API key restrictions work correctly -->
     <meta name="referrer" content="no-referrer-when-downgrade" />
+    
     <title>BharatItihas - Indian History</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>" />
-    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>" />
+    
+    <!-- PWA Manifest & Icons -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <link rel="apple-touch-icon" href="icon.svg" />
     
     <!-- Load Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Eczar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,5 +34,18 @@
   <body class="bg-[#fdfbf7] text-stone-900 antialiased selection:bg-orange-200 selection:text-orange-900">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js', { scope: './' })
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
