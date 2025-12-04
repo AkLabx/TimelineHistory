@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleGenAI, LiveServerMessage } from "@google/genai";
+import { GoogleGenAI, LiveServerMessage, Modality } from "@google/genai";
 import { KINGS_DATA } from '../data';
 import { Icons } from './Icons';
 
@@ -163,13 +163,15 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
     }
     
     if (workletNodeRef.current) {
-        workletNodeRef.current.port.postMessage("stop");
-        workletNodeRef.current.disconnect();
+        try {
+            workletNodeRef.current.port.postMessage("stop");
+            workletNodeRef.current.disconnect();
+        } catch (e) {}
         workletNodeRef.current = null;
     }
 
     if (sourceNodeRef.current) {
-      sourceNodeRef.current.disconnect();
+      try { sourceNodeRef.current.disconnect(); } catch (e) {}
       sourceNodeRef.current = null;
     }
     if (mediaStreamRef.current) {
@@ -177,7 +179,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       mediaStreamRef.current = null;
     }
     if (audioContextRef.current) {
-      audioContextRef.current.close();
+      try { audioContextRef.current.close(); } catch (e) {}
       audioContextRef.current = null;
     }
     
@@ -206,7 +208,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
     if (status !== 'connected') return;
 
     const animate = () => {
-      // 1. Visualize User Mic (Waveform)
+      // 1. Visualize User Mic (Frequency Bars)
       if (userAnalyserRef.current && userCanvasRef.current) {
         const canvas = userCanvasRef.current;
         const ctx = canvas.getContext('2d');
@@ -215,26 +217,52 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         if (ctx) {
           const bufferLength = analyser.frequencyBinCount;
           const dataArray = new Uint8Array(bufferLength);
-          analyser.getByteTimeDomainData(dataArray);
+          analyser.getByteFrequencyData(dataArray);
 
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.lineWidth = 2;
-          ctx.strokeStyle = isMicMuted ? '#57534e' : '#f97316'; // Stone-600 or Orange-500
-          ctx.beginPath();
+          
+          const bars = 24; // Number of bars
+          const gap = 4;
+          const totalGap = (bars - 1) * gap;
+          const barWidth = (canvas.width - totalGap) / bars;
+          const step = Math.floor(bufferLength / bars);
 
-          const sliceWidth = canvas.width * 1.0 / bufferLength;
-          let x = 0;
+          const isActive = !isMicMuted;
+          
+          // Draw symmetric bars
+          for (let i = 0; i < bars; i++) {
+            let sum = 0;
+            // Aggregate frequency data for this bin
+            for(let j=0; j<step; j++) {
+                // Use the lower half of frequencies which usually has voice data
+                const index = Math.floor(i * step + j);
+                if (index < dataArray.length) {
+                    sum += dataArray[index];
+                }
+            }
+            const avg = sum / step;
+            
+            // Normalize and boost
+            const val = isActive ? (avg / 255) : 0.05; 
+            // Add some minimum height variation even when silent for "alive" feel
+            const noise = isActive ? 0 : (Math.random() * 0.05);
+            
+            const barHeight = Math.max(4, (val + noise) * canvas.height * 1.5);
+            
+            // Dynamic Color
+            const opacity = 0.4 + (val * 0.6);
+            ctx.fillStyle = isActive 
+                ? `rgba(249, 115, 22, ${opacity})` // Orange
+                : `rgba(120, 113, 108, ${opacity})`; // Stone
 
-          for (let i = 0; i < bufferLength; i++) {
-            const v = dataArray[i] / 128.0;
-            const y = v * canvas.height / 2;
-
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-
-            x += sliceWidth;
+            // Rounded Rect simulation
+            const x = i * (barWidth + gap);
+            const y = (canvas.height - barHeight) / 2;
+            
+            ctx.beginPath();
+            ctx.roundRect(x, y, barWidth, barHeight, 4);
+            ctx.fill();
           }
-          ctx.stroke();
         }
       }
 
@@ -252,13 +280,20 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         }
         const average = sum / bufferLength;
         
-        // Map average (0-255) to scale (1.0 - 1.5)
-        // Threshold: only animate if average > 5 to reduce jitter
-        const scale = average > 5 ? 1 + (average / 255) * 0.8 : 1;
-        const opacity = average > 5 ? 0.2 + (average / 255) * 0.6 : 0; // ambient glow
+        // Map average (0-255) to scale (1.0 - 1.4)
+        // Threshold: only animate if average > 10
+        const scale = average > 10 ? 1 + (average / 255) * 0.6 : 1;
+        const opacity = average > 10 ? 0.3 + (average / 255) * 0.7 : 0;
 
         aiVisualizerRef.current.style.transform = `translate(-50%, -50%) scale(${scale})`;
         aiVisualizerRef.current.style.opacity = opacity.toString();
+        // Add a box-shadow based on volume for extra glow
+        if (average > 10) {
+            const spread = (average / 255) * 50;
+            aiVisualizerRef.current.style.boxShadow = `0 0 ${spread}px ${spread/2}px rgba(249, 115, 22, 0.5)`;
+        } else {
+            aiVisualizerRef.current.style.boxShadow = 'none';
+        }
       }
 
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -322,9 +357,9 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
       // 4. Connect to Live API
       const sessionPromise = ai.live.connect({
-        model: 'gemini-2.5-flash-native-audio-preview-09-2025',
+        model: 'gemini-2.5-flash-native-audio-dialog',
         config: {
-          responseModalities: ['AUDIO'], // Use string literal to avoid import issues
+          responseModalities: [Modality.AUDIO],
           speechConfig: {
             voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } },
           },
@@ -378,7 +413,6 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                     } catch (err) {
                         if (isConnectedRef.current) {
                             console.warn("Socket send error:", err);
-                            // Do not disconnect immediately on send error, might be transient
                         }
                     }
                 });
@@ -411,9 +445,14 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
           onclose: (e) => {
             if (connectionIdRef.current === currentConnectionId) {
                 isConnectedRef.current = false;
-                // Only overwrite status if we didn't already encounter a hard error
                 if (!hasErrorRef.current) {
-                    setStatus('disconnected');
+                    // Specific handling for 1008 Policy Violation (referer issues)
+                    if (e.code === 1008) {
+                        setStatus('error');
+                        setErrorMessage("Connection Restricted: Check API Key Referer settings.");
+                    } else {
+                        setStatus('disconnected');
+                    }
                     console.log("Session closed:", e);
                 }
             }
@@ -471,8 +510,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       // Set up Output Analyser if not exists
       if (!aiAnalyserRef.current) {
         aiAnalyserRef.current = audioContextRef.current.createAnalyser();
-        aiAnalyserRef.current.fftSize = 64; // Smaller FFT for smoother bass/volume pulse
-        aiAnalyserRef.current.smoothingTimeConstant = 0.8;
+        aiAnalyserRef.current.fftSize = 256; 
+        aiAnalyserRef.current.smoothingTimeConstant = 0.7;
       }
 
       // Chain: Source -> Analyser -> Destination
@@ -536,7 +575,11 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             {/* Header */}
             <div className="p-4 bg-stone-900 border-b border-stone-800 flex justify-between items-center shadow-sm z-10">
                 <div className="flex items-center gap-3">
-                    <div className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-widest border border-red-500/30 flex items-center gap-1">
+                    <div className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-widest border flex items-center gap-1 transition-colors
+                        ${status === 'connected' 
+                            ? 'bg-red-500/20 text-red-400 border-red-500/30' 
+                            : 'bg-stone-700/50 text-stone-400 border-stone-600/50'}
+                    `}>
                         <span className={`w-1.5 h-1.5 rounded-full ${status === 'connected' ? 'bg-red-500 animate-pulse' : 'bg-stone-500'}`}></span>
                         Live
                     </div>
@@ -573,26 +616,26 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                 </div>
 
                 {/* Status Text */}
-                <div className="mt-12 h-16 flex flex-col items-center justify-center z-10">
+                <div className="mt-12 h-16 flex flex-col items-center justify-center z-10 w-full px-4">
                     {status === 'connecting' && (
-                        <span className="text-orange-400 text-sm animate-pulse font-mono">CONNECTING TO HISTORY...</span>
+                        <span className="text-orange-400 text-sm animate-pulse font-mono tracking-wider">CONNECTING...</span>
                     )}
                     {status === 'error' && (
                         <>
-                            <span className="text-red-400 text-sm font-mono text-center px-4 mb-2">
+                            <span className="text-red-400 text-xs font-mono text-center mb-3 bg-red-950/30 px-2 py-1 rounded border border-red-900/50">
                                 {errorMessage || "CONNECTION FAILED"}
                             </span>
-                            <button onClick={handleRetry} className="text-xs bg-red-900/50 text-red-200 px-3 py-1 rounded border border-red-700/50 hover:bg-red-800/50">
-                                Retry
+                            <button onClick={handleRetry} className="text-xs bg-red-900/50 text-red-200 px-4 py-2 rounded-full border border-red-700/50 hover:bg-red-800/50 transition-colors font-bold uppercase tracking-wider">
+                                Retry Connection
                             </button>
                         </>
                     )}
                     {status === 'disconnected' && (
                         <>
-                            <span className="text-stone-500 text-sm font-mono text-center px-4 mb-2">
+                            <span className="text-stone-500 text-sm font-mono text-center mb-3">
                                 Disconnected
                             </span>
-                            <button onClick={handleRetry} className="text-xs bg-stone-800 text-stone-200 px-3 py-1 rounded border border-stone-700 hover:bg-stone-700">
+                            <button onClick={handleRetry} className="text-xs bg-stone-800 text-stone-200 px-4 py-2 rounded-full border border-stone-700 hover:bg-stone-700 transition-colors font-bold uppercase tracking-wider">
                                 Reconnect
                             </button>
                         </>
@@ -612,16 +655,16 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             {/* Controls */}
             <div className="p-8 bg-stone-900 border-t border-stone-800 relative">
                 
-                {/* User Mic Visualizer (Canvas) */}
-                <div className="absolute top-[-40px] left-0 right-0 h-10 flex items-end justify-center px-8 pointer-events-none">
-                    <canvas ref={userCanvasRef} width={300} height={40} className="w-full h-full opacity-50"></canvas>
+                {/* User Mic Visualizer (Canvas) - New Position for clearer view */}
+                <div className="absolute top-[-50px] left-0 right-0 h-12 flex items-end justify-center px-4 pointer-events-none">
+                    <canvas ref={userCanvasRef} width={300} height={48} className="w-full h-full max-w-[300px]"></canvas>
                 </div>
 
                 <div className="flex items-center justify-center gap-6">
                     <button 
                         onClick={toggleMic}
                         disabled={status !== 'connected'}
-                        className={`p-4 rounded-full transition-all duration-200 ring-2 ${isMicMuted ? 'bg-stone-800 text-red-400 ring-red-900/30' : 'bg-stone-800 text-white hover:bg-stone-700 ring-stone-700'} ${status !== 'connected' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        className={`p-4 rounded-full transition-all duration-200 ring-2 ${isMicMuted ? 'bg-stone-800 text-red-400 ring-red-900/30 hover:bg-stone-700' : 'bg-stone-800 text-white hover:bg-stone-700 ring-stone-700'} ${status !== 'connected' ? 'opacity-50 cursor-not-allowed' : ''}`}
                         title={isMicMuted ? "Unmute" : "Mute"}
                     >
                         {isMicMuted ? (
