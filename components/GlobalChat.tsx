@@ -43,7 +43,10 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Tools Config State
   const [useSearch, setUseSearch] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   
   // Attachments State
   const [attachment, setAttachment] = useState<Attachment | null>(null);
@@ -54,6 +57,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const settingsRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -66,6 +70,21 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
+
+  // Close settings if clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+        if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
+            setIsSettingsOpen(false);
+        }
+    };
+    if (isSettingsOpen) {
+        document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isSettingsOpen]);
 
   // Auto-resize textarea
   useEffect(() => {
@@ -370,9 +389,9 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
         style={{ boxShadow: '0 20px 50px -12px rgba(0, 0, 0, 0.25)' }}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 p-4 pt-5 pb-5 text-white flex justify-between items-start relative overflow-hidden flex-shrink-0">
+        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 p-4 pt-5 pb-5 text-white flex justify-between items-start relative overflow-visible flex-shrink-0">
             {/* Decorative BG pattern */}
-            <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '20px 20px'}}></div>
+            <div className="absolute inset-0 opacity-10 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '20px 20px'}}></div>
             
             <div className="flex items-center gap-3 relative z-10">
                 <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-inner">
@@ -387,16 +406,50 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
             </div>
             
             <div className="flex items-center gap-1 relative z-10">
-                <button
-                    onClick={() => setUseSearch(!useSearch)}
-                    className={`p-2 rounded-full transition-all duration-300 ${useSearch ? 'text-white bg-white/20 shadow-inner ring-1 ring-white/30' : 'text-white/50 hover:text-white hover:bg-white/10'}`}
-                    title={useSearch ? "Google Search Grounding: ON" : "Google Search Grounding: OFF"}
-                >
-                    <div className="relative">
-                        <Icons.Settings />
-                        {useSearch && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-400 rounded-full border border-indigo-700"></span>}
-                    </div>
-                </button>
+                {/* Settings with Dropdown */}
+                <div className="relative" ref={settingsRef}>
+                    <button
+                        onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                        className={`p-2 rounded-full transition-all duration-300 ${isSettingsOpen ? 'text-white bg-white/20 shadow-inner' : 'text-white/50 hover:text-white hover:bg-white/10'}`}
+                        title="Settings"
+                    >
+                        <div className="relative">
+                            <Icons.Settings />
+                            {useSearch && !isSettingsOpen && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-400 rounded-full border border-indigo-700"></span>}
+                        </div>
+                    </button>
+
+                    {/* Settings Popover */}
+                    {isSettingsOpen && (
+                        <div className="absolute top-full right-0 mt-3 w-60 bg-white rounded-2xl shadow-2xl border border-stone-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right text-stone-800 z-50">
+                            <div className="px-4 py-3 border-b border-stone-100 bg-stone-50/80 backdrop-blur-sm">
+                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Model Tools</h4>
+                            </div>
+                            <div className="p-2">
+                                <div 
+                                    className="flex items-center justify-between p-3 hover:bg-stone-50 rounded-xl cursor-pointer transition-colors group select-none"
+                                    onClick={() => setUseSearch(!useSearch)}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${useSearch ? 'bg-green-100 text-green-600' : 'bg-stone-100 text-stone-400'}`}>
+                                            <Icons.Search />
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-sm font-bold text-stone-700 group-hover:text-stone-900">Google Grounding</span>
+                                            <span className="text-[10px] text-stone-400">Connect to real-time info</span>
+                                        </div>
+                                    </div>
+                                    
+                                    {/* IOS-style Toggle */}
+                                    <div className={`w-9 h-5 rounded-full relative transition-colors duration-300 ${useSearch ? 'bg-green-500' : 'bg-stone-300'}`}>
+                                        <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-300 ${useSearch ? 'translate-x-4.5' : 'translate-x-0.5'}`} style={{ transform: useSearch ? 'translateX(18px)' : 'translateX(2px)' }}></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
                 <button 
                     onClick={handleClear} 
                     className="text-white/60 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors"
