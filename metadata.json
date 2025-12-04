@@ -1,5 +1,7 @@
 {
   "name": "BharatItihas: Indian History Explorer",
   "description": "An interactive, educational platform exploring the vast history of India. Features dynamic timelines, detailed profiles of dynasties and kings, and accessibility tools.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "microphone"
+  ]
 }

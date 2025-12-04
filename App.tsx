@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { ViewState } from './types';
 import { useNavigation } from './hooks/useNavigation';
 import { useSearch } from './hooks/useSearch';
-import { DYNASTY_DATA } from './data';
+import { DYNASTY_DATA, KINGS_DATA } from './data';
 
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
@@ -13,11 +13,13 @@ import SearchModal from './components/SearchModal';
 import CompareModal from './components/CompareModal';
 import CompareView from './components/CompareView';
 import Footer from './components/Footer';
+import SamvadChat from './components/SamvadChat';
 
 export default function App() {
   const navigation = useNavigation();
   const search = useSearch();
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+  const [samvadFigureId, setSamvadFigureId] = useState<string | null>(null);
 
   // Helper to resolve the active Era/Period context
   const activeContext = useMemo(() => {
@@ -77,7 +79,7 @@ export default function App() {
           </div>
       )}
 
-      <main className="flex-grow">
+      <main className="flex-grow relative">
         {navigation.view === ViewState.DASHBOARD && (
           <Dashboard onSelectPeriod={navigation.selectPeriod} />
         )}
@@ -104,6 +106,7 @@ export default function App() {
                 figureId={navigation.selectedEntityId!}
                 onSelectPeriod={navigation.selectPeriod}
                 onSelectFigure={navigation.selectFigure}
+                onOpenSamvad={() => setSamvadFigureId(navigation.selectedEntityId!)}
               />
             ) : (
                /* Safe check for EraDetail */
@@ -136,6 +139,13 @@ export default function App() {
         isOpen={isCompareModalOpen}
         onClose={() => setIsCompareModalOpen(false)}
         onStartComparison={navigation.startComparison}
+      />
+
+      {/* Samvad Chat Drawer */}
+      <SamvadChat 
+        isOpen={!!samvadFigureId}
+        onClose={() => setSamvadFigureId(null)}
+        figureId={samvadFigureId}
       />
     </div>
   );

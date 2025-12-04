@@ -9,9 +9,10 @@ interface FigureDetailProps {
   figureId: string;
   onSelectPeriod: (id: string) => void;
   onSelectFigure: (id: string) => void;
+  onOpenSamvad?: () => void;
 }
 
-const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectPeriod, onSelectFigure }) => {
+const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectPeriod, onSelectFigure, onOpenSamvad }) => {
   const [imgError, setImgError] = useState(false);
 
   // Find parent period for "Back" button
@@ -45,7 +46,7 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
   return (
         <div className="max-w-4xl mx-auto px-4 py-6 md:py-8 pb-32 animate-in fade-in slide-in-from-bottom-8 duration-700">
             {/* Breadcrumb / Back Navigation - kept for accessibility/easy exit */}
-            <div className="mb-6 md:mb-8">
+            <div className="mb-6 md:mb-8 flex justify-between items-center">
                 {parentPeriod && (
                     <button onClick={() => onSelectPeriod(parentPeriodId!)} className="group inline-flex items-center text-sm font-bold text-slate-500 hover:text-orange-600 transition-colors px-4 py-2 rounded-full bg-slate-100 hover:bg-orange-50 active:bg-orange-100">
                         <span className="transform rotate-180 inline-block mr-2 group-hover:-translate-x-1 transition-transform"><Icons.ChevronRight /></span>
@@ -125,24 +126,24 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                         <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-4 heading-text leading-tight text-shadow-lg break-words">
                             {figure.summary.title}
                         </h1>
-                        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 gap-x-6">
+                        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 gap-x-6 items-start sm:items-center">
                             {figure.summary.reign && (
                                 <div className="flex items-center text-slate-300 font-serif text-base md:text-lg">
                                     <span className="mr-3 text-xl md:text-2xl">🗓</span>
                                     <span className="border-b border-slate-600 pb-1 tracking-wide">{figure.summary.reign}</span>
                                 </div>
                             )}
-                            {figure.summary.founder && (
-                                <div className="flex items-center text-slate-300 font-serif text-base md:text-lg">
-                                    <span className="mr-2 text-lg md:text-xl opacity-70">👤</span>
-                                    <span className="text-slate-200">Founder: {figure.summary.founder}</span>
-                                </div>
-                            )}
-                            {figure.summary.capital && (
-                                <div className="flex items-center text-slate-300 font-serif text-base md:text-lg">
-                                    <span className="mr-2 text-lg md:text-xl opacity-70">🏰</span>
-                                    <span className="text-slate-200">Capital: {figure.summary.capital}</span>
-                                </div>
+                            
+                            {/* Samvad Chat Button */}
+                            {onOpenSamvad && (
+                                <button 
+                                    onClick={onOpenSamvad}
+                                    className="mt-4 sm:mt-0 flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full font-bold shadow-lg hover:shadow-orange-500/30 hover:scale-105 transition-all active:scale-95 border border-white/20 animate-in fade-in zoom-in duration-300"
+                                >
+                                    <span className="text-lg">💬</span>
+                                    <span>Samvad</span>
+                                    <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded text-white/90 uppercase tracking-wide">AI Chat</span>
+                                </button>
                             )}
                         </div>
                     </div>

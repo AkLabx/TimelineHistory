@@ -107,3 +107,10 @@ export interface SearchResult {
   matchType: 'title' | 'content';
   parentId?: string; // To know where to navigate
 }
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'model';
+  text: string;
+  isStreaming?: boolean;
+}
