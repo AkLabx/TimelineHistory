@@ -1,0 +1,32 @@
+import { Connection } from '../types';
+
+export const CONNECTIONS_DATA: Record<string, Connection[]> = {
+    "haryanka-dynasty": [{ "label": "Shishunaga Dynasty (Successor)", "targetId": "shishunaga-dynasty" }, { "label": "Rise of Magadha", "targetId": "magadha"}],
+    "shishunaga-dynasty": [{ "label": "Haryanka Dynasty (Predecessor)", "targetId": "haryanka-dynasty" }, { "label": "Nanda Dynasty (Successor)", "targetId": "nanda-dynasty" }],
+    "nanda-dynasty": [{ "label": "Alexander's Invasion", "targetId": "iranian-greek-invasions" }, { "label": "Chandragupta Maurya", "targetId": "chandragupta-maurya" }, { "label": "Shishunaga Dynasty (Predecessor)", "targetId": "shishunaga-dynasty" }],
+    "chandragupta-maurya": [{ "label": "Nanda Dynasty (Predecessor)", "targetId": "nanda-dynasty" }, { "label": "Seleucus Nicator (War)", "targetId": "iranian-greek-invasions" }, { "label": "Bindusara (Successor)", "targetId": "bindusara"}],
+    "bindusara": [{ "label": "Chandragupta Maurya (Father)", "targetId": "chandragupta-maurya" }, { "label": "Ashoka (Son)", "targetId": "ashoka" }],
+    "ashoka": [{ "label": "Bindusara (Father)", "targetId": "bindusara" }, { "label": "Mauryan Decline", "targetId": "later-mauryas" }],
+    "iranian-greek-invasions": [{ "label": "Nanda Dynasty (Contemporary)", "targetId": "nanda-dynasty" }, { "label": "Chandragupta Maurya (Liberator)", "targetId": "chandragupta-maurya" }],
+    "later-mauryas": [{ "label": "Ashoka the Great", "targetId": "ashoka" }, { "label": "Shunga Dynasty (Successor)", "targetId": "shunga-dynasty" }],
+    "shunga-dynasty": [{ "label": "Mauryan Decline (Predecessor)", "targetId": "later-mauryas" }, { "label": "Kanva Dynasty (Successor)", "targetId": "kanva-dynasty" }, { "label": "Indo-Greeks (Conflict)", "targetId": "foreign-rulers-nw"}],
+    "kanva-dynasty": [{ "label": "Shunga Dynasty (Predecessor)", "targetId": "shunga-dynasty" }, { "label": "Satavahana Dynasty (Successor)", "targetId": "satavahana-dynasty" }],
+    "satavahana-dynasty": [{ "label": "Kanva Dynasty (Predecessor)", "targetId": "kanva-dynasty" }, { "label": "Sakas (Conflict)", "targetId": "foreign-rulers-nw" }],
+    "foreign-rulers-nw": [{ "label": "Shunga Dynasty (Conflict)", "targetId": "shunga-dynasty" }, { "label": "Satavahana Dynasty (Conflict)", "targetId": "satavahana-dynasty" }, {"label": "Gupta Dynasty (Defeated Sakas)", "targetId": "gupta-dynasty"}],
+    
+    "sangam-chola-dynasty": [{ "label": "Chera Dynasty", "targetId": "sangam-chera-dynasty" }, { "label": "Pandya Dynasty", "targetId": "sangam-pandya-dynasty" }],
+    "sangam-chera-dynasty": [{ "label": "Chola Dynasty", "targetId": "sangam-chola-dynasty" }, { "label": "Pandya Dynasty", "targetId": "sangam-pandya-dynasty" }],
+    "sangam-pandya-dynasty": [{ "label": "Chola Dynasty", "targetId": "sangam-chola-dynasty" }, { "label": "Chera Dynasty", "targetId": "sangam-chera-dynasty" }],
+
+    "gupta-dynasty": [{ "label": "Sakas (Defeated by C.Gupta II)", "targetId": "foreign-rulers-nw" }, { "label": "Vakataka Dynasty (Alliance)", "targetId": "vakataka-dynasty" }, {"label": "Harshavardhana (Post-Gupta)", "targetId": "vardhana-dynasty"}],
+    "vakataka-dynasty": [{ "label": "Gupta Dynasty (Alliance)", "targetId": "gupta-dynasty" }],
+    "vardhana-dynasty": [{ "label": "Chalukyas of Badami (Conflict)", "targetId": "western-chalukya-dynasty" }, { "label": "Gupta Dynasty (Predecessor Era)", "targetId": "gupta-dynasty" }],
+    "western-chalukya-dynasty": [{ "label": "Harshavardhana (Conflict)", "targetId": "vardhana-dynasty" }, { "label": "Pallavas of Kanchi (Rivalry)", "targetId": "pallava-dynasty" }],
+    "pallava-dynasty": [{ "label": "Chalukyas of Badami (Rivalry)", "targetId": "western-chalukya-dynasty" }],
+    
+    "mamluk-dynasty": [{ "label": "Khilji Dynasty (Successor)", "targetId": "khilji-dynasty" }],
+    "khilji-dynasty": [{ "label": "Mamluk Dynasty (Predecessor)", "targetId": "mamluk-dynasty" }, { "label": "Tughlaq Dynasty (Successor)", "targetId": "tughlaq-dynasty" }],
+    "tughlaq-dynasty": [{ "label": "Khilji Dynasty (Predecessor)", "targetId": "khilji-dynasty" }, { "label": "Timur's Invasion", "targetId": "tughlaq-later-rulers" }, { "label": "Sayyid Dynasty (Successor)", "targetId": "sayyid-dynasty" }],
+    "sayyid-dynasty": [{ "label": "Tughlaq Dynasty (Predecessor)", "targetId": "tughlaq-dynasty" }, { "label": "Lodi Dynasty (Successor)", "targetId": "lodi-dynasty" }],
+    "lodi-dynasty": [{ "label": "Sayyid Dynasty (Predecessor)", "targetId": "sayyid-dynasty" }, { "label": "Mughal Empire (Successor)", "targetId": "mughal-empire" }]
+};
