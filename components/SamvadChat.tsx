@@ -118,6 +118,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isMicMuted, setIsMicMuted] = useState(false);
   const [aiSpeaking, setAiSpeaking] = useState(false);
+  const [voiceGender, setVoiceGender] = useState<'male' | 'female'>('male');
   
   // Refs for audio handling
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -206,7 +207,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       cleanup();
     }
     return () => cleanup();
-  }, [isOpen, figureId]);
+  }, [isOpen, figureId, voiceGender]);
 
   // Animation Loop for Visualizers
   useEffect(() => {
@@ -357,13 +358,16 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       4. Do not break character.
       `;
 
+      // Select voice based on gender state
+      const voiceName = voiceGender === 'male' ? 'Fenrir' : 'Kore';
+
       // 4. Connect to Live API
       const sessionPromise = ai.live.connect({
         model: 'gemini-2.5-flash-native-audio-preview-09-2025',
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
-            voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } },
+            voiceConfig: { prebuiltVoiceConfig: { voiceName: voiceName } },
           },
           systemInstruction: systemInstruction,
         },
@@ -651,7 +655,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                     <canvas ref={userCanvasRef} width={300} height={64} className="w-full h-full max-w-[300px]"></canvas>
                 </div>
 
-                <div className="flex items-center justify-center gap-6">
+                <div className="flex items-center justify-center gap-4">
                     <button 
                         onClick={toggleMic}
                         disabled={status !== 'connected'}
@@ -665,16 +669,32 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                         )}
                     </button>
 
+                    {/* Gender Toggle */}
+                    <div className="flex bg-stone-800 rounded-full p-1 border border-stone-700 shadow-inner">
+                        <button 
+                            className={`px-4 py-2.5 rounded-full text-[10px] font-bold uppercase transition-all duration-300 flex items-center gap-1 ${voiceGender === 'male' ? 'bg-stone-600 text-white shadow-md' : 'text-stone-400 hover:text-stone-300'}`} 
+                            onClick={() => { playSfx(audioContextRef.current, 'click'); setVoiceGender('male'); }}
+                        >
+                            <span>♂</span> Male
+                        </button>
+                        <button 
+                            className={`px-4 py-2.5 rounded-full text-[10px] font-bold uppercase transition-all duration-300 flex items-center gap-1 ${voiceGender === 'female' ? 'bg-stone-600 text-white shadow-md' : 'text-stone-400 hover:text-stone-300'}`} 
+                            onClick={() => { playSfx(audioContextRef.current, 'click'); setVoiceGender('female'); }}
+                        >
+                            <span>♀</span> Female
+                        </button>
+                    </div>
+
                     <button 
                         onClick={handleClose}
-                        className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold shadow-lg hover:shadow-red-900/50 transition-all transform hover:scale-105 active:scale-95 flex items-center gap-3"
+                        className="px-6 py-4 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold shadow-lg hover:shadow-red-900/50 transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2"
+                        title="End Call"
                     >
                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z" /></svg>
-                        <span>End Call</span>
                     </button>
                 </div>
                 <p className="text-center text-stone-600 text-[10px] mt-6 font-mono opacity-50">
-                    Gemini Live • {status}
+                    Gemini Live • {status} • Voice: {voiceGender === 'male' ? 'Fenrir' : 'Kore'}
                 </p>
             </div>
         </div>
