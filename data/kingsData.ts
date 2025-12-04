@@ -1,6 +1,6 @@
 import { KingProfile } from '../types';
 
-const BASE_URL = "/TimelineHistory/images";
+const BASE_URL = "/TimelineHistory/public/images";
 
 export const KINGS_DATA: Record<string, KingProfile> = {
     "bimbisara": { 
