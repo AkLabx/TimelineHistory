@@ -1,6 +1,13 @@
 import { PartData } from '../types';
 
-const BASE_URL = "/TimelineHistory/images";
+// Use Vite's injected BASE_URL which respects the 'base' config in vite.config.ts
+// This ensures paths work both in development (/) and production (/TimelineHistory/)
+const getBaseUrl = () => {
+  const base = (import.meta as any).env.BASE_URL;
+  return base.endsWith('/') ? base : `${base}/`;
+};
+
+const BASE_URL = `${getBaseUrl()}images`;
 
 export const PART_DATA: PartData = {
   subtitle: "प्राचीन काल से मुगल साम्राज्य तक का अन्वेषण करें। (Explore from Ancient Origins to the Mughal Empire.)",

@@ -1,6 +1,12 @@
 import { KingProfile } from '../types';
 
-const BASE_URL = "/TimelineHistory/images";
+// Use Vite's injected BASE_URL which respects the 'base' config in vite.config.ts
+const getBaseUrl = () => {
+  const base = (import.meta as any).env.BASE_URL;
+  return base.endsWith('/') ? base : `${base}/`;
+};
+
+const BASE_URL = `${getBaseUrl()}images`;
 
 export const KINGS_DATA: Record<string, KingProfile> = {
     "bimbisara": { 
