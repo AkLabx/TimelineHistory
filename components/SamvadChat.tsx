@@ -85,6 +85,7 @@ const playSfx = (ctx: AudioContext | null, type: 'click' | 'connect' | 'disconne
 
 const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) => {
   const [status, setStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isMicMuted, setIsMicMuted] = useState(false);
   const [aiSpeaking, setAiSpeaking] = useState(false);
   
@@ -138,6 +139,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
     audioQueueRef.current = [];
     
     setStatus('disconnected');
+    setErrorMessage(null);
     setAiSpeaking(false);
   };
 
@@ -222,6 +224,15 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
   const startSession = async () => {
     if (!figure) return;
+    
+    // Check for API Key first to prevent crash
+    if (!process.env.API_KEY) {
+      console.error("API Key missing");
+      setStatus('error');
+      setErrorMessage("Missing API Key");
+      return;
+    }
+
     setStatus('connecting');
 
     try {
@@ -297,6 +308,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             } catch (micError) {
               console.error("Microphone access denied", micError);
               setStatus('error');
+              setErrorMessage("Microphone access denied");
             }
           },
           onmessage: async (message: LiveServerMessage) => {
@@ -313,7 +325,9 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             setStatus('disconnected');
           },
           onerror: (err) => {
+            console.error(err);
             setStatus('error');
+            setErrorMessage("Connection Error");
           }
         }
       });
@@ -323,6 +337,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
     } catch (error) {
       console.error("Failed to start session", error);
       setStatus('error');
+      setErrorMessage("Failed to start session");
     }
   };
 
@@ -442,7 +457,9 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                         <span className="text-orange-400 text-sm animate-pulse font-mono">CONNECTING TO HISTORY...</span>
                     )}
                     {status === 'error' && (
-                        <span className="text-red-400 text-sm font-mono">CONNECTION FAILED</span>
+                        <span className="text-red-400 text-sm font-mono text-center px-4">
+                            {errorMessage || "CONNECTION FAILED"}
+                        </span>
                     )}
                     {status === 'connected' && (
                         <div className="flex flex-col items-center gap-2">
@@ -467,7 +484,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                 <div className="flex items-center justify-center gap-6">
                     <button 
                         onClick={toggleMic}
-                        className={`p-4 rounded-full transition-all duration-200 ring-2 ${isMicMuted ? 'bg-stone-800 text-red-400 ring-red-900/30' : 'bg-stone-800 text-white hover:bg-stone-700 ring-stone-700'}`}
+                        disabled={status !== 'connected'}
+                        className={`p-4 rounded-full transition-all duration-200 ring-2 ${isMicMuted ? 'bg-stone-800 text-red-400 ring-red-900/30' : 'bg-stone-800 text-white hover:bg-stone-700 ring-stone-700'} ${status !== 'connected' ? 'opacity-50 cursor-not-allowed' : ''}`}
                         title={isMicMuted ? "Unmute" : "Mute"}
                     >
                         {isMicMuted ? (
