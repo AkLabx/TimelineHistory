@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenAI, LiveServerMessage, Modality } from "@google/genai";
 import { KINGS_DATA } from '../data';
@@ -509,7 +510,13 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         aiAnalyserRef.current = audioContextRef.current.createAnalyser();
         aiAnalyserRef.current.fftSize = 64; 
         aiAnalyserRef.current.smoothingTimeConstant = 0.6;
-        aiAnalyserRef.current.connect(audioContextRef.current.destination);
+        
+        // Fix for low volume: Add a GainNode
+        const gainNode = audioContextRef.current.createGain();
+        gainNode.gain.value = 2.5; // Boost volume by 2.5x
+        
+        aiAnalyserRef.current.connect(gainNode);
+        gainNode.connect(audioContextRef.current.destination);
       }
 
       source.connect(aiAnalyserRef.current);
