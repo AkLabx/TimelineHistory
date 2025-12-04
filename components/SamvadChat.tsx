@@ -43,7 +43,7 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
 
 // Simple SFX Generator
 const playSfx = (ctx: AudioContext | null, type: 'click' | 'connect' | 'disconnect') => {
-  if (!ctx) return;
+  if (!ctx || ctx.state === 'closed') return;
   try {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -98,7 +98,10 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const nextStartTimeRef = useRef<number>(0);
   const audioQueueRef = useRef<AudioBufferSourceNode[]>([]);
   
-  // Ref to track connection status strictly for the audio loop
+  // Track intention to stay connected. 
+  // Prevents "zombie" connections if cleanup happens before connection completes.
+  const shouldBeConnectedRef = useRef<boolean>(false);
+  // Track actual connection status for audio loop
   const isConnectedRef = useRef<boolean>(false);
 
   // Refs for Visualizers
@@ -112,12 +115,17 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
   // Cleanup function
   const cleanup = () => {
+    shouldBeConnectedRef.current = false;
     isConnectedRef.current = false; // Immediately stop sending audio
     
     if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     
     if (sessionRef.current) {
-      sessionRef.current.close();
+      try {
+        sessionRef.current.close();
+      } catch (e) {
+        // Ignore close errors
+      }
       sessionRef.current = null;
     }
     if (processorRef.current) {
@@ -238,6 +246,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       return;
     }
 
+    // Set intention to connect
+    shouldBeConnectedRef.current = true;
     setStatus('connecting');
 
     try {
@@ -274,6 +284,9 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         },
         callbacks: {
           onopen: async () => {
+            // Guard: If cleaned up during connection, abort
+            if (!shouldBeConnectedRef.current) return;
+
             isConnectedRef.current = true;
             setStatus('connected');
             playSfx(audioContextRef.current, 'connect');
@@ -281,15 +294,18 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             // Start Microphone Stream
             try {
               mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
-              sourceNodeRef.current = audioContextRef.current!.createMediaStreamSource(mediaStreamRef.current);
+              
+              if (!audioContextRef.current) return;
+
+              sourceNodeRef.current = audioContextRef.current.createMediaStreamSource(mediaStreamRef.current);
               
               // Set up User Analyser
-              userAnalyserRef.current = audioContextRef.current!.createAnalyser();
+              userAnalyserRef.current = audioContextRef.current.createAnalyser();
               userAnalyserRef.current.fftSize = 256;
               sourceNodeRef.current.connect(userAnalyserRef.current);
 
               // Use ScriptProcessor for raw PCM access
-              processorRef.current = audioContextRef.current!.createScriptProcessor(4096, 1, 1);
+              processorRef.current = audioContextRef.current.createScriptProcessor(4096, 1, 1);
               
               processorRef.current.onaudioprocess = (e) => {
                 // GUARD: Strictly check if we are still connected and not muted
@@ -301,7 +317,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
                 sessionPromise.then(session => {
                     // Double check inside promise resolution
-                    if (!isConnectedRef.current) return;
+                    if (!isConnectedRef.current || !session) return;
                     
                     try {
                         session.sendRealtimeInput({
@@ -311,15 +327,17 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                             }
                         });
                     } catch (err) {
-                        // Suppress "WebSocket is already in CLOSING or CLOSED state" errors
-                        // console.warn("Socket send error:", err);
+                        // Critical: If send fails, usually means socket closed. 
+                        // Stop the loop to prevent spamming "WebSocket is already in CLOSING or CLOSED state"
+                        console.warn("Socket send error, stopping stream:", err);
+                        isConnectedRef.current = false;
                     }
                 });
               };
 
               // Connect analyser to processor
               userAnalyserRef.current.connect(processorRef.current);
-              processorRef.current.connect(audioContextRef.current!.destination);
+              processorRef.current.connect(audioContextRef.current.destination);
             } catch (micError) {
               console.error("Microphone access denied", micError);
               setStatus('error');
@@ -351,7 +369,15 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         }
       });
 
-      sessionRef.current = await sessionPromise;
+      const session = await sessionPromise;
+      
+      // Post-resolve guard: If cleanup happened while awaiting, close immediately
+      if (!shouldBeConnectedRef.current) {
+        session.close();
+        return;
+      }
+      
+      sessionRef.current = session;
 
     } catch (error) {
       console.error("Failed to start session", error);
@@ -414,6 +440,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
   const handleClose = () => {
     // Immediately set guard to false
+    shouldBeConnectedRef.current = false;
     isConnectedRef.current = false;
     playSfx(audioContextRef.current, 'disconnect');
     // Slight delay to let the sound play
