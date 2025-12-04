@@ -98,9 +98,10 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const nextStartTimeRef = useRef<number>(0);
   const audioQueueRef = useRef<AudioBufferSourceNode[]>([]);
   
-  // Track intention to stay connected. 
-  // Prevents "zombie" connections if cleanup happens before connection completes.
-  const shouldBeConnectedRef = useRef<boolean>(false);
+  // Ref to track the unique ID of the current connection attempt
+  // This prevents race conditions where an old 'onopen' fires after cleanup/new connection start
+  const connectionIdRef = useRef<number>(0);
+  
   // Track actual connection status for audio loop
   const isConnectedRef = useRef<boolean>(false);
 
@@ -115,7 +116,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
   // Cleanup function
   const cleanup = () => {
-    shouldBeConnectedRef.current = false;
+    // Increment ID to invalidate any pending 'onopen' callbacks
+    connectionIdRef.current++;
     isConnectedRef.current = false; // Immediately stop sending audio
     
     if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
@@ -129,6 +131,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       sessionRef.current = null;
     }
     if (processorRef.current) {
+      // Crucial: remove event listener to prevent loop
+      processorRef.current.onaudioprocess = null;
       processorRef.current.disconnect();
       processorRef.current = null;
     }
@@ -217,7 +221,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         const average = sum / bufferLength;
         
         // Map average (0-255) to scale (1.0 - 1.5)
-        // Threshold: only animate if average > 10 to reduce jitter
+        // Threshold: only animate if average > 5 to reduce jitter
         const scale = average > 5 ? 1 + (average / 255) * 0.8 : 1;
         const opacity = average > 5 ? 0.2 + (average / 255) * 0.6 : 0; // ambient glow
 
@@ -246,8 +250,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       return;
     }
 
-    // Set intention to connect
-    shouldBeConnectedRef.current = true;
+    // Set intention to connect (increment ID)
+    const currentConnectionId = ++connectionIdRef.current;
     setStatus('connecting');
 
     try {
@@ -284,8 +288,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         },
         callbacks: {
           onopen: async () => {
-            // Guard: If cleaned up during connection, abort
-            if (!shouldBeConnectedRef.current) return;
+            // Guard: If cleaned up or restarted during connection, abort
+            if (connectionIdRef.current !== currentConnectionId) return;
 
             isConnectedRef.current = true;
             setStatus('connected');
@@ -295,7 +299,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             try {
               mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
               
-              if (!audioContextRef.current) return;
+              // Double check connection state after async getUserMedia
+              if (connectionIdRef.current !== currentConnectionId || !audioContextRef.current) return;
 
               sourceNodeRef.current = audioContextRef.current.createMediaStreamSource(mediaStreamRef.current);
               
@@ -316,8 +321,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                 const base64Data = arrayBufferToBase64(pcm16);
 
                 sessionPromise.then(session => {
-                    // Double check inside promise resolution
-                    if (!isConnectedRef.current || !session) return;
+                    // Critical Guard: Ensure we are sending to the active session and haven't disconnected
+                    if (!isConnectedRef.current || !session || connectionIdRef.current !== currentConnectionId) return;
                     
                     try {
                         session.sendRealtimeInput({
@@ -327,10 +332,12 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                             }
                         });
                     } catch (err) {
-                        // Critical: If send fails, usually means socket closed. 
-                        // Stop the loop to prevent spamming "WebSocket is already in CLOSING or CLOSED state"
-                        console.warn("Socket send error, stopping stream:", err);
-                        isConnectedRef.current = false;
+                        // Suppress error if we are likely in a closing state
+                        if (isConnectedRef.current) {
+                            console.warn("Socket send error:", err);
+                            // If socket failed, treat as disconnected to stop loop
+                            isConnectedRef.current = false;
+                        }
                     }
                 });
               };
@@ -357,14 +364,18 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             }
           },
           onclose: () => {
-            isConnectedRef.current = false;
-            setStatus('disconnected');
+            if (connectionIdRef.current === currentConnectionId) {
+                isConnectedRef.current = false;
+                setStatus('disconnected');
+            }
           },
           onerror: (err) => {
-            isConnectedRef.current = false;
-            console.error(err);
-            setStatus('error');
-            setErrorMessage("Connection Error");
+            if (connectionIdRef.current === currentConnectionId) {
+                isConnectedRef.current = false;
+                console.error(err);
+                setStatus('error');
+                setErrorMessage("Connection Error");
+            }
           }
         }
       });
@@ -372,7 +383,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       const session = await sessionPromise;
       
       // Post-resolve guard: If cleanup happened while awaiting, close immediately
-      if (!shouldBeConnectedRef.current) {
+      if (connectionIdRef.current !== currentConnectionId) {
         session.close();
         return;
       }
@@ -380,9 +391,12 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       sessionRef.current = session;
 
     } catch (error) {
-      console.error("Failed to start session", error);
-      setStatus('error');
-      setErrorMessage("Failed to start session");
+      // Only log if we are still the active attempt
+      if (connectionIdRef.current === currentConnectionId) {
+          console.error("Failed to start session", error);
+          setStatus('error');
+          setErrorMessage("Failed to start session");
+      }
     }
   };
 
@@ -439,8 +453,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   };
 
   const handleClose = () => {
-    // Immediately set guard to false
-    shouldBeConnectedRef.current = false;
+    // Immediately invalidate current session ID
+    connectionIdRef.current++;
     isConnectedRef.current = false;
     playSfx(audioContextRef.current, 'disconnect');
     // Slight delay to let the sound play
