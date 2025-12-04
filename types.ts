@@ -3,7 +3,8 @@ export enum ViewState {
   DASHBOARD = 'DASHBOARD',
   TIMELINE = 'TIMELINE',
   DETAIL = 'DETAIL',
-  SEARCH = 'SEARCH'
+  SEARCH = 'SEARCH',
+  COMPARE = 'COMPARE'
 }
 
 export enum EntityType {

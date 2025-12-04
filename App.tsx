@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ViewState } from './types';
 import { useNavigation } from './hooks/useNavigation';
 import { useSearch } from './hooks/useSearch';
@@ -10,14 +10,16 @@ import Timeline from './components/Timeline';
 import EraDetail from './components/EraDetail';
 import FigureDetail from './components/FigureDetail';
 import SearchModal from './components/SearchModal';
+import CompareModal from './components/CompareModal';
+import CompareView from './components/CompareView';
 import Footer from './components/Footer';
 
 export default function App() {
   const navigation = useNavigation();
   const search = useSearch();
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
 
   // Helper to resolve the active Era/Period context
-  // If a King is selected, we find which Period they belong to.
   const activeContext = useMemo(() => {
     if (navigation.selectedPeriod) {
         return { 
@@ -43,11 +45,12 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-stone-50">
       <Navbar 
         onHome={navigation.goHome} 
-        onSearchOpen={() => search.setIsOpen(true)} 
+        onSearchOpen={() => search.setIsOpen(true)}
+        onCompareOpen={() => setIsCompareModalOpen(true)}
       />
 
-      {/* Breadcrumbs */}
-      {navigation.view !== ViewState.DASHBOARD && (
+      {/* Breadcrumbs - Hide on Dashboard and Compare View */}
+      {navigation.view !== ViewState.DASHBOARD && navigation.view !== ViewState.COMPARE && (
           <div className="bg-white border-b border-orange-100 py-3 px-4 sm:px-8 text-sm text-slate-500 flex items-center shadow-sm whitespace-nowrap overflow-x-auto">
              <span onClick={navigation.goHome} className="cursor-pointer hover:text-orange-600 font-medium">Home</span>
              
@@ -77,6 +80,14 @@ export default function App() {
       <main className="flex-grow">
         {navigation.view === ViewState.DASHBOARD && (
           <Dashboard onSelectPeriod={navigation.selectPeriod} />
+        )}
+
+        {navigation.view === ViewState.COMPARE && navigation.compareIds[0] && navigation.compareIds[1] && (
+          <CompareView 
+            id1={navigation.compareIds[0]!} 
+            id2={navigation.compareIds[1]!} 
+            onClose={navigation.goHome} 
+          />
         )}
         
         {/* Render Timeline & Details if we are in a detail view and have ANY valid selection */}
@@ -119,6 +130,12 @@ export default function App() {
         results={search.results}
         onSelectPeriod={navigation.selectPeriod}
         onSelectFigure={navigation.selectFigure}
+      />
+
+      <CompareModal 
+        isOpen={isCompareModalOpen}
+        onClose={() => setIsCompareModalOpen(false)}
+        onStartComparison={navigation.startComparison}
       />
     </div>
   );

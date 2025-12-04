@@ -8,6 +8,9 @@ export const useNavigation = () => {
   // selectedEntityId can be a Period ID (magadha) or a King ID (bimbisara)
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
 
+  // State for comparison
+  const [compareIds, setCompareIds] = useState<[string | null, string | null]>([null, null]);
+
   // We need to know if the selected ID is a Period or a King to determine the view mode
   // However, the structure is: Dashboard -> EraDetail (Period) -> FigureDetail (King)
   
@@ -25,6 +28,7 @@ export const useNavigation = () => {
   // If matches KINGS_DATA, it's a figure
   
   const activeView = useMemo(() => {
+    if (view === ViewState.COMPARE) return ViewState.COMPARE;
     if (view === ViewState.DASHBOARD) return ViewState.DASHBOARD;
     if (selectedFigure) return ViewState.DETAIL; // Showing King/Event specific detail
     if (selectedPeriod) return ViewState.TIMELINE; // Showing the Era/Dynasty List
@@ -35,6 +39,7 @@ export const useNavigation = () => {
   const goHome = () => {
     setView(ViewState.DASHBOARD);
     setSelectedEntityId(null);
+    setCompareIds([null, null]);
   };
 
   const selectPeriod = (id: string) => {
@@ -49,13 +54,21 @@ export const useNavigation = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const startComparison = (id1: string, id2: string) => {
+    setCompareIds([id1, id2]);
+    setView(ViewState.COMPARE);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return {
     view: activeView, // Derived view
     selectedEntityId,
     selectedPeriod,
     selectedFigure,
+    compareIds,
     goHome,
     selectPeriod,
-    selectFigure
+    selectFigure,
+    startComparison
   };
 };

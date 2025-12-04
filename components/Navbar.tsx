@@ -4,9 +4,10 @@ import { Icons } from './Icons';
 interface NavbarProps {
   onHome: () => void;
   onSearchOpen: () => void;
+  onCompareOpen?: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onHome, onSearchOpen }) => {
+const Navbar: React.FC<NavbarProps> = ({ onHome, onSearchOpen, onCompareOpen }) => {
   return (
     <nav className="sticky top-0 z-40 bg-[#fdfbf7]/80 backdrop-blur-md border-b border-orange-200/40 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,6 +31,17 @@ const Navbar: React.FC<NavbarProps> = ({ onHome, onSearchOpen }) => {
                <Icons.Home />
              </button>
              
+             {onCompareOpen && (
+                <button
+                  onClick={onCompareOpen}
+                  className="hidden md:flex items-center gap-2 px-3 py-1.5 text-stone-600 hover:text-orange-800 hover:bg-orange-50 rounded-lg transition-all font-medium text-sm border border-transparent hover:border-orange-200"
+                  title="Compare two figures"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+                  <span>Compare</span>
+                </button>
+             )}
+
              <div className="hidden md:block h-6 w-px bg-stone-200"></div>
              
              <button 
