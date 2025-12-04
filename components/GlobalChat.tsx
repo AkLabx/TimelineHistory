@@ -17,6 +17,19 @@ interface Message {
   text: string;
   isStreaming?: boolean;
   groundingMetadata?: any;
+  attachment?: {
+    type: 'image' | 'audio' | 'pdf';
+    name: string;
+  };
+}
+
+interface Attachment {
+  file: File | Blob;
+  previewUrl: string;
+  type: 'image' | 'audio' | 'pdf';
+  name: string;
+  base64Data?: string; // Cache the base64 string
+  mimeType?: string;
 }
 
 const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
@@ -25,13 +38,21 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     {
       id: 'intro',
       role: 'model',
-      text: "Greetings. I am **Itihaskar**, your AI guide to the past. I can help you uncover details about dynasties, rulers, and events on this page. Ask me anything!"
+      text: "Greetings. I am **Itihaskar**, your AI guide to the past. I can analyze **images**, **documents**, and even listen to your **voice** questions. How may I assist?"
     }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Attachments State
+  const [attachment, setAttachment] = useState<Attachment | null>(null);
+  const [isRecording, setIsRecording] = useState(false);
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -82,24 +103,118 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
 
     Rules:
     1. Answer historical queries with precision.
-    2. If the user asks about the "current page" or "this king", refer to the Current Context above.
-    3. Use the Google Search tool if you need to verify specific dates, recent archaeological findings, or facts not in your training data.
-    4. Keep answers concise (max 3-4 sentences) unless asked for elaboration.
-    5. Maintain a polite, scholarly tone.
-    6. Format output with Markdown (bold for names, lists for points).
+    2. Analyze provided images or documents if present.
+    3. If audio is provided, listen to the user's question and respond in text.
+    4. Use the Google Search tool if you need to verify specific dates, recent archaeological findings, or facts not in your training data.
+    5. Keep answers concise (max 3-4 sentences) unless asked for elaboration.
+    6. Format output with Markdown.
     `;
+  };
+
+  // Helper to convert File/Blob to Base64 (stripping header)
+  const fileToBase64 = (file: Blob): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const result = reader.result as string;
+        // Remove "data:image/png;base64," prefix
+        const base64 = result.split(',')[1];
+        resolve(base64);
+      };
+      reader.onerror = error => reject(error);
+    });
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const fileType = file.type.startsWith('image/') ? 'image' : (file.type === 'application/pdf' ? 'pdf' : 'pdf');
+      
+      setAttachment({
+        file,
+        previewUrl: URL.createObjectURL(file),
+        type: fileType,
+        name: file.name,
+        mimeType: file.type
+      });
+    }
+    // Reset input so same file can be selected again if needed
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  const handleMicClick = async () => {
+    if (isRecording) {
+      // STOP Recording
+      mediaRecorderRef.current?.stop();
+      setIsRecording(false);
+    } else {
+      // START Recording
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorderRef.current = mediaRecorder;
+        audioChunksRef.current = [];
+
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunksRef.current.push(event.data);
+          }
+        };
+
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+          const audioUrl = URL.createObjectURL(audioBlob);
+          setAttachment({
+            file: audioBlob,
+            previewUrl: audioUrl,
+            type: 'audio',
+            name: 'Voice Recording',
+            mimeType: audioBlob.type // likely audio/webm;codecs=opus
+          });
+          
+          // Stop all tracks to release mic
+          stream.getTracks().forEach(track => track.stop());
+        };
+
+        mediaRecorder.start();
+        setIsRecording(true);
+      } catch (err) {
+        console.error("Error accessing microphone:", err);
+        alert("Could not access microphone.");
+      }
+    }
+  };
+
+  const removeAttachment = () => {
+    if (attachment?.previewUrl) {
+      URL.revokeObjectURL(attachment.previewUrl);
+    }
+    setAttachment(null);
   };
 
   const handleSend = async (textOverride?: string) => {
     const textToSend = textOverride || input.trim();
-    if (!textToSend || !process.env.API_KEY) return;
+    // Allow empty text if we have an attachment (e.g. audio only)
+    if ((!textToSend && !attachment) || !process.env.API_KEY) return;
 
-    setInput('');
     const userMsgId = Date.now().toString();
     
-    // Add User Message
-    setMessages(prev => [...prev, { id: userMsgId, role: 'user', text: textToSend }]);
+    // Display User Message
+    const userMessage: Message = { 
+        id: userMsgId, 
+        role: 'user', 
+        text: textToSend || (attachment?.type === 'audio' ? "(Audio Input)" : "(Sent a file)"),
+        attachment: attachment ? { type: attachment.type, name: attachment.name } : undefined
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
     setIsLoading(true);
+    
+    // Capture current attachment to send, then clear state
+    const currentAttachment = attachment;
+    setAttachment(null);
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
@@ -107,8 +222,26 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       
       const systemInstruction = getSystemInstruction();
 
-      // We maintain a simplified history for the API call (last 10 messages)
-      const history = messages.slice(-10).map(m => ({
+      // Prepare contents for API
+      const contentsParts: any[] = [];
+      
+      if (textToSend) {
+          contentsParts.push({ text: textToSend });
+      }
+
+      if (currentAttachment) {
+          const base64 = await fileToBase64(currentAttachment.file);
+          contentsParts.push({
+              inlineData: {
+                  mimeType: currentAttachment.mimeType || currentAttachment.file.type,
+                  data: base64
+              }
+          });
+      }
+
+      // Simplified history (Text only for now to avoid complexity in this demo, real app would keep multimodal history)
+      // We'll just send the current multimodal turn + text history
+      const history = messages.filter(m => m.role === 'model').slice(-3).map(m => ({
           role: m.role,
           parts: [{ text: m.text }]
       }));
@@ -118,7 +251,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
         model: model,
         contents: [
             ...history,
-            { role: 'user', parts: [{ text: textToSend }] }
+            { role: 'user', parts: contentsParts }
         ],
         config: {
             systemInstruction: systemInstruction,
@@ -159,7 +292,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       setMessages(prev => [...prev, { 
           id: Date.now().toString(), 
           role: 'model', 
-          text: "I am having trouble accessing the archives. Please try again." 
+          text: "I am having trouble analyzing that. Please ensure the file format is supported and try again." 
       }]);
     } finally {
       setIsLoading(false);
@@ -177,8 +310,9 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     setMessages([{
       id: 'intro',
       role: 'model',
-      text: "Chat cleared. How may I assist you with your historical inquiries?"
+      text: "Chat cleared. I am ready for your text, images, or documents."
     }]);
+    setAttachment(null);
   };
 
   // Suggestions based on context
@@ -269,6 +403,16 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                             </div>
                         )}
 
+                        {/* Attachment Indicator in History */}
+                        {msg.attachment && (
+                            <div className={`mb-2 p-2 rounded-lg flex items-center gap-2 text-xs font-medium ${msg.role === 'user' ? 'bg-white/10' : 'bg-stone-100'}`}>
+                                {msg.attachment.type === 'image' && <Icons.Image />}
+                                {msg.attachment.type === 'audio' && <Icons.MusicNote />}
+                                {msg.attachment.type === 'pdf' && <Icons.FileText />}
+                                <span className="truncate max-w-[150px]">{msg.attachment.name}</span>
+                            </div>
+                        )}
+
                         {/* Markdown Rendering */}
                         <div className="prose prose-sm prose-p:my-1 prose-ul:my-1 prose-li:my-0 max-w-none" dangerouslySetInnerHTML={{ 
                             __html: msg.text
@@ -339,28 +483,84 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
         </div>
 
         {/* Input Area */}
-        <div className="p-4 bg-white border-t border-stone-100">
+        <div className="p-4 bg-white border-t border-stone-100 relative">
+            
+            {/* Attachment Preview Chip */}
+            {attachment && (
+                <div className="absolute top-[-3rem] left-4 right-4 flex items-center justify-between bg-stone-800 text-white p-2 px-3 rounded-lg shadow-lg text-xs animate-in slide-in-from-bottom-2 duration-200">
+                    <div className="flex items-center gap-2 overflow-hidden">
+                        {attachment.type === 'image' ? (
+                            <img src={attachment.previewUrl} alt="preview" className="w-6 h-6 rounded object-cover border border-stone-600" />
+                        ) : attachment.type === 'audio' ? (
+                            <span className="text-orange-400"><Icons.MusicNote /></span>
+                        ) : (
+                            <span className="text-blue-300"><Icons.FileText /></span>
+                        )}
+                        <span className="truncate">{attachment.name}</span>
+                    </div>
+                    <button onClick={removeAttachment} className="ml-2 hover:text-red-300"><Icons.X /></button>
+                </div>
+            )}
+
             <div className="relative flex items-center shadow-sm rounded-full bg-stone-50 border border-stone-200 focus-within:ring-2 focus-within:ring-indigo-100 focus-within:border-indigo-300 transition-all">
+                
+                {/* File Inputs (Hidden) */}
+                <input 
+                    type="file" 
+                    ref={fileInputRef} 
+                    className="hidden" 
+                    accept="image/*,application/pdf"
+                    onChange={handleFileSelect}
+                />
+
+                {/* Attach Button */}
+                <button 
+                    onClick={() => fileInputRef.current?.click()}
+                    className="pl-3 p-2 text-stone-400 hover:text-indigo-600 transition-colors disabled:opacity-50"
+                    disabled={isLoading || isRecording}
+                    title="Attach Image or PDF"
+                >
+                    <Icons.Paperclip />
+                </button>
+
+                {/* Mic Button */}
+                <button 
+                    onClick={handleMicClick}
+                    className={`p-2 transition-colors flex-shrink-0
+                        ${isRecording 
+                            ? 'text-red-500 animate-pulse' 
+                            : 'text-stone-400 hover:text-red-500'
+                        } disabled:opacity-50`}
+                    disabled={isLoading || !!attachment}
+                    title={isRecording ? "Stop Recording" : "Record Voice"}
+                >
+                    {isRecording ? <Icons.StopCircle /> : <Icons.Microphone />}
+                </button>
+
                 <input
                     ref={inputRef}
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Ask a historical question..."
-                    className="w-full bg-transparent text-stone-800 text-sm rounded-full pl-4 pr-12 py-3.5 focus:outline-none placeholder-stone-400"
-                    disabled={isLoading}
+                    placeholder={isRecording ? "Recording..." : (attachment ? "Add a message..." : "Ask history...")}
+                    className="w-full bg-transparent text-stone-800 text-sm rounded-full px-3 py-3.5 focus:outline-none placeholder-stone-400"
+                    disabled={isLoading || isRecording}
                 />
+                
+                {/* Send Button */}
                 <button 
                     onClick={() => handleSend()}
-                    disabled={isLoading || !input.trim()}
+                    disabled={isLoading || isRecording || (!input.trim() && !attachment)}
                     className="absolute right-1.5 p-2 rounded-full bg-stone-900 text-white hover:bg-indigo-600 transition-colors disabled:opacity-30 disabled:hover:bg-stone-900 disabled:cursor-not-allowed transform active:scale-95"
                 >
                     <Icons.Send />
                 </button>
             </div>
-            <div className="flex justify-center mt-2">
-                <span className="text-[9px] text-stone-300 font-medium">Powered by Gemini 2.5 Flash</span>
+            
+            <div className="flex justify-between mt-2 px-2">
+                <span className="text-[9px] text-stone-400">Supports: Images, PDF, Voice</span>
+                <span className="text-[9px] text-stone-300 font-medium">Gemini 2.5 Flash</span>
             </div>
         </div>
       </div>
