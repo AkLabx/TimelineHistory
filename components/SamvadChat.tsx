@@ -41,6 +41,36 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
   return btoa(binary);
 }
 
+// AudioWorklet Processor Code as a string
+const AudioRecorderWorkletCode = `
+class RecorderProcessor extends AudioWorkletProcessor {
+  constructor() {
+    super();
+    this.bufferSize = 2048; // Send chunks of ~2048 samples
+    this.buffer = new Float32Array(this.bufferSize);
+    this.index = 0;
+  }
+
+  process(inputs, outputs, parameters) {
+    const input = inputs[0];
+    if (input.length > 0) {
+      const channelData = input[0];
+      for (let i = 0; i < channelData.length; i++) {
+        this.buffer[this.index++] = channelData[i];
+        if (this.index >= this.bufferSize) {
+          // Post buffer to main thread
+          this.port.postMessage(this.buffer);
+          this.index = 0;
+        }
+      }
+    }
+    return true;
+  }
+}
+
+registerProcessor('recorder-worklet', RecorderProcessor);
+`;
+
 // Simple SFX Generator
 const playSfx = (ctx: AudioContext | null, type: 'click' | 'connect' | 'disconnect') => {
   if (!ctx || ctx.state === 'closed') return;
@@ -92,14 +122,13 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   // Refs for audio handling
   const audioContextRef = useRef<AudioContext | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
-  const processorRef = useRef<ScriptProcessorNode | null>(null);
+  const workletNodeRef = useRef<AudioWorkletNode | null>(null);
   const sourceNodeRef = useRef<MediaStreamAudioSourceNode | null>(null);
   const sessionRef = useRef<any>(null);
   const nextStartTimeRef = useRef<number>(0);
   const audioQueueRef = useRef<AudioBufferSourceNode[]>([]);
   
   // Ref to track the unique ID of the current connection attempt
-  // This prevents race conditions where an old 'onopen' fires after cleanup/new connection start
   const connectionIdRef = useRef<number>(0);
   
   // Track actual connection status for audio loop
@@ -130,12 +159,13 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       }
       sessionRef.current = null;
     }
-    if (processorRef.current) {
-      // Crucial: remove event listener to prevent loop
-      processorRef.current.onaudioprocess = null;
-      processorRef.current.disconnect();
-      processorRef.current = null;
+    
+    if (workletNodeRef.current) {
+        workletNodeRef.current.port.postMessage("stop");
+        workletNodeRef.current.disconnect();
+        workletNodeRef.current = null;
     }
+
     if (sourceNodeRef.current) {
       sourceNodeRef.current.disconnect();
       sourceNodeRef.current = null;
@@ -260,6 +290,16 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         sampleRate: 16000, 
       });
 
+      // 1.5 Resume context (browsers sometimes suspend it)
+      if (audioContextRef.current.state === 'suspended') {
+        await audioContextRef.current.resume();
+      }
+
+      // 1.6 Setup AudioWorklet
+      const blob = new Blob([AudioRecorderWorkletCode], { type: "application/javascript" });
+      const workletUrl = URL.createObjectURL(blob);
+      await audioContextRef.current.audioWorklet.addModule(workletUrl);
+
       // 2. Initialize Gemini Client
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
@@ -309,14 +349,14 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
               userAnalyserRef.current.fftSize = 256;
               sourceNodeRef.current.connect(userAnalyserRef.current);
 
-              // Use ScriptProcessor for raw PCM access
-              processorRef.current = audioContextRef.current.createScriptProcessor(4096, 1, 1);
+              // Use AudioWorkletNode instead of ScriptProcessorNode
+              workletNodeRef.current = new AudioWorkletNode(audioContextRef.current, 'recorder-worklet');
               
-              processorRef.current.onaudioprocess = (e) => {
+              workletNodeRef.current.port.onmessage = (event) => {
                 // GUARD: Strictly check if we are still connected and not muted
                 if (isMicMuted || !isConnectedRef.current) return;
 
-                const inputData = e.inputBuffer.getChannelData(0);
+                const inputData = event.data; // Float32Array
                 const pcm16 = floatTo16BitPCM(inputData);
                 const base64Data = arrayBufferToBase64(pcm16);
 
@@ -332,19 +372,25 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                             }
                         });
                     } catch (err) {
-                        // Suppress error if we are likely in a closing state
                         if (isConnectedRef.current) {
                             console.warn("Socket send error:", err);
-                            // If socket failed, treat as disconnected to stop loop
                             isConnectedRef.current = false;
                         }
                     }
                 });
               };
 
-              // Connect analyser to processor
-              userAnalyserRef.current.connect(processorRef.current);
-              processorRef.current.connect(audioContextRef.current.destination);
+              // Connect source -> analyser -> worklet -> destination (mute)
+              sourceNodeRef.current.connect(userAnalyserRef.current);
+              // Note: We don't necessarily need to connect analyser to worklet in series, can be parallel
+              // But connecting userAnalyser to worklet ensures flow if needed.
+              // Simpler: Source -> Analyser. Source -> Worklet.
+              sourceNodeRef.current.connect(workletNodeRef.current);
+              
+              // Worklet needs to be connected to destination to process? 
+              // Usually yes, even if silent, to drive the clock.
+              workletNodeRef.current.connect(audioContextRef.current.destination);
+
             } catch (micError) {
               console.error("Microphone access denied", micError);
               setStatus('error');
