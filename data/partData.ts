@@ -1,6 +1,6 @@
 import { PartData } from '../types';
 
-const BASE_URL = "/TimelineHistory/images";
+const BASE_URL = "/TimelineHistory/public/images";
 
 export const PART_DATA: PartData = {
   subtitle: "प्राचीन काल से मुगल साम्राज्य तक का अन्वेषण करें। (Explore from Ancient Origins to the Mughal Empire.)",
