@@ -153,6 +153,9 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
     isConnectedRef.current = false;
     hasErrorRef.current = false;
     
+    // RESET AUDIO TIMING CURSOR
+    nextStartTimeRef.current = 0; 
+    
     if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     
     if (sessionRef.current) {
@@ -510,8 +513,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       }
 
       source.connect(aiAnalyserRef.current);
-      // Removed redundant connect(destination) here, handled in creation block
-
+      
       const currentTime = audioContextRef.current.currentTime;
       const startTime = Math.max(currentTime, nextStartTimeRef.current);
       
