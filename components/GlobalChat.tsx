@@ -38,11 +38,12 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     {
       id: 'intro',
       role: 'model',
-      text: "Greetings. I am **Itihaskar**, your AI guide to the past. I can analyze **images**, **documents**, and even listen to your **voice** questions. How may I assist?"
+      text: "Greetings. I am **Aalok GPT**, your AI guide to the past. I can analyze **images**, **documents**, and even listen to your **voice** questions. How may I assist?"
     }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [useSearch, setUseSearch] = useState(false);
   
   // Attachments State
   const [attachment, setAttachment] = useState<Attachment | null>(null);
@@ -105,7 +106,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
         }
     }
 
-    return `You are "Itihaskar" (The Historian), a knowledgeable and objective guide for an Indian History application called "BharatItihas".
+    return `You are "Aalok GPT" (The Historian), a knowledgeable and objective guide for an Indian History application called "BharatItihas".
     
     Current Context: ${contextText}
 
@@ -113,7 +114,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     1. Answer historical queries with precision.
     2. Analyze provided images or documents if present.
     3. If audio is provided, listen to the user's question and respond in text.
-    4. Use the Google Search tool if you need to verify specific dates, recent archaeological findings, or facts not in your training data.
+    4. ${useSearch ? 'You have access to Google Search. Use it to find recent information, fact-check, or find details not in your training data.' : 'Rely on your internal knowledge base.'}
     5. Keep answers concise (max 3-4 sentences) unless asked for elaboration.
     6. Format output with Markdown.
     `;
@@ -267,7 +268,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
         ],
         config: {
             systemInstruction: systemInstruction,
-            tools: [{ googleSearch: {} }] 
+            tools: useSearch ? [{ googleSearch: {} }] : [] 
         }
       });
 
@@ -378,20 +379,32 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                     <Icons.Gemini />
                 </div>
                 <div>
-                    <h3 className="font-bold text-lg leading-none mb-1">Itihaskar AI</h3>
+                    <h3 className="font-bold text-lg leading-none mb-1">Aalok GPT</h3>
                     <div className="text-[10px] text-indigo-200 uppercase tracking-wider font-medium bg-black/20 inline-block px-2 py-0.5 rounded-md">
                         {getContextDescription()}
                     </div>
                 </div>
             </div>
             
-            <button 
-                onClick={handleClear} 
-                className="text-white/60 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors relative z-10"
-                title="Clear Chat"
-            >
-                <Icons.Trash />
-            </button>
+            <div className="flex items-center gap-1 relative z-10">
+                <button
+                    onClick={() => setUseSearch(!useSearch)}
+                    className={`p-2 rounded-full transition-all duration-300 ${useSearch ? 'text-white bg-white/20 shadow-inner ring-1 ring-white/30' : 'text-white/50 hover:text-white hover:bg-white/10'}`}
+                    title={useSearch ? "Google Search Grounding: ON" : "Google Search Grounding: OFF"}
+                >
+                    <div className="relative">
+                        <Icons.Settings />
+                        {useSearch && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-400 rounded-full border border-indigo-700"></span>}
+                    </div>
+                </button>
+                <button 
+                    onClick={handleClear} 
+                    className="text-white/60 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+                    title="Clear Chat"
+                >
+                    <Icons.Trash />
+                </button>
+            </div>
         </div>
 
         {/* Messages Area */}
