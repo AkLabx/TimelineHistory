@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleGenAI, LiveServerMessage, Modality } from "@google/genai";
+import { GoogleGenAI, LiveServerMessage } from "@google/genai";
 import { KINGS_DATA } from '../data';
 import { Icons } from './Icons';
 
@@ -133,6 +133,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   
   // Track actual connection status for audio loop
   const isConnectedRef = useRef<boolean>(false);
+  const hasErrorRef = useRef<boolean>(false);
 
   // Refs for Visualizers
   const userAnalyserRef = useRef<AnalyserNode | null>(null);
@@ -147,7 +148,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const cleanup = () => {
     // Increment ID to invalidate any pending 'onopen' callbacks
     connectionIdRef.current++;
-    isConnectedRef.current = false; // Immediately stop sending audio
+    isConnectedRef.current = false;
+    hasErrorRef.current = false;
     
     if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     
@@ -283,6 +285,8 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
     // Set intention to connect (increment ID)
     const currentConnectionId = ++connectionIdRef.current;
     setStatus('connecting');
+    setErrorMessage(null);
+    hasErrorRef.current = false;
 
     try {
       // 1. Initialize Audio Context
@@ -320,7 +324,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       const sessionPromise = ai.live.connect({
         model: 'gemini-2.5-flash-native-audio-preview-09-2025',
         config: {
-          responseModalities: [Modality.AUDIO],
+          responseModalities: ['AUDIO'], // Use string literal to avoid import issues
           speechConfig: {
             voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } },
           },
@@ -374,7 +378,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                     } catch (err) {
                         if (isConnectedRef.current) {
                             console.warn("Socket send error:", err);
-                            isConnectedRef.current = false;
+                            // Do not disconnect immediately on send error, might be transient
                         }
                     }
                 });
@@ -382,17 +386,12 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
 
               // Connect source -> analyser -> worklet -> destination (mute)
               sourceNodeRef.current.connect(userAnalyserRef.current);
-              // Note: We don't necessarily need to connect analyser to worklet in series, can be parallel
-              // But connecting userAnalyser to worklet ensures flow if needed.
-              // Simpler: Source -> Analyser. Source -> Worklet.
               sourceNodeRef.current.connect(workletNodeRef.current);
-              
-              // Worklet needs to be connected to destination to process? 
-              // Usually yes, even if silent, to drive the clock.
               workletNodeRef.current.connect(audioContextRef.current.destination);
 
             } catch (micError) {
               console.error("Microphone access denied", micError);
+              hasErrorRef.current = true;
               setStatus('error');
               setErrorMessage("Microphone access denied");
             }
@@ -409,16 +408,21 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                setTimeout(() => setAiSpeaking(false), 1000);
             }
           },
-          onclose: () => {
+          onclose: (e) => {
             if (connectionIdRef.current === currentConnectionId) {
                 isConnectedRef.current = false;
-                setStatus('disconnected');
+                // Only overwrite status if we didn't already encounter a hard error
+                if (!hasErrorRef.current) {
+                    setStatus('disconnected');
+                    console.log("Session closed:", e);
+                }
             }
           },
           onerror: (err) => {
             if (connectionIdRef.current === currentConnectionId) {
                 isConnectedRef.current = false;
-                console.error(err);
+                hasErrorRef.current = true;
+                console.error("Session Error:", err);
                 setStatus('error');
                 setErrorMessage("Connection Error");
             }
@@ -440,6 +444,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       // Only log if we are still the active attempt
       if (connectionIdRef.current === currentConnectionId) {
           console.error("Failed to start session", error);
+          hasErrorRef.current = true;
           setStatus('error');
           setErrorMessage("Failed to start session");
       }
@@ -507,6 +512,14 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
     setTimeout(onClose, 200);
   };
 
+  const handleRetry = () => {
+      cleanup();
+      // Slight delay to allow cleanup to finish
+      setTimeout(() => {
+          startSession();
+      }, 100);
+  };
+
   if (!isOpen || !figure) return null;
 
   return (
@@ -524,7 +537,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
             <div className="p-4 bg-stone-900 border-b border-stone-800 flex justify-between items-center shadow-sm z-10">
                 <div className="flex items-center gap-3">
                     <div className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-widest border border-red-500/30 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                        <span className={`w-1.5 h-1.5 rounded-full ${status === 'connected' ? 'bg-red-500 animate-pulse' : 'bg-stone-500'}`}></span>
                         Live
                     </div>
                     <span className="text-stone-400 text-xs uppercase tracking-widest">Samvad</span>
@@ -560,14 +573,29 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                 </div>
 
                 {/* Status Text */}
-                <div className="mt-12 h-8 flex items-center justify-center z-10">
+                <div className="mt-12 h-16 flex flex-col items-center justify-center z-10">
                     {status === 'connecting' && (
                         <span className="text-orange-400 text-sm animate-pulse font-mono">CONNECTING TO HISTORY...</span>
                     )}
                     {status === 'error' && (
-                        <span className="text-red-400 text-sm font-mono text-center px-4">
-                            {errorMessage || "CONNECTION FAILED"}
-                        </span>
+                        <>
+                            <span className="text-red-400 text-sm font-mono text-center px-4 mb-2">
+                                {errorMessage || "CONNECTION FAILED"}
+                            </span>
+                            <button onClick={handleRetry} className="text-xs bg-red-900/50 text-red-200 px-3 py-1 rounded border border-red-700/50 hover:bg-red-800/50">
+                                Retry
+                            </button>
+                        </>
+                    )}
+                    {status === 'disconnected' && (
+                        <>
+                            <span className="text-stone-500 text-sm font-mono text-center px-4 mb-2">
+                                Disconnected
+                            </span>
+                            <button onClick={handleRetry} className="text-xs bg-stone-800 text-stone-200 px-3 py-1 rounded border border-stone-700 hover:bg-stone-700">
+                                Reconnect
+                            </button>
+                        </>
                     )}
                     {status === 'connected' && (
                         <div className="flex flex-col items-center gap-2">
