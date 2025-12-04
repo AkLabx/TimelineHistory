@@ -25,7 +25,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     {
       id: 'intro',
       role: 'model',
-      text: "Greetings. I am Itihaskar, the royal chronicler. I can assist you in exploring these archives, comparing eras, or finding facts from the vast history of Bharat. How may I serve you today?"
+      text: "Greetings. I am **Itihaskar**, your AI guide to the past. I can help you uncover details about dynasties, rulers, and events on this page. Ask me anything!"
     }
   ]);
   const [input, setInput] = useState('');
@@ -44,6 +44,17 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
+
+  const getContextDescription = () => {
+    if (activeContext.id) {
+        if (KINGS_DATA[activeContext.id]) {
+            return `Viewing: ${KINGS_DATA[activeContext.id].summary.title}`;
+        } else if (DYNASTY_DATA[activeContext.id]) {
+            return `Viewing: ${DYNASTY_DATA[activeContext.id].title}`;
+        }
+    }
+    return "Exploring History";
+  };
 
   const getSystemInstruction = () => {
     let contextText = "User is currently on the Main Dashboard.";
@@ -74,29 +85,29 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     2. If the user asks about the "current page" or "this king", refer to the Current Context above.
     3. Use the Google Search tool if you need to verify specific dates, recent archaeological findings, or facts not in your training data.
     4. Keep answers concise (max 3-4 sentences) unless asked for elaboration.
-    5. Maintain a polite, scholarly, slightly archaic but accessible tone (like a royal librarian).
+    5. Maintain a polite, scholarly tone.
     6. Format output with Markdown (bold for names, lists for points).
     `;
   };
 
-  const handleSend = async () => {
-    if (!input.trim() || !process.env.API_KEY) return;
+  const handleSend = async (textOverride?: string) => {
+    const textToSend = textOverride || input.trim();
+    if (!textToSend || !process.env.API_KEY) return;
 
-    const userText = input.trim();
     setInput('');
     const userMsgId = Date.now().toString();
     
     // Add User Message
-    setMessages(prev => [...prev, { id: userMsgId, role: 'user', text: userText }]);
+    setMessages(prev => [...prev, { id: userMsgId, role: 'user', text: textToSend }]);
     setIsLoading(true);
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const model = 'gemini-2.5-flash'; // Supporting Search Grounding
+      const model = 'gemini-2.5-flash'; 
       
       const systemInstruction = getSystemInstruction();
 
-      // We maintain a simplified history for the API call (last 10 messages) to save context window
+      // We maintain a simplified history for the API call (last 10 messages)
       const history = messages.slice(-10).map(m => ({
           role: m.role,
           parts: [{ text: m.text }]
@@ -107,11 +118,11 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
         model: model,
         contents: [
             ...history,
-            { role: 'user', parts: [{ text: userText }] }
+            { role: 'user', parts: [{ text: textToSend }] }
         ],
         config: {
             systemInstruction: systemInstruction,
-            tools: [{ googleSearch: {} }] // Enable Google Search Grounding
+            tools: [{ googleSearch: {} }] 
         }
       });
 
@@ -124,13 +135,10 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       let groundingMetadata = null;
 
       for await (const chunk of streamResult) {
-        // Type assertion for the chunk
         const c = chunk as GenerateContentResponse;
-        
         const chunkText = c.text || '';
         fullText += chunkText;
         
-        // Capture grounding metadata if present in any chunk (usually the last one)
         if (c.candidates?.[0]?.groundingMetadata) {
             groundingMetadata = c.candidates[0].groundingMetadata;
         }
@@ -151,7 +159,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       setMessages(prev => [...prev, { 
           id: Date.now().toString(), 
           role: 'model', 
-          text: "My apologies. I am having trouble accessing the archives at the moment. Please try again." 
+          text: "I am having trouble accessing the archives. Please try again." 
       }]);
     } finally {
       setIsLoading(false);
@@ -165,74 +173,116 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     }
   };
 
+  const handleClear = () => {
+    setMessages([{
+      id: 'intro',
+      role: 'model',
+      text: "Chat cleared. How may I assist you with your historical inquiries?"
+    }]);
+  };
+
+  // Suggestions based on context
+  const getSuggestions = () => {
+    if (activeContext.id && KINGS_DATA[activeContext.id]) {
+        return ["What are their key achievements?", "How did they die?", "Who succeeded them?", "Tell me a fun fact"];
+    }
+    if (activeContext.id && DYNASTY_DATA[activeContext.id]) {
+        return ["Who founded this dynasty?", "Major events?", "Why did it decline?", "Famous monuments?"];
+    }
+    return ["Tell me about the Mauryan Empire", "Who was Ashoka?", "What is the Golden Age?", "Explain the caste system"];
+  };
+
   return (
     <>
       {/* Floating Action Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center
-            ${isOpen ? 'bg-stone-800 rotate-90 text-white' : 'bg-gradient-to-r from-orange-600 to-amber-600 text-white hover:shadow-orange-500/50'}
+        className={`fixed bottom-6 right-6 z-50 group flex items-center justify-center transition-all duration-500
+            ${isOpen 
+                ? 'w-12 h-12 rounded-full bg-stone-900 text-white shadow-lg rotate-90' 
+                : 'w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-2xl hover:scale-110 hover:shadow-indigo-500/50 hover:rotate-12'
+            }
         `}
-        aria-label="Open History Chat"
+        aria-label="Open AI Assistant"
       >
-        {isOpen ? <Icons.X /> : <Icons.Quill />}
+        {isOpen ? (
+            <Icons.X />
+        ) : (
+            <div className="relative">
+                <Icons.Gemini />
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full border-2 border-white animate-pulse"></span>
+            </div>
+        )}
       </button>
 
       {/* Chat Window */}
       <div 
-        className={`fixed bottom-24 right-6 z-50 w-[90vw] md:w-[400px] h-[500px] max-h-[70vh] bg-[#fdfbf7] rounded-2xl shadow-2xl flex flex-col border border-orange-200 overflow-hidden transition-all duration-300 origin-bottom-right
+        className={`fixed bottom-24 right-6 z-50 w-[90vw] md:w-[380px] h-[600px] max-h-[75vh] bg-white rounded-3xl shadow-2xl flex flex-col border border-white/20 overflow-hidden transition-all duration-300 origin-bottom-right
             ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-10 pointer-events-none'}
         `}
+        style={{ boxShadow: '0 20px 50px -12px rgba(0, 0, 0, 0.25)' }}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-100 to-amber-50 p-4 border-b border-orange-200 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-white border border-orange-200 flex items-center justify-center text-orange-600 shadow-sm">
-                    📜
+        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 p-4 pt-5 pb-5 text-white flex justify-between items-start relative overflow-hidden">
+            {/* Decorative BG pattern */}
+            <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '20px 20px'}}></div>
+            
+            <div className="flex items-center gap-3 relative z-10">
+                <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-inner">
+                    <Icons.Gemini />
                 </div>
                 <div>
-                    <h3 className="font-bold text-stone-800 font-serif leading-tight">Itihaskar</h3>
-                    <div className="flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                        <span className="text-[10px] text-stone-500 uppercase tracking-wider font-medium">AI Historian</span>
+                    <h3 className="font-bold text-lg leading-none mb-1">Itihaskar AI</h3>
+                    <div className="text-[10px] text-indigo-200 uppercase tracking-wider font-medium bg-black/20 inline-block px-2 py-0.5 rounded-md">
+                        {getContextDescription()}
                     </div>
                 </div>
             </div>
-            {/* Model Badge */}
-            <div className="bg-white/50 px-2 py-1 rounded border border-orange-200 text-[10px] font-mono text-orange-800 flex items-center gap-1" title="Powered by Gemini 2.5 Flash">
-                <Icons.Sparkles /> <span>Gemini 2.5</span>
-            </div>
+            
+            <button 
+                onClick={handleClear} 
+                className="text-white/60 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors relative z-10"
+                title="Clear Chat"
+            >
+                <Icons.Trash />
+            </button>
         </div>
 
         {/* Messages Area */}
-        <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]">
+        <div className="flex-grow overflow-y-auto p-4 space-y-5 bg-stone-50">
             {messages.map((msg) => (
                 <div 
                     key={msg.id} 
                     className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
                 >
                     <div 
-                        className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm relative
+                        className={`max-w-[88%] p-3.5 rounded-2xl text-sm leading-relaxed shadow-sm relative animate-in fade-in slide-in-from-bottom-2 duration-300
                             ${msg.role === 'user' 
-                                ? 'bg-stone-800 text-white rounded-br-none font-sans' 
-                                : 'bg-white border border-stone-200 text-stone-800 rounded-bl-none font-serif'
+                                ? 'bg-gradient-to-br from-stone-800 to-stone-700 text-white rounded-tr-sm' 
+                                : 'bg-white border border-stone-100 text-stone-700 rounded-tl-sm shadow-stone-200/50'
                             }
                         `}
                     >
-                        {/* Markdown-ish Rendering (Simple Bold) */}
-                        <div dangerouslySetInnerHTML={{ 
+                        {msg.role === 'model' && (
+                            <div className="absolute -top-3 -left-2 w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-[10px] shadow-sm border border-white">
+                                <Icons.Sparkles />
+                            </div>
+                        )}
+
+                        {/* Markdown Rendering */}
+                        <div className="prose prose-sm prose-p:my-1 prose-ul:my-1 prose-li:my-0 max-w-none" dangerouslySetInnerHTML={{ 
                             __html: msg.text
                                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                                 .replace(/\n/g, '<br/>') 
                         }} />
                         
-                        {/* Google Search Grounding Sources */}
+                        {/* Grounding Sources */}
                         {msg.groundingMetadata?.groundingChunks && (
-                            <div className="mt-3 pt-2 border-t border-stone-100">
-                                <p className="text-[10px] text-stone-400 font-bold uppercase mb-1 flex items-center gap-1">
+                            <div className="mt-3 pt-2 border-t border-black/5">
+                                <p className="text-[10px] font-bold uppercase mb-1.5 flex items-center gap-1 opacity-60">
                                     <Icons.Search /> Sources
                                 </p>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-1.5">
                                     {msg.groundingMetadata.groundingChunks.map((chunk: any, idx: number) => {
                                         if (chunk.web?.uri) {
                                             return (
@@ -241,9 +291,10 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                                                     href={chunk.web.uri} 
                                                     target="_blank" 
                                                     rel="noopener noreferrer"
-                                                    className="text-[10px] bg-stone-100 hover:bg-orange-100 text-stone-600 hover:text-orange-700 px-2 py-1 rounded border border-stone-200 truncate max-w-[150px] transition-colors block"
+                                                    className="text-[9px] bg-black/5 hover:bg-indigo-50 text-stone-600 hover:text-indigo-600 px-2 py-1 rounded-md border border-black/5 truncate max-w-[140px] transition-colors flex items-center"
                                                 >
-                                                    {chunk.web.title || new URL(chunk.web.uri).hostname}
+                                                    <span className="truncate">{chunk.web.title || new URL(chunk.web.uri).hostname}</span>
+                                                    <span className="ml-1 opacity-50">↗</span>
                                                 </a>
                                             );
                                         }
@@ -253,47 +304,63 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                             </div>
                         )}
                     </div>
-                    <span className="text-[10px] text-stone-400 mt-1 px-1">
-                        {msg.role === 'user' ? 'You' : 'Itihaskar'}
-                    </span>
                 </div>
             ))}
+            
+            {/* Loading Indicator */}
             {isLoading && (
-                <div className="flex items-center gap-2 text-stone-400 text-xs p-2">
-                    <div className="flex space-x-1">
-                        <div className="w-1.5 h-1.5 bg-stone-400 rounded-full animate-bounce"></div>
-                        <div className="w-1.5 h-1.5 bg-stone-400 rounded-full animate-bounce delay-75"></div>
-                        <div className="w-1.5 h-1.5 bg-stone-400 rounded-full animate-bounce delay-150"></div>
+                <div className="flex items-start gap-2">
+                    <div className="w-8 h-8 rounded-full bg-white border border-stone-100 flex items-center justify-center shadow-sm">
+                        <div className="flex space-x-1">
+                            <div className="w-1 h-1 bg-indigo-500 rounded-full animate-bounce"></div>
+                            <div className="w-1 h-1 bg-purple-500 rounded-full animate-bounce delay-100"></div>
+                            <div className="w-1 h-1 bg-pink-500 rounded-full animate-bounce delay-200"></div>
+                        </div>
                     </div>
-                    <span>Consulting the archives...</span>
                 </div>
             )}
+            
+            {/* Suggestions Chips (Only if few messages) */}
+            {!isLoading && messages.length < 3 && (
+                <div className="flex flex-wrap gap-2 mt-2 pl-1">
+                    {getSuggestions().map((s, i) => (
+                        <button 
+                            key={i}
+                            onClick={() => handleSend(s)}
+                            className="text-xs bg-white border border-stone-200 text-stone-600 px-3 py-1.5 rounded-full hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-700 transition-colors shadow-sm"
+                        >
+                            {s}
+                        </button>
+                    ))}
+                </div>
+            )}
+
             <div ref={messagesEndRef} />
         </div>
 
         {/* Input Area */}
-        <div className="p-3 bg-white border-t border-stone-200">
-            <div className="relative flex items-center">
+        <div className="p-4 bg-white border-t border-stone-100">
+            <div className="relative flex items-center shadow-sm rounded-full bg-stone-50 border border-stone-200 focus-within:ring-2 focus-within:ring-indigo-100 focus-within:border-indigo-300 transition-all">
                 <input
                     ref={inputRef}
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Ask about history..."
-                    className="w-full bg-stone-50 border border-stone-200 text-stone-800 text-sm rounded-full pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-orange-200 transition-all font-sans placeholder-stone-400"
+                    placeholder="Ask a historical question..."
+                    className="w-full bg-transparent text-stone-800 text-sm rounded-full pl-4 pr-12 py-3.5 focus:outline-none placeholder-stone-400"
                     disabled={isLoading}
                 />
                 <button 
-                    onClick={handleSend}
+                    onClick={() => handleSend()}
                     disabled={isLoading || !input.trim()}
-                    className="absolute right-1.5 bg-stone-800 hover:bg-orange-600 text-white p-2 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="absolute right-1.5 p-2 rounded-full bg-stone-900 text-white hover:bg-indigo-600 transition-colors disabled:opacity-30 disabled:hover:bg-stone-900 disabled:cursor-not-allowed transform active:scale-95"
                 >
                     <Icons.Send />
                 </button>
             </div>
-            <div className="text-[9px] text-center text-stone-400 mt-2">
-                AI can make mistakes. Verify important historical facts.
+            <div className="flex justify-center mt-2">
+                <span className="text-[9px] text-stone-300 font-medium">Powered by Gemini 2.5 Flash</span>
             </div>
         </div>
       </div>
