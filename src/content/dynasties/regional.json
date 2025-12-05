@@ -1,0 +1,58 @@
+{
+  "id": "regional",
+  "title": "भाग IX: अन्य क्षेत्रीय और पौराणिक राजवंश",
+  "items": [
+    {
+      "id": "gonanda-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "गोनंद वंश (पौराणिक) (Gonanda Dynasty)",
+        "period": "Legendary",
+        "founder": "गोनंद प्रथम",
+        "capital": "श्रीनगर"
+      },
+      "subItems": [
+        "gonanda-details"
+      ]
+    },
+    {
+      "id": "nagvanshi-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "नागवंशी वंश (छोटानागपुर)",
+        "period": "Legendary - 19th Cent. CE",
+        "founder": "फणि मुकुट राय",
+        "capital": "सुतियाम्बे"
+      },
+      "subItems": [
+        "nagvanshi-details"
+      ]
+    },
+    {
+      "id": "kachwaha-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "कछवाहा वंश (Kachwaha Dynasty)",
+        "period": "c. 11th Cent. CE - 1949",
+        "founder": "दूल्हा राय",
+        "capital": "आमेर, बाद में जयपुर"
+      },
+      "subItems": [
+        "kachwaha-details"
+      ]
+    },
+    {
+      "id": "jaintia-kingdom",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "जयंतिया साम्राज्य (Jaintia Kingdom)",
+        "period": "c. 1500 – 1835 CE",
+        "founder": "का खूरा / प्रभात राय",
+        "capital": "जयंतियापुर"
+      },
+      "subItems": [
+        "jaintia-details"
+      ]
+    }
+  ]
+}

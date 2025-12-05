@@ -1,0 +1,19 @@
+{
+  "id": "mughal",
+  "title": "भाग VIII: मुगल साम्राज्य",
+  "items": [
+    {
+      "id": "mughal-empire",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "मुगल साम्राज्य (Mughal Empire)",
+        "period": "1526 – 1857 CE",
+        "founder": "बाबर",
+        "capital": "आगरा, दिल्ली"
+      },
+      "subItems": [
+        "mughal-details"
+      ]
+    }
+  ]
+}

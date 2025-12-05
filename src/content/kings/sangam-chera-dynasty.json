@@ -1,0 +1,14 @@
+{
+  "id": "sangam-chera-dynasty",
+  "type": "dynasty-details",
+  "summary": {
+    "title": "चेर राजवंश (Chera Dynasty)",
+    "period": "c. 300 BCE – 1102 CE",
+    "founder": "उदियन्जेरल",
+    "capital": "वஞ்சி (करूर)"
+  },
+  "subItems": [
+    "chera-intro",
+    "chera-rulers"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "id": "mughal-details",
+  "type": "king-details",
+  "summary": {
+    "title": "वंश का परिचय"
+  },
+  "imageUrl": "images/emp_babur.jpg",
+  "content": "<div class=\"ruler-profile-card\"><p>1526 में पानीपत की पहली लड़ाई में अपनी जीत के बाद बाबर द्वारा स्थापित। मुगल तुर्को-मंगोल मूल के थे।</p></div>"
+}
