@@ -1,0 +1,9 @@
+{
+  "id": "vijayanagara-details",
+  "type": "king-details",
+  "summary": {
+    "title": "वंश का परिचय"
+  },
+  "imageUrl": "images/king_krishnadeva.jpg",
+  "content": "<div class=\"ruler-profile-card\"><p>दक्कन क्षेत्र में स्थापित। इतालवी यात्री निकोलो डी' कोंटी और फारसी दूत अब्दुर रज्जाक ने इस शानदार शहर का दौरा किया।</p></div>"
+}

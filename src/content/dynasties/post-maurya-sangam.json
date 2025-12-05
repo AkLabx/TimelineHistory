@@ -1,0 +1,114 @@
+{
+  "id": "post-maurya-sangam",
+  "title": "भाग IV: मौर्योत्तर और संगम काल",
+  "items": [
+    {
+      "id": "shunga-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "शुंग वंश (Shunga Dynasty)",
+        "period": "c. 185–73 BCE",
+        "founder": "पुष्यमित्र शुंग",
+        "capital": "पाटलिपुत्र / विदिशा"
+      },
+      "subItems": [
+        "shunga-intro",
+        "pushyamitra-shunga",
+        "agnimitra",
+        "later-shungas"
+      ]
+    },
+    {
+      "id": "kanva-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "कण्व वंश (Kanva Dynasty)",
+        "period": "c. 73–28 BCE",
+        "founder": "वासुदेव कण्व",
+        "capital": "पाटलिपुत्र"
+      },
+      "subItems": [
+        "kanva-intro",
+        "kanva-rulers",
+        "kanva-legacy"
+      ]
+    },
+    {
+      "id": "satavahana-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "सातवाहन वंश (Satavahana Dynasty)",
+        "period": "c. 1st Cent. BCE – 3rd Cent. CE",
+        "founder": "सिमुक",
+        "capital": "प्रतिष्ठान (पैठन)"
+      },
+      "subItems": [
+        "satavahana-details"
+      ]
+    },
+    {
+      "id": "foreign-rulers-nw",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "पश्चिमोत्तर के विदेशी शासक"
+      },
+      "subItems": [
+        "indo-greeks",
+        "sakas",
+        "parthians",
+        "kushans"
+      ]
+    },
+    {
+      "id": "sangam-age-intro",
+      "type": "event-details",
+      "summary": {
+        "title": "संगम काल: दक्षिण के तीन मुकुटधारी राजा"
+      },
+      "subItems": [
+        "sangam-chola-dynasty",
+        "sangam-chera-dynasty",
+        "sangam-pandya-dynasty"
+      ]
+    },
+    {
+      "id": "kalabhra-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "कलभ्र राजवंश (Kalabhra Dynasty)",
+        "period": "c. 3rd – 6th Cent. CE",
+        "founder": "अज्ञात",
+        "capital": "तमिल क्षेत्र"
+      },
+      "subItems": [
+        "kalabhra-details"
+      ]
+    },
+    {
+      "id": "abhira-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "आभीर राजवंश (Abhira Dynasty)",
+        "period": "c. 203 – 370 CE",
+        "founder": "आभीर ईश्वरसेन",
+        "capital": "नासिक"
+      },
+      "subItems": [
+        "abhira-details"
+      ]
+    },
+    {
+      "id": "ikshvaku-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "आंध्र इक्ष्वाकु वंश (Andhra Ikshvaku Dynasty)",
+        "period": "c. 225 – 340 CE",
+        "founder": "वासिष्ठिपुत्र श्री शांतमूल",
+        "capital": "विजयपुरी (नागार्जुनकोंडा)"
+      },
+      "subItems": [
+        "ikshvaku-details"
+      ]
+    }
+  ]
+}

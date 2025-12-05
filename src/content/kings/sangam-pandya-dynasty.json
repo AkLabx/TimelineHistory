@@ -1,0 +1,14 @@
+{
+  "id": "sangam-pandya-dynasty",
+  "type": "dynasty-details",
+  "summary": {
+    "title": "पांड्य राजवंश (Pandya Dynasty)",
+    "period": "c. 300 BCE – 1345 CE",
+    "founder": "प्रमुख शासक: नेडुन्जेलियन",
+    "capital": "मदुरै"
+  },
+  "subItems": [
+    "pandya-intro",
+    "pandya-rulers"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "pandya-rulers",
+  "type": "king-details",
+  "summary": {
+    "title": "प्रमुख शासक"
+  },
+  "content": "<details class=\"king-details\"><summary class=\"king-summary\"><span class=\"summary-title\">नेडुन्जेलियन (Nedunjeliyan)</span><span class=\"king-reign\">c. 210 CE</span></summary><div class=\"content-panel\"><div class=\"ruler-profile-card\"><p>सबसे शक्तिशाली पांड्य शासकों में से एक। तलैयालंगानम के युद्ध में चोल, चेर और पांच अन्य सरदारों के एक संघ को हराया। उसे 'शिलप्पादिकारम' के नायक कोवलन को गलती से फांसी देने का श्रेय दिया जाता है।</p></div></div></details><details class=\"king-details\"><summary class=\"king-summary\"><span class=\"summary-title\">मुदुकुडुमी पेरुवलुदि (Mudukudumi Peruvaludi)</span></summary><div class=\"content-panel\"><div class=\"ruler-profile-card\"><p>प्रारंभिक पांड्य राजाओं में से एक जिसने कई वैदिक यज्ञ किए।</p></div></div></details>"
+}

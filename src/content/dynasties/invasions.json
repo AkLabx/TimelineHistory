@@ -1,0 +1,19 @@
+{
+  "id": "invasions",
+  "title": "भाग II: मौर्य-पूर्व विदेशी आक्रमण",
+  "items": [
+    {
+      "id": "iranian-greek-invasions",
+      "type": "event-details",
+      "summary": {
+        "title": "ईरानी और यूनानी आक्रमण"
+      },
+      "subItems": [
+        "invasions-intro",
+        "iranian-invasion",
+        "greek-invasion",
+        "invasions-conclusion"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "sangam-chola-dynasty",
+  "type": "dynasty-details",
+  "summary": {
+    "title": "चोल राजवंश (प्रारंभिक) (Chola Dynasty)",
+    "period": "c. 300 BCE – 200 CE",
+    "founder": "प्रमुख शासक: करिकाल",
+    "capital": "उरैयूर / पुहार"
+  },
+  "subItems": [
+    "chola-intro",
+    "chola-rulers"
+  ]
+}
