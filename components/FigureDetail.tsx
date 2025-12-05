@@ -1,121 +1,90 @@
-import React, { useState } from 'react';
-import { KingProfile, EntityType } from '../types';
-import { DYNASTY_DATA, KINGS_DATA, CONNECTIONS_DATA } from '../data';
+import React from 'react';
+import { FigureData, KingData, DynastyData } from '../types';
+import { KINGS_DATA, CONNECTIONS_DATA } from '../data';
 import { Icons } from './Icons';
 import GlossaryHighlighter from './GlossaryHighlighter';
+import { getImagePath } from '../utils/imageUtils';
 
 interface FigureDetailProps {
-  figure: KingProfile;
+  figure: FigureData | KingData | DynastyData;
   figureId: string;
-  onSelectPeriod: (id: string) => void;
+  onBack: () => void;
   onSelectFigure: (id: string) => void;
   onOpenSamvad?: () => void;
 }
 
-const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectPeriod, onSelectFigure, onOpenSamvad }) => {
-  const [imgError, setImgError] = useState(false);
-
-  // Find parent period for "Back" button
-  const parentPeriodId = Object.keys(DYNASTY_DATA).find(periodKey => {
-      return DYNASTY_DATA[periodKey].items.some(item => 
-          item.subItems?.includes(figureId)
-      );
+const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onBack, onSelectFigure, onOpenSamvad }) => {
+  // Determine connections if any (using CONNECTIONS_DATA)
+  // Check if this figureId is a source or target in any connection
+  const connections = CONNECTIONS_DATA.connections.filter(c => c.source === figureId || c.target === figureId).map(c => {
+      const isSource = c.source === figureId;
+      const targetId = isSource ? c.target : c.source;
+      const label = isSource ? c.label : (c.label.includes('Father of') ? `Child: ${KINGS_DATA[targetId]?.summary?.title}` : `Connected to ${KINGS_DATA[targetId]?.summary?.title}`);
+      return { targetId, label };
   });
 
-  const parentPeriod = parentPeriodId ? DYNASTY_DATA[parentPeriodId] : null;
-  
-  // Find specific Dynasty/Section within the period for precise context
-  const parentDynasty = parentPeriod?.items.find(item => item.subItems?.includes(figureId));
-
-  const connections = CONNECTIONS_DATA[figureId];
-
-  // Helper to handle navigation for connections
   const handleConnectionClick = (targetId: string) => {
-    // Check if target is a King or Period
-    if (KINGS_DATA[targetId]) {
       onSelectFigure(targetId);
-    } else if (DYNASTY_DATA[targetId]) {
-      onSelectPeriod(targetId);
-    } else {
-      // Fallback: Check if it matches a top-level Period ID from PART_DATA?
-      // For now assume if not King, might be period.
-       onSelectPeriod(targetId);
-    }
   };
 
-  // Construct correct image path
-  const imagePath = figure.imageUrl ? `${(import.meta as any).env.BASE_URL}${figure.imageUrl}` : '';
+  // Find parent context if possible (for breadcrumb-like effect)
+  // This is a bit expensive search, but dataset is small
+  let parentDynasty: DynastyData | undefined;
+  let parentPeriod: any | undefined;
+
+  // If current figure is a King, find its Dynasty
+  if ((figure as any).reign) { // Simple check if it's likely a king/dynasty entry
+      // Find which dynasty has this subItem
+      // This logic would require iterating through all data.
+      // For now, we will trust the "Back" button or add simple context if available.
+  }
 
   return (
-        <div className="max-w-4xl mx-auto px-4 py-6 md:py-8 pb-32 animate-in fade-in slide-in-from-bottom-8 duration-700">
-            {/* Breadcrumb / Back Navigation - kept for accessibility/easy exit */}
-            <div className="mb-6 md:mb-8 flex justify-between items-center">
-                {parentPeriod && (
-                    <button onClick={() => onSelectPeriod(parentPeriodId!)} className="group inline-flex items-center text-sm font-bold text-slate-500 hover:text-orange-600 transition-colors px-4 py-2 rounded-full bg-slate-100 hover:bg-orange-50 active:bg-orange-100">
-                        <span className="transform rotate-180 inline-block mr-2 group-hover:-translate-x-1 transition-transform"><Icons.ChevronRight /></span>
-                        Back to {parentPeriod.title.split(':')[1]?.trim() || parentPeriod.title}
-                    </button>
-                )}
-            </div>
+        <div className="max-w-5xl mx-auto px-4 pb-32 pt-6 animate-in slide-in-from-right-8 duration-500">
+            {/* Header / Hero Section */}
+            <div className="relative mb-10 group perspective-1000">
+                {/* Background Banner with Parallax-like effect */}
+                <div className="absolute inset-0 bg-slate-900 rounded-3xl overflow-hidden -z-10 shadow-2xl transform transition-transform duration-700 hover:scale-[1.01]">
+                    <div className="absolute inset-0 bg-slate-900/60 z-10 backdrop-blur-[2px]"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent z-20"></div>
+                     {figure.imageUrl && (
+                        <img
+                            src={getImagePath(figure.imageUrl)}
+                            alt={figure.summary.title}
+                            className="w-full h-full object-cover opacity-50 grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
+                        />
+                    )}
+                </div>
 
-            {/* Hero Header */}
-            <div className="relative bg-slate-900 rounded-3xl p-6 md:p-12 mb-8 md:mb-12 overflow-hidden shadow-2xl border border-slate-800 min-h-[auto] md:min-h-[300px] flex flex-col justify-end group">
-                {/* Background Image or Gradient Fallback */}
-                {!imgError && figure.imageUrl ? (
-                     <>
-                        <div className="absolute inset-0">
-                            <img 
-                                src={imagePath} 
-                                alt={figure.summary.title} 
-                                className="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-1000" 
-                                onError={() => setImgError(true)}
-                            />
-                        </div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-                     </>
-                ) : (
-                    <>
-                         {/* Graceful Fallback Pattern */}
-                         <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900"></div>
-                         
-                         {figure.imageUrl && (
-                             <div className="absolute top-4 right-4 text-xs font-mono text-white/30 bg-black/20 p-2 rounded pointer-events-none">
-                                Missing: {figure.imageUrl}
-                             </div>
-                         )}
+                {/* Header Content */}
+                <div className="relative z-30 p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center md:items-end">
+                    <div className="flex-grow">
+                        <button
+                            onClick={onBack}
+                            className="mb-6 flex items-center text-orange-300 hover:text-white transition-colors group/back"
+                        >
+                            <div className="bg-white/10 p-2 rounded-full mr-2 group-hover/back:bg-orange-500 transition-colors">
+                                <span className="transform rotate-180 block"><Icons.ChevronRight /></span>
+                            </div>
+                            <span className="text-sm font-bold tracking-widest uppercase">Back to Overview</span>
+                        </button>
 
-                         <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500 rounded-full blur-[100px] opacity-20 transform translate-x-1/2 -translate-y-1/2"></div>
-                         <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500 rounded-full blur-[80px] opacity-20 transform -translate-x-1/2 translate-y-1/2"></div>
-                         {/* Pattern overlay */}
-                         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-                    </>
-                )}
-
-                
-                <div className="relative z-10 flex flex-col md:flex-row justify-between gap-6 items-start md:items-end">
-                    <div className="flex-grow order-2 md:order-1 w-full">
-                        
-                        {/* Prominent Clickable Dynasty Card */}
-                        {parentPeriod && parentDynasty ? (
-                            <div 
-                                onClick={(e) => { e.stopPropagation(); onSelectPeriod(parentPeriodId!); }}
-                                className="inline-flex items-center gap-3 sm:gap-4 bg-black/30 hover:bg-black/50 border border-white/10 hover:border-orange-500/40 rounded-2xl p-3 pr-6 sm:p-4 sm:pr-8 mb-6 backdrop-blur-md cursor-pointer transition-all duration-300 group/dynasty w-auto max-w-full shadow-lg"
-                                role="button"
-                                title={`Return to ${parentDynasty.summary.title}`}
+                        {/* Breadcrumb / Context Label */}
+                        {(figure as any).reign ? (
+                            <div className="inline-flex items-center gap-3 mb-4 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md hover:bg-white/10 transition-colors cursor-help"
+                                 role="button"
+                                 title={`Return to ${parentDynasty?.summary?.title || 'Dynasty'}`}
                             >
                                 <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-orange-600 to-amber-700 flex items-center justify-center text-lg sm:text-2xl shadow-lg ring-1 ring-white/10 group-hover/dynasty:scale-110 transition-transform duration-300">
                                     🏛️
                                 </div>
                                 <div className="flex flex-col min-w-0">
                                     <span className="text-[10px] font-bold tracking-widest text-orange-200/70 uppercase mb-0.5 truncate">
-                                        Part of {parentPeriod.title.split(':')[0]}
+                                        Historical Figure
                                     </span>
                                     <div className="flex items-center gap-2">
                                         <span className="text-white font-serif font-bold text-lg sm:text-xl leading-none tracking-wide truncate group-hover/dynasty:text-orange-100 transition-colors">
-                                            {parentDynasty.summary.title.split('(')[0].trim()}
-                                        </span>
-                                        <span className="text-orange-400 opacity-0 -translate-x-2 group-hover/dynasty:opacity-100 group-hover/dynasty:translate-x-0 transition-all duration-300">
-                                            <Icons.ChevronRight />
+                                            {figure.summary.title.split('(')[0].trim()}
                                         </span>
                                     </div>
                                 </div>

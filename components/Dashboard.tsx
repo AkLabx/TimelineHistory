@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PART_DATA } from '../data';
 import { Icons } from './Icons';
+import { getImagePath } from '../utils/imageUtils';
 
 interface DashboardProps {
   onSelectPeriod: (id: string) => void;
@@ -9,8 +10,8 @@ interface DashboardProps {
 const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string) => void }> = ({ card, index, onSelect }) => {
     const [imgError, setImgError] = useState(false);
 
-    // Construct the correct path using Vite's Base URL
-    const imagePath = card.imageUrl ? `${(import.meta as any).env.BASE_URL}${card.imageUrl}` : '';
+    // Construct the correct path using utility
+    const imagePath = getImagePath(card.imageUrl);
 
     return (
           <div 
@@ -26,14 +27,18 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
                       alt={card.title} 
                       className="w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-110 transition-all duration-1000 ease-out" 
                       loading="lazy"
-                      onError={() => setImgError(true)}
+                      onError={(e) => {
+                          console.log("Image Load Error for:", imagePath);
+                          console.log("Current Src:", e.currentTarget.src);
+                          setImgError(true);
+                      }}
                    />
                ) : (
                    <div className="w-full h-full bg-slate-800 opacity-90 flex flex-col items-center justify-center p-6 text-center border-4 border-slate-700/50">
                        <span className="text-5xl mb-3 opacity-20">🖼️</span>
                        <span className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Image Asset Missing</span>
                        <span className="text-[10px] font-mono text-orange-400/80 break-all px-4 bg-black/20 rounded py-1">
-                         {card.imageUrl || "No URL provided"}
+                         {imagePath || "No Path"}
                        </span>
                    </div>
                )}
