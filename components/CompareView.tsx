@@ -15,6 +15,9 @@ const CompareView: React.FC<CompareViewProps> = ({ id1, id2, onClose }) => {
 
   if (!k1 || !k2) return null;
 
+  const imagePath1 = k1.imageUrl ? `${(import.meta as any).env.BASE_URL}${k1.imageUrl}` : '';
+  const imagePath2 = k2.imageUrl ? `${(import.meta as any).env.BASE_URL}${k2.imageUrl}` : '';
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       
@@ -43,7 +46,7 @@ const CompareView: React.FC<CompareViewProps> = ({ id1, id2, onClose }) => {
           <div className="relative h-64 md:h-80 group">
             <div className="absolute inset-0 bg-stone-900">
               {k1.imageUrl && (
-                <img src={k1.imageUrl} className="w-full h-full object-cover opacity-60 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" alt="" />
+                <img src={imagePath1} className="w-full h-full object-cover opacity-60 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" alt="" />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent"></div>
             </div>
@@ -66,7 +69,7 @@ const CompareView: React.FC<CompareViewProps> = ({ id1, id2, onClose }) => {
           <div className="relative h-64 md:h-80 group border-l border-white/10">
             <div className="absolute inset-0 bg-stone-900">
               {k2.imageUrl && (
-                <img src={k2.imageUrl} className="w-full h-full object-cover opacity-60 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" alt="" />
+                <img src={imagePath2} className="w-full h-full object-cover opacity-60 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" alt="" />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent"></div>
             </div>

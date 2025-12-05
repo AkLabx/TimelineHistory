@@ -18,7 +18,8 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
   
   // Find the image for this period from PART_DATA
   const timelineCard = PART_DATA.timelineCards.find(c => c.target === periodId);
-  const heroImage = timelineCard?.imageUrl;
+  const heroImageRaw = timelineCard?.imageUrl;
+  const heroImage = heroImageRaw ? `${(import.meta as any).env.BASE_URL}${heroImageRaw}` : null;
 
   // Setup Intersection Observer for Table of Contents
   useEffect(() => {
@@ -195,10 +196,10 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                     />
                 ) : (
                     <div className="w-full h-full bg-gradient-to-r from-orange-900 to-stone-900 opacity-90 flex flex-col items-center justify-center">
-                        {heroImage && (
+                        {heroImageRaw && (
                             <div className="mb-4 text-center">
                                 <span className="block text-2xl mb-1">⚠️</span>
-                                <span className="text-white/50 text-xs font-mono bg-black/30 px-2 py-1 rounded">Missing: {heroImage}</span>
+                                <span className="text-white/50 text-xs font-mono bg-black/30 px-2 py-1 rounded">Missing: {heroImageRaw}</span>
                             </div>
                         )}
                     </div>

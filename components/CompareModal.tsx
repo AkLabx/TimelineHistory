@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { Icons } from './Icons';
 import { KINGS_DATA } from '../data';
@@ -185,6 +184,7 @@ const CompareModal: React.FC<CompareModalProps> = ({ isOpen, onClose, onStartCom
               <div className="grid grid-cols-1 gap-2">
                 {filteredKings.map(king => {
                   const isSelected = slot1 === king.id || slot2 === king.id;
+                  const imagePath = king.imageUrl ? `${(import.meta as any).env.BASE_URL}${king.imageUrl}` : '';
                   return (
                     <button 
                       key={king.id}
@@ -198,7 +198,7 @@ const CompareModal: React.FC<CompareModalProps> = ({ isOpen, onClose, onStartCom
                     >
                       <div className={`w-12 h-12 rounded-lg mr-4 bg-stone-200 overflow-hidden flex-shrink-0 relative`}>
                          {king.imageUrl ? (
-                           <img src={king.imageUrl} alt="" className="w-full h-full object-cover" />
+                           <img src={imagePath} alt="" className="w-full h-full object-cover" />
                          ) : (
                            <div className="w-full h-full flex items-center justify-center text-lg">📜</div>
                          )}

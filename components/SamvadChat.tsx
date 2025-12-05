@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenAI, LiveServerMessage, Modality } from "@google/genai";
 import { KINGS_DATA } from '../data';
@@ -146,6 +145,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const animationFrameRef = useRef<number>(0);
 
   const figure = figureId ? KINGS_DATA[figureId] : null;
+  const imagePath = figure?.imageUrl ? `${(import.meta as any).env.BASE_URL}${figure.imageUrl}` : '';
 
   // Cleanup function
   const cleanup = () => {
@@ -607,7 +607,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                 <div className="relative z-10">
                     <div className={`w-40 h-40 rounded-full border-4 shadow-2xl overflow-hidden relative transition-all duration-300 border-stone-700 shadow-black`}>
                         {figure.imageUrl ? (
-                            <img src={figure.imageUrl} alt="" className="w-full h-full object-cover" />
+                            <img src={imagePath} alt="" className="w-full h-full object-cover" />
                         ) : (
                             <div className="w-full h-full bg-stone-800 flex items-center justify-center text-6xl">👑</div>
                         )}
