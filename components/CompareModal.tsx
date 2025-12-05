@@ -184,7 +184,8 @@ const CompareModal: React.FC<CompareModalProps> = ({ isOpen, onClose, onStartCom
               <div className="grid grid-cols-1 gap-2">
                 {filteredKings.map(king => {
                   const isSelected = slot1 === king.id || slot2 === king.id;
-                  const imagePath = king.imageUrl ? `${(import.meta as any).env.BASE_URL}${king.imageUrl}` : '';
+                  // Use path directly
+                  const imagePath = king.imageUrl || '';
                   return (
                     <button 
                       key={king.id}

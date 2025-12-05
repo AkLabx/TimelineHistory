@@ -145,7 +145,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
   const animationFrameRef = useRef<number>(0);
 
   const figure = figureId ? KINGS_DATA[figureId] : null;
-  const imagePath = figure?.imageUrl ? `${(import.meta as any).env.BASE_URL}${figure.imageUrl}` : '';
+  const imagePath = figure?.imageUrl || '';
 
   // Cleanup function
   const cleanup = () => {
@@ -271,7 +271,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
         }
       }
 
-      // 2. Visualize AI Speech (Glow/Scale)
+      // 2. Visualize AI Speech (Glow + Scale)
       if (aiAnalyserRef.current && aiVisualizerRef.current && aiVisualizerRingRef.current) {
         const analyser = aiAnalyserRef.current;
         const bufferLength = analyser.frequencyBinCount;

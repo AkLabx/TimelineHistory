@@ -9,9 +9,6 @@ interface DashboardProps {
 const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string) => void }> = ({ card, index, onSelect }) => {
     const [imgError, setImgError] = useState(false);
 
-    // Construct the correct path using Vite's Base URL
-    const imagePath = card.imageUrl ? `${(import.meta as any).env.BASE_URL}${card.imageUrl}` : '';
-
     return (
           <div 
                onClick={() => onSelect(card.target)}
@@ -22,7 +19,7 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
             <div className="absolute inset-0 bg-slate-900 z-0">
                {!imgError && card.imageUrl ? (
                    <img 
-                      src={imagePath} 
+                      src={card.imageUrl} 
                       alt={card.title} 
                       className="w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-110 transition-all duration-1000 ease-out" 
                       loading="lazy"

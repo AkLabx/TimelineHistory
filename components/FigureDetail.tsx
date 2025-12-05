@@ -43,9 +43,6 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
     }
   };
 
-  // Construct correct image path
-  const imagePath = figure.imageUrl ? `${(import.meta as any).env.BASE_URL}${figure.imageUrl}` : '';
-
   return (
         <div className="max-w-4xl mx-auto px-4 py-6 md:py-8 pb-32 animate-in fade-in slide-in-from-bottom-8 duration-700">
             {/* Breadcrumb / Back Navigation - kept for accessibility/easy exit */}
@@ -65,7 +62,7 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                      <>
                         <div className="absolute inset-0">
                             <img 
-                                src={imagePath} 
+                                src={figure.imageUrl} 
                                 alt={figure.summary.title} 
                                 className="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-1000" 
                                 onError={() => setImgError(true)}

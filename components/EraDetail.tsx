@@ -19,7 +19,8 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
   // Find the image for this period from PART_DATA
   const timelineCard = PART_DATA.timelineCards.find(c => c.target === periodId);
   const heroImageRaw = timelineCard?.imageUrl;
-  const heroImage = heroImageRaw ? `${(import.meta as any).env.BASE_URL}${heroImageRaw}` : null;
+  // Use path directly
+  const heroImage = heroImageRaw || null;
 
   // Setup Intersection Observer for Table of Contents
   useEffect(() => {
