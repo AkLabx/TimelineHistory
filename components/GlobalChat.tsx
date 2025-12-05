@@ -4,13 +4,20 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { KINGS_DATA, DYNASTY_DATA } from '../data';
 import { Icons } from './Icons';
 
+/**
+ * Props for the GlobalChat component.
+ */
 interface GlobalChatProps {
+  /** The current active context (period or entity ID) to provide context to the AI. */
   activeContext: {
     period: any;
     id: string | null;
   };
 }
 
+/**
+ * Structure of a chat message.
+ */
 interface Message {
   id: string;
   role: 'user' | 'model';
@@ -24,6 +31,9 @@ interface Message {
   };
 }
 
+/**
+ * Structure of an attachment (file).
+ */
 interface Attachment {
   file: File | Blob;
   previewUrl: string;
@@ -32,6 +42,15 @@ interface Attachment {
   mimeType?: string;
 }
 
+/**
+ * Global chat component "Aalok GPT".
+ * Provides an AI assistant interface that overlays the application.
+ * Supports text, image, PDF, and voice input.
+ * Uses Google's Gemini model.
+ *
+ * @param props - The component props.
+ * @returns The rendered chat interface.
+ */
 const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([

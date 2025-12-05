@@ -1,5 +1,10 @@
-
-export const getThemeClasses = (colorName: string) => {
+/**
+ * Maps a color name to a set of Tailwind CSS classes for theming elements.
+ *
+ * @param colorName - The name of the color (e.g., 'amber', 'slate', 'blue').
+ * @returns A string containing the Tailwind CSS classes for background, text, border, hover, and ring styles.
+ */
+export const getThemeClasses = (colorName: string): string => {
   const map: Record<string, string> = {
     amber: 'bg-amber-100 text-amber-900 border-amber-200 hover:bg-amber-50 ring-amber-500',
     slate: 'bg-slate-100 text-slate-900 border-slate-200 hover:bg-slate-50 ring-slate-500',
@@ -10,7 +15,13 @@ export const getThemeClasses = (colorName: string) => {
   return map[colorName] || map.slate;
 };
 
-export const getButtonClasses = (colorName: string) => {
+/**
+ * Maps a color name to a set of Tailwind CSS classes for button styling.
+ *
+ * @param colorName - The name of the color (e.g., 'amber', 'slate', 'blue').
+ * @returns A string containing the Tailwind CSS classes for background, hover, and text color.
+ */
+export const getButtonClasses = (colorName: string): string => {
   const map: Record<string, string> = {
     amber: 'bg-amber-600 hover:bg-amber-700 text-white',
     slate: 'bg-slate-600 hover:bg-slate-700 text-white',

@@ -1,5 +1,10 @@
 import { Connection } from '../types';
 
+/**
+ * Data defining the connections and relationships between different historical entities.
+ * Used to display "Related Connections" or navigational links.
+ * Keys are IDs of entities, values are arrays of connection objects.
+ */
 export const CONNECTIONS_DATA: Record<string, Connection[]> = {
     "haryanka-dynasty": [{ "label": "Shishunaga Dynasty (Successor)", "targetId": "shishunaga-dynasty" }, { "label": "Rise of Magadha", "targetId": "magadha"}],
     "shishunaga-dynasty": [{ "label": "Haryanka Dynasty (Predecessor)", "targetId": "haryanka-dynasty" }, { "label": "Nanda Dynasty (Successor)", "targetId": "nanda-dynasty" }],

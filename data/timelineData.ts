@@ -1,5 +1,10 @@
 import { TimelineVisualData } from '../types';
 
+/**
+ * Data defining the visual representation of the timeline.
+ * Includes start/end years and color codes for each dynasty or period.
+ * Organized by the target keys found in `partData.ts`.
+ */
 export const TIMELINE_VISUAL_DATA: Record<string, TimelineVisualData> = {
     "magadha": {
         "start": 544,

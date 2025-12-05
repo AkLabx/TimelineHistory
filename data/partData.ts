@@ -1,5 +1,9 @@
 import { PartData } from '../types';
 
+/**
+ * Data defining the main historical eras (parts) of the application.
+ * Used for populating the dashboard and top-level navigation.
+ */
 export const PART_DATA: PartData = {
   subtitle: "प्राचीन काल से मुगल साम्राज्य तक का अन्वेषण करें। (Explore from Ancient Origins to the Mughal Empire.)",
   breadcrumbHome: "Home",

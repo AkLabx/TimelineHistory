@@ -2,16 +2,33 @@ import React from 'react';
 import { Icons } from './Icons';
 import { SearchResult, EntityType } from '../types';
 
+/**
+ * Props for the SearchModal component.
+ */
 interface SearchModalProps {
+  /** Whether the modal is open. */
   isOpen: boolean;
+  /** Callback to close the modal. */
   onClose: () => void;
+  /** The current search query string. */
   query: string;
+  /** Function to update the search query. */
   setQuery: (q: string) => void;
+  /** List of search results to display. */
   results: SearchResult[];
+  /** Callback to select a period from results. */
   onSelectPeriod: (id: string) => void;
+  /** Callback to select a figure from results. */
   onSelectFigure: (id: string) => void;
 }
 
+/**
+ * A modal dialog for searching the historical database.
+ * Displays real-time results categorized by entity type.
+ *
+ * @param props - The component props.
+ * @returns The rendered search modal or null if closed.
+ */
 const SearchModal: React.FC<SearchModalProps> = ({ 
   isOpen, 
   onClose, 

@@ -1,12 +1,25 @@
 import React from 'react';
 import { Icons } from './Icons';
 
+/**
+ * Props for the Navbar component.
+ */
 interface NavbarProps {
+  /** Callback to navigate to the home dashboard. */
   onHome: () => void;
+  /** Callback to open the search modal. */
   onSearchOpen: () => void;
+  /** Optional callback to open the comparison view/modal. */
   onCompareOpen?: () => void;
 }
 
+/**
+ * The main navigation bar component.
+ * Contains the logo, home link, comparison tool trigger, and search trigger.
+ *
+ * @param props - The component props.
+ * @returns The rendered navigation bar.
+ */
 const Navbar: React.FC<NavbarProps> = ({ onHome, onSearchOpen, onCompareOpen }) => {
   return (
     <nav className="sticky top-0 z-40 bg-[#fdfbf7]/80 backdrop-blur-md border-b border-orange-200/40 shadow-sm transition-all duration-300">

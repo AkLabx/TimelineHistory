@@ -4,14 +4,29 @@ import { DYNASTY_DATA, KINGS_DATA, CONNECTIONS_DATA } from '../data';
 import { Icons } from './Icons';
 import GlossaryHighlighter from './GlossaryHighlighter';
 
+/**
+ * Props for the FigureDetail component.
+ */
 interface FigureDetailProps {
+  /** The detailed profile data for the historical figure. */
   figure: KingProfile;
+  /** The unique identifier for the figure. */
   figureId: string;
+  /** Callback to select a period (e.g., when navigating back or via connections). */
   onSelectPeriod: (id: string) => void;
+  /** Callback to select another figure (e.g., related chronicles). */
   onSelectFigure: (id: string) => void;
+  /** Optional callback to open the Samvad chat interface. */
   onOpenSamvad?: () => void;
 }
 
+/**
+ * Detailed view component for a specific historical figure or king.
+ * Displays the figure's profile, content, related items, and connections.
+ *
+ * @param props - The component props.
+ * @returns The rendered figure detail view.
+ */
 const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectPeriod, onSelectFigure, onOpenSamvad }) => {
   const [imgError, setImgError] = useState(false);
 

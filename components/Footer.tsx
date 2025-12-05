@@ -1,6 +1,12 @@
 
 import React from 'react';
 
+/**
+ * Footer component for the application.
+ * Displays copyright information and attribution.
+ *
+ * @returns The rendered footer.
+ */
 const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-slate-200 py-8 mt-12">

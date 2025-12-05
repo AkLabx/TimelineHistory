@@ -5,13 +5,27 @@ import { Icons } from './Icons';
 import TextToSpeech from './TextToSpeech';
 import GlossaryHighlighter from './GlossaryHighlighter';
 
+/**
+ * Props for the EraDetail component.
+ */
 interface EraDetailProps {
+  /** The data object for the selected historical period. */
   period: PeriodData;
+  /** The unique identifier for the period. */
   periodId: string;
+  /** Callback to handle selecting a specific historical figure. */
   onSelectFigure: (id: string) => void;
+  /** Callback to handle selecting a different period (e.g., from navigation links). */
   onSelectPeriod: (id: string) => void;
 }
 
+/**
+ * Detailed view of a historical era.
+ * Displays a hero image, table of contents, and a list of dynasties/events within the era.
+ *
+ * @param props - The component props.
+ * @returns The rendered era detail view.
+ */
 const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure, onSelectPeriod }) => {
   const [activeSectionId, setActiveSectionId] = useState<string>('');
   const [imgError, setImgError] = useState(false);
@@ -43,6 +57,10 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
     return () => observer.disconnect();
   }, [period.items]);
 
+  /**
+   * Scrolls the view to a specific section.
+   * @param id - The ID of the section to scroll to.
+   */
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -50,6 +68,9 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
     }
   };
 
+  /**
+   * Renders a single item (dynasty, event, or link) within the era.
+   */
   const renderItem = (item: DynastyItem, idx: number, dynastyOrder: number) => {
     // Styling based on item type
     const isDynasty = item.type === 'dynasty-details';
