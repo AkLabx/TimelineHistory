@@ -15,8 +15,8 @@ const CompareView: React.FC<CompareViewProps> = ({ id1, id2, onClose }) => {
 
   if (!k1 || !k2) return null;
 
-  const imagePath1 = k1.imageUrl || '';
-  const imagePath2 = k2.imageUrl || '';
+  const imagePath1 = k1.imageUrl ? `${(import.meta as any).env.BASE_URL}${k1.imageUrl}` : '';
+  const imagePath2 = k2.imageUrl ? `${(import.meta as any).env.BASE_URL}${k2.imageUrl}` : '';
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
