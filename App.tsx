@@ -17,13 +17,22 @@ import Footer from './components/Footer';
 import SamvadChat from './components/SamvadChat';
 import GlobalChat from './components/GlobalChat';
 
+/**
+ * The main application component.
+ * Manages the routing logic (via custom hooks), global state, and layout structure.
+ *
+ * @returns The complete App React Element.
+ */
 export default function App() {
   const navigation = useNavigation();
   const search = useSearch();
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   const [samvadFigureId, setSamvadFigureId] = useState<string | null>(null);
 
-  // Helper to resolve the active Era/Period context
+  /**
+   * Helper to resolve the active Era/Period context for breadcrumbs and AI context.
+   * If a figure is selected, it finds the parent period.
+   */
   const activeContext = useMemo(() => {
     if (navigation.selectedPeriod) {
         return { 
@@ -158,4 +167,4 @@ export default function App() {
       />
     </div>
   );
-}
+};

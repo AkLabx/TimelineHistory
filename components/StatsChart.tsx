@@ -1,11 +1,23 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
+/**
+ * Props for the StatsChart component.
+ */
 interface StatsChartProps {
+  /** The data points to display in the chart. */
   data: Array<{ name: string; value: number }>;
+  /** The color theme name for the chart (e.g., 'amber', 'slate'). */
   color: string;
 }
 
+/**
+ * A chart component using Recharts to display statistical data.
+ * Currently configured to show an Area chart.
+ *
+ * @param props - The component props.
+ * @returns The rendered chart container.
+ */
 const StatsChart: React.FC<StatsChartProps> = ({ data, color }) => {
   // Map tailwind color names to hex for the chart
   const colorMap: Record<string, string> = {

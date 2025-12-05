@@ -1,5 +1,9 @@
 import { PeriodData } from '../types';
 
+/**
+ * Data defining detailed information for each dynasty or period.
+ * Organized by the target keys found in `partData.ts`.
+ */
 export const DYNASTY_DATA: Record<string, PeriodData> = {
     "magadha": {
         "title": "भाग I: मगध का उत्कर्ष (Rise of Magadha)",

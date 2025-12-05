@@ -3,14 +3,25 @@ import { GoogleGenAI, LiveServerMessage, Modality } from "@google/genai";
 import { KINGS_DATA } from '../data';
 import { Icons } from './Icons';
 
+/**
+ * Props for the SamvadChat component.
+ */
 interface SamvadChatProps {
+  /** Whether the chat overlay is open. */
   isOpen: boolean;
+  /** Callback to close the chat. */
   onClose: () => void;
+  /** The ID of the historical figure being simulated. */
   figureId: string | null;
 }
 
 // --- Audio Helper Functions ---
 
+/**
+ * Converts a Base64 string to a Uint8Array.
+ * @param base64 - The Base64 string.
+ * @returns The resulting Uint8Array.
+ */
 function base64ToUint8Array(base64: string): Uint8Array {
   const binaryString = atob(base64);
   const len = binaryString.length;
@@ -21,6 +32,11 @@ function base64ToUint8Array(base64: string): Uint8Array {
   return bytes;
 }
 
+/**
+ * Converts Float32 audio data to 16-bit PCM ArrayBuffer.
+ * @param float32Array - The float audio data.
+ * @returns The 16-bit PCM buffer.
+ */
 function floatTo16BitPCM(float32Array: Float32Array): ArrayBuffer {
   const buffer = new ArrayBuffer(float32Array.length * 2);
   const view = new DataView(buffer);
@@ -31,6 +47,11 @@ function floatTo16BitPCM(float32Array: Float32Array): ArrayBuffer {
   return buffer;
 }
 
+/**
+ * Converts an ArrayBuffer to a Base64 string.
+ * @param buffer - The buffer to convert.
+ * @returns The Base64 string.
+ */
 function arrayBufferToBase64(buffer: ArrayBuffer): string {
   let binary = '';
   const bytes = new Uint8Array(buffer);
@@ -71,7 +92,11 @@ class RecorderProcessor extends AudioWorkletProcessor {
 registerProcessor('recorder-worklet', RecorderProcessor);
 `;
 
-// Simple SFX Generator
+/**
+ * Plays sound effects for UI interactions.
+ * @param ctx - The audio context.
+ * @param type - The type of sound effect ('click', 'connect', 'disconnect').
+ */
 const playSfx = (ctx: AudioContext | null, type: 'click' | 'connect' | 'disconnect') => {
   if (!ctx || ctx.state === 'closed') return;
   try {
@@ -113,6 +138,13 @@ const playSfx = (ctx: AudioContext | null, type: 'click' | 'connect' | 'disconne
   }
 };
 
+/**
+ * A voice chat interface that simulates a conversation with a historical figure using Google's Gemini Live API.
+ * Features real-time audio visualization, voice input, and audio response.
+ *
+ * @param props - The component props.
+ * @returns The rendered voice chat interface.
+ */
 const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) => {
   const [status, setStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);

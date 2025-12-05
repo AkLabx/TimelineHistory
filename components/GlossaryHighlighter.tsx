@@ -2,16 +2,32 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GLOSSARY_DATA } from '../data';
 import { GlossaryTerm } from '../types';
 
+/**
+ * Props for the GlossaryHighlighter component.
+ */
 interface GlossaryHighlighterProps {
+  /** The text content to process and highlight. */
   text: string;
+  /** Whether the text contains HTML markup. */
   isHtml?: boolean;
 }
 
+/**
+ * A utility component that scans text for glossary terms and highlights them.
+ * Clicking a highlighted term opens a popover with its definition.
+ *
+ * @param props - The component props.
+ * @returns The text with interactive highlights.
+ */
 const GlossaryHighlighter: React.FC<GlossaryHighlighterProps> = ({ text, isHtml = false }) => {
   const [activeTerm, setActiveTerm] = useState<GlossaryTerm | null>(null);
   const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
   const popoverRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * Handles click on a highlighted term.
+   * Calculates the position for the popover.
+   */
   const handleTermClick = (e: React.MouseEvent<HTMLSpanElement>, termKey: string) => {
     e.stopPropagation();
     e.preventDefault(); 
@@ -47,7 +63,10 @@ const GlossaryHighlighter: React.FC<GlossaryHighlighterProps> = ({ text, isHtml 
     };
   }, [activeTerm]);
 
-  // Function to process a string node and replace terms with spans
+  /**
+   * Processes a string to identify and wrap glossary terms.
+   * Uses regex to match terms (both Hindi and English).
+   */
   const processString = (content: string): React.ReactNode[] => {
     if (!content) return [];
     const parts: React.ReactNode[] = [content];
@@ -94,7 +113,9 @@ const GlossaryHighlighter: React.FC<GlossaryHighlighterProps> = ({ text, isHtml 
     return parts;
   };
 
-  // Helper to parse HTML string and process text nodes for highlighting
+  /**
+   * Parses HTML string into React nodes and processes text content for highlighting.
+   */
   const renderHtmlContent = (html: string) => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');

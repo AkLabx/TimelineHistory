@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
+/**
+ * Props for the TextToSpeech component.
+ */
 interface TextToSpeechProps {
+  /** The text to be read aloud. */
   text: string;
 }
 
+/**
+ * A component that uses the Web Speech API to read text aloud.
+ * Provides a button to toggle playback.
+ *
+ * @param props - The component props.
+ * @returns The rendered button or null if speech synthesis is not supported.
+ */
 const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [supported, setSupported] = useState(false);
@@ -18,6 +29,9 @@ const TextToSpeech: React.FC<TextToSpeechProps> = ({ text }) => {
     }
   }, [text]);
 
+  /**
+   * Toggles the speech synthesis on or off.
+   */
   const toggleSpeak = () => {
     if (!supported || !utterance) return;
 

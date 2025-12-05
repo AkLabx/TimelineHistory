@@ -1,5 +1,10 @@
 import { GlossaryTerm } from '../types';
 
+/**
+ * Data defining glossary terms used in the application.
+ * Each term includes English and Hindi definitions.
+ * Keys are the terms in Hindi (or English depending on usage).
+ */
 export const GLOSSARY_DATA: Record<string, GlossaryTerm> = {
     "अमात्य": { 
         "title_en": "अमात्य (Amatya)", 

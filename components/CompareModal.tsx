@@ -2,12 +2,24 @@ import React, { useState, useMemo } from 'react';
 import { Icons } from './Icons';
 import { KINGS_DATA } from '../data';
 
+/**
+ * Props for the CompareModal component.
+ */
 interface CompareModalProps {
+  /** Whether the modal is currently open. */
   isOpen: boolean;
+  /** Callback to close the modal. */
   onClose: () => void;
+  /** Callback to initiate comparison between two selected entities. */
   onStartComparison: (id1: string, id2: string) => void;
 }
 
+/**
+ * A modal component that allows users to select two historical figures for comparison.
+ *
+ * @param props - The component props.
+ * @returns The rendered comparison selection modal or null if closed.
+ */
 const CompareModal: React.FC<CompareModalProps> = ({ isOpen, onClose, onStartComparison }) => {
   const [slot1, setSlot1] = useState<string | null>(null);
   const [slot2, setSlot2] = useState<string | null>(null);
@@ -30,6 +42,11 @@ const CompareModal: React.FC<CompareModalProps> = ({ isOpen, onClose, onStartCom
 
   if (!isOpen) return null;
 
+  /**
+   * Handles selection of a figure into the active slot.
+   * Automatically advances to the next slot if using the first one.
+   * @param id - The ID of the selected figure.
+   */
   const handleSelect = (id: string) => {
     if (activeSlot === 1) {
       setSlot1(id);
@@ -41,6 +58,9 @@ const CompareModal: React.FC<CompareModalProps> = ({ isOpen, onClose, onStartCom
     }
   };
 
+  /**
+   * Triggers the start of the comparison view with the selected figures.
+   */
   const handleStart = () => {
     if (slot1 && slot2) {
       onStartComparison(slot1, slot2);

@@ -1,5 +1,10 @@
 import { KingProfile } from '../types';
 
+/**
+ * Data defining the detailed profiles of kings and historical figures.
+ * Includes information about their reign, achievements, and legacy.
+ * Organized by unique IDs referenced in `dynastyData.ts`.
+ */
 export const KINGS_DATA: Record<string, KingProfile> = {
     "bimbisara": { 
         "type": "king-details enhanced-profile", 
@@ -163,8 +168,7 @@ export const KINGS_DATA: Record<string, KingProfile> = {
     },
     "ruknuddin-firuz": { "type": "king-details king-color-4 enhanced-profile", "summary": { "title": "रुकनुद्दीन फिरोज (Ruknuddin Firuz)", "reign": "1236 CE" }, "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>इल्तुतमिश का पुत्र, वह एक कमजोर और भोग-विलासी शासक था। उसकी माँ, शाह तुर्कान ने प्रभावी रूप से सत्ता संभाली, लेकिन उसकी क्रूरता ने अमीरों को नाराज कर दिया। उसे अमीरों द्वारा पदच्युत कर दिया गया, जिन्होंने रजिया को सिंहासन पर बैठाया।</p></div></div></div>" },
     "raziya-sultan": { 
-        "type": "king-details king-color-5 enhanced-profile", 
-        "summary": { "title": "रजिया सुल्तान (Razia Sultan)", "reign": "1236–1240 CE" }, 
+        "type": "king-details king-color-5 enhanced-profile", "summary": { "title": "रजिया सुल्तान (Razia Sultan)", "reign": "1236–1240 CE" },
         "imageUrl": "images/sultan_razia.jpg",
         "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>वह एक सक्षम और बहादुर शासक थी, लेकिन उसका महिला होना और एक गैर-तुर्क, जमाल-उद-दीन याकूत के प्रति उसका पक्षपात, तुर्की अमीरों को नाराज कर गया। अमीरों ने विद्रोह किया, और अंततः उसे पकड़कर मार दिया गया।</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">दिल्ली सल्तनत की पहली और एकमात्र महिला मुस्लिम शासक</span></div></div></div></div>" 
     },

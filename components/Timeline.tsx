@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import { TIMELINE_VISUAL_DATA } from '../data';
 
+/**
+ * Props for the Timeline component.
+ */
 interface TimelineProps {
+  /** The ID of the currently active historical period to visualize. */
   activePeriodId: string | null;
 }
 
+/**
+ * A horizontal timeline component that visualizes dynasties within a specific era.
+ * Allows users to hover for details and click to scroll to the relevant section.
+ *
+ * @param props - The component props.
+ * @returns The rendered timeline or null if no active period data is found.
+ */
 const Timeline: React.FC<TimelineProps> = ({ activePeriodId }) => {
   const [hoveredDynasty, setHoveredDynasty] = useState<{
     name: string;
@@ -21,21 +32,31 @@ const Timeline: React.FC<TimelineProps> = ({ activePeriodId }) => {
   const data = TIMELINE_VISUAL_DATA[activePeriodId];
   const totalDuration = data.end - data.start;
 
-  // Simple scale function
+  /**
+   * Calculates the width of a dynasty bar as a percentage.
+   */
   const getWidth = (start: number, end: number) => {
     // Ensure a minimum width (e.g., 3%) so short dynasties are visible and clickable
     return `${Math.max(((end - start) / totalDuration) * 100, 3)}%`;
   };
 
+  /**
+   * Calculates the left position of a dynasty bar as a percentage.
+   */
   const getLeft = (start: number) => {
     return `${((start - data.start) / totalDuration) * 100}%`;
   };
 
-  // Helper to format date
+  /**
+   * Formats a year number into a string with BCE/CE suffix.
+   */
   const formatDate = (year: number) => {
     return `${Math.abs(year)} ${year < 0 ? 'BCE' : 'CE'}`;
   };
 
+  /**
+   * Scrolls the page to the section corresponding to the clicked dynasty.
+   */
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {

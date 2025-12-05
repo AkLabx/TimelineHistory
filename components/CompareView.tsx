@@ -3,12 +3,25 @@ import { KINGS_DATA } from '../data';
 import { Icons } from './Icons';
 import GlossaryHighlighter from './GlossaryHighlighter';
 
+/**
+ * Props for the CompareView component.
+ */
 interface CompareViewProps {
+  /** The ID of the first entity to compare. */
   id1: string;
+  /** The ID of the second entity to compare. */
   id2: string;
+  /** Callback to close the comparison view and return to the previous screen. */
   onClose: () => void;
 }
 
+/**
+ * A side-by-side comparison view of two historical figures.
+ * Displays their portraits, key stats (reign, capital), and detailed descriptions.
+ *
+ * @param props - The component props.
+ * @returns The rendered comparison view.
+ */
 const CompareView: React.FC<CompareViewProps> = ({ id1, id2, onClose }) => {
   const k1 = KINGS_DATA[id1];
   const k2 = KINGS_DATA[id2];

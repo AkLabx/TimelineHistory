@@ -2,20 +2,38 @@ import { useState, useMemo } from 'react';
 import { SearchResult, EntityType } from '../types';
 import { PART_DATA, DYNASTY_DATA, KINGS_DATA, GLOSSARY_DATA } from '../data';
 
+/**
+ * Extension of SearchResult to include a relevance score.
+ * Used for sorting search results.
+ */
 interface ScoredResult extends SearchResult {
   score: number;
 }
 
+/**
+ * Custom hook to handle searching across eras, dynasties, figures, and glossary terms.
+ * Performs a weighted search on titles and content.
+ *
+ * @returns An object containing search state and results.
+ */
 export const useSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
 
+  /**
+   * Memoized search results based on the current query.
+   * Calculates scores for matches to order results by relevance.
+   */
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
 
     const scoredResults: ScoredResult[] = [];
 
+    /**
+     * Calculates a score based on how well the text matches the query.
+     * Exact match > Starts with > Contains word > Contains substring
+     */
     const getMatchScore = (text: string): number => {
       if (!text) return 0;
       const lowerText = text.toLowerCase();

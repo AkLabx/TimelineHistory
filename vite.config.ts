@@ -1,6 +1,14 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
+/**
+ * Vite Configuration.
+ * Configures the build process, including React plugin support,
+ * base path for deployment, and environment variable handling.
+ *
+ * @param config - The environment configuration (mode, command, etc.).
+ * @returns The Vite configuration object.
+ */
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.

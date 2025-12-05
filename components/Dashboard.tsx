@@ -2,10 +2,22 @@ import React, { useState } from 'react';
 import { PART_DATA } from '../data';
 import { Icons } from './Icons';
 
+/**
+ * Props for the Dashboard component.
+ */
 interface DashboardProps {
+  /** Callback to handle selecting a historical period. */
   onSelectPeriod: (id: string) => void;
 }
 
+/**
+ * A card component representing a single historical era or period.
+ * Displays the period title, subtitle, image, and dates.
+ *
+ * @param props.card - The data object for the timeline card.
+ * @param props.index - The index of the card for animation delay.
+ * @param props.onSelect - Callback when the card is clicked.
+ */
 const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string) => void }> = ({ card, index, onSelect }) => {
     const [imgError, setImgError] = useState(false);
 
@@ -71,6 +83,13 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
     );
 }
 
+/**
+ * The main dashboard view component.
+ * Displays a grid of timeline cards allowing navigation to different historical eras.
+ *
+ * @param props - The component props.
+ * @returns The rendered dashboard.
+ */
 const Dashboard: React.FC<DashboardProps> = ({ onSelectPeriod }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
