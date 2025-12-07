@@ -4,5 +4,7 @@
   "summary": {
     "title": "वंश का परिचय"
   },
-  "content": "<div class=\"ruler-profile-card\"><p>माउंट आबू में प्रसिद्ध दिलवाड़ा मंदिरों और मोढेरा में सूर्य मंदिर के संरक्षक।</p></div>"
+  "content": "<div class=\"ruler-profile-card\"><p>माउंट आबू में प्रसिद्ध दिलवाड़ा मंदिरों और मोढेरा में सूर्य मंदिर के संरक्षक।</p></div>",
+  "reignDuration": 0,
+  "empireSize": 300000
 }

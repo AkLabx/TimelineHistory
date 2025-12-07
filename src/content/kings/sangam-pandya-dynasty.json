@@ -10,5 +10,7 @@
   "subItems": [
     "pandya-intro",
     "pandya-rulers"
-  ]
+  ],
+  "reignDuration": 0,
+  "empireSize": 100000
 }

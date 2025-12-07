@@ -10,5 +10,7 @@
   "subItems": [
     "chera-intro",
     "chera-rulers"
-  ]
+  ],
+  "reignDuration": 0,
+  "empireSize": 100000
 }
