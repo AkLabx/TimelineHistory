@@ -138,6 +138,10 @@ export interface KingProfile {
   subItems?: string[];
   /** URL for the figure's image. */
   imageUrl?: string;
+  /** Reign duration in years (for statistical comparison). */
+  reignDuration?: number;
+  /** Approximate empire size in sq km (for statistical comparison). */
+  empireSize?: number;
 }
 
 /**
