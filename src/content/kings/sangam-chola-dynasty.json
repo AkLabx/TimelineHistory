@@ -10,5 +10,7 @@
   "subItems": [
     "chola-intro",
     "chola-rulers"
-  ]
+  ],
+  "reignDuration": 0,
+  "empireSize": 100000
 }

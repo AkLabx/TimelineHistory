@@ -4,5 +4,7 @@
   "summary": {
     "title": "वंश का परिचय"
   },
-  "content": "<div class=\"ruler-profile-card\"><p>यह एक बौद्ध राजवंश था जिसने अपने उत्तराधिकारियों, ब्राह्मण वंश से पहले सिंध पर शासन किया।</p></div>"
+  "content": "<div class=\"ruler-profile-card\"><p>यह एक बौद्ध राजवंश था जिसने अपने उत्तराधिकारियों, ब्राह्मण वंश से पहले सिंध पर शासन किया।</p></div>",
+  "reignDuration": 0,
+  "empireSize": 200000
 }

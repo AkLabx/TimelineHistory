@@ -4,5 +4,7 @@
   "summary": {
     "title": "वंश का परिचय"
   },
-  "content": "<div class=\"ruler-profile-card\"><p>छोटा नागपुर पठार क्षेत्र का एक पौराणिक राजवंश जिसका बहुत लंबा पारंपरिक इतिहास है।</p></div>"
+  "content": "<div class=\"ruler-profile-card\"><p>छोटा नागपुर पठार क्षेत्र का एक पौराणिक राजवंश जिसका बहुत लंबा पारंपरिक इतिहास है।</p></div>",
+  "reignDuration": 0,
+  "empireSize": 100000
 }
