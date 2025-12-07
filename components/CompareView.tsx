@@ -2,6 +2,7 @@ import React from 'react';
 import { KINGS_DATA } from '../data';
 import { Icons } from './Icons';
 import GlossaryHighlighter from './GlossaryHighlighter';
+import StatsChart from './StatsChart';
 
 /**
  * Props for the CompareView component.
@@ -17,7 +18,7 @@ interface CompareViewProps {
 
 /**
  * A side-by-side comparison view of two historical figures.
- * Displays their portraits, key stats (reign, capital), and detailed descriptions.
+ * Displays their portraits, key stats (reign, capital), charts, and detailed descriptions.
  *
  * @param props - The component props.
  * @returns The rendered comparison view.
@@ -30,6 +31,17 @@ const CompareView: React.FC<CompareViewProps> = ({ id1, id2, onClose }) => {
 
   const imagePath1 = k1.imageUrl ? `${(import.meta as any).env.BASE_URL}${k1.imageUrl}` : '';
   const imagePath2 = k2.imageUrl ? `${(import.meta as any).env.BASE_URL}${k2.imageUrl}` : '';
+
+  // Prepare data for charts
+  const reignData = [
+    { name: k1.summary.title.split('(')[0], value: k1.reignDuration || 0 },
+    { name: k2.summary.title.split('(')[0], value: k2.reignDuration || 0 }
+  ];
+
+  const empireData = [
+    { name: k1.summary.title.split('(')[0], value: k1.empireSize || 0 },
+    { name: k2.summary.title.split('(')[0], value: k2.empireSize || 0 }
+  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -118,6 +130,32 @@ const CompareView: React.FC<CompareViewProps> = ({ id1, id2, onClose }) => {
             <span className="text-lg font-bold text-stone-700 font-serif">{k2.summary.capital || 'N/A'}</span>
           </div>
         </div>
+
+        {/* Graphical Analysis Section */}
+        {(reignData.some(d => d.value > 0) || empireData.some(d => d.value > 0)) && (
+          <div className="p-8 bg-stone-50 border-b border-stone-100">
+             <div className="flex items-center gap-3 mb-6">
+                 <div className="p-2 bg-white rounded-lg shadow-sm text-indigo-600">
+                    <Icons.Analytics />
+                 </div>
+                 <h3 className="text-xl font-bold text-stone-800 heading-text">Power Analysis</h3>
+             </div>
+
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <StatsChart
+                  title="Reign Duration"
+                  data={reignData}
+                  unit="Years"
+                />
+                <StatsChart
+                  title="Empire Peak Size (Approx)"
+                  data={empireData}
+                  unit="Sq Km"
+                />
+             </div>
+             <p className="text-[10px] text-stone-400 mt-4 text-center italic">* Figures based on approximate historical estimates.</p>
+          </div>
+        )}
 
         {/* Content Comparison */}
         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-stone-200">
