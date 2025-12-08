@@ -7,5 +7,6 @@
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>बलबन का पोता। शुरू में एक सख्त माहौल में पाला गया, सत्ता में आने पर वह भोग-विलास में डूब गया। उसे लकवा मार गया और उसे खिलजी अमीरों द्वारा उखाड़ फेंका गया, जिससे खिलजी क्रांति का मार्ग प्रशस्त हुआ।</p><div class=\"profile-tags\"><span class=\"profile-tag\">गुलाम वंश का अंतिम शासक</span></div></div></div></div>",
   "reignDuration": 3,
-  "empireSize": 1600000
+  "empireSize": 1600000,
+  "imageUrl": "images/slave_dynasty_ruins.jpg"
 }

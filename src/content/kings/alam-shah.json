@@ -1,11 +1,12 @@
 {
   "id": "alam-shah",
-  "type": "king-details king-color-last enhanced-profile",
+  "type": "king-details enhanced-profile",
   "summary": {
-    "title": "अलाउद्दीन आलम शाह (Alam Shah)",
+    "title": "आलम शाह (Alam Shah)",
     "reign": "1445–1451 CE"
   },
-  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>सैयद वंश का अंतिम शासक पूरी तरह से अयोग्य था। उसने स्वेच्छा से बहलोल लोदी के पक्ष में दिल्ली का सिंहासन त्याग दिया और बदायूं चला गया, जहाँ उसकी मृत्यु हो गई।</p><div class=\"profile-tags\"><span class=\"profile-tag\">सैयद वंश का अंतिम शासक</span></div></div></div></div>",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>अंतिम सैय्यद सुल्तान</h5></div><div class=\"legacy-section-content\"><p>सैय्यद वंश का अंतिम शासक। वह एक कमजोर और अक्षम शासक था। उसे बदायूँ में सेवानिवृत्त होना ज्यादा पसंद था। 1451 में, बहलोल लोदी ने दिल्ली पर कब्जा कर लिया और लोदी वंश की स्थापना की, जबकि आलम शाह अपनी मृत्यु तक बदायूँ में ही रहा।</p></div></div></div>",
   "reignDuration": 6,
-  "empireSize": 200000
+  "empireSize": 100000,
+  "imageUrl": "images/sayyid_dynasty_tomb.jpg"
 }
