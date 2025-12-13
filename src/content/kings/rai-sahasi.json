@@ -1,0 +1,12 @@
+{
+  "id": "rai-sahasi",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "राय साहसी प्रथम (Rai Sahasi I)",
+    "reign": "c. 540–565 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔄</span><h5>पुनर्निर्माण</h5></div><div class=\"legacy-section-content\"><p>अपने पिता की मृत्यु के बाद राज्य को संभाला और सीमाओं को सुरक्षित किया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>धर्म:</strong> बौद्ध धर्म का संरक्षण जारी रखा।</li></ul></div></div></div>",
+  "reignDuration": 25,
+  "empireSize": 600000,
+  "imageUrl": "images/rai-sahasi.jpg"
+}

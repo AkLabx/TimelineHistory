@@ -1,0 +1,12 @@
+{
+  "id": "dharasena-i",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "धरसेन प्रथम (Dharasena I)",
+    "reign": "c. 495–520 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛡️</span><h5>उत्तराधिकारी</h5></div><div class=\"legacy-section-content\"><p>भटार्क के पुत्र। इन्होंने भी 'सेनापति' की उपाधि ही धारण की।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>नीति:</strong> गुप्त सम्राटों के प्रति औपचारिक अधीनता बनाए रखी।</li><li><strong>धर्म:</strong> मैत्रक शासक शैव थे, लेकिन बौद्ध धर्म को भी संरक्षण दिया।</li></ul></div></div></div>",
+  "reignDuration": 25,
+  "empireSize": 100000,
+  "imageUrl": "images/dharasena-i.jpg"
+}

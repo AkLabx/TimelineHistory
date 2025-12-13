@@ -1,0 +1,12 @@
+{
+  "id": "rudrasena-i",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "रुद्रसेन प्रथम (Rudrasena I)",
+    "reign": "c. 330–355 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔱</span><h5>शैव भक्त</h5></div><div class=\"legacy-section-content\"><p>गौतमीपुत्र के पुत्र। ये भगवान महाभैरव (शिव) के अनन्य भक्त थे।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>शाखा:</strong> प्रवरपुर-नंदिवर्धन (मुख्य शाखा) के शासक।</li><li><strong>समकालीन:</strong> समुद्रगुप्त। प्रयाग प्रशस्ति में 'रुद्रदेव' का उल्लेख है, जिसे कुछ इतिहासकार रुद्रसेन प्रथम मानते हैं।</li></ul></div></div></div>",
+  "reignDuration": 25,
+  "empireSize": 250000,
+  "imageUrl": "images/rudrasena-i.jpg"
+}

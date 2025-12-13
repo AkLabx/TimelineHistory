@@ -12,9 +12,21 @@
         "capital": "पाटलिपुत्र"
       },
       "subItems": [
+        "sri-gupta",
+        "ghatotkacha",
         "chandragupta-i",
+        "kacha",
         "samudragupta",
-        "chandragupta-ii"
+        "ramagupta",
+        "chandragupta-ii",
+        "kumaragupta-i",
+        "skandagupta",
+        "purugupta",
+        "kumaragupta-ii",
+        "buddhagupta",
+        "narasimhagupta",
+        "kumaragupta-iii",
+        "vishnugupta"
       ]
     },
     {
@@ -24,10 +36,21 @@
         "title": "वाकाटक वंश (Vakataka Dynasty)",
         "period": "c. 250–500 CE",
         "founder": "विंध्यशक्ति",
-        "capital": "वत्सगुल्म"
+        "capital": "वत्सगुल्म / प्रवरपुर"
       },
       "subItems": [
-        "vakataka-intro"
+        "vakataka-intro",
+        "vindhyashakti",
+        "pravarasena-i",
+        "rudrasena-i",
+        "prithvishena-i",
+        "rudrasena-ii",
+        "prabhavatigupta",
+        "pravarasena-ii",
+        "narendrasena",
+        "prithvishena-ii",
+        "sarvasena",
+        "harishena"
       ]
     },
     {
@@ -35,25 +58,20 @@
       "type": "dynasty-details",
       "summary": {
         "title": "पल्लव वंश (Pallava Dynasty)",
-        "period": "c. 275 – 897 CE",
+        "period": "c. 550 – 897 CE",
         "founder": "सिंहविष्णु",
         "capital": "कांचीपुरम"
       },
       "subItems": [
-        "pallava-details"
-      ]
-    },
-    {
-      "id": "rai-dynasty",
-      "type": "dynasty-details",
-      "summary": {
-        "title": "राय वंश (सिंध) (Rai Dynasty)",
-        "period": "c. 489 – 632 CE",
-        "founder": "राय साहसी प्रथम",
-        "capital": "अरोड़"
-      },
-      "subItems": [
-        "rai-details"
+        "pallava-details",
+        "simhavishnu",
+        "mahendravarman-i",
+        "narasimhavarman-i",
+        "mahendravarman-ii",
+        "paramesvaravarman-i",
+        "narasimhavarman-ii",
+        "paramesvaravarman-ii",
+        "nandivarman-ii"
       ]
     },
     {
@@ -66,33 +84,16 @@
         "capital": "बादामी (वातापी)"
       },
       "subItems": [
-        "western-chalukya-details"
-      ]
-    },
-    {
-      "id": "maukhari-dynasty",
-      "type": "dynasty-details",
-      "summary": {
-        "title": "मौखरि वंश (Maukhari Dynasty)",
-        "period": "c. 550 – 606 CE",
-        "founder": "ईशानवर्मन",
-        "capital": "कन्नौज"
-      },
-      "subItems": [
-        "maukhari-details"
-      ]
-    },
-    {
-      "id": "gauda-kingdom",
-      "type": "dynasty-details",
-      "summary": {
-        "title": "गौड़ साम्राज्य (Gauda Kingdom)",
-        "period": "c. 590 – 626 CE",
-        "founder": "शशांक",
-        "capital": "कर्णसुवर्ण"
-      },
-      "subItems": [
-        "gauda-details"
+        "western-chalukya-details",
+        "pulakeshin-i",
+        "kirtivarman-i",
+        "mangalesha",
+        "pulakeshin-ii",
+        "vikramaditya-i",
+        "vinayaditya",
+        "vijayaditya",
+        "vikramaditya-ii",
+        "kirtivarman-ii"
       ]
     },
     {
@@ -105,7 +106,129 @@
         "capital": "थानेसर / कन्नौज"
       },
       "subItems": [
-        "vardhana-dynasty"
+        "vardhana-dynasty",
+        "prabhakaravardhana",
+        "rajyavardhana",
+        "harshavardhana"
+      ]
+    },
+    {
+      "id": "maukhari-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "मौखरि वंश (Maukhari Dynasty)",
+        "period": "c. 550 – 606 CE",
+        "founder": "ईशानवर्मन",
+        "capital": "कन्नौज"
+      },
+      "subItems": [
+        "maukhari-details",
+        "ishanavarman",
+        "sarvavarman",
+        "grahavarman"
+      ]
+    },
+    {
+      "id": "later-guptas-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "परवर्ती गुप्त वंश (Later Guptas)",
+        "period": "c. 490–750 CE",
+        "founder": "कृष्णगुप्त",
+        "capital": "मगध / पाटलिपुत्र"
+      },
+      "subItems": [
+        "krishnagupta",
+        "adityasena"
+      ]
+    },
+    {
+      "id": "gauda-kingdom",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "गौड़ साम्राज्य (Gauda Kingdom)",
+        "period": "c. 590 – 626 CE",
+        "founder": "शशांक",
+        "capital": "कर्णसुवर्ण"
+      },
+      "subItems": [
+        "gauda-details",
+        "shashanka"
+      ]
+    },
+    {
+      "id": "rai-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "राय वंश (सिंध) (Rai Dynasty)",
+        "period": "c. 489 – 632 CE",
+        "founder": "राय दिवाजी",
+        "capital": "अरोड़"
+      },
+      "subItems": [
+        "rai-details",
+        "rai-diwaji",
+        "rai-sahiras",
+        "rai-sahasi",
+        "rai-sahiras-ii",
+        "rai-sahasi-ii"
+      ]
+    },
+    {
+      "id": "maitraka-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "मैत्रक वंश (Maitrakas of Vallabhi)",
+        "period": "c. 475 – 776 CE",
+        "founder": "भटार्क",
+        "capital": "वल्लभी"
+      },
+      "subItems": [
+        "bhatarka",
+        "dharasena-i",
+        "siladitya-i"
+      ]
+    },
+    {
+      "id": "kadamba-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "कदंब वंश (Kadamba Dynasty)",
+        "period": "c. 345 – 540 CE",
+        "founder": "मयूरशर्मा",
+        "capital": "वनवासी"
+      },
+      "subItems": [
+        "mayurasharma",
+        "kakusthavarma"
+      ]
+    },
+    {
+      "id": "western-ganga-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "पश्चिमी गंगा वंश (Western Gangas)",
+        "period": "c. 350 – 1000 CE",
+        "founder": "कोंगणीवर्मन माधव",
+        "capital": "कोलार / तलकाड़"
+      },
+      "subItems": [
+        "konganivarman",
+        "durvinita"
+      ]
+    },
+    {
+      "id": "vishnukundin-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "विष्णुकुंडिन वंश (Vishnukundin Dynasty)",
+        "period": "c. 420 – 624 CE",
+        "founder": "माधववर्मन प्रथम",
+        "capital": "इंद्रपालनगरा / वेंगी"
+      },
+      "subItems": [
+        "madhavarman-i",
+        "madhavarman-ii"
       ]
     }
   ]

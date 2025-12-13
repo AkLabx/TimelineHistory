@@ -1,0 +1,12 @@
+{
+  "id": "vinayaditya",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "विनयादित्य (Vinayaditya)",
+    "reign": "c. 681–696 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🗺️</span><h5>उत्तर भारत अभियान</h5></div><div class=\"legacy-section-content\"><p>अपने पिता की तरह शक्तिशाली थे। अभिलेखों के अनुसार, उन्होंने उत्तर भारत के एक 'सकललोत्तरपथनाथ' (संभवतः बाद के गुप्त राजा) को हराया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधियाँ:</strong> युद्धमल्ल, सत्याश्रय।</li><li><strong>कूटनीति:</strong> चीन के दरबार में दूत भेजे।</li></ul></div></div></div>",
+  "reignDuration": 15,
+  "empireSize": 800000,
+  "imageUrl": "images/vinayaditya.jpg"
+}
