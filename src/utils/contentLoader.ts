@@ -1,5 +1,5 @@
 
-import { PartData, PeriodData, KingProfile, GlossaryTerm, Connection, TimelineVisualData } from '../types';
+import { PartData, PeriodData, KingProfile, GlossaryTerm, Connection, TimelineVisualData } from '../../types';
 
 // These use Vite's glob import feature to load all JSON files at build time.
 // { eager: true } ensures they are bundled into the main JS chunk,
