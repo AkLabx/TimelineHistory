@@ -1,0 +1,64 @@
+{
+  "id": "tripartite-dynasties",
+  "title": "त्रिपक्षीय संघर्ष के राजवंश (Dynasties of the Tripartite Struggle)",
+  "parent": "early-medieval",
+  "items": [
+    {
+      "id": "gurjara-pratihara-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "गुर्जर-प्रतिहार राजवंश (Gurjara-Pratihara Dynasty)",
+        "period": "c. 730 – 1036 CE",
+        "founder": "नागभट्ट प्रथम",
+        "capital": "उज्जैन, बाद में कन्नौज"
+      },
+      "subItems": [
+        "nagabhata-i",
+        "vatsaraja",
+        "nagabhata-ii",
+        "mihira-bhoja",
+        "mahendrapala-i",
+        "mahipala-i",
+        "rajyapala",
+        "yashpala"
+      ]
+    },
+    {
+      "id": "pala-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "पाल साम्राज्य (Pala Empire)",
+        "period": "c. 750 – 1161 CE",
+        "founder": "गोपाल",
+        "capital": "मुंगेर, पाटलिपुत्र, गौड़"
+      },
+      "subItems": [
+        "gopala",
+        "dharmapala",
+        "devapala",
+        "mahipala-i-pala",
+        "ramapala"
+      ]
+    },
+    {
+      "id": "rashtrakuta-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "राष्ट्रकूट साम्राज्य (Rashtrakuta Empire)",
+        "period": "c. 753 – 982 CE",
+        "founder": "दंतिदुर्ग",
+        "capital": "मान्यखेत (मलखेड़)"
+      },
+      "subItems": [
+        "dantidurga",
+        "krishna-i",
+        "dhruva-dharavarsha",
+        "govinda-iii",
+        "amoghavarsha-i",
+        "indra-iii",
+        "krishna-iii",
+        "karka-ii"
+      ]
+    }
+  ]
+}

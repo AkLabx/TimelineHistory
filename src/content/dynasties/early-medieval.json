@@ -4,15 +4,12 @@
   "items": [
     {
       "id": "tripartite-struggle",
-      "type": "event-details",
+      "type": "timeline-link-card",
+      "target": "tripartite-dynasties",
       "summary": {
-        "title": "त्रिपक्षीय संघर्ष (कन्नौज के लिए)"
-      },
-      "subItems": [
-        "gurjara-pratihara-dynasty",
-        "pala-dynasty",
-        "rashtrakuta-dynasty"
-      ]
+        "title": "त्रिपक्षीय संघर्ष के राजवंश",
+        "subtitle": "गुर्जर-प्रतिहार, पाल और राष्ट्रकूट वंशों का अन्वेषण करें"
+      }
     },
     {
       "id": "eastern-chalukya-dynasty",
