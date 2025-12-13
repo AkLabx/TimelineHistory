@@ -1,0 +1,12 @@
+{
+  "id": "narasimhagupta",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "नरसिंहगुप्त बालादित्य (Narasimhagupta Baladitya)",
+    "reign": "c. 495–530 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>हूणों से संघर्ष</h5></div><div class=\"legacy-section-content\"><p>हूण राजा मिहिरकुल (Mihirakula) ने इनके समय में आक्रमण किया। ह्वेन त्सांग के अनुसार, बालादित्य ने मिहिरकुल को हराया और बंदी बना लिया, लेकिन बाद में अपनी माँ के कहने पर छोड़ दिया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">☸️</span><h5>बौद्ध संरक्षण</h5></div><div class=\"legacy-section-content\"><p>ये बौद्ध धर्म के प्रबल समर्थक थे और नालंदा में एक भव्य ईंटों वाला मंदिर बनवाया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> बालादित्य (Baladitya)।</li><li><strong>परवर्ती गुप्त:</strong> इनके बाद गुप्त साम्राज्य छोटे-छोटे राज्यों में बंट गया।</li></ul></div></div></div>",
+  "reignDuration": 35,
+  "empireSize": 1000000,
+  "imageUrl": "images/narasimhagupta.jpg"
+}

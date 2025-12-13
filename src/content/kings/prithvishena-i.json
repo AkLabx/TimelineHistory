@@ -1,0 +1,12 @@
+{
+  "id": "prithvishena-i",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "पृथ्वीषेण प्रथम (Prithvishena I)",
+    "reign": "c. 355–380 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🕊️</span><h5>धर्मविजयी</h5></div><div class=\"legacy-section-content\"><p>इन्हें एक 'धर्मविजयी' शासक माना जाता है। इनके शासनकाल में शांति और समृद्धि रही। इनकी तुलना 'युधिष्ठिर' से की गई है।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>क्षेत्र:</strong> कुंतल (कर्नाटक) तक प्रभाव बढ़ाया।</li><li><strong>गुप्त संबंध:</strong> इनके शासन के अंत में चंद्रगुप्त द्वितीय के साथ मैत्रीपूर्ण संबंध स्थापित हुए।</li></ul></div></div></div>",
+  "reignDuration": 25,
+  "empireSize": 300000,
+  "imageUrl": "images/prithvishena-i.jpg"
+}

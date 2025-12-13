@@ -1,0 +1,12 @@
+{
+  "id": "pravarasena-ii",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "प्रवरसेन द्वितीय (Pravarasena II)",
+    "reign": "c. 405–440 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏰</span><h5>नई राजधानी</h5></div><div class=\"legacy-section-content\"><p>मूल नाम दामोदरसेन था। इन्होंने 'प्रवरपुर' नामक नई राजधानी बसाई।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📚</span><h5>सेतुबंध (Setubandha)</h5></div><div class=\"legacy-section-content\"><p>इन्हें प्राकृत काव्य 'सेतुबंध' (या रावणवहो) का रचयिता माना जाता है, जो भगवान राम की लंका विजय पर आधारित है। कहा जाता है कि कालिदास ने इसे लिखने में उनकी मदद की थी।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>कालिदास:</strong> कुछ विद्वानों के अनुसार, कालिदास ने 'मेघदूत' की रचना वाकाटक दरबार में ही की थी।</li><li><strong>धर्म:</strong> ये शिव भक्त (परममाहेश्वर) थे।</li></ul></div></div></div>",
+  "reignDuration": 35,
+  "empireSize": 350000,
+  "imageUrl": "images/pravarasena-ii.jpg"
+}

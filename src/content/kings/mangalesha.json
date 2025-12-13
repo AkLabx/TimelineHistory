@@ -1,0 +1,12 @@
+{
+  "id": "mangalesha",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "मंगलेश (Mangalesha)",
+    "reign": "c. 592–610 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🎨</span><h5>कला संरक्षक</h5></div><div class=\"legacy-section-content\"><p>बादामी गुफा मंदिरों (गुफा 4) को पूरा करने का श्रेय इन्हें जाता है। वहां का शिलालेख (578 CE) इनके शासन की पुष्टि करता है।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>गृहयुद्ध</h5></div><div class=\"legacy-section-content\"><p>इन्होंने कलचुरियों को हराया और रेवती द्वीप (गोवा) पर कब्जा किया। अंत में, इन्होंने अपने पुत्र को गद्दी देने की कोशिश की, जिससे भतीजे पुलकेशिन द्वितीय ने विद्रोह किया और मंगलेश मारे गए।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधियाँ:</strong> परमभागवत (वैष्णव)।</li></ul></div></div></div>",
+  "reignDuration": 18,
+  "empireSize": 250000,
+  "imageUrl": "images/mangalesha.jpg"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "rajyavardhana",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "राज्यवर्धन (Rajyavardhana)",
+    "reign": "c. 605–606 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>प्रतिशोध और मृत्यु</h5></div><div class=\"legacy-section-content\"><p>पिता की मृत्यु के बाद गद्दी पर बैठे। मालवा के राजा देवगुप्त ने इनके बहनोई (कन्नौज के ग्रहवर्मन) की हत्या कर दी और बहन राज्यश्री को कैद कर लिया। राज्यवर्धन ने मालवा पर आक्रमण कर देवगुप्त को हराया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">💀</span><h5>धोखा</h5></div><div class=\"legacy-section-content\"><p>गौड़ नरेश शशांक (जो देवगुप्त का मित्र था) ने धोखे से राज्यवर्धन की हत्या कर दी।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> परमसौगत (बौद्ध धर्म के अनुयायी)।</li></ul></div></div></div>",
+  "reignDuration": 1,
+  "empireSize": 100000,
+  "imageUrl": "images/rajyavardhana.jpg"
+}

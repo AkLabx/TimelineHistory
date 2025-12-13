@@ -1,0 +1,12 @@
+{
+  "id": "konganivarman",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "कोंगणीवर्मन माधव (Konganivarman Madhava)",
+    "reign": "c. 350–370 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>पश्चिमी गंगा वंश के संस्थापक</h5></div><div class=\"legacy-section-content\"><p>इन्होंने कोलार (Kuvalala) में पश्चिमी गंगा वंश की स्थापना की। बाद में राजधानी तलकाड़ (Talakad) स्थानांतरित की गई।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>जैन संरक्षण</h5></div><div class=\"legacy-section-content\"><p>परंपरा के अनुसार, जैन आचार्य सिंहनंदी ने उन्हें राज्य स्थापित करने में मदद की। उन्होंने एक पत्थर के स्तंभ को एक ही वार में काटकर अपनी शक्ति सिद्ध की थी।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधियाँ:</strong> धर्म-महाधिराज।</li><li><strong>प्रतीक:</strong> हाथी (Royal Elephant)।</li></ul></div></div></div>",
+  "reignDuration": 20,
+  "empireSize": 60000,
+  "imageUrl": "images/konganivarman.jpg"
+}
