@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, KeyboardEvent } from 'react';
 import { Icons } from './Icons';
 import { SearchResult, EntityType } from '../types';
 
@@ -38,6 +38,47 @@ const SearchModal: React.FC<SearchModalProps> = ({
   onSelectPeriod, 
   onSelectFigure 
 }) => {
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  // Reset selection when query changes
+  useEffect(() => {
+    setSelectedIndex(-1);
+  }, [query]);
+
+  // Scroll selected item into view
+  useEffect(() => {
+    if (selectedIndex >= 0) {
+      const el = document.getElementById(`result-${selectedIndex}`);
+      if (el) {
+        el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+  }, [selectedIndex]);
+
+  const handleSelect = (result: SearchResult) => {
+    if (result.type === EntityType.ERA) onSelectPeriod(result.id);
+    if (result.type === EntityType.DYNASTY) onSelectPeriod(result.parentId || result.id); // Dynasties are inside Periods
+    if (result.type === EntityType.FIGURE) onSelectFigure(result.id);
+    // Terms usually don't navigate, but maybe we can show definition expanded?
+    // For now close.
+    if (result.type !== EntityType.TERM) onClose();
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev < results.length - 1 ? prev + 1 : prev));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev > 0 ? prev - 1 : prev));
+    } else if (e.key === 'Enter' && selectedIndex >= 0) {
+      e.preventDefault();
+      handleSelect(results[selectedIndex]);
+    } else if (e.key === 'Escape') {
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -53,29 +94,31 @@ const SearchModal: React.FC<SearchModalProps> = ({
                     autoFocus
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    aria-activedescendant={selectedIndex >= 0 ? `result-${selectedIndex}` : undefined}
+                    aria-autocomplete="list"
+                    aria-controls="search-results-list"
+                    aria-expanded={results.length > 0}
+                    role="combobox"
                 />
                 <button onClick={onClose} className="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1 hover:bg-slate-200 transition">
                     <Icons.X />
                 </button>
             </div>
-            <div className="max-h-[60vh] overflow-y-auto p-2">
+            <div className="max-h-[60vh] overflow-y-auto p-2" role="listbox" id="search-results-list">
                 {results.length === 0 && query && (
                     <div className="text-center py-12 text-slate-500">
                         <p>No results found for "<span className="font-semibold text-slate-700">{query}</span>"</p>
                     </div>
                 )}
-                {results.map(result => (
+                {results.map((result, index) => (
                     <div 
                         key={`${result.type}-${result.id}`}
-                        onClick={() => {
-                            if (result.type === EntityType.ERA) onSelectPeriod(result.id);
-                            if (result.type === EntityType.DYNASTY) onSelectPeriod(result.parentId || result.id); // Dynasties are inside Periods
-                            if (result.type === EntityType.FIGURE) onSelectFigure(result.id);
-                            // Terms usually don't navigate, but maybe we can show definition expanded? 
-                            // For now close.
-                            if (result.type !== EntityType.TERM) onClose();
-                        }}
-                        className={`p-4 hover:bg-orange-50 rounded-xl cursor-pointer group flex items-start border-b border-transparent hover:border-orange-100 transition-all ${result.type === EntityType.TERM ? 'cursor-default' : ''}`}
+                        id={`result-${index}`}
+                        role="option"
+                        aria-selected={index === selectedIndex}
+                        onClick={() => handleSelect(result)}
+                        className={`p-4 hover:bg-orange-50 rounded-xl cursor-pointer group flex items-start border-b border-transparent hover:border-orange-100 transition-all ${result.type === EntityType.TERM ? 'cursor-default' : ''} ${index === selectedIndex ? 'bg-orange-50 ring-1 ring-inset ring-orange-200' : ''}`}
                     >
                         <div className={`mt-1 mr-4 flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg text-xs font-bold uppercase tracking-wider 
                             ${result.type === EntityType.ERA ? 'bg-indigo-100 text-indigo-700' : ''}
