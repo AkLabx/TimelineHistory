@@ -21,7 +21,10 @@
         "capital": "वेंगी"
       },
       "subItems": [
-        "eastern-chalukya-details"
+        "eastern-chalukya-details",
+        "kubja-vishnuvardhana",
+        "gunaga-vijayaditya",
+        "rajaraja-narendra"
       ]
     },
     {
@@ -34,7 +37,9 @@
         "capital": "अरोड़"
       },
       "subItems": [
-        "brahman-details"
+        "brahman-details",
+        "chach-sindh",
+        "raja-dahir"
       ]
     },
     {
@@ -47,7 +52,9 @@
         "capital": "दिल्ली (ढिल्लिका)"
       },
       "subItems": [
-        "tomara-details"
+        "tomara-details",
+        "anangpal-tomar-i",
+        "anangpal-tomar-ii"
       ]
     },
     {
@@ -60,7 +67,13 @@
         "capital": "तंजावुर"
       },
       "subItems": [
-        "imperial-chola-details"
+        "imperial-chola-details",
+        "vijayalaya-chola",
+        "aditya-chola-i",
+        "parantaka-chola-i",
+        "rajaraja-chola-i",
+        "rajendra-chola-i",
+        "kulothunga-chola-i"
       ]
     },
     {
@@ -73,7 +86,10 @@
         "capital": "देवगिरि (दौलताबाद)"
       },
       "subItems": [
-        "yadava-details"
+        "yadava-details",
+        "bhillama-v",
+        "singhana-ii",
+        "ramachandra-yadava"
       ]
     },
     {
@@ -86,7 +102,12 @@
         "capital": "खजुराहो, महोबा"
       },
       "subItems": [
-        "chandela-details"
+        "chandela-details",
+        "nannuka-chandela",
+        "yashovarman-chandela",
+        "dhanga-deva",
+        "vidyadhara-chandela",
+        "paramardi-deva"
       ]
     },
     {
@@ -99,7 +120,10 @@
         "capital": "धार"
       },
       "subItems": [
-        "paramara-details"
+        "paramara-details",
+        "siyaka-ii",
+        "vakpati-munja",
+        "raja-bhoja"
       ]
     },
     {
@@ -112,7 +136,12 @@
         "capital": "अन्हिलवाड़ पाटन"
       },
       "subItems": [
-        "solanki-details"
+        "solanki-details",
+        "mularaja-solanki-i",
+        "bhima-solanki-i",
+        "karnadeva-solanki",
+        "jayasimha-siddharaja",
+        "kumarapala-solanki"
       ]
     },
     {
@@ -125,7 +154,10 @@
         "capital": "मान्यखेट, बाद में कल्याणी"
       },
       "subItems": [
-        "kalyani-chalukya-details"
+        "kalyani-chalukya-details",
+        "tailapa-ii",
+        "someshvara-i",
+        "vikramaditya-vi"
       ]
     },
     {
@@ -138,7 +170,10 @@
         "capital": "बेलूर, हलेबिडु"
       },
       "subItems": [
-        "hoysala-details"
+        "hoysala-details",
+        "vishnuvardhana-hoysala",
+        "ballala-ii",
+        "ballala-iii"
       ]
     },
     {
@@ -151,7 +186,9 @@
         "capital": "कन्नौज, वाराणसी"
       },
       "subItems": [
-        "gahadavala-details"
+        "gahadavala-details",
+        "govindachandra-gahadavala",
+        "jayachandra-gahadavala"
       ]
     },
     {
@@ -164,7 +201,11 @@
         "capital": "वारंगल"
       },
       "subItems": [
-        "kakatiya-details"
+        "kakatiya-details",
+        "rudradeva-kakatiya",
+        "ganapatideva",
+        "rudrama-devi",
+        "prataparudra-ii"
       ]
     }
   ]
