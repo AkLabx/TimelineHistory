@@ -27,6 +27,7 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
     return (
           <div 
                onClick={() => onSelect(card.target)}
+               data-testid={`card-${card.target}`}
                className="group relative h-[450px] w-full rounded-3xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ring-1 ring-slate-900/5 bg-slate-900"
                style={{ animationDelay: `${index * 100}ms` }}
           >

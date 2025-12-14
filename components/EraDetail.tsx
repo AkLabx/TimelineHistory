@@ -180,6 +180,7 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                                             <button 
                                                 key={subId}
                                                 onClick={() => onSelectFigure(subId)}
+                                                data-testid={`king-btn-${subId}`}
                                                 className="group/btn flex items-center justify-between px-4 py-3 bg-stone-50 text-stone-700 rounded-lg text-sm font-bold border border-stone-200 hover:border-orange-300 hover:bg-white hover:text-orange-900 transition-all shadow-sm hover:shadow-md text-left"
                                             >
                                                 <div className="flex items-center overflow-hidden">

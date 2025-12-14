@@ -12,24 +12,14 @@
         "capital": "आगरा, दिल्ली, फतेहपुर सीकरी"
       },
       "subItems": [
-        "mughal-details"
+        "mughal-details",
+        "babur",
+        "humayun",
+        "akbar",
+        "jahangir",
+        "shah-jahan",
+        "aurangzeb"
       ]
-    },
-    {
-      "id": "babur",
-      "type": "king-details enhanced-profile",
-      "summary": {
-        "title": "बाबर (Babur)",
-        "period": "1526 – 1530 CE"
-      }
-    },
-    {
-      "id": "humayun",
-      "type": "king-details enhanced-profile",
-      "summary": {
-        "title": "हुमायूँ (Humayun)",
-        "period": "1530 – 1540 CE, 1555 – 1556 CE"
-      }
     },
     {
       "id": "sur-dynasty",
@@ -45,38 +35,6 @@
         "islam-shah-suri",
         "sikandar-shah-suri"
       ]
-    },
-    {
-      "id": "akbar",
-      "type": "king-details enhanced-profile",
-      "summary": {
-        "title": "अकबर (Akbar)",
-        "period": "1556 – 1605 CE"
-      }
-    },
-    {
-      "id": "jahangir",
-      "type": "king-details enhanced-profile",
-      "summary": {
-        "title": "जहांगीर (Jahangir)",
-        "period": "1605 – 1627 CE"
-      }
-    },
-    {
-      "id": "shah-jahan",
-      "type": "king-details enhanced-profile",
-      "summary": {
-        "title": "शाहजहां (Shah Jahan)",
-        "period": "1628 – 1658 CE"
-      }
-    },
-    {
-      "id": "aurangzeb",
-      "type": "king-details enhanced-profile",
-      "summary": {
-        "title": "औरंगजेब (Aurangzeb)",
-        "period": "1658 – 1707 CE"
-      }
     },
     {
       "id": "later-mughals-link",
