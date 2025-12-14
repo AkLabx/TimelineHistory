@@ -17,11 +17,19 @@
     },
     {
       "id": "babur",
-      "type": "king-details enhanced-profile"
+      "type": "king-details enhanced-profile",
+      "summary": {
+        "title": "बाबर (Babur)",
+        "reign": "1526 – 1530 CE"
+      }
     },
     {
       "id": "humayun",
-      "type": "king-details enhanced-profile"
+      "type": "king-details enhanced-profile",
+      "summary": {
+        "title": "हुमायूँ (Humayun)",
+        "reign": "1530–1540 CE & 1555–1556 CE"
+      }
     },
     {
       "id": "sur-dynasty",
@@ -40,19 +48,35 @@
     },
     {
       "id": "akbar",
-      "type": "king-details enhanced-profile"
+      "type": "king-details enhanced-profile",
+      "summary": {
+        "title": "अकबर (Akbar)",
+        "reign": "1556 – 1605 CE"
+      }
     },
     {
       "id": "jahangir",
-      "type": "king-details enhanced-profile"
+      "type": "king-details enhanced-profile",
+      "summary": {
+        "title": "जहांगीर (Jahangir)",
+        "reign": "1605 – 1627 CE"
+      }
     },
     {
       "id": "shah-jahan",
-      "type": "king-details enhanced-profile"
+      "type": "king-details enhanced-profile",
+      "summary": {
+        "title": "शाहजहां (Shah Jahan)",
+        "reign": "1628 – 1658 CE"
+      }
     },
     {
       "id": "aurangzeb",
-      "type": "king-details enhanced-profile"
+      "type": "king-details enhanced-profile",
+      "summary": {
+        "title": "औरंगजेब (Aurangzeb)",
+        "reign": "1658 – 1707 CE"
+      }
     },
     {
       "id": "later-mughals-link",
@@ -60,7 +84,7 @@
       "target": "later-mughals",
       "summary": {
         "title": "उत्तरवर्ती मुगल (Later Mughals)",
-        "subtitle": "औरंगजेब के बाद के शासक (1707 - 1857)"
+        "subtitle": "औरंगजेब के बाद के शासक (1707 - 1857) "
       }
     }
   ]
