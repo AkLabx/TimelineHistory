@@ -9,11 +9,59 @@
         "title": "मुगल साम्राज्य (Mughal Empire)",
         "period": "1526 – 1857 CE",
         "founder": "बाबर",
-        "capital": "आगरा, दिल्ली"
+        "capital": "आगरा, दिल्ली, फतेहपुर सीकरी"
       },
       "subItems": [
         "mughal-details"
       ]
+    },
+    {
+      "id": "babur",
+      "type": "king-details enhanced-profile"
+    },
+    {
+      "id": "humayun",
+      "type": "king-details enhanced-profile"
+    },
+    {
+      "id": "sur-dynasty",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "सूर राजवंश (Sur Dynasty)",
+        "period": "1540 – 1555 CE",
+        "founder": "शेर शाह सूरी",
+        "capital": "दिल्ली, सासाराम"
+      },
+      "subItems": [
+        "sher-shah-suri",
+        "islam-shah-suri",
+        "sikandar-shah-suri"
+      ]
+    },
+    {
+      "id": "akbar",
+      "type": "king-details enhanced-profile"
+    },
+    {
+      "id": "jahangir",
+      "type": "king-details enhanced-profile"
+    },
+    {
+      "id": "shah-jahan",
+      "type": "king-details enhanced-profile"
+    },
+    {
+      "id": "aurangzeb",
+      "type": "king-details enhanced-profile"
+    },
+    {
+      "id": "later-mughals-link",
+      "type": "timeline-link-card",
+      "target": "later-mughals",
+      "summary": {
+        "title": "उत्तरवर्ती मुगल (Later Mughals)",
+        "subtitle": "औरंगजेब के बाद के शासक (1707 - 1857)"
+      }
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "id": "muhammad-ibrahim",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "मुहम्मद इब्राहिम (Muhammad Ibrahim)",
+    "reign": "1720 CE"
+  },
+  "reignDuration": 0,
+  "empireSize": 100000,
+  "imageUrl": "images/muhammad_ibrahim.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">♟️</span><h5>मोहरा</h5></div><div class=\"legacy-section-content\"><p>रफी-उश-शान का भाई। जब सैयद बंधुओं के खिलाफ विद्रोह हुआ, तो उन्होंने इसे प्रतिद्वंद्वी बादशाह के रूप में खड़ा किया, लेकिन मुहम्मद शाह रंगीला की सेनाओं ने उसे हरा दिया।</p></div></div></div>"
+}
