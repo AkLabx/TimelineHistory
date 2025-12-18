@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "काच (Kacha)",
-    "reign": "c. 335 CE"
+    "title_en": "Kacha",
+    "reign": "c. 335 CE",
+    "reign_en": "c. 335 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">❓</span><h5>ऐतिहासिक रहस्य</h5></div><div class=\"legacy-section-content\"><p>'काच' नाम के सोने के सिक्के मिले हैं जो समुद्रगुप्त के सिक्कों से बहुत मिलते-जुलते हैं। इतिहासकारों में मतभेद है कि क्या 'काच' समुद्रगुप्त का ही दूसरा नाम था, या उनका कोई प्रतिद्वंद्वी भाई जिसने गद्दी हड़पने की कोशिश की थी।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🪙</span><h5>काच प्रकार के सिक्के</h5></div><div class=\"legacy-section-content\"><p>सिक्कों के अग्रभाग पर राजा वेदी पर धूप चढ़ाते हुए और 'काच' लिखा हुआ है। पृष्ठभाग पर 'सर्वराजोच्छेता' (सभी राजाओं का उन्मूलन करने वाला) उपाधि है। यह उपाधि समुद्रगुप्त के लिए भी प्रयोग होती है।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">❓</span><h5>Historical Mystery</h5></div><div class=\"legacy-section-content\"><p>Gold coins bearing the name 'Kacha' have been found, which bear a strong resemblance to the coins of Samudragupta. Historians differ on whether 'Kacha' was another name for Samudragupta himself, or a rival brother who tried to usurp the throne.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🪙</span><h5>Kacha type coins</h5></div><div class=\"legacy-section-content\"><p>The obverse of the coins depicts the king offering incense at an altar and bears the inscription 'Kacha'. The reverse has the title 'Sarvarajochheta' (destroyer of all kings). This title is also used for Samudragupta.</p></div></div></div>",
   "reignDuration": 1,
   "empireSize": 200000,
   "imageUrl": "images/kacha.jpg"

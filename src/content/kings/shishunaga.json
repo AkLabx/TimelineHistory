@@ -3,10 +3,21 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "शिशुनाग (Shishunaga)",
-    "reign": "413–395 BCE"
+    "title_en": "Shishunaga",
+    "reign": "413–395 BCE",
+    "reign_en": "413–395 BCE",
+    "period": "प्राचीन",
+    "period_en": "Ancient",
+    "founder": "शिशुनाग राजवंश",
+    "founder_en": "Shishunaga Dynasty",
+    "capital": "वैशाली",
+    "capital_en": "Vaishali",
+    "subtitle": "मगध को अवंती पर विजय दिलाकर सबसे शक्तिशाली राज्य बनाया।",
+    "subtitle_en": "Made Magadha the most powerful kingdom by conquering Avanti."
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>विजय और कूटनीति</h5></div><div class=\"legacy-section-content\"><p>उसकी सबसे महत्वपूर्ण उपलब्धि अवंती राज्य पर विजय थी, जिससे मगध और अवंती के बीच 100 साल पुरानी प्रतिद्वंद्विता समाप्त हो गई। इस जीत ने मगध को उत्तर भारत में निर्विवाद शक्ति बना दिया।</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">अवंती के साथ प्रतिद्वंद्विता समाप्त की</span></div></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📜</span><h5>शासन और प्रशासन</h5></div><div class=\"legacy-section-content\"><p>उसने वैशाली को अपनी दूसरी राजधानी बनाया।</p></div></div></div>",
   "reignDuration": 18,
   "empireSize": 800000,
-  "imageUrl": "images/shishunaga_coin.jpg"
+  "imageUrl": "images/shishunaga_coin.jpg",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> ⚔️</span><h5>Victory and Diplomacy</h5></div><div class=\"legacy-section-content\"><p>His most significant achievement was the conquest of the Avanti kingdom, ending a 100-year rivalry between Magadha and Avanti. This victory made Magadha an undisputed power in North India.</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">Ended the rivalry with Avanti</span></div></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 📜</span><h5>Rule and Administration</h5></div><div class=\"legacy-section-content\"><p>He made Vaishali his second capital.</p></div></div></div>"
 }

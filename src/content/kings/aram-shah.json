@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "आराम शाह (Aram Shah)",
-    "reign": "1210–1211 CE"
+    "title_en": "Aram Shah",
+    "reign": "1210–1211 CE",
+    "reign_en": "1210–1211 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>संक्षिप्त शासनकाल</h5></div><div class=\"legacy-section-content\"><p>कुतुबुद्दीन ऐबक का उत्तराधिकारी। यह स्पष्ट नहीं है कि वह ऐबक का पुत्र था या नहीं। वह एक कमजोर शासक था, और रईसों ने उसके शासन का विरोध किया। उसे इल्तुतमिश ने हराया और सिंहासन से हटा दिया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Brief Reign</h5></div><div class=\"legacy-section-content\"><p>Successor of Qutb-ud-din Aibak. It is unclear whether he was Aibak's son or not. He was a weak ruler, and the nobles opposed his reign. He was defeated and deposed by Iltutmish.</p></div></div></div>",
   "reignDuration": 1,
   "empireSize": 1500000,
   "imageUrl": "images/aram_shah_coin.jpg"

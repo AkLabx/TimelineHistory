@@ -3,10 +3,21 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "बहादुर शाह प्रथम (Bahadur Shah I)",
-    "reign": "1707 – 1712 CE"
+    "title_en": "Bahadur Shah I",
+    "reign": "1707 – 1712 CE",
+    "reign_en": "1707 – 1712 CE",
+    "period": "मुगल साम्राज्य",
+    "period_en": "Mughal Empire",
+    "founder": "मुगल",
+    "founder_en": "Mughal",
+    "capital": "दिल्ली",
+    "capital_en": "Delhi",
+    "subtitle": "शाहे-बेखबर (इतिहासकार खफी खान द्वारा) के रूप में भी जाने जाते हैं।",
+    "subtitle_en": "Also known as 'Shahe-be-khabar' (by historian Khafi Khan)."
   },
   "reignDuration": 5,
   "empireSize": 4500000,
   "imageUrl": "images/bahadur_shah_i.jpg",
-  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>शासन और उपाधि</h5></div><div class=\"legacy-section-content\"><p><strong>मूल नाम:</strong> मुअज्जम।<br><strong>उपाधि:</strong> 'शाहे-बेखबर' (इतिहासकार खफी खान द्वारा)।<br>औरंगजेब की मृत्यु के बाद 63 वर्ष की आयु में जजाऊ के युद्ध में अपने भाई आजम को हराकर गद्दी पर बैठा। उसने मेल-मिलाप की नीति अपनाई। उसने साहू (शिवाजी के पोते) को मुगल कैद से रिहा किया और गुरु गोबिंद सिंह जी के साथ अच्छे संबंध बनाए।</p></div></div></div>"
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>शासन और उपाधि</h5></div><div class=\"legacy-section-content\"><p><strong>मूल नाम:</strong> मुअज्जम।<br><strong>उपाधि:</strong> 'शाहे-बेखबर' (इतिहासकार खफी खान द्वारा)।<br>औरंगजेब की मृत्यु के बाद 63 वर्ष की आयु में जजाऊ के युद्ध में अपने भाई आजम को हराकर गद्दी पर बैठा। उसने मेल-मिलाप की नीति अपनाई। उसने साहू (शिवाजी के पोते) को मुगल कैद से रिहा किया और गुरु गोबिंद सिंह जी के साथ अच्छे संबंध बनाए।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 👑</span><h5>Reign and Title</h5></div><div class=\"legacy-section-content\"><p><strong>Original Name:</strong> Mu'azzam.<br><strong>Title:</strong> 'Shahe-be-khabar' (by historian Khafi Khan).<br>After Aurangzeb's death, at the age of 63, he ascended the throne by defeating his brother Azam in the Battle of Jajau. He adopted a policy of conciliation. He released Shahu (Shivaji's grandson) from Mughal captivity and maintained good relations with Guru Gobind Singh Ji.</p></div></div></div>"
 }

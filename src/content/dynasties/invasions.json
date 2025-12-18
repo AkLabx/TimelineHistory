@@ -1,12 +1,14 @@
 {
   "id": "invasions",
   "title": "भाग II: मौर्य-पूर्व विदेशी आक्रमण",
+  "title_en": "Part II: Pre-Mauryan Foreign Invasions",
   "items": [
     {
       "id": "iranian-greek-invasions",
       "type": "event-details",
       "summary": {
-        "title": "ईरानी और यूनानी आक्रमण"
+        "title": "ईरानी और यूनानी आक्रमण",
+        "title_en": "Iranian and Greek Invasions"
       },
       "subItems": [
         "invasions-intro",

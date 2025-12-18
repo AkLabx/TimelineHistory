@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "आलम शाह (Alam Shah)",
-    "reign": "1445–1451 CE"
+    "title_en": "Alam Shah",
+    "reign": "1445–1451 CE",
+    "reign_en": "1445–1451 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>अंतिम सैय्यद सुल्तान</h5></div><div class=\"legacy-section-content\"><p>सैय्यद वंश का अंतिम शासक। वह एक कमजोर और अक्षम शासक था। उसे बदायूँ में सेवानिवृत्त होना ज्यादा पसंद था। 1451 में, बहलोल लोदी ने दिल्ली पर कब्जा कर लिया और लोदी वंश की स्थापना की, जबकि आलम शाह अपनी मृत्यु तक बदायूँ में ही रहा।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Last Sayyid Sultan</h5></div><div class=\"legacy-section-content\"><p>The last ruler of the Sayyid dynasty. He was a weak and inefficient ruler. He preferred to retire to Badaun. In 1451, Bahlol Lodi captured Delhi and established the Lodi dynasty, while Alam Shah remained in Badaun until his death.</p></div></div></div>",
   "reignDuration": 6,
   "empireSize": 100000,
   "imageUrl": "images/sayyid_dynasty_tomb.jpg"

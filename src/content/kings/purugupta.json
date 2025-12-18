@@ -3,9 +3,20 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "पुरुगुप्त (Purugupta)",
-    "reign": "c. 467–473 CE"
+    "title_en": "Purugupta",
+    "reign": "c. 467–473 CE",
+    "reign_en": "c. 467–473 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📉</span><h5>साम्राज्य का पतन</h5></div><div class=\"legacy-section-content\"><p>स्कंदगुप्त के कोई पुत्र नहीं था, इसलिए उनके सौतेले भाई पुरुगुप्त गद्दी पर बैठे। वे वृद्धावस्था में राजा बने और उनके शासन में साम्राज्य कमजोर होने लगा।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>पहचान:</strong> कुमारगुप्त प्रथम और रानी अनंतदेवी के पुत्र।</li><li><strong>मुद्रा:</strong> इनके 'धनुर्धर' प्रकार के सोने के सिक्के मिले हैं जिन पर 'श्री विक्रम' लिखा है।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📉</span><h5>Decline of the Empire</h5></div><div class=\"legacy-section-content\"><p>Skandagupta had no sons, so his half-brother Purugupta ascended the throne. He became king in old age and the empire began to weaken during his reign.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Identity:</strong> Son of Kumaragupta I and Queen Anantadevi.</li><li><strong>Coins:</strong> Gold coins of the 'Archer' type bearing 'Shri Vikram' have been found belonging to him.</li></ul></div></div></div>",
   "reignDuration": 6,
   "empireSize": 1700000,
   "imageUrl": "images/purugupta.jpg"

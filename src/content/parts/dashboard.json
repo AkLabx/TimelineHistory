@@ -1,69 +1,99 @@
 {
   "subtitle": "प्राचीन काल से मुगल साम्राज्य तक का अन्वेषण करें। (Explore from Ancient Origins to the Mughal Empire.)",
+  "subtitle_en": "Explore from Ancient Origins to the Mughal Empire.",
   "breadcrumbHome": "Home",
+  "breadcrumbHome_en": "Home",
   "searchPlaceholder": "dynasties, founders, capitals, kings, events को खोजें...",
+  "searchPlaceholder_en": "Search dynasties, founders, capitals, kings, events...",
   "timelineCards": [
     {
       "target": "magadha",
       "title": "मगध का उत्कर्ष",
+      "title_en": "Rise of Magadha",
       "subtitle": "Rise of Magadha",
+      "subtitle_en": "Rise of Magadha",
       "period": "c. 544 BCE – 321 BCE",
+      "period_en": "c. 544 BCE – 321 BCE",
       "imageUrl": "images/era_01_magadha.jpg"
     },
     {
       "target": "invasions",
       "title": "मौर्य-पूर्व आक्रमण",
+      "title_en": "Pre-Mauryan Invasions",
       "subtitle": "Pre-Mauryan Invasions",
+      "subtitle_en": "Pre-Mauryan Invasions",
       "period": "c. 518 BCE – 326 BCE",
+      "period_en": "c. 518 BCE – 326 BCE",
       "imageUrl": "images/era_02_invasions.jpg"
     },
     {
       "target": "maurya",
       "title": "मौर्य साम्राज्य",
+      "title_en": "Mauryan Empire",
       "subtitle": "Mauryan Empire",
+      "subtitle_en": "Mauryan Empire",
       "period": "c. 322 BCE – 185 BCE",
+      "period_en": "c. 322 BCE – 185 BCE",
       "imageUrl": "images/era_03_maurya.jpg"
     },
     {
       "target": "post-maurya-sangam",
       "title": "मौर्योत्तर और संगम काल",
+      "title_en": "Post-Mauryan & Sangam Age",
       "subtitle": "Post-Mauryan & Sangam Age",
+      "subtitle_en": "Post-Mauryan & Sangam Age",
       "period": "c. 185 BCE – 300 CE",
+      "period_en": "c. 185 BCE – 300 CE",
       "imageUrl": "images/era_04_post_maurya.jpg"
     },
     {
       "target": "gupta-post-gupta",
       "title": "गुप्त एवं परवर्ती काल",
+      "title_en": "Gupta & Post-Gupta Era",
       "subtitle": "Gupta & Post-Gupta Era",
+      "subtitle_en": "Gupta & Post-Gupta Era",
       "period": "c. 275 CE – 750 CE",
+      "period_en": "c. 275 CE – 750 CE",
       "imageUrl": "images/era_05_gupta.jpg"
     },
     {
       "target": "early-medieval",
       "title": "प्रारंभिक मध्यकालीन भारत",
+      "title_en": "Early Medieval India",
       "subtitle": "Early Medieval India",
+      "subtitle_en": "Early Medieval India",
       "period": "c. 750 CE – 1206 CE",
+      "period_en": "c. 750 CE – 1206 CE",
       "imageUrl": "images/era_06_medieval.jpg"
     },
     {
       "target": "sultanate",
       "title": "दिल्ली सल्तनत काल",
+      "title_en": "Delhi Sultanate Era",
       "subtitle": "Delhi Sultanate Era",
+      "subtitle_en": "Delhi Sultanate Era",
       "period": "c. 1206 CE – 1526 CE",
+      "period_en": "c. 1206 CE – 1526 CE",
       "imageUrl": "images/era_07_sultanate.jpg"
     },
     {
       "target": "mughal",
       "title": "मुगल साम्राज्य",
+      "title_en": "Mughal Empire",
       "subtitle": "Mughal Empire",
+      "subtitle_en": "Mughal Empire",
       "period": "c. 1526 CE – 1857 CE",
+      "period_en": "c. 1526 CE – 1857 CE",
       "imageUrl": "images/era_08_mughal.jpg"
     },
     {
       "target": "regional",
       "title": "क्षेत्रीय और पौराणिक राजवंश",
+      "title_en": "Regional & Legendary Dynasties",
       "subtitle": "Regional & Legendary Dynasties",
+      "subtitle_en": "Regional & Legendary Dynasties",
       "period": "Various",
+      "period_en": "Various",
       "imageUrl": "images/era_09_regional.jpg"
     }
   ]

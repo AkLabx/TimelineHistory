@@ -3,10 +3,21 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "जयचंद (Jayachandra)",
-    "reign": "c. 1170 – 1194 CE"
+    "title_en": "Jayachandra",
+    "reign": "c. 1170 – 1194 CE",
+    "reign_en": "c. 1170 – 1194 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "reignDuration": 24,
   "empireSize": 180000,
   "imageUrl": "images/jayachandra.jpg",
-  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>पृथ्वीराज से शत्रुता</h5></div><div class=\"legacy-section-content\"><p>जयचंद कन्नौज के अंतिम प्रमुख राजा थे। पृथ्वीराज चौहान के साथ उनकी शत्रुता प्रसिद्ध है, जो उनकी पुत्री संयोगिता के स्वयंवर की घटना से जुड़ी है।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏹</span><h5>चंदावर का युद्ध</h5></div><div class=\"legacy-section-content\"><p>तराइन के दूसरे युद्ध (1192) में पृथ्वीराज की हार के बाद, मुहम्मद गोरी ने 1194 ईस्वी में कन्नौज पर आक्रमण किया। <strong>चंदावर के युद्ध (Battle of Chandawar)</strong> में जयचंद हार गए और मारे गए। इसी के साथ उत्तर भारत में तुर्की शासन का मार्ग प्रशस्त हुआ।</p></div></div></div>"
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>पृथ्वीराज से शत्रुता</h5></div><div class=\"legacy-section-content\"><p>जयचंद कन्नौज के अंतिम प्रमुख राजा थे। पृथ्वीराज चौहान के साथ उनकी शत्रुता प्रसिद्ध है, जो उनकी पुत्री संयोगिता के स्वयंवर की घटना से जुड़ी है।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏹</span><h5>चंदावर का युद्ध</h5></div><div class=\"legacy-section-content\"><p>तराइन के दूसरे युद्ध (1192) में पृथ्वीराज की हार के बाद, मुहम्मद गोरी ने 1194 ईस्वी में कन्नौज पर आक्रमण किया। <strong>चंदावर के युद्ध (Battle of Chandawar)</strong> में जयचंद हार गए और मारे गए। इसी के साथ उत्तर भारत में तुर्की शासन का मार्ग प्रशस्त हुआ।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>Enmity with Prithviraj</h5></div><div class=\"legacy-section-content\"><p>Jayachandra was the last major ruler of Kannauj. His enmity with Prithviraj Chauhan is famous, which is linked to the incident of his daughter Sanyogita's Swayamvara.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏹</span><h5>Battle of Chandawar</h5></div><div class=\"legacy-section-content\"><p>After Prithviraj's defeat in the Second Battle of Tarain (1192), Muhammad Ghori invaded Kannauj in 1194 CE. Jayachandra was defeated and killed in the <strong>Battle of Chandawar</strong>. This paved the way for Turkish rule in North India.</p></div></div></div>"
 }

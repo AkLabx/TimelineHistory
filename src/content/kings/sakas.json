@@ -3,9 +3,11 @@
   "type": "king-details enhanced-profile invasion-type-saka",
   "summary": {
     "title": "शक (Sakas/Indo-Scythians)",
+    "title_en": "Sakas (Indo-Scythians)",
     "reign": "c. 1st Century BCE – 4th Century CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>रुद्रदामन प्रथम</h5></div><div class=\"legacy-section-content\"><p>शकों ने यूनानियों से बड़ा क्षेत्र नियंत्रित किया। सबसे प्रसिद्ध शक शासक <strong>रुद्रदामन प्रथम</strong> (c. 130–150 CE) था, जिसने काठियावाड़ में सुदर्शन झील की मरम्मत करवाई (जूनागढ़ शिलालेख - पहला शुद्ध संस्कृत शिलालेख)। शकों की 5 शाखाएँ थीं, जिनमें से पश्चिमी क्षत्रप सबसे लंबे समय तक चले।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>Rudradaman I</h5></div><div class=\"legacy-section-content\"><p>The Sakas controlled a larger territory than the Greeks. The most famous Saka ruler was <strong>Rudradaman I</strong> (c. 130–150 CE), who repaired the Sudarshana Lake in Kathiawar (Junagadh inscription - the first pure Sanskrit inscription). There were 5 branches of the Sakas, of which the Western Satraps lasted the longest.</p></div></div></div>",
   "reignDuration": 400,
   "empireSize": 1000000,
   "imageUrl": "images/rudradaman_junagadh_inscription.jpg"

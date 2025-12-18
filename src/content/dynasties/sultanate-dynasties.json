@@ -1,6 +1,7 @@
 {
   "id": "sultanate-dynasties",
   "title": "दिल्ली सल्तनत के राजवंश (Dynasties of the Delhi Sultanate)",
+  "title_en": "Dynasties of the Delhi Sultanate",
   "parent": "sultanate",
   "items": [
     {
@@ -8,16 +9,20 @@
       "type": "dynasty-details",
       "summary": {
         "title": "मामलुक / गुलाम वंश",
+        "title_en": "Mamluk / Slave Dynasty",
         "period": "1206 – 1290 CE",
+        "period_en": "1206 – 1290 CE",
         "founder": "कुतुबुद्दीन ऐबक",
-        "capital": "दिल्ली, लाहौर"
+        "founder_en": "Qutb-ud-din Aibak",
+        "capital": "दिल्ली, लाहौर",
+        "capital_en": "Delhi, Lahore"
       },
       "subItems": [
         "qutbuddin-aibak",
         "aram-shah",
         "iltutmish",
         "ruknuddin-firuz",
-        "raziya-sultan",
+        "razia-sultan",
         "bahram-shah",
         "masud-shah",
         "nasiruddin-mahmud",
@@ -30,9 +35,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "खिलजी वंश",
+        "title_en": "Khilji Dynasty",
         "period": "1290 – 1320 CE",
+        "period_en": "1290 – 1320 CE",
         "founder": "जलाल-उद-दीन खिलजी",
-        "capital": "दिल्ली"
+        "founder_en": "Jalal-ud-din Khilji",
+        "capital": "दिल्ली",
+        "capital_en": "Delhi"
       },
       "subItems": [
         "jalaluddin-khilji",
@@ -46,9 +55,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "तुगलक वंश",
+        "title_en": "Tughlaq Dynasty",
         "period": "1320 – 1414 CE",
+        "period_en": "1320 – 1414 CE",
         "founder": "गियास-उद-दीन तुगलक",
-        "capital": "दिल्ली"
+        "founder_en": "Ghiyas-ud-din Tughlaq",
+        "capital": "दिल्ली",
+        "capital_en": "Delhi"
       },
       "subItems": [
         "ghiyasuddin-tughlaq",
@@ -62,9 +75,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "सैयद वंश",
+        "title_en": "Sayyid Dynasty",
         "period": "1414 – 1451 CE",
+        "period_en": "1414 – 1451 CE",
         "founder": "खिज्र खान",
-        "capital": "दिल्ली"
+        "founder_en": "Khizr Khan",
+        "capital": "दिल्ली",
+        "capital_en": "Delhi"
       },
       "subItems": [
         "khizr-khan",
@@ -78,9 +95,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "लोदी वंश",
+        "title_en": "Lodi Dynasty",
         "period": "1451 – 1526 CE",
+        "period_en": "1451 – 1526 CE",
         "founder": "बहलोल लोदी",
-        "capital": "दिल्ली"
+        "founder_en": "Bahlul Lodi",
+        "capital": "दिल्ली",
+        "capital_en": "Delhi"
       },
       "subItems": [
         "bahlul-lodi",

@@ -3,10 +3,21 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "कीर्तिवर्मन द्वितीय (Kirtivarman II)",
-    "reign": "c. 744–753 CE"
+    "title_en": "Kirtivarman II",
+    "reign": "c. 744–753 CE",
+    "reign_en": "c. 744–753 CE",
+    "period": "चालुक्य राजवंश",
+    "period_en": "Chalukya Dynasty",
+    "founder": "चालुक्य वंश",
+    "founder_en": "Chalukya Dynasty",
+    "capital": "बादामी",
+    "capital_en": "Badami",
+    "subtitle": "बादामी चालुक्य वंश के अंतिम शासक।",
+    "subtitle_en": "The last ruler of the Chalukya dynasty of Badami."
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏁</span><h5>चालुक्य वंश का अंत</h5></div><div class=\"legacy-section-content\"><p>बादामी चालुक्य वंश के अंतिम शासक।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📉</span><h5>दंतिदुर्ग द्वारा पराजय</h5></div><div class=\"legacy-section-content\"><p>इनके सामंत, राष्ट्रकूट दंतिदुर्ग ने विद्रोह कर दिया और 753 ई. के आसपास चालुक्य सत्ता को उखाड़ फेंका।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> नृपसिंह।</li><li><strong>उत्तराधिकार:</strong> इसके बाद दक्कन में राष्ट्रकूट वंश का उदय हुआ।</li></ul></div></div></div>",
   "reignDuration": 9,
   "empireSize": 800000,
-  "imageUrl": "images/kirtivarman-ii.jpg"
+  "imageUrl": "images/kirtivarman-ii.jpg",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 🏁</span><h5>End of the Chalukya Dynasty</h5></div><div class=\"legacy-section-content\"><p>The last ruler of the Chalukya dynasty of Badami.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 📉</span><h5>Defeat by Dantidurga</h5></div><div class=\"legacy-section-content\"><p>His feudatory, Dantidurga of the Rashtrakuta dynasty, revolted and overthrew the Chalukya power around 753 CE.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Title:</strong> Nripasimha.</li><li><strong>Succession:</strong> After him, the Rashtrakuta dynasty rose to prominence in the Deccan.</li></ul></div></div></div>"
 }

@@ -3,10 +3,13 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "भीम प्रथम (Bhima I)",
-    "reign": "c. 1022 – 1064 CE"
+    "title_en": "Bhima I",
+    "reign": "c. 1022 – 1064 CE",
+    "reign_en": "c. 1022 – 1064 CE"
   },
   "reignDuration": 42,
   "empireSize": 150000,
   "imageUrl": "images/bhima_i.jpg",
-  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>गजनवी का आक्रमण</h5></div><div class=\"legacy-section-content\"><p>भीम प्रथम के शासनकाल के दौरान, 1025 ईस्वी में महमूद गजनवी ने सोमनाथ मंदिर पर आक्रमण किया और उसे लूट लिया। भीम प्रथम ने कंठकोट (कच्छ) में शरण ली, लेकिन गजनवी के जाने के बाद उन्होंने सोमनाथ मंदिर का पुनर्निर्माण पत्थर से करवाया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">☀️</span><h5>मोढेरा सूर्य मंदिर</h5></div><div class=\"legacy-section-content\"><p>उन्होंने 1026 ईस्वी में पुष्पावती नदी के तट पर <strong>मोढेरा सूर्य मंदिर (Modhera Sun Temple)</strong> का निर्माण कराया, जो अपनी वास्तुकला और सटीक ज्यामिति के लिए प्रसिद्ध है। उनके मंत्री विमल शाह ने माउंट आबू पर प्रसिद्ध दिलवाड़ा जैन मंदिर (आदिनाथ मंदिर) बनवाया।</p></div></div></div>"
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>गजनवी का आक्रमण</h5></div><div class=\"legacy-section-content\"><p>भीम प्रथम के शासनकाल के दौरान, 1025 ईस्वी में महमूद गजनवी ने सोमनाथ मंदिर पर आक्रमण किया और उसे लूट लिया। भीम प्रथम ने कंठकोट (कच्छ) में शरण ली, लेकिन गजनवी के जाने के बाद उन्होंने सोमनाथ मंदिर का पुनर्निर्माण पत्थर से करवाया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">☀️</span><h5>मोढेरा सूर्य मंदिर</h5></div><div class=\"legacy-section-content\"><p>उन्होंने 1026 ईस्वी में पुष्पावती नदी के तट पर <strong>मोढेरा सूर्य मंदिर (Modhera Sun Temple)</strong> का निर्माण कराया, जो अपनी वास्तुकला और सटीक ज्यामिति के लिए प्रसिद्ध है। उनके मंत्री विमल शाह ने माउंट आबू पर प्रसिद्ध दिलवाड़ा जैन मंदिर (आदिनाथ मंदिर) बनवाया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>Ghaznavi's Invasion</h5></div><div class=\"legacy-section-content\"><p>During the reign of Bhima I, Mahmud Ghaznavi invaded and plundered the Somnath temple in 1025 CE. Bhima I took refuge in Kantkot (Kutch), but after Ghaznavi's departure, he rebuilt the Somnath temple with stone.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">☀️</span><h5>Modhera Sun Temple</h5></div><div class=\"legacy-section-content\"><p>In 1026 CE, he constructed the <strong>Modhera Sun Temple</strong> on the banks of the Pushpavati River, famous for its architecture and precise geometry. His minister Vimal Shah built the famous Dilwara Jain Temple (Adinath Temple) on Mount Abu.</p></div></div></div>"
 }

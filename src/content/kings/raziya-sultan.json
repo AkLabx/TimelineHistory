@@ -3,10 +3,21 @@
   "type": "king-details king-color-5 enhanced-profile",
   "summary": {
     "title": "रजिया सुल्तान (Razia Sultan)",
-    "reign": "1236–1240 CE"
+    "title_en": "Razia Sultan",
+    "reign": "1236–1240 CE",
+    "reign_en": "1236–1240 CE",
+    "period": "दिल्ली सल्तनत",
+    "period_en": "Delhi Sultanate",
+    "founder": "इल्तुतमिश",
+    "founder_en": "Iltutmish",
+    "capital": "दिल्ली",
+    "capital_en": "Delhi",
+    "subtitle": "दिल्ली सल्तनत की पहली और एकमात्र महिला मुस्लिम शासक।",
+    "subtitle_en": "The first and only female Muslim ruler of the Delhi Sultanate."
   },
   "imageUrl": "images/sultan_razia.jpg",
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>वह एक सक्षम और बहादुर शासक थी, लेकिन उसका महिला होना और एक गैर-तुर्क, जमाल-उद-दीन याकूत के प्रति उसका पक्षपात, तुर्की अमीरों को नाराज कर गया। अमीरों ने विद्रोह किया, और अंततः उसे पकड़कर मार दिया गया।</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">दिल्ली सल्तनत की पहली और एकमात्र महिला मुस्लिम शासक</span></div></div></div></div>",
   "reignDuration": 4,
-  "empireSize": 1500000
+  "empireSize": 1500000,
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> ⏳</span><h5>Legacy and Evaluation</h5></div><div class=\"legacy-section-content\"><p>She was a capable and brave ruler, but her being a woman and her favoritism towards a non-Turk, Jamal-ud-din Yaqut, angered the Turkish nobles. The nobles revolted, and she was eventually captured and murdered.</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">First and only female Muslim ruler of the Delhi Sultanate</span></div></div></div></div>"
 }

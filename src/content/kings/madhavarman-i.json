@@ -3,9 +3,11 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "माधववर्मन प्रथम (Madhavarman I)",
+    "title_en": "Madhavarman I",
     "reign": "c. 420–455 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>विष्णुकुंडिन संस्थापक</h5></div><div class=\"legacy-section-content\"><p>आंध्र प्रदेश (वेंगी) क्षेत्र में विष्णुकुंडिन वंश की स्थापना की। ये इक्ष्वाकुओं और पल्लवों के उत्तराधिकारी बने।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपासना:</strong> श्रीपर्वत स्वामी (भगवान शिव/बुद्ध) के भक्त।</li><li><strong>राजधानी:</strong> इंद्रपालनगरा (Indrapalanagara)।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Founder of the Vishnukundina Dynasty</h5></div><div class=\"legacy-section-content\"><p>Founded the Vishnukundina dynasty in the Andhra Pradesh (Vengi) region. They succeeded the Ikshvakus and Pallavas.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Worship:</strong> Devotee of Sriparvata Swami (Lord Shiva/Buddha).</li><li><strong>Capital:</strong> Indrapalanagara.</li></ul></div></div></div>",
   "reignDuration": 35,
   "empireSize": 80000,
   "imageUrl": "images/madhavarman-i.jpg"

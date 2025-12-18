@@ -3,9 +3,11 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "राय साहिरास (Rai Sahiras)",
+    "title_en": "Rai Sahiras",
     "reign": "c. 515–540 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛡️</span><h5>बाहरी आक्रमण</h5></div><div class=\"legacy-section-content\"><p>नीमरोज़ (Nimroz) के राजा ने सिंध पर आक्रमण किया। राय साहिरास ने कीच (Kech) के किले में बहादुरी से लड़ाई लड़ी लेकिन मारे गए।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उत्तराधिकारी:</strong> राय साहसी प्रथम।</li><li><strong>अर्थव्यवस्था:</strong> इनके समय में सिंध व्यापार का केंद्र था, जहाँ से अरब और फारस के लिए मार्ग जाते थे।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛡️</span><h5>External Invasion</h5></div><div class=\"legacy-section-content\"><p>The king of Nimroz invaded Sindh. Rai Sahiras fought bravely in the fort of Kech but was killed.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Successor:</strong> Rai Sahasi I.</li><li><strong>Economy:</strong> During his time, Sindh was a center of trade, with routes leading to Arabia and Persia.</li></ul></div></div></div>",
   "reignDuration": 25,
   "empireSize": 600000,
   "imageUrl": "images/rai-sahiras.jpg"

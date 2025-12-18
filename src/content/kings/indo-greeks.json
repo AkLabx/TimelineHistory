@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile invasion-type-greek",
   "summary": {
     "title": "इंडो-ग्रीक (Indo-Greeks)",
-    "reign": "c. 180 BCE – 10 CE"
+    "title_en": "Indo-Greeks",
+    "reign": "c. 180 BCE – 10 CE",
+    "reign_en": "c. 180 BCE – 10 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>यवन शासक</h5></div><div class=\"legacy-section-content\"><p>मौर्यों के पतन के बाद, यूनानियों ने उत्तर-पश्चिम भारत पर शासन किया। <strong>मिनांडर (Milinda)</strong> सबसे प्रसिद्ध शासक था, जिसने बौद्ध धर्म अपना लिया था (मिलिंदपन्हो)। उन्होंने भारत में सोने के सिक्के जारी करने वाले पहले शासक थे और हेलेनिस्टिक कला (गांधार स्कूल) की शुरुआत की।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Greek Rulers</h5></div><div class=\"legacy-section-content\"><p>After the fall of the Mauryas, the Greeks ruled over North-West India. <strong>Menander (Milinda)</strong> was the most famous ruler, who adopted Buddhism (Milindapanha). They were the first rulers to issue gold coins in India and introduced Hellenistic art (Gandhara School).</p></div></div></div>",
   "reignDuration": 190,
   "empireSize": 800000,
   "imageUrl": "images/menander_coin.jpg"

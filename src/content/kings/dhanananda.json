@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "धनानंद (Dhanananda)",
-    "reign": "c. 329–321 BCE"
+    "title_en": "Dhanananda",
+    "reign": "c. 329–321 BCE",
+    "reign_en": "c. 329–321 BCE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>नंद वंश का अंतिम शासक</h5></div><div class=\"legacy-section-content\"><p>नंद वंश का अंतिम राजा। वह अपनी विशाल सेना के लिए जाना जाता था, जिससे सिकंदर की सेना भी डर गई थी। वह बहुत धनी था लेकिन अपनी प्रजा द्वारा घृणित था क्योंकि उसने भारी कर लगाए थे। चाणक्य और चंद्रगुप्त मौर्य ने उसे उखाड़ फेंका, जिससे मौर्य साम्राज्य की स्थापना हुई।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Last Ruler of the Nanda Dynasty</h5></div><div class=\"legacy-section-content\"><p>The last king of the Nanda dynasty. He was known for his massive army, which even Alexander's forces feared. He was very wealthy but hated by his subjects due to heavy taxation. Chanakya and Chandragupta Maurya overthrew him, leading to the establishment of the Maurya Empire.</p></div></div></div>",
   "reignDuration": 8,
   "empireSize": 1500000,
   "imageUrl": "images/dhanananda_hiding_treasure.jpg"

@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "विजयादित्य (Vijayaditya)",
-    "reign": "c. 696–733 CE"
+    "title_en": "Vijayaditya",
+    "reign": "c. 696–733 CE",
+    "reign_en": "c. 696–733 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🕊️</span><h5>दीर्घ और शांतिपूर्ण शासन</h5></div><div class=\"legacy-section-content\"><p>चालुक्य वंश का सबसे लंबा शासनकाल (37 वर्ष)। यह समृद्धि और मंदिर निर्माण का काल था।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛕</span><h5>वास्तुकला</h5></div><div class=\"legacy-section-content\"><p>इन्होंने पट्टदकल (Pattadakal) में 'संगमेश्वर मंदिर' (विजयेश्वर) का निर्माण करवाया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> समस्तभुवनाश्रय।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🕊️</span><h5>Long and Peaceful Reign</h5></div><div class=\"legacy-section-content\"><p>The longest reign in the Chalukya dynasty (37 years). This was a period of prosperity and temple construction.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛕</span><h5>Architecture</h5></div><div class=\"legacy-section-content\"><p>He built the 'Sangameshwara Temple' (Vijayeshwara) in Pattadakal.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Title:</strong> Samastabhuvanashraya.</li></ul></div></div></div>",
   "reignDuration": 37,
   "empireSize": 800000,
   "imageUrl": "images/vijayaditya.jpg"
