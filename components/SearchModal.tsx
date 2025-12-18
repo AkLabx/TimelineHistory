@@ -96,6 +96,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
                     autoFocus
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
+                    aria-label="Search history"
                 />
                 <button
                     onClick={onClose}

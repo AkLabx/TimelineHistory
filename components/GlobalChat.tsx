@@ -608,6 +608,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                                 onClick={removeAttachment}
                                 className="absolute -top-2 -right-2 bg-stone-800 text-white rounded-full p-1 shadow-md hover:bg-red-500 transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100"
                                 title="Remove attachment"
+                                aria-label="Remove attachment"
                             >
                                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                             </button>
@@ -634,6 +635,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                             className="p-2 text-stone-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-full transition-colors disabled:opacity-50"
                             disabled={isLoading || isRecording}
                             title="Attach Image or PDF"
+                            aria-label="Attach Image or PDF"
                         >
                             <Icons.Paperclip />
                         </button>
@@ -647,6 +649,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                                 } disabled:opacity-50`}
                             disabled={isLoading || !!attachment}
                             title={isRecording ? "Stop Recording" : "Record Voice"}
+                            aria-label={isRecording ? "Stop Recording" : "Record Voice"}
                         >
                             {isRecording ? <Icons.StopCircle /> : <Icons.Microphone />}
                         </button>
@@ -670,6 +673,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                             onClick={() => handleSend()}
                             disabled={isLoading || isRecording || (!input.trim() && !attachment)}
                             className="p-2.5 rounded-full bg-stone-900 text-white hover:bg-indigo-600 transition-colors disabled:opacity-30 disabled:hover:bg-stone-900 disabled:cursor-not-allowed transform active:scale-95 shadow-md"
+                            aria-label="Send message"
                         >
                             <Icons.Send />
                         </button>
