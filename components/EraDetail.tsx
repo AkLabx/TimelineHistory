@@ -4,6 +4,8 @@ import { PART_DATA, DYNASTY_DATA, KINGS_DATA } from '../data';
 import { Icons } from './Icons';
 import TextToSpeech from './TextToSpeech';
 import GlossaryHighlighter from './GlossaryHighlighter';
+import { useLanguage } from '../src/contexts/LanguageContext';
+import { getLocalized } from '../src/utils/language';
 
 /**
  * Props for the EraDetail component.
@@ -29,7 +31,8 @@ interface EraDetailProps {
 const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure, onSelectPeriod }) => {
   const [activeSectionId, setActiveSectionId] = useState<string>('');
   const [imgError, setImgError] = useState(false);
-  
+  const { language } = useLanguage();
+
   // Find the image for this period from PART_DATA
   const timelineCard = PART_DATA.timelineCards.find(c => c.target === periodId);
   const heroImageRaw = timelineCard?.imageUrl;
@@ -79,7 +82,12 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
     
     // Generate a stable ID if item.id is missing
     const sectionId = item.id || `section-${idx}`;
-    
+
+    const itemTitle = getLocalized(item.summary, 'title', language);
+    const founder = getLocalized(item.summary, 'founder', language);
+    const capital = getLocalized(item.summary, 'capital', language);
+    const content = getLocalized(item, 'content', language);
+
     return (
         <div 
             key={idx} 
@@ -119,7 +127,7 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-6 border-b border-stone-100 pb-4">
                             <div>
                                 <h3 className={`text-2xl md:text-3xl font-bold heading-text ${isDynasty ? 'text-stone-900' : 'text-stone-700'}`}>
-                                    {item.summary.title}
+                                    {itemTitle}
                                 </h3>
                                 {item.summary.period && (
                                     <div className="inline-flex items-center mt-2 px-3 py-1 rounded-md text-xs font-bold tracking-widest bg-stone-100 text-stone-500 uppercase">
@@ -132,37 +140,37 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                                     onClick={() => onSelectPeriod(item.target!)} 
                                     className="inline-flex items-center px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-full transition-colors shadow-md hover:shadow-lg mt-4 md:mt-0"
                                 >
-                                    Explore <span className="ml-2 bg-white/20 rounded-full p-0.5"><Icons.ChevronRight /></span>
+                                    {language === 'en' ? 'Explore' : 'खोजें'} <span className="ml-2 bg-white/20 rounded-full p-0.5"><Icons.ChevronRight /></span>
                                 </button>
                             )}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-sm text-stone-600">
-                             {item.summary.founder && (
+                             {founder && (
                                  <div className="flex items-center group/info">
                                      <span className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center text-orange-400 mr-3 group-hover/info:bg-orange-100 transition-colors">👤</span>
                                      <div className="flex flex-col">
-                                        <span className="font-bold text-stone-400 uppercase text-[10px] tracking-widest">Founder</span>
-                                        <span className="font-serif font-medium text-stone-800 text-base">{item.summary.founder}</span>
+                                        <span className="font-bold text-stone-400 uppercase text-[10px] tracking-widest">{language === 'en' ? 'Founder' : 'संस्थापक'}</span>
+                                        <span className="font-serif font-medium text-stone-800 text-base">{founder}</span>
                                      </div>
                                  </div>
                              )}
-                             {item.summary.capital && (
+                             {capital && (
                                  <div className="flex items-center group/info">
                                      <span className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center text-orange-400 mr-3 group-hover/info:bg-orange-100 transition-colors">🏰</span>
                                      <div className="flex flex-col">
-                                        <span className="font-bold text-stone-400 uppercase text-[10px] tracking-widest">Capital</span>
-                                        <span className="font-serif font-medium text-stone-800 text-base">{item.summary.capital}</span>
+                                        <span className="font-bold text-stone-400 uppercase text-[10px] tracking-widest">{language === 'en' ? 'Capital' : 'राजधानी'}</span>
+                                        <span className="font-serif font-medium text-stone-800 text-base">{capital}</span>
                                      </div>
                                  </div>
                              )}
                         </div>
                         
                         {/* Content Area */}
-                        {item.content && (
+                        {content && (
                             <div className="mt-6 prose prose-stone max-w-none text-stone-700 font-serif leading-relaxed drop-cap">
                                 {/* Enabled HTML rendering here to fix raw text issue */}
-                                <GlossaryHighlighter text={item.content} isHtml={true} />
+                                <GlossaryHighlighter text={content} isHtml={true} />
                             </div>
                         )}
 
@@ -176,6 +184,7 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     {item.subItems.map(subId => {
                                         const subItemData = KINGS_DATA[subId];
+                                        const subTitle = getLocalized(subItemData?.summary, 'title', language);
                                         return (
                                             <button 
                                                 key={subId}
@@ -186,7 +195,7 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                                                 <div className="flex items-center overflow-hidden">
                                                     <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-lg mr-3 shadow-sm border border-stone-100 group-hover/btn:border-orange-200 transition-colors">👑</span>
                                                     {/* Replaced generic text with actual title */}
-                                                    <span className="truncate">{subItemData?.summary?.title || "View Details"}</span>
+                                                    <span className="truncate">{subTitle || "View Details"}</span>
                                                 </div>
                                                 <span className="opacity-0 group-hover/btn:opacity-100 transform -translate-x-2 group-hover/btn:translate-x-0 transition-all text-orange-500">
                                                     <Icons.ChevronRight />
@@ -231,15 +240,15 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
 
             <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full z-10">
                 <div className="flex items-center gap-3 mb-4 text-orange-300 font-bold tracking-widest text-sm uppercase animate-in fade-in slide-in-from-bottom-4 duration-500">
-                    <span className="bg-orange-500/20 backdrop-blur-md px-3 py-1 rounded-full border border-orange-500/30">Historical Era</span>
+                    <span className="bg-orange-500/20 backdrop-blur-md px-3 py-1 rounded-full border border-orange-500/30">{language === 'en' ? 'Historical Era' : 'ऐतिहासिक युग'}</span>
                     <div className="h-px bg-orange-300/30 flex-grow max-w-[100px]"></div>
                 </div>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 heading-text leading-tight drop-shadow-lg max-w-4xl animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-                    {period.title}
+                    {getLocalized(period, 'title', language)}
                 </h1>
                 <div className="flex items-center space-x-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
                      <div className="bg-white/10 backdrop-blur-md p-2 rounded-lg border border-white/10 hover:bg-white/20 transition-colors">
-                        <TextToSpeech text={period.title} />
+                        <TextToSpeech text={getLocalized(period, 'title', language)} />
                      </div>
                 </div>
             </div>
@@ -282,7 +291,7 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                                                  : 'text-stone-500 hover:text-stone-800 hover:translate-x-1'
                                              }`}
                                      >
-                                         {item.summary.title}
+                                         {getLocalized(item.summary, 'title', language)}
                                      </button>
                                  </li>
                              );
@@ -313,8 +322,8 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                                     <button onClick={() => onSelectPeriod(prev.target)} className="group flex-1 flex items-center p-6 rounded-2xl border border-stone-200 bg-white hover:border-orange-300 hover:bg-orange-50 transition-all text-left shadow-sm hover:shadow-md">
                                         <div className="mr-5 bg-stone-100 p-3 rounded-full group-hover:bg-white text-stone-400 group-hover:text-orange-500 transition-colors rotate-180 shadow-inner"><Icons.ChevronRight /></div>
                                         <div>
-                                            <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Previous Era</span>
-                                            <span className="text-lg font-bold text-stone-700 group-hover:text-orange-800 font-serif leading-tight">{prev.title}</span>
+                                            <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">{language === 'en' ? 'Previous Era' : 'पिछला युग'}</span>
+                                            <span className="text-lg font-bold text-stone-700 group-hover:text-orange-800 font-serif leading-tight">{getLocalized(prev, 'title', language)}</span>
                                         </div>
                                     </button>
                                 ) : <div className="hidden md:block flex-1"></div>}
@@ -322,8 +331,8 @@ const EraDetail: React.FC<EraDetailProps> = ({ period, periodId, onSelectFigure,
                                 {next ? (
                                     <button onClick={() => onSelectPeriod(next.target)} className="group flex-1 flex items-center justify-end p-6 rounded-2xl border border-stone-200 bg-white hover:border-orange-300 hover:bg-orange-50 transition-all text-right shadow-sm hover:shadow-md">
                                         <div>
-                                            <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Next Era</span>
-                                            <span className="text-lg font-bold text-stone-700 group-hover:text-orange-800 font-serif leading-tight">{next.title}</span>
+                                            <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">{language === 'en' ? 'Next Era' : 'अगला युग'}</span>
+                                            <span className="text-lg font-bold text-stone-700 group-hover:text-orange-800 font-serif leading-tight">{getLocalized(next, 'title', language)}</span>
                                         </div>
                                         <div className="ml-5 bg-stone-100 p-3 rounded-full group-hover:bg-white text-stone-400 group-hover:text-orange-500 transition-colors shadow-inner"><Icons.ChevronRight /></div>
                                     </button>

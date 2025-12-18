@@ -3,6 +3,8 @@ import { KingProfile, EntityType } from '../types';
 import { DYNASTY_DATA, KINGS_DATA, CONNECTIONS_DATA } from '../data';
 import { Icons } from './Icons';
 import GlossaryHighlighter from './GlossaryHighlighter';
+import { useLanguage } from '../src/contexts/LanguageContext';
+import { getLocalized } from '../src/utils/language';
 
 /**
  * Props for the FigureDetail component.
@@ -29,6 +31,7 @@ interface FigureDetailProps {
  */
 const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectPeriod, onSelectFigure, onOpenSamvad }) => {
   const [imgError, setImgError] = useState(false);
+  const { language } = useLanguage();
 
   // Find parent period for "Back" button
   const parentPeriodId = Object.keys(DYNASTY_DATA).find(periodKey => {
@@ -60,6 +63,10 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
 
   // Construct correct image path
   const imagePath = figure.imageUrl ? `${(import.meta as any).env.BASE_URL}${figure.imageUrl}` : '';
+  const title = getLocalized(figure.summary, 'title', language);
+  const content = getLocalized(figure, 'content', language);
+  const parentTitle = parentPeriod ? getLocalized(parentPeriod, 'title', language) : '';
+  const parentDynastyTitle = parentDynasty ? getLocalized(parentDynasty.summary, 'title', language) : '';
 
   return (
         <div className="max-w-4xl mx-auto px-4 py-6 md:py-8 pb-32 animate-in fade-in slide-in-from-bottom-8 duration-700">
@@ -68,7 +75,7 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                 {parentPeriod && (
                     <button onClick={() => onSelectPeriod(parentPeriodId!)} className="group inline-flex items-center text-sm font-bold text-slate-500 hover:text-orange-600 transition-colors px-4 py-2 rounded-full bg-slate-100 hover:bg-orange-50 active:bg-orange-100">
                         <span className="transform rotate-180 inline-block mr-2 group-hover:-translate-x-1 transition-transform"><Icons.ChevronRight /></span>
-                        Back to {parentPeriod.title.split(':')[1]?.trim() || parentPeriod.title}
+                        {language === 'en' ? 'Back to' : 'वापस जाएं'} {parentTitle.split(':')[1]?.trim() || parentTitle}
                     </button>
                 )}
             </div>
@@ -81,7 +88,7 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                         <div className="absolute inset-0">
                             <img 
                                 src={imagePath} 
-                                alt={figure.summary.title} 
+                                alt={title}
                                 className="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-1000" 
                                 onError={() => setImgError(true)}
                             />
@@ -123,11 +130,11 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                                 </div>
                                 <div className="flex flex-col min-w-0">
                                     <span className="text-[10px] font-bold tracking-widest text-orange-200/70 uppercase mb-0.5 truncate">
-                                        Part of {parentPeriod.title.split(':')[0]}
+                                        {language === 'en' ? 'Part of' : 'भाग'} {parentTitle.split(':')[0]}
                                     </span>
                                     <div className="flex items-center gap-2">
                                         <span className="text-white font-serif font-bold text-lg sm:text-xl leading-none tracking-wide truncate group-hover/dynasty:text-orange-100 transition-colors">
-                                            {parentDynasty.summary.title.split('(')[0].trim()}
+                                            {parentDynastyTitle.split('(')[0].trim()}
                                         </span>
                                         <span className="text-orange-400 opacity-0 -translate-x-2 group-hover/dynasty:opacity-100 group-hover/dynasty:translate-x-0 transition-all duration-300">
                                             <Icons.ChevronRight />
@@ -137,12 +144,12 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                             </div>
                         ) : (
                             <div className="inline-block px-3 py-1 rounded border border-orange-500/50 text-orange-400 text-xs font-bold tracking-widest uppercase mb-4 bg-slate-800/50 backdrop-blur-sm">
-                                Historical Profile
+                                {language === 'en' ? 'Historical Profile' : 'ऐतिहासिक विवरण'}
                             </div>
                         )}
 
                         <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-4 heading-text leading-tight text-shadow-lg break-words">
-                            {figure.summary.title}
+                            {title}
                         </h1>
                         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 gap-x-6 items-start sm:items-center">
                             {figure.summary.reign && (
@@ -173,9 +180,9 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
             </div>
 
             {/* Main Content with Glossary Highlighting */}
-            {figure.content ? (
+            {content ? (
                 <div className="prose prose-sm sm:prose-base md:prose-lg prose-slate max-w-none font-serif leading-relaxed prose-headings:font-bold prose-headings:heading-text prose-a:text-orange-600 prose-blockquote:border-l-orange-500 prose-blockquote:bg-orange-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:not-italic prose-blockquote:rounded-r-lg">
-                    <GlossaryHighlighter text={figure.content} isHtml={true} />
+                    <GlossaryHighlighter text={content} isHtml={true} />
                 </div>
             ) : null}
 
@@ -184,11 +191,12 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                 <div className="mt-8 md:mt-12 pt-8 md:pt-10 border-t-2 border-slate-100">
                     <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-6 md:mb-8 flex items-center">
                         <span className="w-8 h-8 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-lg mr-3 shadow-sm">📜</span>
-                        Related Chronicles
+                        {language === 'en' ? 'Related Chronicles' : 'संबंधित इतिहास'}
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                         {figure.subItems.map(subId => {
                             const subItem = KINGS_DATA[subId];
+                            const subTitle = getLocalized(subItem?.summary, 'title', language);
                             return (
                                 <button 
                                     key={subId}
@@ -198,7 +206,7 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                                     <div className="flex items-center overflow-hidden">
                                         <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-lg mr-3 group-hover/btn:bg-orange-100 transition-colors flex-shrink-0">👑</span>
                                         {/* Replaced generic text with actual title */}
-                                        <span className="truncate">{subItem?.summary?.title || "View Entry"}</span>
+                                        <span className="truncate">{subTitle || "View Entry"}</span>
                                     </div>
                                     <span className="opacity-0 group-hover/btn:opacity-100 transform -translate-x-2 group-hover/btn:translate-x-0 transition-all text-orange-500 hidden sm:inline-block">
                                         <Icons.ChevronRight />
@@ -215,7 +223,7 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                 <div className="mt-12 md:mt-16 pt-8 md:pt-10 border-t-2 border-slate-100">
                     <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-6 md:mb-8 flex items-center">
                         <span className="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg mr-3 shadow-sm">🔗</span>
-                        Historical Connections
+                        {language === 'en' ? 'Historical Connections' : 'ऐतिहासिक संबंध'}
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                         {connections.map((conn, idx) => (
@@ -238,7 +246,7 @@ const FigureDetail: React.FC<FigureDetailProps> = ({ figure, figureId, onSelectP
                 </div>
             )}
 
-            {!figure.content && (!figure.subItems || figure.subItems.length === 0) && (
+            {!content && (!figure.subItems || figure.subItems.length === 0) && (
                  <div className="text-center py-12 bg-slate-50 rounded-xl border border-dashed border-slate-300 mt-8">
                     <span className="text-4xl block mb-2">📜</span>
                     <p className="text-slate-500 font-serif italic">Historical records for this section are currently being transcribed.</p>
