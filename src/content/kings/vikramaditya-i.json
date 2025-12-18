@@ -3,9 +3,20 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "विक्रमादित्य प्रथम (Vikramaditya I)",
-    "reign": "c. 655–680 CE"
+    "title_en": "Vikramaditya I",
+    "reign": "c. 655–680 CE",
+    "reign_en": "c. 655–680 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔄</span><h5>पुनरुद्धारकर्ता</h5></div><div class=\"legacy-section-content\"><p>पुलकेशिन द्वितीय की मृत्यु के बाद 13 साल के अराजकता और पल्लव कब्जे के बाद, विक्रमादित्य ने चालुक्य सत्ता को पुनः स्थापित किया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>पल्लव विजय</h5></div><div class=\"legacy-section-content\"><p>इन्होंने पल्लव राजधानी कांचीपुरम को लूटा और पल्लव राजाओं (महेंद्रवर्मन II, परमेश्वरवर्मन I) को हराया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधियाँ:</strong> राजमल्ल, सत्याश्रय।</li><li><strong>सहायता:</strong> अपने भाई जयसिंह वर्मन को लाट (गुजरात) का गवर्नर बनाया, जिन्होंने बाद में गुजरात चालुक्य शाखा शुरू की।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔄</span><h5>Restorer</h5></div><div class=\"legacy-section-content\"><p>After the death of Pulakeshin II, following 13 years of anarchy and Pallava occupation, Vikramaditya re-established Chalukya authority.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>Pallava Conquest</h5></div><div class=\"legacy-section-content\"><p>He plundered the Pallava capital Kanchipuram and defeated the Pallava kings (Mahendravarman II, Paramesvaravarman I).</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Titles:</strong> Rajamalla, Satyashraya.</li><li><strong>Support:</strong> Appointed his brother Jayasimha Varman as the governor of Lata (Gujarat), who later started the Gujarat Chalukya branch.</li></ul></div></div></div>",
   "reignDuration": 25,
   "empireSize": 750000,
   "imageUrl": "images/vikramaditya-i.jpg"

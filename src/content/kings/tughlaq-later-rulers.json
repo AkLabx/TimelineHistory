@@ -3,9 +3,20 @@
   "type": "king-details king-color-last enhanced-profile",
   "summary": {
     "title": "बाद के तुग़लक़ शासक (Later Tughlaq Rulers)",
-    "reign": "1388–1414 CE"
+    "title_en": "Later Tughlaq Rulers",
+    "reign": "1388–1414 CE",
+    "reign_en": "1388–1414 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
-  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>फिरोज शाह के उत्तराधिकारी (ग़ियासुद्दीन तुग़लक़ द्वितीय, अबूबक्र, नसीरुद्दीन मुहम्मद) अक्षम थे। गृहयुद्ध छिड़ गया। सबसे विनाशकारी झटका <strong>1398 में तैमूर का आक्रमण</strong> था, जिसने दिल्ली को पूरी तरह से नष्ट कर दिया और तुग़लक़ शक्ति को तोड़ दिया। 1414 तक वंश समाप्त हो गया।</p></div></div></div>",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>फिरोज शाह के उत्तराधिकारी (ग़ियासुद्दीन तुग़लक़ द्वितीय, अबूबक्र, नसीरुद्दीन महमूद) अक्षम थे। गृहयुद्ध छिड़ गया। सबसे विनाशकारी झटका <strong>1398 में तैमूर का आक्रमण</strong> था, जिसने दिल्ली को पूरी तरह से नष्ट कर दिया और तुग़लक़ शक्ति को तोड़ दिया। 1414 तक वंश समाप्त हो गया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Legacy and Evaluation</h5></div><div class=\"legacy-section-content\"><p>The successors of Firuz Shah (Ghiyasuddin Tughlaq II, Abu Bakr, Nasiruddin Mahmud) were incompetent. Civil war broke out. The most devastating blow was <strong>Timur's invasion in 1398</strong>, which completely devastated Delhi and shattered the Tughlaq power. The dynasty ended by 1414.</p></div></div></div>",
   "reignDuration": 26,
   "empireSize": 500000,
   "imageUrl": "images/timur_invasion_delhi.jpg"

@@ -1,15 +1,20 @@
 {
   "id": "mughal",
   "title": "भाग VIII: मुगल साम्राज्य",
+  "title_en": "Part VIII: Mughal Empire",
   "items": [
     {
       "id": "mughal-empire",
       "type": "dynasty-details",
       "summary": {
         "title": "मुगल साम्राज्य (Mughal Empire)",
+        "title_en": "Mughal Empire",
         "period": "1526 – 1857 CE",
+        "period_en": "1526 – 1857 CE",
         "founder": "बाबर",
-        "capital": "आगरा, दिल्ली, फतेहपुर सीकरी"
+        "founder_en": "Babur",
+        "capital": "आगरा, दिल्ली, फतेहपुर सीकरी",
+        "capital_en": "Agra, Delhi, Fatehpur Sikri"
       },
       "subItems": [
         "mughal-details",
@@ -26,9 +31,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "सूर राजवंश (Sur Dynasty)",
+        "title_en": "Sur Dynasty",
         "period": "1540 – 1555 CE",
+        "period_en": "1540 – 1555 CE",
         "founder": "शेर शाह सूरी",
-        "capital": "दिल्ली, सासाराम"
+        "founder_en": "Sher Shah Suri",
+        "capital": "दिल्ली, सासाराम",
+        "capital_en": "Delhi, Sasaram"
       },
       "subItems": [
         "sher-shah-suri",
@@ -42,6 +51,7 @@
       "target": "later-mughals",
       "summary": {
         "title": "उत्तरवर्ती मुगल (Later Mughals)",
+        "title_en": "Later Mughals",
         "subtitle": "औरंगजेब के बाद के शासक (1707 - 1857)"
       }
     }

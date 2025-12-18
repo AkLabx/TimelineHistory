@@ -3,9 +3,20 @@
   "type": "king-details enhanced-profile invasion-type-parthian",
   "summary": {
     "title": "इंडो-पार्थियन (Indo-Parthians)",
-    "reign": "c. 19–46 CE"
+    "title_en": "Indo-Parthians",
+    "reign": "c. 19–46 CE",
+    "reign_en": "c. 19–46 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>गोंडोफर्नीज और सेंट थॉमस</h5></div><div class=\"legacy-section-content\"><p>ईरान के पहलवों (पार्थियन) ने शकों के बाद उत्तर-पश्चिम भारत पर आक्रमण किया। सबसे प्रसिद्ध राजा <strong>गोंडोफर्नीज (Gondophares)</strong> था। ईसाई परंपरा (Acts of Thomas) के अनुसार, प्रेरित <strong>सेंट थॉमस</strong> उसके शासनकाल के दौरान भारत आए थे। कुषाणों ने उनका स्थान ले लिया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Gondophares and St. Thomas</h5></div><div class=\"legacy-section-content\"><p>The Pahlavas (Parthians) from Iran invaded northwestern India after the Sakas. The most famous king was <strong>Gondophares</strong>. According to Christian tradition (Acts of Thomas), the Apostle <strong>St. Thomas</strong> visited India during his reign. The Kushanas succeeded them.</p></div></div></div>",
   "reignDuration": 27,
   "empireSize": 400000,
   "imageUrl": "images/gondophares_coin.jpg"

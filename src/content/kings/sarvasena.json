@@ -3,9 +3,20 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "सर्वसेन (Sarvasena)",
-    "reign": "c. 330–355 CE"
+    "title_en": "Sarvasena",
+    "reign": "c. 330–355 CE",
+    "reign_en": "c. 330–355 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🌿</span><h5>वत्सगुल्म शाखा के संस्थापक</h5></div><div class=\"legacy-section-content\"><p>प्रवरसेन प्रथम के छोटे पुत्र। इन्होंने आधुनिक वाशिम (महाराष्ट्र) में वत्सगुल्म शाखा की स्थापना की।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📖</span><h5>हरिविजय</h5></div><div class=\"legacy-section-content\"><p>ये एक प्रतिष्ठित प्राकृत कवि थे। इन्होंने 'हरिविजय' नामक ग्रंथ लिखा (जो अब लुप्त है, लेकिन बाद के कवियों द्वारा सराहा गया)।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> धर्म-महाराज।</li><li><strong>महत्व:</strong> विदर्भ में प्राकृत साहित्य के विकास में इनका बड़ा योगदान था।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🌿</span><h5>Founder of the Vatsagulma Branch</h5></div><div class=\"legacy-section-content\"><p>Younger son of Pravarasena I. He founded the Vatsagulma branch in modern Washim (Maharashtra).</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📖</span><h5>Harivijaya</h5></div><div class=\"legacy-section-content\"><p>He was a renowned Prakrit poet. He wrote a work called 'Harivijaya' (which is now lost but was praised by later poets).</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Title:</strong> Dharma-Maharaja.</li><li><strong>Significance:</strong> He made significant contributions to the development of Prakrit literature in Vidarbha.</li></ul></div></div></div>",
   "reignDuration": 25,
   "empireSize": 150000,
   "imageUrl": "images/sarvasena.jpg"

@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "घटोत्कच (Ghatotkacha)",
-    "reign": "c. 280–319 CE"
+    "title_en": "Ghatotkacha",
+    "reign": "c. 280–319 CE",
+    "reign_en": "c. 280–319 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔗</span><h5>वंश विस्तार</h5></div><div class=\"legacy-section-content\"><p>श्री गुप्त के पुत्र और उत्तराधिकारी। गुप्त वंशावली में इनका नाम दूसरे स्थान पर आता है।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> महाराज (Maharaja)।</li><li><strong>पहचान:</strong> इन्हें महाभारत के भीम के पुत्र घटोत्कच से भ्रमित नहीं करना चाहिए।</li><li><strong>स्थिति:</strong> अपने पिता की तरह, ये भी संभवतः कुषाणों या मुरुंडों के सामंत थे।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔗</span><h5>Dynastic Succession</h5></div><div class=\"legacy-section-content\"><p>Son and successor of Sri Gupta. His name appears second in the Gupta genealogy.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Title:</strong> Maharaja.</li><li><strong>Identification:</strong> He should not be confused with Ghatotkacha, the son of Bhima from the Mahabharata.</li><li><strong>Status:</strong> Like his father, he was also likely a feudatory of the Kushanas or Murundas.</li></ul></div></div></div>",
   "reignDuration": 39,
   "empireSize": 80000,
   "imageUrl": "images/ghatotkacha.jpg"

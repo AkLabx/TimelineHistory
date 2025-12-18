@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "वाकाटक राजवंश: परिचय (Vakataka Dynasty: Introduction)",
-    "reign": "c. 250–500 CE"
+    "title_en": "Vakataka Dynasty: Introduction",
+    "reign": "c. 250–500 CE",
+    "reign_en": "c. 250–500 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>दक्कन के स्वामी</h5></div><div class=\"legacy-section-content\"><p>सातवाहनों के पतन के बाद दक्कन में सबसे महत्वपूर्ण राजवंश। वे ब्राह्मण थे और गुप्तों के समकालीन थे। विंध्यशक्ति संस्थापक था। वे अजंता गुफाओं (विशेष रूप से गुफा 16, 17, 19) के अपने संरक्षण के लिए प्रसिद्ध हैं, जो हरिषेण के शासनकाल के दौरान बनाई गई थीं।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Masters of the Deccan</h5></div><div class=\"legacy-section-content\"><p>The most important dynasty in the Deccan after the fall of the Satavahanas. They were Brahmins and contemporaries of the Guptas. Vindhyashakti was the founder. They are famous for their patronage of the Ajanta Caves (especially Caves 16, 17, 19), which were created during the reign of Harishena.</p></div></div></div>",
   "reignDuration": 250,
   "empireSize": 500000,
   "imageUrl": "images/ajanta_cave_paintings.jpg"

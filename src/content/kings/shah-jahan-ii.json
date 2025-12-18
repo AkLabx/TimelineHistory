@@ -3,10 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "शाहजहां द्वितीय (Shah Jahan II)",
+    "title_en": "Shah Jahan II",
     "reign": "1719 CE (Jun-Sep)"
   },
   "reignDuration": 0,
   "empireSize": 3500000,
   "imageUrl": "images/shah_jahan_ii.jpg",
-  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>रफी-उद-दौला</h5></div><div class=\"legacy-section-content\"><p><strong>मूल नाम:</strong> रफी-उद-दौला।<br>रफी-उल-दर्जात का भाई। इसे भी सैयद बंधुओं ने गद्दी पर बैठाया। वह अफीम का बहुत बड़ा लती था और पेचिश से उसकी मृत्यु हुई।</p></div></div></div>"
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>रफी-उद-दौला</h5></div><div class=\"legacy-section-content\"><p><strong>मूल नाम:</strong> रफी-उद-दौला।<br>रफी-उल-दर्जात का भाई। इसे भी सैयद बंधुओं ने गद्दी पर बैठाया। वह अफीम का बहुत बड़ा लती था और पेचिश से उसकी मृत्यु हुई।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Rafi-ud-Daulah</h5></div><div class=\"legacy-section-content\"><p><strong>Original Name:</strong> Rafi-ud-Daulah.<br>Brother of Rafi-ud-Darajat. He was also placed on the throne by the Sayyid brothers. He was a heavy opium addict and died of dysentery.</p></div></div></div>"
 }

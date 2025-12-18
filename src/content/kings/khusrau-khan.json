@@ -3,9 +3,12 @@
   "type": "king-details king-color-last enhanced-profile",
   "summary": {
     "title": "खुसरो खान (Khusrau Khan)",
-    "reign": "1320 CE"
+    "title_en": "Khusrau Khan",
+    "reign": "1320 CE",
+    "reign_en": "1320 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>एक हिंदू धर्मान्तरित जिसने मुबारक खिलजी की हत्या कर गद्दी हथिया ली। उसने 'नासिर-उद-दीन' की उपाधि ली और अपने समर्थकों को उच्च पद दिए। गाज़ी मलिक (ग़ियासुद्दीन तुग़लक़) ने 'इस्लाम खतरे में है' का नारा देकर उसके खिलाफ विद्रोह किया और उसे मार डाला।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Legacy and Assessment</h5></div><div class=\"legacy-section-content\"><p>A Hindu convert who usurped the throne by assassinating Mubarak Khalji. He assumed the title 'Nasir-ud-din' and gave high positions to his supporters. Ghazi Malik (Ghiyasuddin Tughlaq) rebelled against him with the slogan 'Islam is in danger' and killed him.</p></div></div></div>",
   "reignDuration": 1,
   "empireSize": 1800000,
   "imageUrl": "images/khilji_dynasty_end.jpg"

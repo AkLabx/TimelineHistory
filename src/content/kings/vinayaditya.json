@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "विनयादित्य (Vinayaditya)",
-    "reign": "c. 681–696 CE"
+    "title_en": "Vinayaditya",
+    "reign": "c. 681–696 CE",
+    "reign_en": "c. 681–696 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🗺️</span><h5>उत्तर भारत अभियान</h5></div><div class=\"legacy-section-content\"><p>अपने पिता की तरह शक्तिशाली थे। अभिलेखों के अनुसार, उन्होंने उत्तर भारत के एक 'सकललोत्तरपथनाथ' (संभवतः बाद के गुप्त राजा) को हराया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधियाँ:</strong> युद्धमल्ल, सत्याश्रय।</li><li><strong>कूटनीति:</strong> चीन के दरबार में दूत भेजे।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🗺️</span><h5>North Indian Expedition</h5></div><div class=\"legacy-section-content\"><p>He was as powerful as his father. According to inscriptions, he defeated a 'Sakalottarapathnath' (likely a Later Gupta king) of North India.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Titles:</strong> Yuddhamalla, Satyashraya.</li><li><strong>Diplomacy:</strong> Sent envoys to the court of China.</li></ul></div></div></div>",
   "reignDuration": 15,
   "empireSize": 800000,
   "imageUrl": "images/vinayaditya.jpg"

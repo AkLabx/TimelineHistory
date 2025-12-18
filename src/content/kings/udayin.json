@@ -3,10 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "उदायिन (Udayin)",
+    "title_en": "Udayin",
     "reign": "460–444 BCE"
   },
   "imageUrl": "images/king_udayin.jpg",
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📜</span><h5>शासन और प्रशासन</h5></div><div class=\"legacy-section-content\"><p>वह गंगा, सोन और गंडक नदियों के रणनीतिक संगम² पर पाटलिपुत्र (आधुनिक पटना) शहर की स्थापना के लिए सबसे प्रसिद्ध है। उसने राजधानी को राजगृह से इस नए शहर में स्थानांतरित कर दिया, जिसे इसके स्थान के कारण 'जल-दुर्ग' (Water Fort) के रूप में भी जाना जाता था।</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">पाटलिपुत्र शहर की स्थापना की</span></div></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🌸</span><h5>आस्था और दर्शन</h5></div><div class=\"legacy-section-content\"><p>वह जैन धर्म का अनुयायी था।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📜</span><h5>Rule and Administration</h5></div><div class=\"legacy-section-content\"><p>He is most famous for founding the city of Pataliputra (modern Patna) at the strategic confluence² of the Ganga, Son, and Gandak rivers. He shifted the capital from Rajgir to this new city, which was also known as a 'Water Fort' due to its location.</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">Founded the city of Pataliputra</span></div></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🌸</span><h5>Faith and Philosophy</h5></div><div class=\"legacy-section-content\"><p>He was a follower of Jainism.</p></div></div></div>",
   "reignDuration": 16,
   "empireSize": 500000
 }

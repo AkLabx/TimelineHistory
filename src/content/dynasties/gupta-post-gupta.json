@@ -1,15 +1,20 @@
 {
   "id": "gupta-post-gupta",
   "title": "भाग V: गुप्त साम्राज्य और परवर्ती काल",
+  "title_en": "Part V: Gupta Empire and Post-Gupta Period",
   "items": [
     {
       "id": "gupta-dynasty",
       "type": "dynasty-details",
       "summary": {
         "title": "गुप्त वंश (Gupta Dynasty)",
+        "title_en": "Gupta Dynasty",
         "period": "c. 319–550 CE",
+        "period_en": "c. 319–550 CE",
         "founder": "श्री गुप्त",
-        "capital": "पाटलिपुत्र"
+        "founder_en": "Sri Gupta",
+        "capital": "पाटलिपुत्र",
+        "capital_en": "Pataliputra"
       },
       "subItems": [
         "sri-gupta",
@@ -34,9 +39,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "वाकाटक वंश (Vakataka Dynasty)",
+        "title_en": "Vakataka Dynasty",
         "period": "c. 250–500 CE",
+        "period_en": "c. 250–500 CE",
         "founder": "विंध्यशक्ति",
-        "capital": "वत्सगुल्म / प्रवरपुर"
+        "founder_en": "Vindhyashakti",
+        "capital": "वत्सगुल्म / प्रवरपुर",
+        "capital_en": "Vatsagulma / Pravarapura"
       },
       "subItems": [
         "vakataka-intro",
@@ -58,9 +67,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "पल्लव वंश (Pallava Dynasty)",
+        "title_en": "Pallava Dynasty",
         "period": "c. 550 – 897 CE",
+        "period_en": "c. 550 – 897 CE",
         "founder": "सिंहविष्णु",
-        "capital": "कांचीपुरम"
+        "founder_en": "Simhavishnu",
+        "capital": "कांचीपुरम",
+        "capital_en": "Kanchipuram"
       },
       "subItems": [
         "pallava-details",
@@ -79,9 +92,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "पश्चिमी चालुक्य वंश (Western Chalukya)",
+        "title_en": "Western Chalukya Dynasty",
         "period": "c. 543 – 753 CE",
+        "period_en": "c. 543 – 753 CE",
         "founder": "पुलकेशिन प्रथम",
-        "capital": "बादामी (वातापी)"
+        "founder_en": "Pulakeshin I",
+        "capital": "बादामी (वातापी)",
+        "capital_en": "Badami (Vatapi)"
       },
       "subItems": [
         "western-chalukya-details",
@@ -101,9 +118,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "वर्धन वंश (थानेसर) (Vardhana Dynasty)",
+        "title_en": "Vardhana Dynasty (Thanesar)",
         "period": "c. 550–647 CE",
+        "period_en": "c. 550–647 CE",
         "founder": "पुष्यभूति",
-        "capital": "थानेसर / कन्नौज"
+        "founder_en": "Pushyabhuti",
+        "capital": "थानेसर / कन्नौज",
+        "capital_en": "Thanesar / Kannauj"
       },
       "subItems": [
         "vardhana-dynasty",
@@ -117,9 +138,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "मौखरि वंश (Maukhari Dynasty)",
+        "title_en": "Maukhari Dynasty",
         "period": "c. 550 – 606 CE",
+        "period_en": "c. 550 – 606 CE",
         "founder": "ईशानवर्मन",
-        "capital": "कन्नौज"
+        "founder_en": "Ishaanvarman",
+        "capital": "कन्नौज",
+        "capital_en": "Kannauj"
       },
       "subItems": [
         "maukhari-details",
@@ -133,9 +158,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "परवर्ती गुप्त वंश (Later Guptas)",
+        "title_en": "Later Guptas Dynasty",
         "period": "c. 490–750 CE",
+        "period_en": "c. 490–750 CE",
         "founder": "कृष्णगुप्त",
-        "capital": "मगध / पाटलिपुत्र"
+        "founder_en": "Krishnagupta",
+        "capital": "मगध / पाटलिपुत्र",
+        "capital_en": "Magadha / Pataliputra"
       },
       "subItems": [
         "krishnagupta",
@@ -147,9 +176,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "गौड़ साम्राज्य (Gauda Kingdom)",
+        "title_en": "Gauda Kingdom",
         "period": "c. 590 – 626 CE",
+        "period_en": "c. 590 – 626 CE",
         "founder": "शशांक",
-        "capital": "कर्णसुवर्ण"
+        "founder_en": "Shashanka",
+        "capital": "कर्णसुवर्ण",
+        "capital_en": "Karnasuvarṇa"
       },
       "subItems": [
         "gauda-details",
@@ -161,9 +194,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "राय वंश (सिंध) (Rai Dynasty)",
+        "title_en": "Rai Dynasty (Sindh)",
         "period": "c. 489 – 632 CE",
+        "period_en": "c. 489 – 632 CE",
         "founder": "राय दिवाजी",
-        "capital": "अरोड़"
+        "founder_en": "Rai Diwaji",
+        "capital": "अरोड़",
+        "capital_en": "Aror"
       },
       "subItems": [
         "rai-details",
@@ -179,9 +216,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "मैत्रक वंश (Maitrakas of Vallabhi)",
+        "title_en": "Maitraka Dynasty (Maitrakas of Vallabhi)",
         "period": "c. 475 – 776 CE",
+        "period_en": "c. 475 – 776 CE",
         "founder": "भटार्क",
-        "capital": "वल्लभी"
+        "founder_en": "Bhatarka",
+        "capital": "वल्लभी",
+        "capital_en": "Vallabhi"
       },
       "subItems": [
         "bhatarka",
@@ -194,9 +235,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "कदंब वंश (Kadamba Dynasty)",
+        "title_en": "Kadamba Dynasty",
         "period": "c. 345 – 540 CE",
+        "period_en": "c. 345 – 540 CE",
         "founder": "मयूरशर्मा",
-        "capital": "वनवासी"
+        "founder_en": "Mayurasharma",
+        "capital": "वनवासी",
+        "capital_en": "Banavasi"
       },
       "subItems": [
         "mayurasharma",
@@ -208,9 +253,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "पश्चिमी गंगा वंश (Western Gangas)",
+        "title_en": "Western Ganga Dynasty",
         "period": "c. 350 – 1000 CE",
+        "period_en": "c. 350 – 1000 CE",
         "founder": "कोंगणीवर्मन माधव",
-        "capital": "कोलार / तलकाड़"
+        "founder_en": "Konganivarman Madhava",
+        "capital": "कोलार / तलकाड़",
+        "capital_en": "Kolar / Talakadu"
       },
       "subItems": [
         "konganivarman",
@@ -222,9 +271,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "विष्णुकुंडिन वंश (Vishnukundin Dynasty)",
+        "title_en": "Vishnukundin Dynasty",
         "period": "c. 420 – 624 CE",
+        "period_en": "c. 420 – 624 CE",
         "founder": "माधववर्मन प्रथम",
-        "capital": "इंद्रपालनगरा / वेंगी"
+        "founder_en": "Madhavavarman I",
+        "capital": "इंद्रपालनगरा / वेंगी",
+        "capital_en": "Indrapalana / Vengi"
       },
       "subItems": [
         "madhavarman-i",

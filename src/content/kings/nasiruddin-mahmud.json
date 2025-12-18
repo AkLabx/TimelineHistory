@@ -3,9 +3,11 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "नसीरुद्दीन महमूद (Nasiruddin Mahmud)",
+    "title_en": "Nasiruddin Mahmud",
     "reign": "1246–1266 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>दरवेश राजा</h5></div><div class=\"legacy-section-content\"><p>इल्तुतमिश का सबसे छोटा बेटा। वह बहुत ही पवित्र और धार्मिक स्वभाव का था। उसने कुरान की नकल करके और टोपियां सिलकर अपनी आजीविका अर्जित की। उसने सारी शक्ति अपने ससुर और नायब (उप-रीजेंट) बलबन को सौंप दी, जो 20 वर्षों तक वास्तविक शासक रहा।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>The Dervish King</h5></div><div class=\"legacy-section-content\"><p>The youngest son of Iltutmish. He was very pious and religious in nature. He earned his livelihood by copying the Quran and sewing caps. He delegated all power to his father-in-law and Naib (deputy regent), Balban, who remained the de facto ruler for 20 years.</p></div></div></div>",
   "reignDuration": 20,
   "empireSize": 1800000,
   "imageUrl": "images/nasiruddin_mahmud_tomb.jpg"

@@ -3,10 +3,21 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "रुकुनुद्दीन फिरोज (Ruknuddin Firuz)",
-    "reign": "1236 CE"
+    "title_en": "Ruknuddin Firuz",
+    "reign": "1236 CE",
+    "reign_en": "1236 CE",
+    "period": "दिल्ली सल्तनत",
+    "period_en": "Delhi Sultanate",
+    "founder": "इल्तुतमिश",
+    "founder_en": "Iltutmish",
+    "capital": "दिल्ली",
+    "capital_en": "Delhi",
+    "subtitle": "इल्तुतमिश का अक्षम पुत्र, जिसका शासनकाल केवल 6 महीने चला।",
+    "subtitle_en": "Iltutmish's incompetent son, whose reign lasted only 6 months."
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>शाह तुर्कान का शासन</h5></div><div class=\"legacy-section-content\"><p>इल्तुतमिश का सबसे बड़ा जीवित पुत्र। वह एक अक्षम और विलासी शासक था। वास्तविक शक्ति उसकी मां शाह तुर्कान के पास थी, जो एक क्रूर महिला थी। केवल 6 महीने बाद, रजिया सुल्तान के नेतृत्व में एक विद्रोह के बाद उसे अपदस्थ कर मार डाला गया।</p></div></div></div>",
   "reignDuration": 1,
   "empireSize": 1800000,
-  "imageUrl": "images/slave_dynasty_coin_ruknuddin.jpg"
+  "imageUrl": "images/slave_dynasty_coin_ruknuddin.jpg",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 👑</span><h5>Rule of Shah Turkan</h5></div><div class=\"legacy-section-content\"><p>Iltutmish's eldest surviving son. He was an incompetent and dissolute ruler. Real power lay with his mother Shah Turkan, a cruel woman. After only 6 months, he was deposed and murdered following a revolt led by Razia Sultana.</p></div></div></div>"
 }

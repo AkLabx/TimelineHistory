@@ -3,10 +3,21 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "राजेंद्र तृतीय (Rajendra III)",
-    "reign": "c. 1246 – 1279 CE"
+    "title_en": "Rajendra III",
+    "reign": "c. 1246 – 1279 CE",
+    "reign_en": "c. 1246 – 1279 CE",
+    "period": "मध्यकालीन",
+    "period_en": "Medieval",
+    "founder": "चोल वंश",
+    "founder_en": "Chola Dynasty",
+    "capital": "तंजावुर",
+    "capital_en": "Thanjavur",
+    "subtitle": "चोल राजवंश के अंतिम शासक, जिनके शासनकाल में साम्राज्य का पतन हुआ।",
+    "subtitle_en": "The last ruler of the Chola dynasty, under whom the empire declined."
   },
   "reignDuration": 33,
   "empireSize": 50000,
   "imageUrl": "images/rajendra_iii.jpg",
-  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔚</span><h5>अंतिम चोल शासक</h5></div><div class=\"legacy-section-content\"><p>राजेंद्र तृतीय चोल वंश के अंतिम शासक थे। यद्यपि वे एक सक्षम शासक थे और उन्होंने पांड्यों को रोकने का प्रयास किया, लेकिन होयसलों और पांड्यों की संयुक्त शक्ति के आगे वे टिक नहीं सके।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏳️</span><h5>राजवंश का पतन</h5></div><div class=\"legacy-section-content\"><p>1279 ईस्वी में, पांड्य राजा मारवर्मन कुलशेखर पांड्य प्रथम ने राजेंद्र तृतीय को युद्ध में हराया। इस हार के साथ ही महान चोल साम्राज्य का अंत हो गया और उनका क्षेत्र पांड्य साम्राज्य में विलीन हो गया।</p></div></div></div>"
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔚</span><h5>अंतिम चोल शासक</h5></div><div class=\"legacy-section-content\"><p>राजेंद्र तृतीय चोल वंश के अंतिम शासक थे। यद्यपि वे एक सक्षम शासक थे और उन्होंने पांड्यों को रोकने का प्रयास किया, लेकिन होयसलों और पांड्यों की संयुक्त शक्ति के आगे वे टिक नहीं सके।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏳️</span><h5>राजवंश का पतन</h5></div><div class=\"legacy-section-content\"><p>1279 ईस्वी में, पांड्य राजा मारवर्मन कुलशेखर पांड्य प्रथम ने राजेंद्र तृतीय को युद्ध में हराया। इस हार के साथ ही महान चोल साम्राज्य का अंत हो गया और उनका क्षेत्र पांड्य साम्राज्य में विलीन हो गया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 🔚</span><h5>Last Chola Ruler</h5></div><div class=\"legacy-section-content\"><p>Rajendra III was the last ruler of the Chola dynasty. Although he was a capable ruler and tried to stop the Pandyas, he could not withstand the combined might of the Hoysalas and Pandyas.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 🏳️</span><h5>Decline of the Dynasty</h5></div><div class=\"legacy-section-content\"><p>In 1279 CE, the Pandya king Maravarman Kulasekhara Pandyan I defeated Rajendra III in battle. With this defeat, the great Chola Empire came to an end, and their territory was merged into the Pandya empire.</p></div></div></div>"
 }

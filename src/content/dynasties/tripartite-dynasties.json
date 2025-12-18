@@ -1,6 +1,7 @@
 {
   "id": "tripartite-dynasties",
   "title": "त्रिपक्षीय संघर्ष के राजवंश (Dynasties of the Tripartite Struggle)",
+  "title_en": "Dynasties of the Tripartite Struggle",
   "parent": "early-medieval",
   "items": [
     {
@@ -8,9 +9,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "गुर्जर-प्रतिहार राजवंश (Gurjara-Pratihara Dynasty)",
+        "title_en": "Gurjara-Pratihara Dynasty",
         "period": "c. 730 – 1036 CE",
+        "period_en": "c. 730 – 1036 CE",
         "founder": "नागभट्ट प्रथम",
-        "capital": "उज्जैन, बाद में कन्नौज"
+        "founder_en": "Nagabhata I",
+        "capital": "उज्जैन, बाद में कन्नौज",
+        "capital_en": "Ujjain, later Kannauj"
       },
       "subItems": [
         "nagabhata-i",
@@ -28,9 +33,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "पाल साम्राज्य (Pala Empire)",
+        "title_en": "Pala Empire",
         "period": "c. 750 – 1161 CE",
+        "period_en": "c. 750 – 1161 CE",
         "founder": "गोपाल",
-        "capital": "मुंगेर, पाटलिपुत्र, गौड़"
+        "founder_en": "Gopala",
+        "capital": "मुंगेर, पाटलिपुत्र, गौड़",
+        "capital_en": "Munger, Pataliputra, Gauda"
       },
       "subItems": [
         "gopala",
@@ -45,9 +54,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "राष्ट्रकूट साम्राज्य (Rashtrakuta Empire)",
+        "title_en": "Rashtrakuta Empire",
         "period": "c. 753 – 982 CE",
+        "period_en": "c. 753 – 982 CE",
         "founder": "दंतिदुर्ग",
-        "capital": "मान्यखेत (मलखेड़)"
+        "founder_en": "Dantidurga",
+        "capital": "मान्यखेत (मलखेड़)",
+        "capital_en": "Manyakheta (Malkhed)"
       },
       "subItems": [
         "dantidurga",

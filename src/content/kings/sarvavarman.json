@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "सर्ववर्मन (Sarvavarman)",
-    "reign": "c. 574–585 CE"
+    "title_en": "Sarvavarman",
+    "reign": "c. 574–585 CE",
+    "reign_en": "c. 574–585 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🗺️</span><h5>विस्तार</h5></div><div class=\"legacy-section-content\"><p>ईशानवर्मन के पुत्र। इन्होंने मगध के परवर्ती गुप्तों (दामोदरगुप्त) को हराया और मगध के कुछ हिस्सों पर कब्जा कर लिया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>असीरगढ़ मुहर:</strong> इसमें मौखरि वंशावली दी गई है।</li><li><strong>उपाधि:</strong> महाराजाधिराज।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🗺️</span><h5>Expansion</h5></div><div class=\"legacy-section-content\"><p>Son of Ishanavarman. He defeated the Later Guptas (Damodaragupta) of Magadha and occupied parts of Magadha.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Aseergarh Seal:</strong> Contains the Maukhari genealogy.</li><li><strong>Title:</strong> Maharajadhiraja.</li></ul></div></div></div>",
   "reignDuration": 11,
   "empireSize": 350000,
   "imageUrl": "images/sarvavarman.jpg"

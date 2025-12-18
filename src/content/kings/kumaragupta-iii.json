@@ -3,9 +3,11 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "कुमारगुप्त तृतीय (Kumaragupta III)",
+    "title_en": "Kumaragupta III",
     "reign": "c. 530–540 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📉</span><h5>विलुप्त होता साम्राज्य</h5></div><div class=\"legacy-section-content\"><p>गुप्त साम्राज्य अब केवल मगध और बंगाल के कुछ हिस्सों तक सीमित रह गया था।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>भीतरी मुहर:</strong> नरसिंहगुप्त के पुत्र और उत्तराधिकारी के रूप में उल्लेख।</li><li><strong>प्रतिद्वंद्वी:</strong> मौखरि वंश और गौड़ वंश का उदय हो रहा था।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📉</span><h5>Fading Empire</h5></div><div class=\"legacy-section-content\"><p>The Gupta Empire was now confined only to parts of Magadha and Bengal.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Bhitari Seal:</strong> Mentioned as the son and successor of Narasimhagupta.</li><li><strong>Rivals:</strong> The Maukhari dynasty and the Gauda dynasty were rising.</li></ul></div></div></div>",
   "reignDuration": 10,
   "empireSize": 500000,
   "imageUrl": "images/kumaragupta-iii.jpg"

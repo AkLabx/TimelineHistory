@@ -1,6 +1,7 @@
 {
   "id": "sultanate",
   "title": "भाग VII: दिल्ली सल्तनत और समकालीन राज्य",
+  "title_en": "Part VII: Delhi Sultanate and Contemporary States",
   "items": [
     {
       "id": "delhi-sultanate-intro",
@@ -8,6 +9,7 @@
       "target": "sultanate-dynasties",
       "summary": {
         "title": "दिल्ली सल्तनत के राजवंश",
+        "title_en": "Dynasties of the Delhi Sultanate",
         "subtitle": "Explore the 5 Dynasties of the Sultanate"
       }
     },
@@ -16,9 +18,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "विजयनगर साम्राज्य (Vijayanagara Empire)",
+        "title_en": "Vijayanagara Empire",
         "period": "1336 – 1646 CE",
+        "period_en": "1336 – 1646 CE",
         "founder": "हरिहर प्रथम और बुक्का राय प्रथम",
-        "capital": "विजयनगर (हम्पी)"
+        "founder_en": "Harihara I and Bukka Raya I",
+        "capital": "विजयनगर (हम्पी)",
+        "capital_en": "Vijayanagara (Hampi)"
       },
       "subItems": [
         "vijayanagara-details"
@@ -29,9 +35,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "चुटिया साम्राज्य (Chutiya Kingdom)",
+        "title_en": "Chutiya Kingdom",
         "period": "c. 1187 – 1673 CE",
+        "period_en": "c. 1187 – 1673 CE",
         "founder": "बीरपाल",
-        "capital": "सादिया"
+        "founder_en": "Birpal",
+        "capital": "सादिया",
+        "capital_en": "Sadiya"
       },
       "subItems": [
         "chutiya-details"
@@ -42,9 +52,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "अहोम वंश (Ahom Dynasty)",
+        "title_en": "Ahom Dynasty",
         "period": "1228 – 1826 CE",
+        "period_en": "1228 – 1826 CE",
         "founder": "सुकाफ़ा",
-        "capital": "चराइदेव, रंगपुर"
+        "founder_en": "Sukapha",
+        "capital": "चराइदेव, रंगपुर",
+        "capital_en": "Charaideo, Rangpur"
       },
       "subItems": [
         "ahom-details"
@@ -55,9 +69,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "शर्की वंश (जौनपुर) (Sharqi Dynasty)",
+        "title_en": "Sharqi Dynasty (Jaunpur)",
         "period": "c. 1394 – 1479 CE",
+        "period_en": "c. 1394 – 1479 CE",
         "founder": "मलिक सरवर",
-        "capital": "जौनपुर"
+        "founder_en": "Malik Sarwar",
+        "capital": "जौनपुर",
+        "capital_en": "Jaunpur"
       },
       "subItems": [
         "sharqi-details"
@@ -68,9 +86,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "माणिक्य वंश (त्रिपुरा) (Manikya Dynasty)",
+        "title_en": "Manikya Dynasty (Tripura)",
         "period": "c. 1400 – 1949 CE",
+        "period_en": "c. 1400 – 1949 CE",
         "founder": "महा माणिक्य",
-        "capital": "उदयपुर, बाद में अगरतला"
+        "founder_en": "Maha Manikya",
+        "capital": "उदयपुर, बाद में अगरतला",
+        "capital_en": "Udaipur, later Agartala"
       },
       "subItems": [
         "manikya-details"

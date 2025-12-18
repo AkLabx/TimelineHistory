@@ -1,15 +1,20 @@
 {
   "id": "post-maurya-sangam",
   "title": "भाग IV: मौर्योत्तर और संगम काल",
+  "title_en": "Part IV: Post-Mauryan and Sangam Age",
   "items": [
     {
       "id": "shunga-dynasty",
       "type": "dynasty-details",
       "summary": {
         "title": "शुंग वंश (Shunga Dynasty)",
+        "title_en": "Shunga Dynasty",
         "period": "c. 185–73 BCE",
+        "period_en": "c. 185–73 BCE",
         "founder": "पुष्यमित्र शुंग",
-        "capital": "पाटलिपुत्र / विदिशा"
+        "founder_en": "Pushyamitra Shunga",
+        "capital": "पाटलिपुत्र / विदिशा",
+        "capital_en": "Pataliputra / Vidisha"
       },
       "subItems": [
         "shunga-intro",
@@ -23,9 +28,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "कण्व वंश (Kanva Dynasty)",
+        "title_en": "Kanva Dynasty",
         "period": "c. 73–28 BCE",
+        "period_en": "c. 73–28 BCE",
         "founder": "वासुदेव कण्व",
-        "capital": "पाटलिपुत्र"
+        "founder_en": "Vasudeva Kanva",
+        "capital": "पाटलिपुत्र",
+        "capital_en": "Pataliputra"
       },
       "subItems": [
         "kanva-intro",
@@ -38,9 +47,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "सातवाहन वंश (Satavahana Dynasty)",
+        "title_en": "Satavahana Dynasty",
         "period": "c. 1st Cent. BCE – 3rd Cent. CE",
+        "period_en": "c. 1st Cent. BCE – 3rd Cent. CE",
         "founder": "सिमुक",
-        "capital": "प्रतिष्ठान (पैठन)"
+        "founder_en": "Simuka",
+        "capital": "प्रतिष्ठान (पैठन)",
+        "capital_en": "Pratishthana (Paithan)"
       },
       "subItems": [
         "satavahana-details"
@@ -50,7 +63,8 @@
       "id": "foreign-rulers-nw",
       "type": "dynasty-details",
       "summary": {
-        "title": "पश्चिमोत्तर के विदेशी शासक"
+        "title": "पश्चिमोत्तर के विदेशी शासक",
+        "title_en": "Foreign Rulers of the Northwest"
       },
       "subItems": [
         "indo-greeks",
@@ -63,7 +77,8 @@
       "id": "sangam-age-intro",
       "type": "event-details",
       "summary": {
-        "title": "संगम काल: दक्षिण के तीन मुकुटधारी राजा"
+        "title": "संगम काल: दक्षिण के तीन मुकुटधारी राजा",
+        "title_en": "Sangam Age: The Three Crowned Kings of the South"
       },
       "subItems": [
         "sangam-chola-dynasty",
@@ -76,9 +91,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "कलभ्र राजवंश (Kalabhra Dynasty)",
+        "title_en": "Kalabhra Dynasty",
         "period": "c. 3rd – 6th Cent. CE",
+        "period_en": "c. 3rd – 6th Cent. CE",
         "founder": "अज्ञात",
-        "capital": "तमिल क्षेत्र"
+        "founder_en": "Unknown",
+        "capital": "तमिल क्षेत्र",
+        "capital_en": "Tamil region"
       },
       "subItems": [
         "kalabhra-details"
@@ -89,9 +108,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "आभीर राजवंश (Abhira Dynasty)",
+        "title_en": "Abhira Dynasty",
         "period": "c. 203 – 370 CE",
+        "period_en": "c. 203 – 370 CE",
         "founder": "आभीर ईश्वरसेन",
-        "capital": "नासिक"
+        "founder_en": "Ishwarsena of Abhira",
+        "capital": "नासिक",
+        "capital_en": "Nashik"
       },
       "subItems": [
         "abhira-details"
@@ -102,9 +125,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "आंध्र इक्ष्वाकु वंश (Andhra Ikshvaku Dynasty)",
+        "title_en": "Andhra Ikshvaku Dynasty",
         "period": "c. 225 – 340 CE",
+        "period_en": "c. 225 – 340 CE",
         "founder": "वासिष्ठिपुत्र श्री शांतमूल",
-        "capital": "विजयपुरी (नागार्जुनकोंडा)"
+        "founder_en": "Vasisthiputra Sri Shantmula",
+        "capital": "विजयपुरी (नागार्जुनकोंडा)",
+        "capital_en": "Vijayapuri (Nagarjunakonda)"
       },
       "subItems": [
         "ikshvaku-details"

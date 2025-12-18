@@ -3,9 +3,11 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "मुइज़ुद्दीन बहराम (Muizuddin Bahram)",
+    "title_en": "Muizuddin Bahram",
     "reign": "1240–1242 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>कठपुतली राजा</h5></div><div class=\"legacy-section-content\"><p>रजिया सुल्तान के बाद गद्दी पर बैठा। वह रईसों, विशेष रूप से 'चालीसा' के हाथों की कठपुतली मात्र था। उसके शासनकाल में 1241 में मंगोलों ने पंजाब पर आक्रमण किया और लाहौर को लूट लिया। अपनी ही सेना द्वारा उसकी हत्या कर दी गई।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Puppet King</h5></div><div class=\"legacy-section-content\"><p>Ascended the throne after Razia Sultan. He was merely a puppet in the hands of the nobles, especially the 'Chahalgani' (Turkic nobility). During his reign, the Mongols invaded Punjab in 1241 and plundered Lahore. He was assassinated by his own army.</p></div></div></div>",
   "reignDuration": 2,
   "empireSize": 1800000,
   "imageUrl": "images/slave_dynasty_coin.jpg"
