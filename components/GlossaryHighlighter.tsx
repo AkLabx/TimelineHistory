@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GLOSSARY_DATA } from '../data';
 import { GlossaryTerm } from '../types';
+import { useLanguage } from '../src/contexts/LanguageContext';
+import { getLocalized } from '../src/utils/language';
 
 /**
  * Props for the GlossaryHighlighter component.
@@ -71,6 +73,7 @@ const GlossaryHighlighter: React.FC<GlossaryHighlighterProps> = ({ text, isHtml 
   const [activeTerm, setActiveTerm] = useState<GlossaryTerm | null>(null);
   const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
   const popoverRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
   /**
    * Handles click on a highlighted term.
@@ -224,12 +227,12 @@ const GlossaryHighlighter: React.FC<GlossaryHighlighterProps> = ({ text, isHtml 
             <div className="p-5 space-y-4 bg-white">
                 <div>
                      <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 block">Definition</span>
-                     <p className="text-sm text-slate-700 leading-relaxed font-medium">{activeTerm.definition_en}</p>
+                     <p className="text-sm text-slate-700 leading-relaxed font-medium">{language === 'en' ? activeTerm.definition_en : activeTerm.definition_hi}</p>
                 </div>
                 <div className="h-px bg-slate-100 w-full"></div>
                 <div>
-                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 block">Hindi Translation</span>
-                     <p className="text-sm text-slate-600 leading-relaxed font-serif">{activeTerm.definition_hi}</p>
+                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 block">{language === 'en' ? 'Hindi Translation' : 'English Translation'}</span>
+                     <p className="text-sm text-slate-600 leading-relaxed font-serif">{language === 'en' ? activeTerm.definition_hi : activeTerm.definition_en}</p>
                 </div>
             </div>
         </div>

@@ -1,22 +1,28 @@
 {
   "id": "magadha",
   "title": "भाग I: मगध का उत्कर्ष (Rise of Magadha)",
+  "title_en": "Part I: Rise of Magadha",
   "items": [
     {
       "type": "event-details",
       "summary": {
-        "title": "प्रस्तावना: छठी शताब्दी ईसा पूर्व का भारत"
+        "title": "प्रस्तावना: छठी शताब्दी ईसा पूर्व का भारत",
+        "title_en": "Introduction: India in the 6th Century BCE"
       },
-      "content": "<ul><li>छठी शताब्दी ईसा पूर्व में, भारत 16 बड़े राज्यों में बंटा हुआ था, जिन्हें <strong>महाजनपद (Mahajanapada)</strong> कहा जाता था।</li><li>ये महाजनपद आपस में सत्ता के लिए संघर्ष करते रहते थे। इनमें से चार सबसे शक्तिशाली थे - <strong>मगध (Magadha)</strong>, <strong>कोसल (Kosala)</strong>, <strong>वत्स (Vatsa)</strong>, और <strong>अवन्ति (Avanti)</strong>।</li><li>अंत में, मगध ही इन सब पर हावी होकर भारत के पहले साम्राज्य के रूप में उभरा।</li></ul>"
+      "content": "<ul><li>छठी शताब्दी ईसा पूर्व में, भारत 16 बड़े राज्यों में बंटा हुआ था, जिन्हें <strong>महाजनपद (Mahajanapada)</strong> कहा जाता था।</li><li>ये महाजनपद आपस में सत्ता के लिए संघर्ष करते रहते थे। इनमें से चार सबसे शक्तिशाली थे - <strong>मगध (Magadha)</strong>, <strong>कोसल (Kosala)</strong>, <strong>वत्स (Vatsa)</strong>, और <strong>अवन्ति (Avanti)</strong>।</li><li>अंत में, मगध ही इन सब पर हावी होकर भारत के पहले साम्राज्य के रूप में उभरा।</li></ul>",
+      "content_en": "<ul><li>In the 6th century BCE, India was divided into 16 large states known as <strong>Mahajanapadas</strong>.</li><li>These Mahajanapadas constantly struggled for power. Among them, four were the most powerful: <strong>Magadha</strong>, <strong>Kosala</strong>, <strong>Vatsa</strong>, and <strong>Avanti</strong>.</li><li>Eventually, Magadha dominated them all and emerged as India's first empire.</li></ul>"
     },
     {
       "id": "haryanka-dynasty",
       "type": "dynasty-details",
       "summary": {
         "title": "हर्यक वंश (Haryanka Dynasty)",
+        "title_en": "Haryanka Dynasty",
         "period": "c. 544–413 BCE",
         "founder": "बिम्बिसार",
-        "capital": "राजगृह"
+        "founder_en": "Bimbisara",
+        "capital": "राजगृह",
+        "capital_en": "Rajgir (Rajagriha)"
       },
       "subItems": [
         "bimbisara",
@@ -30,9 +36,12 @@
       "type": "dynasty-details",
       "summary": {
         "title": "शिशुनाग वंश (Shishunaga Dynasty)",
+        "title_en": "Shishunaga Dynasty",
         "period": "c. 413–345 BCE",
         "founder": "शिशुनाग",
-        "capital": "वैशाली"
+        "founder_en": "Shishunaga",
+        "capital": "वैशाली",
+        "capital_en": "Vaishali"
       },
       "subItems": [
         "shishunaga",
@@ -45,9 +54,12 @@
       "type": "dynasty-details",
       "summary": {
         "title": "नंद वंश (Nanda Dynasty)",
+        "title_en": "Nanda Dynasty",
         "period": "c. 345–322 BCE",
         "founder": "महापद्म नंद",
-        "capital": "पाटलिपुत्र"
+        "founder_en": "Mahapadma Nanda",
+        "capital": "पाटलिपुत्र",
+        "capital_en": "Pataliputra"
       },
       "subItems": [
         "nanda-intro",

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { TIMELINE_VISUAL_DATA } from '../data';
+import { useLanguage } from '../src/contexts/LanguageContext';
+import { getLocalized } from '../src/utils/language';
 
 /**
  * Props for the Timeline component.
@@ -25,6 +27,7 @@ const Timeline: React.FC<TimelineProps> = ({ activePeriodId }) => {
     width: string;
     color: string;
   } | null>(null);
+  const { language } = useLanguage();
 
   // If no active period or no data for it, return null or a placeholder
   if (!activePeriodId || !TIMELINE_VISUAL_DATA[activePeriodId]) return null;
@@ -89,8 +92,16 @@ const Timeline: React.FC<TimelineProps> = ({ activePeriodId }) => {
                     const width = getWidth(dyn.start, dyn.end);
                     const left = getLeft(dyn.start);
                     
+                    // Translate the name if possible. dyn object usually has 'name'.
+                    // We might need to check if 'name_en' exists on dyn?
+                    // The VisualData structure is usually simple.
+                    // Let's check 'src/content/timeline/visuals.json' later.
+                    // Assuming dyn has name_en or we stick with Hindi/English as is.
+                    // Actually, let's use getLocalized(dyn, 'name', language) just in case.
+                    const dynName = getLocalized(dyn, 'name', language);
+
                     // Determine if it's the currently hovered one for styling
-                    const isHovered = hoveredDynasty?.name === dyn.name;
+                    const isHovered = hoveredDynasty?.name === dynName;
 
                     return (
                         <div 
@@ -105,7 +116,7 @@ const Timeline: React.FC<TimelineProps> = ({ activePeriodId }) => {
                                 backgroundColor: dyn.color,
                             }}
                             onMouseEnter={() => setHoveredDynasty({
-                                name: dyn.name,
+                                name: dynName,
                                 start: dyn.start,
                                 end: dyn.end,
                                 left,
@@ -113,11 +124,11 @@ const Timeline: React.FC<TimelineProps> = ({ activePeriodId }) => {
                                 color: dyn.color
                             })}
                             onMouseLeave={() => setHoveredDynasty(null)}
-                            aria-label={`${dyn.name}: ${formatDate(dyn.start)} to ${formatDate(dyn.end)}`}
+                            aria-label={`${dynName}: ${formatDate(dyn.start)} to ${formatDate(dyn.end)}`}
                         >
                             {/* Text label inside the bar (hidden if too small) */}
                             <span className={`drop-shadow-md truncate pointer-events-none text-white mix-blend-plus-lighter px-1 font-serif tracking-wide ${parseInt(width) < 8 && !isHovered ? 'hidden' : 'block'}`}>
-                                {dyn.name}
+                                {dynName}
                             </span>
                         </div>
                     );

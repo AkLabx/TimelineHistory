@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Icons } from './Icons';
 import { SearchResult, EntityType } from '../types';
+import { useLanguage } from '../src/contexts/LanguageContext';
 
 /**
  * Props for the SearchModal component.
@@ -40,6 +41,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const listRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
   // Reset selection when query changes
   useEffect(() => {
@@ -91,7 +93,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 <div className="text-slate-400"><Icons.Search /></div>
                 <input 
                     type="text" 
-                    placeholder="Search history (e.g. Ashoka, Magadha, Jizya)..." 
+                    placeholder={language === 'en' ? "Search history (e.g. Ashoka, Magadha, Jizya)..." : "इतिहास खोजें (उदा. अशोक, मगध, जजिया)..."}
                     className="w-full ml-3 text-lg outline-none text-slate-900 placeholder-slate-400 h-10 bg-transparent font-serif"
                     autoFocus
                     value={query}
@@ -109,7 +111,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
             <div className="max-h-[60vh] overflow-y-auto p-2" ref={listRef}>
                 {results.length === 0 && query && (
                     <div className="text-center py-12 text-slate-500">
-                        <p>No results found for "<span className="font-semibold text-slate-700">{query}</span>"</p>
+                        <p>{language === 'en' ? "No results found for" : "कोई परिणाम नहीं मिला"} "<span className="font-semibold text-slate-700">{query}</span>"</p>
                     </div>
                 )}
                 {results.map((result, index) => (
@@ -147,13 +149,13 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 {!query && (
                      <div className="text-center py-16 opacity-50">
                         <div className="text-4xl mb-4 grayscale">🏛️</div>
-                        <p className="text-sm text-slate-400">Type to explore centuries of Indian History</p>
+                        <p className="text-sm text-slate-400">{language === 'en' ? "Type to explore centuries of Indian History" : "सदियों का भारतीय इतिहास खोजने के लिए टाइप करें"}</p>
                      </div>
                 )}
             </div>
             <div className="bg-slate-50 px-4 py-2 text-xs text-slate-400 border-t border-slate-100 flex justify-between">
-                <span>Use arrows to navigate</span>
-                <span>ESC to close</span>
+                <span>{language === 'en' ? "Use arrows to navigate" : "नेविगेट करने के लिए तीरों का प्रयोग करें"}</span>
+                <span>{language === 'en' ? "ESC to close" : "बंद करने के लिए ESC"}</span>
             </div>
         </div>
     </div>
