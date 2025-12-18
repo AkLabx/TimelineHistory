@@ -54,7 +54,11 @@ const SearchModal: React.FC<SearchModalProps> = ({
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
-                <button onClick={onClose} className="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1 hover:bg-slate-200 transition">
+                <button
+                    onClick={onClose}
+                    className="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1 hover:bg-slate-200 transition"
+                    aria-label="Close search"
+                >
                     <Icons.X />
                 </button>
             </div>
