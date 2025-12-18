@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { SearchResult, EntityType } from '../types';
 import { PART_DATA, DYNASTY_DATA, KINGS_DATA, GLOSSARY_DATA } from '../data';
 
@@ -19,6 +19,19 @@ interface ScoredResult extends SearchResult {
 export const useSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
+
+  // Add global keyboard shortcut to toggle search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   /**
    * Memoized search results based on the current query.
