@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Icons } from './Icons';
 import { SearchResult, EntityType } from '../types';
 
@@ -38,57 +38,48 @@ const SearchModal: React.FC<SearchModalProps> = ({
   onSelectPeriod, 
   onSelectFigure 
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const resultRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const listRef = useRef<HTMLDivElement>(null);
 
-  // Reset selection when results change or modal opens
+  // Reset selection when query changes
   useEffect(() => {
-    setSelectedIndex(0);
-  }, [results, query, isOpen]);
+    setSelectedIndex(-1);
+  }, [query, results]);
 
-  // Scroll into view when selectedIndex changes
-  useEffect(() => {
-    if (resultRefs.current[selectedIndex]) {
-      resultRefs.current[selectedIndex]?.scrollIntoView({
-        block: 'nearest',
-        behavior: 'smooth'
-      });
-    }
-  }, [selectedIndex]);
-
-  const handleSelect = (result: SearchResult) => {
-    if (result.type === EntityType.ERA) onSelectPeriod(result.id);
-    if (result.type === EntityType.DYNASTY) onSelectPeriod(result.parentId || result.id);
-    if (result.type === EntityType.FIGURE) onSelectFigure(result.id);
-    if (result.type !== EntityType.TERM) onClose();
-  };
-
-  // Keyboard navigation
   useEffect(() => {
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Allow navigation even if focus is on input
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setSelectedIndex(prev => (prev + 1) % Math.max(1, results.length));
+        setSelectedIndex(prev => (prev < results.length - 1 ? prev + 1 : prev));
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
-        setSelectedIndex(prev => (prev - 1 + Math.max(1, results.length)) % Math.max(1, results.length));
-      } else if (e.key === 'Enter') {
+        setSelectedIndex(prev => (prev > 0 ? prev - 1 : prev));
+      } else if (e.key === 'Enter' && selectedIndex >= 0) {
         e.preventDefault();
-        if (results[selectedIndex]) {
-           handleSelect(results[selectedIndex]);
+        const result = results[selectedIndex];
+        if (result) {
+            if (result.type === EntityType.ERA) onSelectPeriod(result.id);
+            if (result.type === EntityType.DYNASTY) onSelectPeriod(result.parentId || result.id);
+            if (result.type === EntityType.FIGURE) onSelectFigure(result.id);
+            if (result.type !== EntityType.TERM) onClose();
         }
       } else if (e.key === 'Escape') {
-        e.preventDefault();
-        onClose();
+          onClose();
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, results, selectedIndex, onClose]); // Dependencies include onClose and results
+  }, [isOpen, results, selectedIndex, onSelectPeriod, onSelectFigure, onClose]);
+
+  // Scroll into view logic
+  useEffect(() => {
+      const activeItem = listRef.current?.children[selectedIndex] as HTMLElement;
+      if (activeItem) {
+          activeItem.scrollIntoView({ block: 'nearest' });
+      }
+  }, [selectedIndex]);
 
   if (!isOpen) return null;
 
@@ -109,13 +100,13 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 />
                 <button
                     onClick={onClose}
-                    className="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1 hover:bg-slate-200 transition focus:outline-none focus:ring-2 focus:ring-slate-300"
                     aria-label="Close search"
+                    className="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1 hover:bg-slate-200 transition"
                 >
                     <Icons.X />
                 </button>
             </div>
-            <div className="max-h-[60vh] overflow-y-auto p-2">
+            <div className="max-h-[60vh] overflow-y-auto p-2" ref={listRef}>
                 {results.length === 0 && query && (
                     <div className="text-center py-12 text-slate-500">
                         <p>No results found for "<span className="font-semibold text-slate-700">{query}</span>"</p>
@@ -124,11 +115,16 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 {results.map((result, index) => (
                     <div 
                         key={`${result.type}-${result.id}`}
-                        ref={(el) => { resultRefs.current[index] = el; }}
-                        onClick={() => handleSelect(result)}
-                        onMouseEnter={() => setSelectedIndex(index)}
-                        className={`p-4 rounded-xl cursor-pointer group flex items-start border-b transition-all
-                            ${index === selectedIndex ? 'bg-orange-50 border-orange-100 ring-1 ring-orange-200' : 'border-transparent hover:border-orange-100'}
+                        onClick={() => {
+                            if (result.type === EntityType.ERA) onSelectPeriod(result.id);
+                            if (result.type === EntityType.DYNASTY) onSelectPeriod(result.parentId || result.id); // Dynasties are inside Periods
+                            if (result.type === EntityType.FIGURE) onSelectFigure(result.id);
+                            // Terms usually don't navigate, but maybe we can show definition expanded? 
+                            // For now close.
+                            if (result.type !== EntityType.TERM) onClose();
+                        }}
+                        className={`p-4 hover:bg-orange-50 rounded-xl cursor-pointer group flex items-start border-b transition-all
+                            ${index === selectedIndex ? 'bg-orange-50 border-orange-200 ring-1 ring-orange-200' : 'border-transparent hover:border-orange-100'}
                             ${result.type === EntityType.TERM ? 'cursor-default' : ''}`}
                     >
                         <div className={`mt-1 mr-4 flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg text-xs font-bold uppercase tracking-wider 
