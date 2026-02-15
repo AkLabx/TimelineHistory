@@ -1,30 +1,35 @@
 {
   "id": "early-medieval",
   "title": "भाग VI: प्रारंभिक मध्यकालीन भारत",
+  "title_en": "Part VI: Early Medieval India",
   "items": [
     {
       "id": "tripartite-struggle",
-      "type": "event-details",
+      "type": "timeline-link-card",
+      "target": "tripartite-dynasties",
       "summary": {
-        "title": "त्रिपक्षीय संघर्ष (कन्नौज के लिए)"
-      },
-      "subItems": [
-        "gurjara-pratihara-dynasty",
-        "pala-dynasty",
-        "rashtrakuta-dynasty"
-      ]
+        "title": "त्रिपक्षीय संघर्ष के राजवंश",
+        "title_en": "Dynasties of the Tripartite Struggle",
+        "subtitle": "गुर्जर-प्रतिहार, पाल और राष्ट्रकूट वंशों का अन्वेषण करें"
+      }
     },
     {
       "id": "eastern-chalukya-dynasty",
       "type": "dynasty-details",
       "summary": {
         "title": "पूर्वी चालुक्य वंश (Eastern Chalukya)",
+        "title_en": "Eastern Chalukya Dynasty",
         "period": "c. 624 – 1189 CE",
+        "period_en": "c. 624 – 1189 CE",
         "founder": "कुब्ज विष्णुवर्धन",
-        "capital": "वेंगी"
+        "founder_en": "Kubja Vishnuvardhana",
+        "capital": "वेंगी",
+        "capital_en": "Vengi"
       },
       "subItems": [
-        "eastern-chalukya-details"
+        "eastern-chalukya-details",
+        "kubja-vishnuvardhana",
+        "rajaraja-narendra"
       ]
     },
     {
@@ -32,12 +37,18 @@
       "type": "dynasty-details",
       "summary": {
         "title": "ब्राह्मण वंश (सिंध) (Brahman Dynasty)",
+        "title_en": "Brahman Dynasty (Sindh)",
         "period": "c. 632 – 712 CE",
+        "period_en": "c. 632 – 712 CE",
         "founder": "चच",
-        "capital": "अरोड़"
+        "founder_en": "Chach",
+        "capital": "अरोड़",
+        "capital_en": "Aror"
       },
       "subItems": [
-        "brahman-details"
+        "brahman-details",
+        "chach-brahman",
+        "dahir-brahman"
       ]
     },
     {
@@ -45,12 +56,18 @@
       "type": "dynasty-details",
       "summary": {
         "title": "तोमर वंश (Tomara Dynasty)",
+        "title_en": "Tomara Dynasty",
         "period": "c. 8th – 12th Cent. CE",
+        "period_en": "c. 8th – 12th Cent. CE",
         "founder": "अनंगपाल प्रथम",
-        "capital": "दिल्ली (ढिल्लिका)"
+        "founder_en": "Anangpal I",
+        "capital": "दिल्ली (ढिल्लिका)",
+        "capital_en": "Delhi (Dhillika)"
       },
       "subItems": [
-        "tomara-details"
+        "tomara-details",
+        "anangpal-i-tomara",
+        "anangpal-ii-tomara"
       ]
     },
     {
@@ -58,12 +75,24 @@
       "type": "dynasty-details",
       "summary": {
         "title": "शाही चोल वंश (Imperial Chola)",
+        "title_en": "Imperial Chola Dynasty",
         "period": "c. 850 – 1279 CE",
+        "period_en": "c. 850 – 1279 CE",
         "founder": "विजयालय चोल",
-        "capital": "तंजावुर"
+        "founder_en": "Vijayalaya Chola",
+        "capital": "तंजावुर",
+        "capital_en": "Thanjavur"
       },
       "subItems": [
-        "imperial-chola-details"
+        "imperial-chola-details",
+        "vijayalaya-chola",
+        "aditya-i-chola",
+        "parantaka-i-chola",
+        "rajaraja-i-chola",
+        "rajendra-i-chola",
+        "rajadhiraja-i-chola",
+        "kulothunga-i-chola",
+        "rajendra-iii-chola"
       ]
     },
     {
@@ -71,12 +100,19 @@
       "type": "dynasty-details",
       "summary": {
         "title": "यादव वंश (सेउण) (Yadava Dynasty)",
+        "title_en": "Yadava Dynasty (Seuna)",
         "period": "c. 850 – 1334 CE",
+        "period_en": "c. 850 – 1334 CE",
         "founder": "भिल्लम पंचम",
-        "capital": "देवगिरि (दौलताबाद)"
+        "founder_en": "Bhillama V",
+        "capital": "देवगिरि (दौलताबाद)",
+        "capital_en": "Devagiri (Daultabad)"
       },
       "subItems": [
-        "yadava-details"
+        "yadava-details",
+        "bhillama-v-yadava",
+        "singhana-ii-yadava",
+        "ramachandra-yadava"
       ]
     },
     {
@@ -84,12 +120,20 @@
       "type": "dynasty-details",
       "summary": {
         "title": "चंदेल वंश (Chandela Dynasty)",
+        "title_en": "Chandela Dynasty",
         "period": "c. 9th – 13th Cent. CE",
+        "period_en": "c. 9th – 13th Cent. CE",
         "founder": "नन्नुक",
-        "capital": "खजुराहो, महोबा"
+        "founder_en": "Nannuka",
+        "capital": "खजुराहो, महोबा",
+        "capital_en": "Khajuraho, Mahoba"
       },
       "subItems": [
-        "chandela-details"
+        "chandela-details",
+        "yashovarman-chandela",
+        "dhanga-chandela",
+        "vidyadhara-chandela",
+        "paramardi-chandela"
       ]
     },
     {
@@ -97,12 +141,18 @@
       "type": "dynasty-details",
       "summary": {
         "title": "परमार वंश (Paramara Dynasty)",
+        "title_en": "Paramara Dynasty",
         "period": "c. 9th – 14th Cent. CE",
+        "period_en": "c. 9th – 14th Cent. CE",
         "founder": "उपेंद्र (कृष्णराज)",
-        "capital": "धार"
+        "founder_en": "Upendra (Krishnaraja)",
+        "capital": "धार",
+        "capital_en": "Dhar"
       },
       "subItems": [
-        "paramara-details"
+        "paramara-details",
+        "munja-paramara",
+        "bhoja-paramara"
       ]
     },
     {
@@ -110,12 +160,20 @@
       "type": "dynasty-details",
       "summary": {
         "title": "सोलंकी / गुजरात के चालुक्य",
+        "title_en": "Solanki / Chalukyas of Gujarat",
         "period": "c. 940 – 1244 CE",
+        "period_en": "c. 940 – 1244 CE",
         "founder": "मूलराज",
-        "capital": "अन्हिलवाड़ पाटन"
+        "founder_en": "Mulraj",
+        "capital": "अन्हिलवाड़ पाटन",
+        "capital_en": "Anhilwad Patan"
       },
       "subItems": [
-        "solanki-details"
+        "solanki-details",
+        "mularaja-i",
+        "bhima-i-solanki",
+        "jayasimha-siddharaja",
+        "bhima-ii-solanki"
       ]
     },
     {
@@ -123,12 +181,20 @@
       "type": "dynasty-details",
       "summary": {
         "title": "कल्याणी के पश्चिमी चालुक्य",
+        "title_en": "Western Chalukyas of Kalyani",
         "period": "c. 973 – 1189 CE",
+        "period_en": "c. 973 – 1189 CE",
         "founder": "तैलप द्वितीय",
-        "capital": "मान्यखेट, बाद में कल्याणी"
+        "founder_en": "Tailapa II",
+        "capital": "मान्यखेट, बाद में कल्याणी",
+        "capital_en": "Manyakheta, later Kalyani"
       },
       "subItems": [
-        "kalyani-chalukya-details"
+        "kalyani-chalukya-details",
+        "tailapa-ii",
+        "someshvara-i",
+        "vikramaditya-vi",
+        "someshvara-iii"
       ]
     },
     {
@@ -136,12 +202,19 @@
       "type": "dynasty-details",
       "summary": {
         "title": "होयसल वंश (Hoysala Dynasty)",
+        "title_en": "Hoysala Dynasty",
         "period": "c. 1026 – 1343 CE",
+        "period_en": "c. 1026 – 1343 CE",
         "founder": "नृप काम द्वितीय (सल)",
-        "capital": "बेलूर, हलेबिडु"
+        "founder_en": "Nripa Kama II (Sala)",
+        "capital": "बेलूर, हलेबिडु",
+        "capital_en": "Belur, Halebidu"
       },
       "subItems": [
-        "hoysala-details"
+        "hoysala-details",
+        "vishnuvardhana-hoysala",
+        "ballala-ii-hoysala",
+        "ballala-iii-hoysala"
       ]
     },
     {
@@ -149,12 +222,18 @@
       "type": "dynasty-details",
       "summary": {
         "title": "गाहड़वाल वंश (Gahadavala Dynasty)",
+        "title_en": "Gahadavala Dynasty",
         "period": "c. 1080 – 1194 CE",
+        "period_en": "c. 1080 – 1194 CE",
         "founder": "चंद्रदेव",
-        "capital": "कन्नौज, वाराणसी"
+        "founder_en": "Chandradeva",
+        "capital": "कन्नौज, वाराणसी",
+        "capital_en": "Kannauj, Varanasi"
       },
       "subItems": [
-        "gahadavala-details"
+        "gahadavala-details",
+        "govindachandra-gahadavala",
+        "jayachandra-gahadavala"
       ]
     },
     {
@@ -162,12 +241,19 @@
       "type": "dynasty-details",
       "summary": {
         "title": "काकतीय वंश (Kakatiya Dynasty)",
+        "title_en": "Kakatiya Dynasty",
         "period": "c. 1083 – 1323 CE",
+        "period_en": "c. 1083 – 1323 CE",
         "founder": "प्रोल प्रथम / बेत राजा प्रथम",
-        "capital": "वारंगल"
+        "founder_en": "Prolla I / Beta Raja I",
+        "capital": "वारंगल",
+        "capital_en": "Warangal"
       },
       "subItems": [
-        "kakatiya-details"
+        "kakatiya-details",
+        "ganapatideva-kakatiya",
+        "rudrama-devi-kakatiya",
+        "prataparudra-kakatiya"
       ]
     }
   ]

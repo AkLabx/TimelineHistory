@@ -1,0 +1,15 @@
+{
+  "id": "mularaja-i",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "मूलराज प्रथम (Mularaja I)",
+    "title_en": "Mularaja I",
+    "reign": "c. 940 – 995 CE",
+    "reign_en": "c. 940 – 995 CE"
+  },
+  "reignDuration": 55,
+  "empireSize": 100000,
+  "imageUrl": "images/mularaja_i.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>सोलंकी वंश के संस्थापक</h5></div><div class=\"legacy-section-content\"><p>मूलराज प्रथम ने गुजरात में <strong>सोलंकी वंश (Chaulukyas of Gujarat)</strong> की स्थापना की। उन्होंने अन्हिलवाड़ पाटन (Anhilwara Patan) को अपनी राजधानी बनाया। उन्हें 'गुर्जर नरेश' कहा जाता था।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🕉️</span><h5>रुद्र महालय</h5></div><div class=\"legacy-section-content\"><p>वे शैव धर्म के अनुयायी थे और उन्होंने सिद्धपुर में प्रसिद्ध 'रुद्र महालय' मंदिर का निर्माण शुरू कराया था। उन्होंने सौराष्ट्र और कच्छ के शासकों को हराकर गुजरात के बड़े हिस्से को एकीकृत किया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>Founder of the Solanki Dynasty</h5></div><div class=\"legacy-section-content\"><p>Mularaja I founded the <strong>Solanki dynasty (Chaulukyas of Gujarat)</strong> in Gujarat. He made Anhilwara Patan his capital. He was known as 'Gurjara Naresh'.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🕉️</span><h5>Rudra Mahalaya</h5></div><div class=\"legacy-section-content\"><p>He was a follower of Shaivism and started the construction of the famous 'Rudra Mahalaya' temple in Siddhpur. He unified a large part of Gujarat by defeating the rulers of Saurashtra and Kutch.</p></div></div></div>"
+}

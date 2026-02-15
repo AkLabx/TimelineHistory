@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icons } from './Icons';
+import { useLanguage } from '../src/contexts/LanguageContext';
 
 /**
  * Props for the Navbar component.
@@ -56,6 +57,15 @@ const Navbar: React.FC<NavbarProps> = ({ onHome, onSearchOpen, onCompareOpen }) 
              )}
 
              <div className="hidden md:block h-6 w-px bg-stone-200"></div>
+
+             <button
+               onClick={() => {}}
+               className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-full bg-stone-100 text-stone-600 hover:bg-orange-50 hover:text-orange-700 transition-colors border border-stone-200"
+             >
+               <LanguageToggle />
+             </button>
+
+             <div className="hidden md:block h-6 w-px bg-stone-200"></div>
              
              <button 
                 onClick={onSearchOpen} 
@@ -69,6 +79,23 @@ const Navbar: React.FC<NavbarProps> = ({ onHome, onSearchOpen, onCompareOpen }) 
         </div>
       </div>
     </nav>
+  );
+};
+
+const LanguageToggle = () => {
+  const { language, toggleLanguage } = useLanguage();
+  return (
+    <div
+      className="flex items-center cursor-pointer select-none"
+      onClick={(e) => { e.stopPropagation(); toggleLanguage(); }}
+      title={language === 'hi' ? "Switch to English" : "हिन्दी में स्विच करें"}
+    >
+      <span className={`mr-1.5 ${language === 'hi' ? 'font-bold text-orange-700' : 'text-stone-400'}`}>HI</span>
+      <div className={`w-8 h-4 rounded-full p-0.5 transition-colors duration-300 relative ${language === 'hi' ? 'bg-orange-200' : 'bg-indigo-100'}`}>
+         <div className={`w-3 h-3 rounded-full bg-white shadow-sm transform transition-transform duration-300 ${language === 'hi' ? 'translate-x-0' : 'translate-x-4'}`}></div>
+      </div>
+      <span className={`ml-1.5 ${language === 'en' ? 'font-bold text-indigo-700' : 'text-stone-400'}`}>EN</span>
+    </div>
   );
 };
 

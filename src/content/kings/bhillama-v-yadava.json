@@ -1,0 +1,23 @@
+{
+  "id": "bhillama-v-yadava",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "भिल्लम पंचम (Bhillama V)",
+    "title_en": "Bhillama V",
+    "reign": "c. 1173 – 1192 CE",
+    "reign_en": "c. 1173 – 1192 CE",
+    "period": "मध्यकालीन",
+    "period_en": "Medieval",
+    "founder": "भिल्लम पंचम (Bhillama V)",
+    "founder_en": "Bhillama V",
+    "capital": "देवगिरि (Devagiri)",
+    "capital_en": "Devagiri",
+    "subtitle": "यादव वंश के संस्थापक, जिन्होंने देवगिरि शहर की स्थापना की।",
+    "subtitle_en": "Founder of the Yadava dynasty, who established the city of Devagiri."
+  },
+  "reignDuration": 19,
+  "empireSize": 150000,
+  "imageUrl": "images/bhillama_v.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏰</span><h5>देवगिरि के संस्थापक</h5></div><div class=\"legacy-section-content\"><p>भिल्लम पंचम ने सेउण (यादव) वंश को चालुक्यों की अधीनता से मुक्त करके एक स्वतंत्र साम्राज्य की स्थापना की। उन्होंने <strong>देवगिरि (Devagiri)</strong> शहर की स्थापना की और इसे अपनी राजधानी बनाया। देवगिरि का किला भारत के सबसे अभेद्य किलों में से एक माना जाता है।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>होयसलों से संघर्ष</h5></div><div class=\"legacy-section-content\"><p>उनका होयसल राजा बल्लाल द्वितीय के साथ कड़ा संघर्ष हुआ। 1192 ईस्वी में गदग (Lakkundi) की लड़ाई में उन्हें हार का सामना करना पड़ा, जिससे तुंगभद्रा नदी दोनों राज्यों के बीच की सीमा बन गई।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 🏰</span><h5>Founder of Devagiri</h5></div><div class=\"legacy-section-content\"><p>Bhillama V freed the Seuna (Yadava) dynasty from the subordination of the Chalukyas and established an independent empire. He founded the city of <strong>Devagiri</strong> and made it his capital. The fort of Devagiri is considered one of the most impregnable forts in India.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> ⚔️</span><h5>Conflict with Hoysalas</h5></div><div class=\"legacy-section-content\"><p>He had a fierce struggle with the Hoysala king Ballala II. He faced defeat in the Battle of Gadag (Lakkundi) in 1192 CE, making the Tungabhadra river the boundary between the two states.</p></div></div></div>"
+}

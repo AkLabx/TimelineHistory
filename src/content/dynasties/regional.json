@@ -1,15 +1,20 @@
 {
   "id": "regional",
   "title": "भाग IX: अन्य क्षेत्रीय और पौराणिक राजवंश",
+  "title_en": "Part IX: Other Regional and Legendary Dynasties",
   "items": [
     {
       "id": "gonanda-dynasty",
       "type": "dynasty-details",
       "summary": {
         "title": "गोनंद वंश (पौराणिक) (Gonanda Dynasty)",
+        "title_en": "Gonanda Dynasty (Legendary)",
         "period": "Legendary",
+        "period_en": "Legendary",
         "founder": "गोनंद प्रथम",
-        "capital": "श्रीनगर"
+        "founder_en": "Gonanda I",
+        "capital": "श्रीनगर",
+        "capital_en": "Srinagar"
       },
       "subItems": [
         "gonanda-details"
@@ -20,9 +25,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "नागवंशी वंश (छोटानागपुर)",
+        "title_en": "Nagvanshi Dynasty (Chotanagpur)",
         "period": "Legendary - 19th Cent. CE",
+        "period_en": "Legendary - 19th Cent. CE",
         "founder": "फणि मुकुट राय",
-        "capital": "सुतियाम्बे"
+        "founder_en": "Phani Mukut Rai",
+        "capital": "सुतियाम्बे",
+        "capital_en": "Sutiyambe"
       },
       "subItems": [
         "nagvanshi-details"
@@ -33,9 +42,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "कछवाहा वंश (Kachwaha Dynasty)",
+        "title_en": "Kachwaha Dynasty",
         "period": "c. 11th Cent. CE - 1949",
+        "period_en": "c. 11th Cent. CE - 1949",
         "founder": "दूल्हा राय",
-        "capital": "आमेर, बाद में जयपुर"
+        "founder_en": "Dulha Rai",
+        "capital": "आमेर, बाद में जयपुर",
+        "capital_en": "Amer, later Jaipur"
       },
       "subItems": [
         "kachwaha-details"
@@ -46,9 +59,13 @@
       "type": "dynasty-details",
       "summary": {
         "title": "जयंतिया साम्राज्य (Jaintia Kingdom)",
+        "title_en": "Jaintia Kingdom",
         "period": "c. 1500 – 1835 CE",
+        "period_en": "c. 1500 – 1835 CE",
         "founder": "का खूरा / प्रभात राय",
-        "capital": "जयंतियापुर"
+        "founder_en": "Ka Khura / Prabhat Rai",
+        "capital": "जयंतियापुर",
+        "capital_en": "Jaintiapur"
       },
       "subItems": [
         "jaintia-details"

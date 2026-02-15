@@ -1,0 +1,15 @@
+{
+  "id": "vishnugupta",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "विष्णुगुप्त (Vishnugupta)",
+    "title_en": "Vishnugupta",
+    "reign": "c. 540–550 CE",
+    "reign_en": "c. 540–550 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏁</span><h5>अंतिम गुप्त सम्राट</h5></div><div class=\"legacy-section-content\"><p>ऐतिहासिक रूप से ज्ञात गुप्त वंश के अंतिम शासक। इनके बाद महान गुप्त साम्राज्य पूरी तरह समाप्त हो गया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>दामोदरपुर ताम्रपत्र (543 CE):</strong> इसमें कोटिवर्ष विषय (उत्तरी बंगाल) में भूमि अनुदान का उल्लेख है।</li><li><strong>उपाधि:</strong> चंद्रादित्य (संभावित)।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏁</span><h5>Last Gupta Emperor</h5></div><div class=\"legacy-section-content\"><p>The last historically known ruler of the Gupta dynasty. After him, the great Gupta Empire completely disintegrated.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Damodarpur Copper Plate (543 CE):</strong> Mentions a land grant in Kotivarsha Vishaya (Northern Bengal).</li><li><strong>Title:</strong> Chandraditya (probable).</li></ul></div></div></div>",
+  "reignDuration": 10,
+  "empireSize": 200000,
+  "imageUrl": "images/vishnugupta.jpg"
+}

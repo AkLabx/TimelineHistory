@@ -3,10 +3,21 @@
   "type": "king-details king-color-3 enhanced-profile",
   "summary": {
     "title": "फिरोज शाह तुगलक (Firuz Shah Tughlaq)",
-    "reign": "1351–1388 CE"
+    "title_en": "Firuz Shah Tughlaq",
+    "reign": "1351–1388 CE",
+    "reign_en": "1351–1388 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "imageUrl": "images/sultan_firuz.jpg",
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🌸</span><h5>आस्था और दर्शन</h5></div><div class=\"legacy-section-content\"><p>एक धर्मनिष्ठ शासक जिसने उलेमा को खुश करने की कोशिश की और शरिया के अनुसार शासन किया; गैर-मुसलमानों पर जजिया लगाया।</p><div class=\"profile-tags\"><span class=\"profile-tag\">कल्याणकारी शासक</span></div></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>संस्कृति और संरक्षण</h5></div><div class=\"legacy-section-content\"><p>अपने सार्वजनिक कार्यों के लिए जाना जाता है, उसने कई नहरें, अस्पताल (दार-उल-शफा), और शहर (हिसार, फिरोजाबाद, जौनपुर) बनवाए। उसने गरीबों के लिए दीवान-ए-खैरात और दासों के लिए दीवान-ए-बंदगान की भी स्थापना की।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📜</span><h5>शासन और प्रशासन</h5></div><div class=\"legacy-section-content\"><p>उसने इक्तादारी प्रथा को वंशानुगत बना दिया, जिससे सेना कमजोर हो गई।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🌸</span><h5>Piety and Philosophy</h5></div><div class=\"legacy-section-content\"><p>A devout ruler who tried to appease the Ulema and ruled according to Sharia; imposed Jizya on non-Muslims.</p><div class=\"profile-tags\"><span class=\"profile-tag\">Welfare Ruler</span></div></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>Culture and Patronage</h5></div><div class=\"legacy-section-content\"><p>Known for his public works, he built several canals, hospitals (Dar-ul-Shifa), and cities (Hisar, Firozabad, Jaunpur). He also established Diwan-e-Khairat for the poor and Diwan-e-Bandgan for slaves.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📜</span><h5>Rule and Administration</h5></div><div class=\"legacy-section-content\"><p>He made the Iqta system hereditary, which weakened the army.</p></div></div></div>",
   "reignDuration": 37,
   "empireSize": 2500000
 }

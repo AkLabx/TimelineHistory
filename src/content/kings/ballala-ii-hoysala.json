@@ -1,0 +1,23 @@
+{
+  "id": "ballala-ii-hoysala",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "वीर बल्लाल द्वितीय (Ballala II)",
+    "title_en": "Veera Ballala II",
+    "reign": "c. 1173 – 1220 CE",
+    "reign_en": "c. 1173 – 1220 CE",
+    "period": "होयसल राजवंश",
+    "period_en": "Hoysala Dynasty",
+    "founder": "होयसल राजवंश",
+    "founder_en": "Hoysala Dynasty",
+    "capital": "बेलूर, द्वारसमुद्र",
+    "capital_en": "Belur, Dwarasamudra",
+    "subtitle": "होयसल राजवंश को स्वतंत्र बनाने वाले और चोलों के रक्षक के रूप में जाने जाते हैं।",
+    "subtitle_en": "Known for making the Hoysala dynasty independent and acting as protector of the Cholas."
+  },
+  "reignDuration": 47,
+  "empireSize": 200000,
+  "imageUrl": "images/ballala_ii.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>स्वतंत्र सम्राट</h5></div><div class=\"legacy-section-content\"><p>वीर बल्लाल द्वितीय ने होयसलों को चालुक्यों की अधीनता से पूरी तरह मुक्त किया और 'दक्षिणा चक्रवर्ती' (दक्षिण का सम्राट) की उपाधि धारण की। उन्होंने यादों को हराकर अपनी उत्तरी सीमाओं को सुरक्षित किया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛡️</span><h5>चोल रक्षक</h5></div><div class=\"legacy-section-content\"><p>जब पांड्यों ने चोल साम्राज्य पर आक्रमण किया, तो बल्लाल द्वितीय ने चोल राजा कुलोत्तुंग तृतीय की मदद की और चोल राज्य को बचाया, जिसके लिए उन्हें 'चोल राज्य प्रतिष्ठापनाचार्य' कहा गया। कन्नड़ कवि <strong>जन्ना (Janna)</strong> उनके दरबार में थे।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 👑</span><h5>Independent Emperor</h5></div><div class=\"legacy-section-content\"><p>Veera Ballala II completely freed the Hoysalas from the subordination of the Chalukyas and assumed the title 'Dakshina Chakravarti' (Emperor of the South). He secured his northern borders by defeating the Yadavas.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 🛡️</span><h5>Protector of the Cholas</h5></div><div class=\"legacy-section-content\"><p>When the Pandyas invaded the Chola empire, Ballala II aided the Chola king Kulottunga III and saved the Chola kingdom, for which he was called 'Chola Rajya Pratishthapanacharya'. The Kannada poet <strong>Janna</strong> was in his court.</p></div></div></div>"
+}

@@ -1,22 +1,29 @@
 {
   "id": "maurya",
   "title": "भाग III: मौर्य साम्राज्य",
+  "title_en": "Part III: Mauryan Empire",
   "items": [
     {
       "type": "event-details",
       "summary": {
-        "title": "प्रस्तावना और स्रोत"
+        "title": "प्रस्तावना और स्रोत",
+        "title_en": "Introduction and Sources"
       },
-      "content": "<ul><li>चौथी शताब्दी ईसा पूर्व का भारत राजनीतिक उथल-पुथल का केंद्र था। पश्चिमोत्तर में सिकंदर के आक्रमण ने एक शून्य (vacuum) पैदा कर दिया था, और पूर्व में नंद वंश का शासक धनानंद अपने दमनकारी करों (oppressive taxes) के कारण जनता में अलोकप्रिय था।</li><li>इसी पृष्ठभूमि में, एक साधारण युवक चंद्रगुप्त (Chandragupta) ने अपने गुरु, एक असाधारण रणनीतिकार चाणक्य (Chanakya), के मार्गदर्शन में इतिहास की धारा को हमेशा के लिए बदल दिया।</li></ul><h4>मौर्य इतिहास के स्रोत (Sources of Mauryan History):</h4><ul><li><strong>साहित्यिक (Literary):</strong> कौटिल्य का 'अर्थशास्त्र', मेगस्थनीज की 'इंडिका', विशाखदत्त का नाटक 'मुद्राराक्षस' (Mudrarakshasa), और पुराण, बौद्ध एवं जैन ग्रंथ।</li><li><strong>पुरातात्विक (Archaeological):</strong> अशोक के शिलालेख और स्तंभ लेख (Rock Edicts and Pillar Edicts), चांदी और तांबे के आहत सिक्के (Punch-marked Coins)।</li></ul>"
+      "content": "<ul><li>चौथी शताब्दी ईसा पूर्व का भारत राजनीतिक उथल-पुथल का केंद्र था। पश्चिमोत्तर में सिकंदर के आक्रमण ने एक शून्य (vacuum) पैदा कर दिया था, और पूर्व में नंद वंश का शासक धनानंद अपने दमनकारी करों (oppressive taxes) के कारण जनता में अलोकप्रिय था।</li><li>इसी पृष्ठभूमि में, एक साधारण युवक चंद्रगुप्त (Chandragupta) ने अपने गुरु, एक असाधारण रणनीतिकार चाणक्य (Chanakya), के मार्गदर्शन में इतिहास की धारा को हमेशा के लिए बदल दिया।</li></ul><h4>मौर्य इतिहास के स्रोत (Sources of Mauryan History):</h4><ul><li><strong>साहित्यिक (Literary):</strong> कौटिल्य का 'अर्थशास्त्र', मेगस्थनीज की 'इंडिका', विशाखदत्त का नाटक 'मुद्राराक्षस' (Mudrarakshasa), और पुराण, बौद्ध एवं जैन ग्रंथ।</li><li><strong>पुरातात्विक (Archaeological):</strong> अशोक के शिलालेख और स्तंभ लेख (Rock Edicts and Pillar Edicts), चांदी और तांबे के आहत सिक्के (Punch-marked Coins)।</li></ul>",
+      "content_en": "<ul><li>India in the 4th century BCE was a center of political turmoil. Alexander's invasion in the northwest had created a vacuum, and in the east, the Nand dynasty's ruler Dhanananda was unpopular among the public due to his oppressive taxes.</li><li>It was against this backdrop that a common youth, Chandragupta, under the guidance of his guru, an extraordinary strategist Chanakya, changed the course of history forever.</li></ul><h4>Sources of Mauryan History:</h4><ul><li><strong>Literary:</strong> Kautilya's 'Arthashastra', Megasthenes' 'Indica', Vishakhadatta's play 'Mudrarakshasa', and Puranas, Buddhist and Jain texts.</li><li><strong>Archaeological:</strong> Ashoka's Rock Edicts and Pillar Edicts, silver and copper punch-marked coins.</li></ul>"
     },
     {
       "id": "maurya-dynasty-details",
       "type": "dynasty-details",
       "summary": {
         "title": "मौर्य वंश (Maurya Dynasty)",
+        "title_en": "Maurya Dynasty",
         "period": "c. 322–185 BCE",
+        "period_en": "c. 322–185 BCE",
         "founder": "चंद्रगुप्त मौर्य",
-        "capital": "पाटलिपुत्र"
+        "founder_en": "Chandragupta Maurya",
+        "capital": "पाटलिपुत्र",
+        "capital_en": "Pataliputra"
       },
       "subItems": [
         "chandragupta-maurya",

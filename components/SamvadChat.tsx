@@ -735,7 +735,7 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
                     </button>
                 </div>
                 <p className="text-center text-stone-600 text-[10px] mt-6 font-mono opacity-50">
-                    Gemini Live • {status} • Voice: {voiceGender === 'male' ? 'Fenrir' : 'Kore'}
+                    AalokGPT Live • {status} • Voice: {voiceGender === 'male' ? 'Fenrir' : 'Kore'}
                 </p>
             </div>
         </div>

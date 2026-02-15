@@ -1,0 +1,15 @@
+{
+  "id": "shah-jahan-iii",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "शाहजहां तृतीय (Shah Jahan III)",
+    "title_en": "Shah Jahan III",
+    "reign": "1759 – 1760 CE",
+    "reign_en": "1759 – 1760 CE"
+  },
+  "reignDuration": 1,
+  "empireSize": 1500000,
+  "imageUrl": "images/shah_jahan_iii.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>अल्पकाल</h5></div><div class=\"legacy-section-content\"><p><strong>मूल नाम:</strong> मुही-उल- millat.<br>वजीर इमाद-उल-मुल्क ने आलमगीर II की हत्या के बाद इसे गद्दी पर बैठाया। बाद में मराठों ने इसे हटाकर शाह आलम II को मान्यता दी।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Short Lived</h5></div><div class=\"legacy-section-content\"><p><strong>Original Name:</strong> Muhi-ul-millat.<br>The Wazir Imad-ul-Mulk placed him on the throne after the assassination of Alamgir II. Later, the Marathas removed him and recognized Shah Alam II.</p></div></div></div>"
+}

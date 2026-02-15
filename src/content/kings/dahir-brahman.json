@@ -1,0 +1,14 @@
+{
+  "id": "dahir-brahman",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "राजा दाहिर (Raja Dahir)",
+    "title_en": "Raja Dahir",
+    "reign": "c. 679 – 712 CE"
+  },
+  "reignDuration": 33,
+  "empireSize": 120000,
+  "imageUrl": "images/raja_dahir.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>अरब आक्रमण</h5></div><div class=\"legacy-section-content\"><p>राजा दाहिर सिंध के अंतिम हिंदू शासक थे। उनके शासनकाल में 712 ईस्वी में मुहम्मद बिन कासिम के नेतृत्व में अरबों ने सिंध पर आक्रमण किया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛡️</span><h5>रेवार का युद्ध</h5></div><div class=\"legacy-section-content\"><p>दाहिर ने वीरतापूर्वक <strong>रेवार के युद्ध (Battle of Rewar/Aror)</strong> में अरब सेना का सामना किया लेकिन वे युद्ध में मारे गए। उनकी पत्नियों और बेटियों ने भी किले की रक्षा के लिए संघर्ष किया और जौहर किया। इस घटना ने भारतीय इतिहास में एक नए अध्याय की शुरुआत की।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>Arab Invasion</h5></div><div class=\"legacy-section-content\"><p>Raja Dahir was the last Hindu ruler of Sindh. During his reign, in 712 CE, the Arabs, led by Muhammad bin Qasim, invaded Sindh.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛡️</span><h5>Battle of Rewar</h5></div><div class=\"legacy-section-content\"><p>Dahir bravely confronted the Arab army in the <strong>Battle of Rewar (Battle of Rewar/Aror)</strong> but was killed in the battle. His wives and daughters also fought to defend the fort and committed Jauhar. This event marked the beginning of a new chapter in Indian history.</p></div></div></div>"
+}

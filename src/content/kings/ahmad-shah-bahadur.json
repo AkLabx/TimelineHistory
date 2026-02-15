@@ -1,0 +1,15 @@
+{
+  "id": "ahmad-shah-bahadur",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "अहमद शाह बहादुर (Ahmad Shah Bahadur)",
+    "title_en": "Ahmad Shah Bahadur",
+    "reign": "1748 – 1754 CE",
+    "reign_en": "1748 – 1754 CE"
+  },
+  "reignDuration": 6,
+  "empireSize": 2500000,
+  "imageUrl": "images/ahmad_shah_bahadur.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📉</span><h5>अयोग्य शासक</h5></div><div class=\"legacy-section-content\"><p>वह एक अयोग्य शासक था जिसने प्रशासन अपने वजीर इमाद-उल-मुल्क के हाथों में छोड़ दिया था। उसके समय में अहमद शाह अब्दाली ने भारत पर कई बार आक्रमण किए और पंजाब व मुल्तान को जीत लिया। अंततः इमाद-उल-मुल्क ने उसे अंधा कर गद्दी से हटा दिया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📉</span><h5>Incompetent Ruler</h5></div><div class=\"legacy-section-content\"><p>He was an incompetent ruler who left the administration in the hands of his Wazir, Imad-ul-Mulk. During his time, Ahmad Shah Abdali invaded India several times and conquered Punjab and Multan. Finally, Imad-ul-Mulk blinded him and deposed him.</p></div></div></div>"
+}

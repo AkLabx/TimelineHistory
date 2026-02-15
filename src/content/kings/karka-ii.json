@@ -1,0 +1,23 @@
+{
+  "id": "karka-ii",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "कर्क द्वितीय (Karka II)",
+    "title_en": "Karka II",
+    "reign": "c. 972 – 973 CE",
+    "reign_en": "c. 972 – 973 CE",
+    "period": "मध्यकालीन",
+    "period_en": "Medieval",
+    "founder": "राष्ट्रकूट वंश",
+    "founder_en": "Rashtrakuta Dynasty",
+    "capital": "मान्यखेट",
+    "capital_en": "Manyakheta",
+    "subtitle": "राष्ट्रकूट राजवंश के अंतिम शासक, जिनका शासनकाल बहुत छोटा था।",
+    "subtitle_en": "The last ruler of the Rashtrakuta dynasty, whose reign was very short."
+  },
+  "reignDuration": 1,
+  "empireSize": 0,
+  "imageUrl": "images/karka_ii.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🔚</span><h5>राजवंश का अंत</h5></div><div class=\"legacy-section-content\"><p>कर्क द्वितीय राष्ट्रकूट वंश के अंतिम शासक थे। उनका शासनकाल बहुत छोटा था। वे एक कमजोर शासक थे और अपने सामंतों को नियंत्रित नहीं कर सके।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>तैलप द्वितीय द्वारा पराजय</h5></div><div class=\"legacy-section-content\"><p>973 ईस्वी में, उनके ही एक सामंत, चालुक्य वंश के <strong>तैलप द्वितीय (Tailapa II)</strong> ने उन्हें पराजित कर दिया। इस हार के साथ ही गौरवशाली राष्ट्रकूट साम्राज्य का अंत हो गया और 'कल्याणी के चालुक्य' (पश्चिमी चालुक्य) वंश का उदय हुआ।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 🔚</span><h5>End of the Dynasty</h5></div><div class=\"legacy-section-content\"><p>Karka II was the last ruler of the Rashtrakuta dynasty. His reign was very short. He was a weak ruler and could not control his feudatories.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> ⚔️</span><h5>Defeat by Tailapa II</h5></div><div class=\"legacy-section-content\"><p>In 973 CE, one of his feudatories, <strong>Tailapa II</strong> of the Chalukya dynasty, defeated him. With this defeat, the glorious Rashtrakuta empire came to an end, and the dynasty of 'Chalukyas of Kalyani' (Western Chalukyas) rose to power.</p></div></div></div>"
+}

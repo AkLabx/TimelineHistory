@@ -4,6 +4,8 @@ import { ViewState } from './types';
 import { useNavigation } from './hooks/useNavigation';
 import { useSearch } from './hooks/useSearch';
 import { DYNASTY_DATA, KINGS_DATA } from './data';
+import { useLanguage } from './src/contexts/LanguageContext';
+import { getLocalized } from './src/utils/language';
 
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
@@ -28,6 +30,7 @@ export default function App() {
   const search = useSearch();
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   const [samvadFigureId, setSamvadFigureId] = useState<string | null>(null);
+  const { language } = useLanguage();
 
   /**
    * Helper to resolve the active Era/Period context for breadcrumbs and AI context.
@@ -65,7 +68,7 @@ export default function App() {
       {/* Breadcrumbs - Hide on Dashboard and Compare View */}
       {navigation.view !== ViewState.DASHBOARD && navigation.view !== ViewState.COMPARE && (
           <div className="bg-white border-b border-orange-100 py-3 px-4 sm:px-8 text-sm text-slate-500 flex items-center shadow-sm whitespace-nowrap overflow-x-auto">
-             <span onClick={navigation.goHome} className="cursor-pointer hover:text-orange-600 font-medium">Home</span>
+             <span onClick={navigation.goHome} className="cursor-pointer hover:text-orange-600 font-medium">{language === 'en' ? 'Home' : 'मुख्य पृष्ठ'}</span>
              
              {/* Show Period Breadcrumb (either selected or parent of figure) */}
              {activeContext.period && (
@@ -79,7 +82,7 @@ export default function App() {
                         }} 
                         className={`cursor-pointer hover:text-orange-600 ${!navigation.selectedFigure ? 'font-bold text-orange-800' : ''}`}
                     >
-                        {activeContext.period.title.split(':')[0]}
+                        {getLocalized(activeContext.period, 'title', language).split(':')[0]}
                     </span>
                 </>
              )}
@@ -88,7 +91,7 @@ export default function App() {
              {navigation.selectedFigure && (
                 <>
                     <span className="mx-2 text-slate-300">/</span>
-                    <span className="font-bold text-orange-800">{navigation.selectedFigure.summary.title}</span>
+                    <span className="font-bold text-orange-800">{getLocalized(navigation.selectedFigure.summary, 'title', language)}</span>
                 </>
              )}
           </div>

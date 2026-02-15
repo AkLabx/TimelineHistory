@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { PART_DATA } from '../data';
 import { Icons } from './Icons';
+import { useLanguage } from '../src/contexts/LanguageContext';
+import { getLocalized } from '../src/utils/language';
 
 /**
  * Props for the Dashboard component.
@@ -20,13 +22,21 @@ interface DashboardProps {
  */
 const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string) => void }> = ({ card, index, onSelect }) => {
     const [imgError, setImgError] = useState(false);
+    const { language } = useLanguage();
 
     // Construct the correct path using Vite's Base URL
     const imagePath = card.imageUrl ? `${(import.meta as any).env.BASE_URL}${card.imageUrl}` : '';
+    const title = getLocalized(card, 'title', language);
+    // Subtitle is currently often English in data, but might be Hindi in 'title' field?
+    // Data says: title="मगध का उत्कर्ष", subtitle="Rise of Magadha".
+    // If English, we might want title="Rise of Magadha" and subtitle="...Hindi?" or just English everywhere?
+    // Prompt said: "translate all the existing Hindi content... into English... adding _en suffixes".
+    // So if lang=en, title should be title_en.
 
     return (
           <div 
                onClick={() => onSelect(card.target)}
+               data-testid={`card-${card.target}`}
                className="group relative h-[450px] w-full rounded-3xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ring-1 ring-slate-900/5 bg-slate-900"
                style={{ animationDelay: `${index * 100}ms` }}
           >
@@ -35,7 +45,7 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
                {!imgError && card.imageUrl ? (
                    <img 
                       src={imagePath} 
-                      alt={card.title} 
+                      alt={title}
                       className="w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-110 transition-all duration-1000 ease-out" 
                       loading="lazy"
                       onError={() => setImgError(true)}
@@ -61,7 +71,7 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
                   </span>
                   
                   <h3 className="text-3xl font-bold text-white mb-2 heading-text leading-tight group-hover:text-orange-200 transition-colors drop-shadow-md">
-                      {card.title}
+                      {title}
                   </h3>
                   
                   <p className="text-slate-300 text-lg font-serif italic mb-6 border-l-2 border-orange-500 pl-4">
@@ -69,7 +79,7 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
                   </p>
                   
                   <div className="flex items-center text-white font-medium opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform translate-y-2 group-hover:translate-y-0">
-                    <span className="mr-2 border-b border-transparent hover:border-white transition-all">Start Journey</span>
+                    <span className="mr-2 border-b border-transparent hover:border-white transition-all">{language === 'en' ? 'Start Journey' : 'यात्रा शुरू करें'}</span>
                     <Icons.ChevronRight />
                   </div>
               </div>
@@ -91,6 +101,8 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
  * @returns The rendered dashboard.
  */
 const Dashboard: React.FC<DashboardProps> = ({ onSelectPeriod }) => {
+  const { language } = useLanguage();
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-20 space-y-6 animate-in slide-in-from-bottom-5 duration-700">
@@ -98,7 +110,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onSelectPeriod }) => {
             Bharat <span className="text-orange-600">Itihas</span>
         </h1>
         <p className="text-xl md:text-3xl text-slate-600 max-w-4xl mx-auto leading-relaxed serif-text">
-            {PART_DATA.subtitle}
+            {getLocalized(PART_DATA, 'subtitle', language)}
         </p>
         <div className="w-32 h-1.5 bg-gradient-to-r from-orange-400 to-amber-600 mx-auto rounded-full mt-10"></div>
       </div>

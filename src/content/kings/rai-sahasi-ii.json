@@ -1,0 +1,15 @@
+{
+  "id": "rai-sahasi-ii",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "राय साहसी द्वितीय (Rai Sahasi II)",
+    "title_en": "Rai Sahasi II",
+    "reign": "c. 600–632 CE",
+    "reign_en": "c. 600–632 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏁</span><h5>राय वंश का अंतिम राजा</h5></div><div class=\"legacy-section-content\"><p>सिंध के अंतिम बौद्ध राजा। इनका कोई पुत्र नहीं था।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🎭</span><h5>चच का उदय</h5></div><div class=\"legacy-section-content\"><p>इन्होंने एक कश्मीरी ब्राह्मण 'चच' (Chach) को अपना मंत्री बनाया। चच ने रानी 'सोहन देवी' (Sohan Devi) के साथ मिलकर षड्यंत्र रचा।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>अंत:</strong> राय साहसी की मृत्यु के बाद, चच ने गद्दी हथिया ली और ब्राह्मण वंश (Brahman Dynasty of Sindh) की स्थापना की।</li><li><strong>ह्वेन त्सांग:</strong> 641 ई. में सिंध आया और राजा को 'शूद्र' (संभवतः बौद्ध प्रभाव के कारण) बताया।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏁</span><h5>Last King of the Rai Dynasty</h5></div><div class=\"legacy-section-content\"><p>The last Buddhist king of Sindh. He had no sons.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🎭</span><h5>Rise of Chach</h5></div><div class=\"legacy-section-content\"><p>He appointed a Kashmiri Brahmin named 'Chach' as his minister. Chach conspired with Queen 'Sohan Devi'.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>End:</strong> After the death of Rai Sahasi, Chach seized the throne and established the Brahman Dynasty of Sindh.</li><li><strong>Hiuen Tsang:</strong> Visited Sindh in 641 CE and described the king as 'Shudra' (possibly due to Buddhist influence).</li></ul></div></div></div>",
+  "reignDuration": 32,
+  "empireSize": 500000,
+  "imageUrl": "images/rai-sahasi-ii.jpg"
+}

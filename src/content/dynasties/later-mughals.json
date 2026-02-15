@@ -1,0 +1,38 @@
+{
+  "id": "later-mughals",
+  "title": "उत्तरवर्ती मुगल शासक (Later Mughals)",
+  "title_en": "Later Mughals",
+  "parent": "mughal",
+  "items": [
+    {
+      "id": "later-mughal-intro",
+      "type": "dynasty-details",
+      "summary": {
+        "title": "मुगल साम्राज्य का पतन",
+        "title_en": "Decline of the Mughal Empire",
+        "period": "1707 – 1857 CE",
+        "period_en": "1707 – 1857 CE",
+        "founder": "बहादुर शाह प्रथम (मुअज्जम)",
+        "founder_en": "Bahadur Shah I (Mu'azzam)",
+        "capital": "दिल्ली",
+        "capital_en": "Delhi"
+      },
+      "subItems": [
+        "bahadur-shah-i",
+        "jahandar-shah",
+        "farrukhsiyar",
+        "rafi-ul-darjat",
+        "shah-jahan-ii",
+        "nikusiyar",
+        "muhammad-ibrahim",
+        "muhammad-shah-rangeela",
+        "ahmad-shah-bahadur",
+        "alamgir-ii",
+        "shah-jahan-iii",
+        "shah-alam-ii",
+        "akbar-ii",
+        "bahadur-shah-ii"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, KeyboardEvent } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Icons } from './Icons';
 import { SearchResult, EntityType } from '../types';
+import { useLanguage } from '../src/contexts/LanguageContext';
 
 /**
  * Props for the SearchModal component.
@@ -39,6 +41,8 @@ const SearchModal: React.FC<SearchModalProps> = ({
   onSelectFigure 
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const listRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
   // Reset selection when query changes
   useEffect(() => {
@@ -78,6 +82,42 @@ const SearchModal: React.FC<SearchModalProps> = ({
       onClose();
     }
   };
+  }, [query, results]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIndex(prev => (prev < results.length - 1 ? prev + 1 : prev));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIndex(prev => (prev > 0 ? prev - 1 : prev));
+      } else if (e.key === 'Enter' && selectedIndex >= 0) {
+        e.preventDefault();
+        const result = results[selectedIndex];
+        if (result) {
+            if (result.type === EntityType.ERA) onSelectPeriod(result.id);
+            if (result.type === EntityType.DYNASTY) onSelectPeriod(result.parentId || result.id);
+            if (result.type === EntityType.FIGURE) onSelectFigure(result.id);
+            if (result.type !== EntityType.TERM) onClose();
+        }
+      } else if (e.key === 'Escape') {
+          onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, results, selectedIndex, onSelectPeriod, onSelectFigure, onClose]);
+
+  // Scroll into view logic
+  useEffect(() => {
+      const activeItem = listRef.current?.children[selectedIndex] as HTMLElement;
+      if (activeItem) {
+          activeItem.scrollIntoView({ block: 'nearest' });
+      }
+  }, [selectedIndex]);
 
   if (!isOpen) return null;
 
@@ -89,36 +129,41 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 <div className="text-slate-400"><Icons.Search /></div>
                 <input 
                     type="text" 
-                    placeholder="Search history (e.g. Ashoka, Magadha, Jizya)..." 
+                    placeholder={language === 'en' ? "Search history (e.g. Ashoka, Magadha, Jizya)..." : "इतिहास खोजें (उदा. अशोक, मगध, जजिया)..."}
                     className="w-full ml-3 text-lg outline-none text-slate-900 placeholder-slate-400 h-10 bg-transparent font-serif"
                     autoFocus
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    aria-activedescendant={selectedIndex >= 0 ? `result-${selectedIndex}` : undefined}
-                    aria-autocomplete="list"
-                    aria-controls="search-results-list"
-                    aria-expanded={results.length > 0}
-                    role="combobox"
+                    aria-label="Search history"
                 />
-                <button onClick={onClose} className="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1 hover:bg-slate-200 transition">
+                <button
+                    onClick={onClose}
+                    aria-label="Close search"
+                    className="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1 hover:bg-slate-200 transition"
+                >
                     <Icons.X />
                 </button>
             </div>
-            <div className="max-h-[60vh] overflow-y-auto p-2" role="listbox" id="search-results-list">
+            <div className="max-h-[60vh] overflow-y-auto p-2" ref={listRef}>
                 {results.length === 0 && query && (
                     <div className="text-center py-12 text-slate-500">
-                        <p>No results found for "<span className="font-semibold text-slate-700">{query}</span>"</p>
+                        <p>{language === 'en' ? "No results found for" : "कोई परिणाम नहीं मिला"} "<span className="font-semibold text-slate-700">{query}</span>"</p>
                     </div>
                 )}
                 {results.map((result, index) => (
                     <div 
                         key={`${result.type}-${result.id}`}
-                        id={`result-${index}`}
-                        role="option"
-                        aria-selected={index === selectedIndex}
-                        onClick={() => handleSelect(result)}
-                        className={`p-4 hover:bg-orange-50 rounded-xl cursor-pointer group flex items-start border-b border-transparent hover:border-orange-100 transition-all ${result.type === EntityType.TERM ? 'cursor-default' : ''} ${index === selectedIndex ? 'bg-orange-50 ring-1 ring-inset ring-orange-200' : ''}`}
+                        onClick={() => {
+                            if (result.type === EntityType.ERA) onSelectPeriod(result.id);
+                            if (result.type === EntityType.DYNASTY) onSelectPeriod(result.parentId || result.id); // Dynasties are inside Periods
+                            if (result.type === EntityType.FIGURE) onSelectFigure(result.id);
+                            // Terms usually don't navigate, but maybe we can show definition expanded? 
+                            // For now close.
+                            if (result.type !== EntityType.TERM) onClose();
+                        }}
+                        className={`p-4 hover:bg-orange-50 rounded-xl cursor-pointer group flex items-start border-b transition-all
+                            ${index === selectedIndex ? 'bg-orange-50 border-orange-200 ring-1 ring-orange-200' : 'border-transparent hover:border-orange-100'}
+                            ${result.type === EntityType.TERM ? 'cursor-default' : ''}`}
                     >
                         <div className={`mt-1 mr-4 flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg text-xs font-bold uppercase tracking-wider 
                             ${result.type === EntityType.ERA ? 'bg-indigo-100 text-indigo-700' : ''}
@@ -140,13 +185,13 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 {!query && (
                      <div className="text-center py-16 opacity-50">
                         <div className="text-4xl mb-4 grayscale">🏛️</div>
-                        <p className="text-sm text-slate-400">Type to explore centuries of Indian History</p>
+                        <p className="text-sm text-slate-400">{language === 'en' ? "Type to explore centuries of Indian History" : "सदियों का भारतीय इतिहास खोजने के लिए टाइप करें"}</p>
                      </div>
                 )}
             </div>
             <div className="bg-slate-50 px-4 py-2 text-xs text-slate-400 border-t border-slate-100 flex justify-between">
-                <span>Use arrows to navigate</span>
-                <span>ESC to close</span>
+                <span>{language === 'en' ? "Use arrows to navigate" : "नेविगेट करने के लिए तीरों का प्रयोग करें"}</span>
+                <span>{language === 'en' ? "ESC to close" : "बंद करने के लिए ESC"}</span>
             </div>
         </div>
     </div>

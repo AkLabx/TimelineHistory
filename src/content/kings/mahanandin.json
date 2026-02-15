@@ -3,9 +3,11 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "महानंदिन (Mahanandin)",
+    "title_en": "Mahanandin",
     "reign": "d. 345 BCE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>वह शिशुनाग वंश का अंतिम शासक था। उसकी हत्या महापद्म नंद ने कर दी, जिसने फिर नंद वंश की नींव रखी।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Legacy and Evaluation</h5></div><div class=\"legacy-section-content\"><p>He was the last ruler of the Shishunaga dynasty. He was assassinated by Mahapadma Nanda, who then laid the foundation of the Nanda dynasty.</p></div></div></div>",
   "reignDuration": 10,
   "empireSize": 800000,
   "imageUrl": "images/shishunaga_dynasty_end.jpg"

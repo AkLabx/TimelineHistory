@@ -1,0 +1,23 @@
+{
+  "id": "rajyavardhana",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "राज्यवर्धन (Rajyavardhana)",
+    "title_en": "Rajyavardhana",
+    "reign": "c. 605–606 CE",
+    "reign_en": "c. 605–606 CE",
+    "period": "गुप्त काल",
+    "period_en": "Gupta Period",
+    "founder": "पुष्यभूति राजवंश",
+    "founder_en": "Pushyabhuti Dynasty",
+    "capital": "कन्नौज",
+    "capital_en": "Kannauj",
+    "subtitle": "अपने पिता की मृत्यु के बाद सिंहासन पर बैठे, लेकिन गौड़ नरेश शशांक द्वारा धोखे से मार दिए गए।",
+    "subtitle_en": "Ascended the throne after his father's death but was treacherously murdered by Shashanka, the king of Gauda."
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>प्रतिशोध और मृत्यु</h5></div><div class=\"legacy-section-content\"><p>पिता की मृत्यु के बाद गद्दी पर बैठे। मालवा के राजा देवगुप्त ने इनके बहनोई (कन्नौज के ग्रहवर्मन) की हत्या कर दी और बहन राज्यश्री को कैद कर लिया। राज्यवर्धन ने मालवा पर आक्रमण कर देवगुप्त को हराया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">💀</span><h5>धोखा</h5></div><div class=\"legacy-section-content\"><p>गौड़ नरेश शशांक (जो देवगुप्त का मित्र था) ने धोखे से राज्यवर्धन की हत्या कर दी।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> परमसौगत (बौद्ध धर्म के अनुयायी)।</li></ul></div></div></div>",
+  "reignDuration": 1,
+  "empireSize": 100000,
+  "imageUrl": "images/rajyavardhana.jpg",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> ⚔️</span><h5>Vengeance and Death</h5></div><div class=\"legacy-section-content\"><p>Ascended the throne after his father's death. Devagupta, the king of Malwa, killed his brother-in-law (Grahavarman of Kannauj) and imprisoned his sister Rajyashri. Rajyavardhana invaded Malwa and defeated Devagupta.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 💀</span><h5>Deception</h5></div><div class=\"legacy-section-content\"><p>Shashanka, the king of Gauda (a friend of Devagupta), treacherously murdered Rajyavardhana.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Title:</strong> Paramasaugata (follower of Buddhism).</li></ul></div></div></div>"
+}

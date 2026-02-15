@@ -1,0 +1,23 @@
+{
+  "id": "harishena",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "हरिषेण (Harishena - Vakataka)",
+    "title_en": "Harishena - Vakataka",
+    "reign": "c. 475–500 CE",
+    "reign_en": "c. 475–500 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>वाकाटक शक्ति का चरम</h5></div><div class=\"legacy-section-content\"><p>वाकाटक वंश के सबसे शक्तिशाली शासक। इन्होंने मुख्य शाखा के पतन के बाद दोनों शाखाओं को मिलाया और साम्राज्य का विस्तार किया। अजंता अभिलेख के अनुसार, उन्होंने कुंतल, अवंती, कलिंग, कोसल, त्रिकूट, लाट और आंध्र को जीता।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🎨</span><h5>अजंता गुफाएं</h5></div><div class=\"legacy-section-content\"><p>अजंता की गुफा संख्या 16, 17 और 19 (महायान बौद्ध गुफाएं) इनके शासनकाल में और इनके मंत्रियों (जैसे वराहदेव) द्वारा बनवाई गईं। यूनेस्को विश्व धरोहर अजंता की चित्रकला का स्वर्ण युग इन्हीं के समय था।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>अंत:</strong> इनके बाद वाकाटक शक्ति का तेजी से पतन हुआ और कलचुरियों और चालुक्यों ने स्थान ले लिया।</li><li><strong>नोट:</strong> इन्हें समुद्रगुप्त के दरबारी कवि हरिषेण से भ्रमित न करें।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>Zenith of Vakataka Power</h5></div><div class=\"legacy-section-content\"><p>Most powerful ruler of the Vakataka dynasty. After the decline of the main branch, he reunited both branches and expanded the empire. According to the Ajanta inscription, he conquered Kuntala, Avanti, Kalinga, Kosala, Trikuta, Lata, and Andhra.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🎨</span><h5>Ajanta Caves</h5></div><div class=\"legacy-section-content\"><p>Caves 16, 17, and 19 of Ajanta (Mahayana Buddhist caves) were built during his reign and by his ministers (like Varahadeva). The golden age of Ajanta's painting, a UNESCO World Heritage site, was during his time.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>End:</strong> After him, Vakataka power rapidly declined, and the Kalachuris and Chalukyas took their place.</li><li><strong>Note:</strong> Do not confuse him with Harishena, the court poet of Samudragupta.</li></ul></div></div></div>",
+  "reignDuration": 25,
+  "empireSize": 600000,
+  "imageUrl": "images/harishena-vakataka.jpg"
+}

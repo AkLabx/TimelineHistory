@@ -1,0 +1,15 @@
+{
+  "id": "rai-sahiras-ii",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "राय साहिरास द्वितीय (Rai Sahiras II)",
+    "title_en": "Rai Sahiras II",
+    "reign": "c. 565–600 CE",
+    "reign_en": "c. 565–600 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>समृद्ध शासन</h5></div><div class=\"legacy-section-content\"><p>सिंध के सबसे शक्तिशाली राजाओं में से एक। इन्होंने हर्ष के समकालीन के रूप में शासन किया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>हर्षवर्धन से संघर्ष?</h5></div><div class=\"legacy-section-content\"><p>बाणभट्ट के हर्षचरित में उल्लेख है कि हर्ष ने 'सिंधु देश' के राजा को हराया था, जो संभवतः राय साहिरास द्वितीय थे।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>मृत्यु:</strong> बीमारी से मृत्यु हुई।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Prosperous Rule</h5></div><div class=\"legacy-section-content\"><p>One of the most powerful kings of Sindh. He reigned as a contemporary of Harsha.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>Conflict with Harshavardhana?</h5></div><div class=\"legacy-section-content\"><p>Banabhatta's Harshacharita mentions that Harsha defeated the king of 'Sindhu Desa', who was possibly Rai Sahiras II.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Death:</strong> Died of illness.</li></ul></div></div></div>",
+  "reignDuration": 35,
+  "empireSize": 550000,
+  "imageUrl": "images/rai-sahiras-ii.jpg"
+}

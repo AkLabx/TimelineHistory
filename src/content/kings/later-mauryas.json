@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "परवर्ती मौर्य और पतन (Later Mauryas and Decline)",
-    "reign": "c. 232–185 BCE"
+    "title_en": "Later Mauryas and Decline",
+    "reign": "c. 232–185 BCE",
+    "reign_en": "c. 232–185 BCE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><h6>उत्तराधिकारी और अंतिम शासक</h6><p>अशोक के उत्तराधिकारी, जैसे दशरथ और सम्प्रति, बहुत कमजोर थे और विशाल साम्राज्य का प्रबंधन नहीं कर सके। मौर्य वंश का अंतिम शासक बृहद्रथ था, जिसकी हत्या 185 ईसा पूर्व में उसके सेनापति पुष्यमित्र शुंग ने कर दी थी।</p><h6>पतन के कारण</h6><ul class=\"profile-achievements\"><li><strong>कमजोर उत्तराधिकारी:</strong> वे साम्राज्य को एकजुट रखने में असमर्थ थे।</li><li><strong>ब्राह्मणवादी प्रतिक्रिया:</strong> अशोक की नीतियां (जैसे पशु बलि पर प्रतिबंध) ने ब्राह्मणों को नाराज कर दिया।</li><li><strong>वित्तीय संकट:</strong> एक विशाल सेना और नौकरशाही के रखरखाव, साथ ही बौद्ध संघ को भारी दान ने शाही खजाने को खाली कर दिया।</li><li><strong>अशोक की शांतिवादी नीति:</strong> कुछ इतिहासकारों का तर्क है कि इस नीति ने साम्राज्य की सैन्य शक्ति को कमजोर कर दिया।</li><li><strong>साम्राज्य का विशाल आकार:</strong> संचार और नियंत्रण में कठिनाइयाँ।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Legacy and Assessment</h5></div><div class=\"legacy-section-content\"><h6>Successors and Last Ruler</h6><p>Ashoka's successors, like Dasharatha and Samprati, were very weak and could not manage the vast empire. The last ruler of the Mauryan dynasty was Brihadratha, who was assassinated by his commander-in-chief Pushyamitra Shunga in 185 BCE.</p><h6>Reasons for Decline</h6><ul class=\"profile-achievements\"><li><strong>Weak Successors:</strong> They were unable to keep the empire united.</li><li><strong>Brahmanical Reaction:</strong> Ashoka's policies (like the ban on animal sacrifice) angered the Brahmins.</li><li><strong>Financial Crisis:</strong> The maintenance of a large army and bureaucracy, as well as heavy donations to the Buddhist Sangha, emptied the royal treasury.</li><li><strong>Ashoka's Pacifist Policy:</strong> Some historians argue that this policy weakened the empire's military strength.</li><li><strong>Vast Size of the Empire:</strong> Difficulties in communication and control.</li></ul></div></div></div>",
   "reignDuration": 47,
   "empireSize": 1000000,
   "imageUrl": "images/maurya_decline_map.jpg"

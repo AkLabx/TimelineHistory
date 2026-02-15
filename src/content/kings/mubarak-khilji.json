@@ -3,9 +3,12 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "कुतुबुद्दीन मुबारक शाह (Qutbuddin Mubarak Shah)",
-    "reign": "1316–1320 CE"
+    "title_en": "Qutbuddin Mubarak Shah",
+    "reign": "1316–1320 CE",
+    "reign_en": "1316–1320 CE"
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>खलीफा की उपाधि</h5></div><div class=\"legacy-section-content\"><p>अलाउद्दीन का पुत्र। उसने अपने पिता के कठोर नियमों को रद्द कर दिया। वह एक मात्र दिल्ली सुल्तान था जिसने खुद को 'खलीफा' घोषित किया। वह अपने दरबारियों के सामने नग्न होकर दौड़ने जैसी अपनी सनक के लिए जाना जाता था। उसकी हत्या उसके प्रेमी और जनरल खुसरो खान ने कर दी।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Title of Caliph</h5></div><div class=\"legacy-section-content\"><p>Son of Alauddin. He abolished his father's strict regulations. He was the only Delhi Sultan to declare himself 'Caliph'. He was known for his eccentricities, such as running naked in front of his courtiers. He was murdered by his lover and general, Khusrau Khan.</p></div></div></div>",
   "reignDuration": 4,
   "empireSize": 2000000,
   "imageUrl": "images/mubarak_shah_coin.jpg"

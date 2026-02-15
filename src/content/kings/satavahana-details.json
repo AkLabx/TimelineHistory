@@ -2,10 +2,12 @@
   "id": "satavahana-details",
   "type": "king-details enhanced-profile",
   "summary": {
-    "title": "वंश का परिचय"
+    "title": "वंश का परिचय",
+    "title_en": "Introduction to the Dynasty"
   },
   "imageUrl": "images/king_gautamiputra.jpg",
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📜</span><h5>शासन और प्रशासन</h5></div><div class=\"legacy-section-content\"><p>मौर्यों के पतन के बाद दक्कन क्षेत्र में एक प्रमुख शक्ति। उन्हें 'आंध्र' के रूप में भी जाना जाता था। वे मातृवंशीय थे, जैसा कि शासकों के नामों से स्पष्ट है (उदा., गौतमीपुत्र)। वे ब्राह्मणों और बौद्ध भिक्षुओं को भूमि अनुदान देने वाले पहले शासक थे।</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">भूमि अनुदान जारी करने वाले पहले</span></div></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📜</span><h5>Rule and Administration</h5></div><div class=\"legacy-section-content\"><p>A major power in the Deccan region after the fall of the Mauryas. They were also known as 'Andhras'. They were matrilineal, as evident from the rulers' names (e.g., Gautamiputra). They were the first rulers to grant land to Brahmins and Buddhist monks.</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">First to issue land grants</span></div></div></div></div>",
   "reignDuration": 0,
   "empireSize": 1500000
 }

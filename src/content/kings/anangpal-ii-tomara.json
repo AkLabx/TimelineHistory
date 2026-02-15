@@ -1,0 +1,15 @@
+{
+  "id": "anangpal-ii-tomara",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "अनंगपाल तोमर द्वितीय (Anangpal II)",
+    "title_en": "Anangpal II Tomar",
+    "reign": "c. 1051 – 1081 CE",
+    "reign_en": "c. 1051 – 1081 CE"
+  },
+  "reignDuration": 30,
+  "empireSize": 60000,
+  "imageUrl": "images/anangpal_ii.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏗️</span><h5>दिल्ली का पुनर्निर्माण</h5></div><div class=\"legacy-section-content\"><p>अनंगपाल द्वितीय ने 11वीं शताब्दी में दिल्ली को फिर से बसाया और लाल कोट किले का विस्तार किया। उन्होंने महरौली में प्रसिद्ध <strong>लौह स्तंभ (Iron Pillar)</strong> को मथुरा (विष्णुपद गिरी) से लाकर दिल्ली में स्थापित किया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">💧</span><h5>अनंगताल</h5></div><div class=\"legacy-section-content\"><p>उन्होंने संजय वन क्षेत्र में 'अनंगताल' जलाशय का निर्माण कराया। बाद में, उनके प्रपौत्र पृथ्वीराज चौहान (जो उनकी बेटी के बेटे माने जाते हैं) ने तोमर राज्य को अपने अजमेर राज्य में मिला लिया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏗️</span><h5>Rebuilding Delhi</h5></div><div class=\"legacy-section-content\"><p>Anangpal II resettled Delhi in the 11th century and expanded the Lal Kot fort. He brought the famous <strong>Iron Pillar</strong> from Mathura (Vishnupad Giri) to Mehrauli and installed it in Delhi.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">💧</span><h5>Anangtal</h5></div><div class=\"legacy-section-content\"><p>He constructed the 'Anangtal' reservoir in the Sanjay Van area. Later, his great-grandson Prithviraj Chauhan (believed to be the son of his daughter) merged the Tomar kingdom into his Ajmer kingdom.</p></div></div></div>"
+}

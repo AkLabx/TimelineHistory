@@ -3,9 +3,20 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "मुबारक शाह (Mubarak Shah)",
-    "reign": "1421–1434 CE"
+    "title_en": "Mubarak Shah",
+    "reign": "1421–1434 CE",
+    "reign_en": "1421–1434 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>सक्षम शासक</h5></div><div class=\"legacy-section-content\"><p>खिज्र खान का पुत्र और सैय्यद वंश का सबसे सक्षम शासक। उसने विद्रोहियों को कुचलने और खोए हुए क्षेत्रों को वापस पाने का प्रयास किया। याह्या बिन अहमद सरहिंदी ने अपनी पुस्तक 'तारीख-ए-मुबारक शाही' उसे समर्पित की। उसकी हत्या रईसों के एक षड्यंत्र में कर दी गई।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>Capable Ruler</h5></div><div class=\"legacy-section-content\"><p>Son of Khizr Khan and the most capable ruler of the Sayyid dynasty. He tried to suppress rebels and regain lost territories. Yahya bin Ahmad Sirhindi dedicated his book 'Tarikh-i-Mubarak Shahi' to him. He was assassinated in a conspiracy by nobles.</p></div></div></div>",
   "reignDuration": 13,
   "empireSize": 500000,
   "imageUrl": "images/mubarak_shah_tomb_delhi.jpg"

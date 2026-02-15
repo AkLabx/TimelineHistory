@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GLOSSARY_DATA } from '../data';
 import { GlossaryTerm } from '../types';
+import { useLanguage } from '../src/contexts/LanguageContext';
+import { getLocalized } from '../src/utils/language';
 
 /**
  * Props for the GlossaryHighlighter component.
@@ -11,6 +13,54 @@ interface GlossaryHighlighterProps {
   /** Whether the text contains HTML markup. */
   isHtml?: boolean;
 }
+
+interface PreparedTerm {
+    term: GlossaryTerm;
+    regex: RegExp;
+    matchCandidates: string[];
+    length: number;
+}
+
+/**
+ * Pre-compute regex patterns for performance.
+ * This runs once when the module is loaded, avoiding O(N*M) regex creations on every render.
+ *
+ * Optimization:
+ * 1. Fixed bug where array indices ("0", "1") were used as match keys.
+ * 2. Pre-compiled Regex objects for all glossary terms.
+ * 3. Sorted by length once at load time.
+ */
+const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const PREPARED_TERMS: PreparedTerm[] = GLOSSARY_DATA.map(term => {
+    const candidates = new Set<string>();
+
+    // 1. The Hindi title
+    if (term.title_hi) candidates.add(term.title_hi.trim());
+
+    // 2. The part of English title before parens (often matches Hindi text)
+    // Matches legacy behavior: term.title_en.split('(')[0].trim()
+    if (term.title_en) candidates.add(term.title_en.split('(')[0].trim());
+
+    // Filter out empty strings or very short strings to avoid noise
+    const validCandidates = Array.from(candidates).filter(s => s && s.length > 0);
+
+    if (validCandidates.length === 0) return null;
+
+    const pattern = `(${validCandidates.map(escapeRegExp).join('|')})`;
+
+    // Calculate max length for sorting (longest match first)
+    const maxLength = Math.max(...validCandidates.map(s => s.length));
+
+    return {
+        term,
+        regex: new RegExp(pattern, 'gi'),
+        matchCandidates: validCandidates.map(s => s.toLowerCase()),
+        length: maxLength
+    };
+}).filter((item): item is PreparedTerm => item !== null)
+  .sort((a, b) => b.length - a.length);
+
 
 /**
  * A utility component that scans text for glossary terms and highlights them.
@@ -23,15 +73,15 @@ const GlossaryHighlighter: React.FC<GlossaryHighlighterProps> = ({ text, isHtml 
   const [activeTerm, setActiveTerm] = useState<GlossaryTerm | null>(null);
   const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
   const popoverRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
   /**
    * Handles click on a highlighted term.
    * Calculates the position for the popover.
    */
-  const handleTermClick = (e: React.MouseEvent<HTMLSpanElement>, termKey: string) => {
+  const handleTermClick = (e: React.MouseEvent<HTMLSpanElement>, term: GlossaryTerm) => {
     e.stopPropagation();
     e.preventDefault(); 
-    const term = GLOSSARY_DATA[termKey];
     const target = e.target as HTMLElement;
     const rect = target.getBoundingClientRect();
     
@@ -65,36 +115,32 @@ const GlossaryHighlighter: React.FC<GlossaryHighlighterProps> = ({ text, isHtml 
 
   /**
    * Processes a string to identify and wrap glossary terms.
-   * Uses regex to match terms (both Hindi and English).
+   * Uses pre-computed regex patterns.
    */
   const processString = (content: string): React.ReactNode[] => {
     if (!content) return [];
     const parts: React.ReactNode[] = [content];
     
-    // Sort keys by length descending to match longest terms first
-    const keys = Object.keys(GLOSSARY_DATA).sort((a, b) => b.length - a.length);
-
-    keys.forEach(key => {
-        const term = GLOSSARY_DATA[key];
-        const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        // Match either the key (Hindi usually) or the English title
-        const pattern = `(${escapeRegExp(key)}|${escapeRegExp(term.title_en.split('(')[0].trim())})`;
-        const looseRegex = new RegExp(pattern, 'gi');
-
+    // Iterate over pre-computed terms
+    PREPARED_TERMS.forEach(({ term, regex, matchCandidates }) => {
       for (let i = 0; i < parts.length; i++) {
         const part = parts[i];
         if (typeof part === 'string') {
-          const split = part.split(looseRegex);
+          // Use the pre-compiled regex
+          const split = part.split(regex);
+
           if (split.length > 1) {
             const newParts: React.ReactNode[] = [];
             split.forEach((str, idx) => {
-              // Check for exact match (case-insensitive) to avoid partial replacements inside other words if boundaries aren't strict
+              // Check for exact match (case-insensitive) to avoid partial replacements inside other words
               const lowerStr = str.toLowerCase();
-              if (lowerStr === key.toLowerCase() || lowerStr === term.title_en.split('(')[0].trim().toLowerCase()) {
+
+              // Check if the split part matches any of our candidates
+              if (matchCandidates.includes(lowerStr)) {
                 newParts.push(
                   <span 
-                    key={`${key}-${i}-${idx}`}
-                    onClick={(e) => handleTermClick(e, key)}
+                    key={`${term.title_en}-${i}-${idx}`}
+                    onClick={(e) => handleTermClick(e, term)}
                     className="cursor-help border-b-2 border-dotted border-orange-400 text-orange-900 font-medium hover:bg-orange-100 transition-colors inline-block select-none"
                   >
                     {str}
@@ -181,12 +227,12 @@ const GlossaryHighlighter: React.FC<GlossaryHighlighterProps> = ({ text, isHtml 
             <div className="p-5 space-y-4 bg-white">
                 <div>
                      <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 block">Definition</span>
-                     <p className="text-sm text-slate-700 leading-relaxed font-medium">{activeTerm.definition_en}</p>
+                     <p className="text-sm text-slate-700 leading-relaxed font-medium">{language === 'en' ? activeTerm.definition_en : activeTerm.definition_hi}</p>
                 </div>
                 <div className="h-px bg-slate-100 w-full"></div>
                 <div>
-                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 block">Hindi Translation</span>
-                     <p className="text-sm text-slate-600 leading-relaxed font-serif">{activeTerm.definition_hi}</p>
+                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 block">{language === 'en' ? 'Hindi Translation' : 'English Translation'}</span>
+                     <p className="text-sm text-slate-600 leading-relaxed font-serif">{language === 'en' ? activeTerm.definition_hi : activeTerm.definition_en}</p>
                 </div>
             </div>
         </div>

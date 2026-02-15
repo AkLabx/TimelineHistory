@@ -3,9 +3,20 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "अलाउद्दीन मसूद (Alauddin Masud)",
-    "reign": "1242–1246 CE"
+    "title_en": "Alauddin Masud",
+    "reign": "1242–1246 CE",
+    "reign_en": "1242–1246 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>एक और कमजोर शासक</h5></div><div class=\"legacy-section-content\"><p>रुकुनुद्दीन फिरोज का पुत्र। वह भी बहराम शाह की तरह एक अयोग्य शासक था। वह शराब और शिकार में अधिक रुचि रखता था। बलबन ने नसीरुद्दीन महमूद को सुल्तान बनाने के लिए उसके खिलाफ साजिश रची और उसे कैद कर लिया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>Another Weak Ruler</h5></div><div class=\"legacy-section-content\"><p>Son of Ruknuddin Firuz. Like Bahram Shah, he was also an incompetent ruler. He was more interested in wine and hunting. Balban conspired against him to make Nasiruddin Mahmud the Sultan and had him imprisoned.</p></div></div></div>",
   "reignDuration": 4,
   "empireSize": 1800000,
   "imageUrl": "images/masud_shah_coin.jpg"

@@ -1,5 +1,5 @@
 
-import { PartData, PeriodData, KingProfile, GlossaryTerm, Connection, TimelineVisualData } from '../types';
+import { PartData, PeriodData, KingProfile, GlossaryTerm, Connection, TimelineVisualData } from '../../types';
 
 // These use Vite's glob import feature to load all JSON files at build time.
 // { eager: true } ensures they are bundled into the main JS chunk,
@@ -88,26 +88,12 @@ for (const path in glossaryFiles) {
 }
 
 // --- Construct CONNECTIONS_DATA ---
-// The JSON is a Dictionary { entityId: [Connections] }
-// We want to export an Array of Connection?
-// Wait, check types.ts -> `export { CONNECTIONS_DATA } from ...`
-// In the original `connectionsData.ts`, `CONNECTIONS_DATA` was a Record<string, Connection[]> ?
-// Let's check `types.ts` again. `export interface Connection { label: string, targetId: string }`.
-// The file `data.ts` exported `CONNECTIONS_DATA`.
-// Let's assume the App expects a Record<string, Connection[]> based on how it's likely used (looking up by ID).
-// But `contentLoader.ts` previously tried to export `Connection[]`.
-// Let's check `links.json` content -> it is a Dictionary.
-// So `CONNECTIONS_DATA` should be `Record<string, Connection[]>`.
-// Checking `src/utils/contentLoader.ts` from previous step... `export const CONNECTIONS_DATA = loadedConnections;` where `loadedConnections` was `Connection[]`. This looks WRONG if the original was a map.
-// I will verify usage in App or infer from JSON structure.
-// The JSON structure `links.json` is `Record<string, Connection[]>`.
-// So I should export it as such.
-
+// The connection files (e.g. links.json) are Dictionary-like objects { entityId: [Connections] }.
+// We merge them into a single Record<string, Connection[]>.
 export const CONNECTIONS_DATA: Record<string, Connection[]> = {};
 
 for (const path in connectionFiles) {
     const data = (connectionFiles[path] as any).default || connectionFiles[path];
-    // Merge the dictionary
     Object.assign(CONNECTIONS_DATA, data);
 }
 

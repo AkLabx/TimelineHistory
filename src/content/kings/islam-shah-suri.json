@@ -1,0 +1,23 @@
+{
+  "id": "islam-shah-suri",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "इस्लामशाह सूरी (Islam Shah Suri)",
+    "title_en": "Islam Shah Suri",
+    "reign": "1545 – 1554 CE",
+    "reign_en": "1545 – 1554 CE",
+    "period": "सूर साम्राज्य",
+    "period_en": "Suri Empire",
+    "founder": "शेर शाह सूरी",
+    "founder_en": "Sher Shah Suri",
+    "capital": "दिल्ली",
+    "capital_en": "Delhi",
+    "subtitle": "शेर शाह सूरी के पुत्र, जिन्होंने प्रशासनिक सुधार जारी रखे।",
+    "subtitle_en": "Son of Sher Shah Suri, who continued administrative reforms."
+  },
+  "reignDuration": 9,
+  "empireSize": 2500000,
+  "imageUrl": "images/islam_shah_suri.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👑</span><h5>शासन और प्रशासन</h5></div><div class=\"legacy-section-content\"><p><strong>मूल नाम:</strong> जलाल खान (शेर शाह का पुत्र)।<br>उसने अपने पिता की प्रशासनिक नीतियों को जारी रखा और राज्य को और अधिक केंद्रीकृत किया। उसने बड़प्पन (nobility) की शक्ति को कम करने के लिए सख्त कदम उठाए।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📜</span><h5>सुधार</h5></div><div class=\"legacy-section-content\"><p>इस्लाम शाह ने कानूनों को संहिताबद्ध (codified) किया। उसने मनसबदारी प्रणाली के पूर्वगामी के रूप में सेना को दशमलव प्रणाली (50, 200, 250, 500 सैनिकों की इकाइयों) में संगठित किया। उसने अपने पिता द्वारा बनाए गए सरायों के बीच अतिरिक्त सराय बनवाए।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚰️</span><h5>अंत</h5></div><div class=\"legacy-section-content\"><p>उसकी मृत्यु (1554) के बाद सूर साम्राज्य में अराजकता फैल गई, जिससे हुमायूँ की वापसी का मार्ग प्रशस्त हुआ।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 👑</span><h5>Rule and Administration</h5></div><div class=\"legacy-section-content\"><p><strong>Original Name:</strong> Jalal Khan (son of Sher Shah).<br>He continued his father's administrative policies and further centralized the state. He took strict measures to reduce the power of the nobility.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> 📜</span><h5>Reforms</h5></div><div class=\"legacy-section-content\"><p>Islam Shah codified laws. He organized the army into decimal units (units of 50, 200, 250, 500 soldiers) as a precursor to the Mansabdari system. He built additional inns between the ones constructed by his father.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\"> ⚰️</span><h5>End</h5></div><div class=\"legacy-section-content\"><p>After his death (1554), chaos spread within the Suri empire, paving the way for Humayun's return.</p></div></div></div>"
+}

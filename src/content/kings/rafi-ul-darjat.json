@@ -1,0 +1,15 @@
+{
+  "id": "rafi-ul-darjat",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "रफी-उल-दर्जात (Rafi-ul-Darjat)",
+    "title_en": "Rafi-ul-Darjat",
+    "reign": "1719 CE (Feb-Jun)",
+    "reign_en": "1719 CE (Feb-Jun)"
+  },
+  "reignDuration": 0,
+  "empireSize": 3500000,
+  "imageUrl": "images/rafi_ul_darjat.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>अल्पकालिक शासन</h5></div><div class=\"legacy-section-content\"><p>सैयद बंधुओं द्वारा गद्दी पर बैठाया गया। वह सबसे कम समय तक शासन करने वाला मुगल बादशाह था। क्षय रोग (TB) से उसकी मृत्यु हुई।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Short-lived Reign</h5></div><div class=\"legacy-section-content\"><p>Installed on the throne by the Sayyid brothers. He was the shortest-reigning Mughal emperor. He died of tuberculosis (TB).</p></div></div></div>"
+}

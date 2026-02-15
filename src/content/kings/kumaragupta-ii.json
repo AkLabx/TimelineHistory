@@ -1,0 +1,15 @@
+{
+  "id": "kumaragupta-ii",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "कुमारगुप्त द्वितीय (Kumaragupta II)",
+    "title_en": "Kumaragupta II",
+    "reign": "c. 473–476 CE",
+    "reign_en": "c. 473–476 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🗿</span><h5>सारनाथ अभिलेख</h5></div><div class=\"legacy-section-content\"><p>सारनाथ से प्राप्त बुद्ध प्रतिमा पर इनका लेख मिला है, जिससे इनके शासनकाल की पुष्टि होती है।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> क्रमादित्य।</li><li><strong>संबंध:</strong> पुरुगुप्त के पुत्र माने जाते हैं।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🗿</span><h5>Sarnath Inscription</h5></div><div class=\"legacy-section-content\"><p>An inscription of his has been found on a Buddha statue discovered at Sarnath, confirming his reign.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Title:</strong> Kramaditya.</li><li><strong>Relation:</strong> Believed to be the son of Purugupta.</li></ul></div></div></div>",
+  "reignDuration": 3,
+  "empireSize": 1600000,
+  "imageUrl": "images/kumaragupta-ii.jpg"
+}

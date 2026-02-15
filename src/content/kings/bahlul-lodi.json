@@ -3,9 +3,20 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "बहलोल लोदी (Bahlul Lodi)",
-    "reign": "1451–1489 CE"
+    "title_en": "Bahlul Lodi",
+    "reign": "1451–1489 CE",
+    "reign_en": "1451–1489 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>लोदी वंश का संस्थापक</h5></div><div class=\"legacy-section-content\"><p>बहलोल लोदी ने लोदी वंश की स्थापना की, जो दिल्ली सल्तनत का पहला अफगान (पश्तून) वंश था। उसने बिखरी हुई सल्तनत को फिर से संगठित किया और जौनपुर सल्तनत को सफलतापूर्वक दिल्ली में मिला लिया। उसने रईसों के साथ समान व्यवहार किया, और सिंहासन पर बैठने के बजाय उनके साथ कालीन पर बैठना पसंद करता था।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>Founder of the Lodi Dynasty</h5></div><div class=\"legacy-section-content\"><p>Bahlul Lodi founded the Lodi dynasty, the first Afghan (Pashtun) dynasty of the Delhi Sultanate. He reorganized the scattered Sultanate and successfully annexed the Jaunpur Sultanate to Delhi. He treated nobles as equals, and preferred to sit with them on the carpet rather than on the throne.</p></div></div></div>",
   "reignDuration": 38,
   "empireSize": 1500000,
   "imageUrl": "images/bahlul_lodi_tomb.jpg"

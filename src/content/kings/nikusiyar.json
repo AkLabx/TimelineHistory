@@ -1,0 +1,14 @@
+{
+  "id": "nikusiyar",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "निकुसियर (Nikusiyar)",
+    "title_en": "Nikusiyar",
+    "reign": "1719 CE (Vidrohi)"
+  },
+  "reignDuration": 0,
+  "empireSize": 100000,
+  "imageUrl": "images/nikusiyar.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>आगरा का दावेदार</h5></div><div class=\"legacy-section-content\"><p>अकबर का पुत्र (औरंगजेब का पोता)। उसने आगरा के किले में विद्रोह कर खुद को बादशाह घोषित किया, लेकिन सैयद बंधुओं ने उसे जल्द ही पकड़ लिया और कैद कर लिया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>Claimant to Agra</h5></div><div class=\"legacy-section-content\"><p>Son of Akbar (grandson of Aurangzeb). He rebelled in the Agra fort and declared himself emperor, but was soon captured and imprisoned by the Sayyid brothers.</p></div></div></div>"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "mahendravarman-ii",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "महेंद्रवर्मन द्वितीय (Mahendravarman II)",
+    "title_en": "Mahendravarman II",
+    "reign": "c. 668–670 CE",
+    "reign_en": "c. 668–670 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>अल्पकालिक शासन</h5></div><div class=\"legacy-section-content\"><p>इन्होंने बहुत कम समय के लिए शासन किया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>मृत्यु:</strong> चालुक्य राजा विक्रमादित्य प्रथम के साथ युद्ध में मारे गए।</li><li><strong>उत्तराधिकारी:</strong> इनके पुत्र परमेश्वरवर्मन प्रथम गद्दी पर बैठे।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Short Reign</h5></div><div class=\"legacy-section-content\"><p>He reigned for a very short period.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Death:</strong> Killed in a battle with the Chalukya king Vikramaditya I.</li><li><strong>Successor:</strong> His son, Parameswaravarman I, ascended the throne.</li></ul></div></div></div>",
+  "reignDuration": 2,
+  "empireSize": 200000,
+  "imageUrl": "images/mahendravarman-ii.jpg"
+}

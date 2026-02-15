@@ -1,0 +1,23 @@
+{
+  "id": "yashovarman-chandela",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "यशोवर्मन (Yashovarman)",
+    "title_en": "Yashovarman",
+    "reign": "c. 925 – 950 CE",
+    "reign_en": "c. 925 – 950 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
+  },
+  "reignDuration": 25,
+  "empireSize": 80000,
+  "imageUrl": "images/yashovarman.jpg",
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>खजुराहो के निर्माता</h5></div><div class=\"legacy-section-content\"><p>यशोवर्मन (लक्ष्मणवर्मन) ने चंदेल शक्ति को स्थापित किया और प्रतिहारों की अधीनता को अस्वीकार कर दिया। उन्होंने कालिंजर किले पर कब्जा किया जो चंदेलों का गढ़ बन गया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛕</span><h5>लक्ष्मण मंदिर</h5></div><div class=\"legacy-section-content\"><p>खजुराहो में प्रसिद्ध <strong>लक्ष्मण मंदिर (Lakshmana Temple)</strong> का निर्माण उन्हीं के शासनकाल में शुरू हुआ। यह भगवान विष्णु को समर्पित एक शानदार मंदिर है जो चंदेल कला का बेहतरीन उदाहरण है।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>Builder of Khajuraho</h5></div><div class=\"legacy-section-content\"><p>Yashovarman (Lakshmanavarman) established the Chandela power and rejected the suzerainty of the Pratiharas. He captured the fort of Kalinjar, which became the stronghold of the Chandels.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🛕</span><h5>Lakshmana Temple</h5></div><div class=\"legacy-section-content\"><p>The construction of the famous <strong>Lakshmana Temple</strong> in Khajuraho began during his reign. It is a magnificent temple dedicated to Lord Vishnu and a prime example of Chandela art.</p></div></div></div>"
+}

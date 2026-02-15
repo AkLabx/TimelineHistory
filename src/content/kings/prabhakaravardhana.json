@@ -1,0 +1,15 @@
+{
+  "id": "prabhakaravardhana",
+  "type": "king-details enhanced-profile",
+  "summary": {
+    "title": "प्रभाकरवर्धन (Prabhakaravardhana)",
+    "title_en": "Prabhakaravardhana",
+    "reign": "c. 580–605 CE",
+    "reign_en": "c. 580–605 CE"
+  },
+  "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🦁</span><h5>स्वतंत्र शासक</h5></div><div class=\"legacy-section-content\"><p>पुष्यभूति वंश के पहले स्वतंत्र और शक्तिशाली शासक। इन्होंने थानेसर (कुरुक्षेत्र) को अपनी राजधानी बनाया।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>हूण-हरिण-केसरी</h5></div><div class=\"legacy-section-content\"><p>बाणभट्ट के हर्षचरित में उन्हें 'हूण रूपी हिरण के लिए शेर' (Huna-harina-kesari) और 'सिंधु देश के लिए ज्वर' कहा गया है।</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>महत्वपूर्ण तथ्य (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>उपाधि:</strong> महाराजाधिराज, परमभट्टारक।</li><li><strong>परिवार:</strong> इनकी पत्नी यशोमती थीं। इनके तीन बच्चे थे - राज्यवर्धन, हर्षवर्धन और राज्यश्री।</li></ul></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🦁</span><h5>Independent Ruler</h5></div><div class=\"legacy-section-content\"><p>The first independent and powerful ruler of the Pushyabhuti dynasty. He made Thanesar (Kurukshetra) his capital.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⚔️</span><h5>Huna-harina-kesari</h5></div><div class=\"legacy-section-content\"><p>In Banabhatta's Harshacharita, he is referred to as 'the lion for the Huna deer' (Huna-harina-kesari) and 'fever for the land of Sindh'.</p></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">📌</span><h5>Important Facts (Exam Points)</h5></div><div class=\"legacy-section-content\"><ul class=\"fact-list\"><li><strong>Titles:</strong> Maharajadhiraja, Paramabhattaraka.</li><li><strong>Family:</strong> His wife was Yashomati. They had three children - Rajyavardhana, Harshavardhana, and Rajyashri.</li></ul></div></div></div>",
+  "reignDuration": 25,
+  "empireSize": 100000,
+  "imageUrl": "images/prabhakaravardhana.jpg"
+}

@@ -3,10 +3,21 @@
   "type": "king-details king-color-last enhanced-profile",
   "summary": {
     "title": "इब्राहिम लोदी (Ibrahim Lodi)",
-    "reign": "1517–1526 CE"
+    "title_en": "Ibrahim Lodi",
+    "reign": "1517–1526 CE",
+    "reign_en": "1517–1526 CE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "imageUrl": "images/sultan_ibrahim.jpg",
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👤</span><h5>पहचान और चरित्र</h5></div><div class=\"legacy-section-content\"><p>वह एक अहंकारी और जिद्दी शासक था जिसने अपने अफगान अमीरों को अलग-थलग कर दिया, जिससे कई विद्रोह हुए।</p><div class=\"profile-tags\"><span class=\"profile-tag\">लोदी वंश का अंतिम शासक</span><span class=\"profile-tag\">दिल्ली का अंतिम सुल्तान</span></div></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>विरासत और मूल्यांकन</h5></div><div class=\"legacy-section-content\"><p>पंजाब के गवर्नर दौलत खान लोदी और इब्राहिम के चाचा, आलम खान लोदी ने काबुल के शासक बाबर को भारत पर आक्रमण करने के लिए आमंत्रित किया। वह पानीपत की पहली लड़ाई (1526) में बाबर द्वारा पराजित हुआ और मारा गया, जिसने भारत में मुगल शासन की शुरुआत को चिह्नित किया।</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">पानीपत की पहली लड़ाई में पराजित</span></div></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">👤</span><h5>Identity and Character</h5></div><div class=\"legacy-section-content\"><p>He was an arrogant and stubborn ruler who alienated his Afghan nobles, leading to several revolts.</p><div class=\"profile-tags\"><span class=\"profile-tag\">Last ruler of the Lodi dynasty</span><span class=\"profile-tag\">Last Sultan of Delhi</span></div></div></div><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">⏳</span><h5>Legacy and Evaluation</h5></div><div class=\"legacy-section-content\"><p>Daulat Khan Lodi, the governor of Punjab, and Ibrahim's uncle, Alam Khan Lodi, invited Babur, the ruler of Kabul, to invade India. He was defeated and killed by Babur in the First Battle of Panipat (1526), marking the beginning of Mughal rule in India.</p><div class=\"profile-tags\"><span class=\"profile-fact-tag\">Defeated in the First Battle of Panipat</span></div></div></div></div>",
   "reignDuration": 9,
   "empireSize": 1200000
 }

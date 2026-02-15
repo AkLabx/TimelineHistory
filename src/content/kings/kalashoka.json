@@ -3,9 +3,20 @@
   "type": "king-details enhanced-profile",
   "summary": {
     "title": "कालाशोक (Kalashoka)",
-    "reign": "c. 395–367 BCE"
+    "title_en": "Kalashoka",
+    "reign": "c. 395–367 BCE",
+    "reign_en": "c. 395–367 BCE",
+    "period": null,
+    "period_en": null,
+    "founder": null,
+    "founder_en": null,
+    "capital": null,
+    "capital_en": null,
+    "subtitle": null,
+    "subtitle_en": null
   },
   "content": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>पाटलिपुत्र और वैशाली</h5></div><div class=\"legacy-section-content\"><p>शिशुनाग का पुत्र और उत्तराधिकारी। उसने राजधानी को स्थायी रूप से पाटलिपुत्र स्थानांतरित कर दिया। उसके शासनकाल में वैशाली में <strong>द्वितीय बौद्ध संगीति</strong> (383 BCE) आयोजित की गई थी, जहाँ बौद्ध संघ स्थविर और महासांघिक में विभाजित हो गया।</p></div></div></div>",
+  "content_en": "<div class=\"royal-legacy-card\"><div class=\"legacy-section\"><div class=\"legacy-section-header\"><span class=\"legacy-icon\">🏛️</span><h5>Pataliputra and Vaishali</h5></div><div class=\"legacy-section-content\"><p>Son and successor of Shishunaga. He permanently shifted the capital to Pataliputra. The <strong>Second Buddhist Council</strong> (383 BCE) was held in Vaishali during his reign, where the Buddhist Sangha split into Sthavira and Mahāsāṃghika.</p></div></div></div>",
   "reignDuration": 28,
   "empireSize": 800000,
   "imageUrl": "images/second_buddhist_council.jpg"
