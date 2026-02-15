@@ -394,7 +394,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
             <Icons.X />
         ) : (
             <div className="relative">
-                <Icons.Gemini />
+                <Icons.Aalok />
                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full border-2 border-white animate-pulse"></span>
             </div>
         )}
@@ -414,7 +414,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
             
             <div className="flex items-center gap-3 relative z-10">
                 <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-inner">
-                    <Icons.Gemini />
+                    <Icons.Aalok />
                 </div>
                 <div>
                     <h3 className="font-bold text-lg leading-none mb-1">Aalok GPT</h3>
@@ -683,7 +683,6 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
             
             <div className="flex justify-between mt-2 px-2">
                 <span className="text-[9px] text-stone-400">Supports: Images, PDF, Voice</span>
-                <span className="text-[9px] text-stone-300 font-medium">Gemini 2.5 Flash</span>
             </div>
         </div>
       </div>
