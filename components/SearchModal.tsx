@@ -1,3 +1,4 @@
+import React, { useState, useEffect, KeyboardEvent } from 'react';
 import React, { useEffect, useState, useRef } from 'react';
 import { Icons } from './Icons';
 import { SearchResult, EntityType } from '../types';
@@ -46,6 +47,41 @@ const SearchModal: React.FC<SearchModalProps> = ({
   // Reset selection when query changes
   useEffect(() => {
     setSelectedIndex(-1);
+  }, [query]);
+
+  // Scroll selected item into view
+  useEffect(() => {
+    if (selectedIndex >= 0) {
+      const el = document.getElementById(`result-${selectedIndex}`);
+      if (el) {
+        el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+  }, [selectedIndex]);
+
+  const handleSelect = (result: SearchResult) => {
+    if (result.type === EntityType.ERA) onSelectPeriod(result.id);
+    if (result.type === EntityType.DYNASTY) onSelectPeriod(result.parentId || result.id); // Dynasties are inside Periods
+    if (result.type === EntityType.FIGURE) onSelectFigure(result.id);
+    // Terms usually don't navigate, but maybe we can show definition expanded?
+    // For now close.
+    if (result.type !== EntityType.TERM) onClose();
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev < results.length - 1 ? prev + 1 : prev));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev > 0 ? prev - 1 : prev));
+    } else if (e.key === 'Enter' && selectedIndex >= 0) {
+      e.preventDefault();
+      handleSelect(results[selectedIndex]);
+    } else if (e.key === 'Escape') {
+      onClose();
+    }
+  };
   }, [query, results]);
 
   useEffect(() => {
