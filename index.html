@@ -1,48 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ea580c" />
-    <meta name="description" content="An interactive, educational platform exploring the vast history of India. Features dynamic timelines, detailed profiles of dynasties and kings, and accessibility tools." />
+    <meta
+      name="description"
+      content="An interactive, educational platform exploring the vast history of India. Features dynamic timelines, detailed profiles of dynasties and kings, and accessibility tools."
+    />
     <!-- Updated referrer policy to ensure API key restrictions work correctly -->
     <meta name="referrer" content="no-referrer-when-downgrade" />
-    
+
     <title>BharatItihas - Indian History</title>
-    
+
     <!-- PWA Manifest & Icons -->
     <link rel="manifest" href="manifest.json" />
     <link rel="icon" type="image/svg+xml" href="icon.svg" />
     <link rel="apple-touch-icon" href="icon.svg" />
-    
+
     <!-- Load Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Eczar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script type="importmap">
-{
-  "imports": {
-    "vite": "https://aistudiocdn.com/vite@^7.2.6",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
-    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0"
-  }
-}
-</script>
-</head>
-  <body class="bg-[#fdfbf7] text-stone-900 antialiased selection:bg-orange-200 selection:text-orange-900">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Eczar:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="importmap">
+      {
+        "imports": {
+          "vite": "https://aistudiocdn.com/vite@^7.2.6",
+          "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+          "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+          "react/": "https://aistudiocdn.com/react@^19.2.1/",
+          "react": "https://aistudiocdn.com/react@^19.2.1",
+          "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0"
+        }
+      }
+    </script>
+
+    <!-- PWA Desktop Mode Detection -->
+    <script>
+      (function () {
+        // Run as soon as possible to prevent app load
+        function checkDesktopMode() {
+          // Check if running as PWA
+          const isStandalone =
+            window.matchMedia("(display-mode: standalone)").matches ||
+            window.navigator.standalone;
+
+          // Check if physical device screen width is small (likely a mobile phone)
+          // iPads and tablets typically have screen widths > 768px, so they bypass this.
+          const isMobileDevice = window.screen.width < 768;
+
+          // Check if the browser is forcing a wide viewport (desktop site requested)
+          // When "Desktop site" is requested on mobile, innerWidth gets set to ~980px or more.
+          const isDesktopModeForced =
+            window.innerWidth > window.screen.width && window.innerWidth > 800;
+
+          if (isStandalone && isMobileDevice && isDesktopModeForced) {
+            // Wait for DOM to be ready to inject overlay
+            document.addEventListener("DOMContentLoaded", function () {
+              const root = document.getElementById("root");
+              if (root) {
+                // Hide the main app
+                root.style.display = "none";
+              }
+
+              // Create full-screen overlay
+              const overlay = document.createElement("div");
+              overlay.id = "pwa-desktop-warning";
+              overlay.style.position = "fixed";
+              overlay.style.top = "0";
+              overlay.style.left = "0";
+              overlay.style.width = "100vw";
+              overlay.style.height = "100vh";
+              overlay.style.backgroundColor = "#fdfbf7"; // Match theme background
+              overlay.style.zIndex = "999999";
+              overlay.style.display = "flex";
+              overlay.style.flexDirection = "column";
+              overlay.style.alignItems = "center";
+              overlay.style.justifyContent = "center";
+              overlay.style.padding = "24px";
+              overlay.style.boxSizing = "border-box";
+              overlay.style.textAlign = "center";
+              overlay.style.color = "#1c1917"; // stone-900
+              overlay.style.fontFamily = "Inter, sans-serif";
+
+              overlay.innerHTML = `
+                <div style="max-width: 400px; background: white; padding: 32px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); border: 1px solid #e7e5e4;">
+                  <div style="margin-bottom: 24px; display: flex; justify-content: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="80" height="80">
+                      <rect width="512" height="512" rx="128" fill="#ea580c"/>
+                      <text x="50%" y="50%" font-size="320" text-anchor="middle" dy=".35em" fill="white" font-family="sans-serif">ॐ</text>
+                    </svg>
+                  </div>
+                  <h1 style="font-size: 24px; font-weight: 700; color: #ea580c; margin-bottom: 16px; font-family: Merriweather, serif;">App Experience Paused</h1>
+                  <p style="font-size: 16px; line-height: 1.5; margin-bottom: 20px; color: #44403c;">
+                    It looks like you have <strong>"Desktop site"</strong> enabled in your browser settings. To enjoy Bharatitihas as a native app, please follow these steps:
+                  </p>
+                  <ol style="text-align: left; padding-left: 20px; margin-bottom: 24px; color: #44403c; line-height: 1.6; font-size: 15px;">
+                    <li>Open your regular Chrome browser app.</li>
+                    <li>Tap the three-dot menu in the top right.</li>
+                    <li>Uncheck <strong>Desktop site</strong>.</li>
+                    <li>Restart this app.</li>
+                  </ol>
+                  <button onclick="window.location.reload()" style="background-color: #ea580c; color: white; border: none; padding: 12px 24px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; transition: background-color 0.2s;">
+                    Reload App
+                  </button>
+                </div>
+              `;
+
+              document.body.appendChild(overlay);
+            });
+          }
+        }
+
+        // Run immediately
+        checkDesktopMode();
+
+        // Also run on resize to handle potential changes
+        window.addEventListener("resize", checkDesktopMode);
+      })();
+    </script>
+  </head>
+  <body
+    class="bg-[#fdfbf7] text-stone-900 antialiased selection:bg-orange-200 selection:text-orange-900"
+  >
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('sw.js', { scope: './' })
-            .then(registration => {
-              console.log('SW registered: ', registration);
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js", { scope: "./" })
+            .then((registration) => {
+              console.log("SW registered: ", registration);
             })
-            .catch(registrationError => {
-              console.log('SW registration failed: ', registrationError);
+            .catch((registrationError) => {
+              console.log("SW registration failed: ", registrationError);
             });
         });
       }
