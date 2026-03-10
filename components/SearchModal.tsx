@@ -1,5 +1,5 @@
-import React, { useState, useEffect, KeyboardEvent } from 'react';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
+
 import { Icons } from './Icons';
 import { SearchResult, EntityType } from '../types';
 import { useLanguage } from '../src/contexts/LanguageContext';
@@ -82,12 +82,11 @@ const SearchModal: React.FC<SearchModalProps> = ({
       onClose();
     }
   };
-  }, [query, results]);
 
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: globalThis.KeyboardEvent) => {
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         setSelectedIndex(prev => (prev < results.length - 1 ? prev + 1 : prev));
