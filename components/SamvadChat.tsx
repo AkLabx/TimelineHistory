@@ -400,6 +400,12 @@ const SamvadChat: React.FC<SamvadChatProps> = ({ isOpen, onClose, figureId }) =>
       // 4. Connect to Live API
       const sessionPromise = ai.live.connect({
         model: 'gemini-2.5-flash-native-audio-preview-09-2025',
+        httpOptions: {
+          headers: {
+            'Origin': window.location.origin,
+            'Referer': window.location.href
+          }
+        },
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
