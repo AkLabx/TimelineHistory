@@ -7,6 +7,14 @@ import { Icons } from './Icons';
 /**
  * Props for the GlobalChat component.
  */
+
+export const AI_MODELS = [
+  { id: 'gemini-3.1-flash-lite-preview', name: 'Fast 3x', rpm: 15, tpm: 250000, rpd: 500 },
+  { id: 'gemini-2.5-flash-lite', name: 'Fast 2x', rpm: 10, tpm: 250000, rpd: 20 },
+  { id: 'gemini-2.5-flash', name: 'Fast', rpm: 5, tpm: 250000, rpd: 20 },
+  { id: 'gemini-3-flash-preview', name: 'Pro model', rpm: 5, tpm: 250000, rpd: 20 },
+];
+
 interface GlobalChatProps {
   /** The current active context (period or entity ID) to provide context to the AI. */
   activeContext: {
@@ -34,6 +42,18 @@ interface Message {
 /**
  * Structure of an attachment (file).
  */
+
+/**
+ * Structure of Quota tracking.
+ */
+interface Quota {
+  requestsPerMinute: number;
+  tokensPerMinute: number;
+  requestsPerDay: number;
+  lastMinuteReset: number;
+  lastDayReset: number;
+}
+
 interface Attachment {
   file: File | Blob;
   previewUrl: string;
@@ -62,6 +82,134 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // AI Models & Quota State
+  const [selectedModelId, setSelectedModelId] = useState<string>(() => {
+    return localStorage.getItem('aalok_selected_model') || 'gemini-2.5-flash';
+  });
+
+  const [quota, setQuota] = useState<Quota>(() => {
+    const saved = localStorage.getItem(`aalok_quota_${selectedModelId}`);
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+    }
+    return {
+      requestsPerMinute: 0,
+      tokensPerMinute: 0,
+      requestsPerDay: 0,
+      lastMinuteReset: Date.now(),
+      lastDayReset: Date.now()
+    };
+  });
+
+  // Refresh quota periodically (every 5s)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = Date.now();
+      setQuota(prev => {
+        let updated = { ...prev };
+        let hasChanges = false;
+
+        // Check Minute Reset
+        if (now - prev.lastMinuteReset > 60000) {
+          updated.requestsPerMinute = 0;
+          updated.tokensPerMinute = 0;
+          updated.lastMinuteReset = now;
+          hasChanges = true;
+        }
+
+        // Check Day Reset (24 hours = 86400000 ms)
+        if (now - prev.lastDayReset > 86400000) {
+          updated.requestsPerDay = 0;
+          updated.lastDayReset = now;
+          hasChanges = true;
+        }
+
+        if (hasChanges) {
+          localStorage.setItem(`aalok_quota_${selectedModelId}`, JSON.stringify(updated));
+          return updated;
+        }
+        return prev;
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [selectedModelId]);
+
+  // Load quota when model changes
+  useEffect(() => {
+    localStorage.setItem('aalok_selected_model', selectedModelId);
+    const saved = localStorage.getItem(`aalok_quota_${selectedModelId}`);
+    if (saved) {
+      try {
+        setQuota(JSON.parse(saved));
+        return;
+      } catch (e) { console.error(e); }
+    }
+    setQuota({
+      requestsPerMinute: 0,
+      tokensPerMinute: 0,
+      requestsPerDay: 0,
+      lastMinuteReset: Date.now(),
+      lastDayReset: Date.now()
+    });
+  }, [selectedModelId]);
+
+  const updateQuota = (isRequest: boolean, textLength: number) => {
+    const tokens = Math.ceil(textLength * 1.5);
+    setQuota(prev => {
+      const now = Date.now();
+      let updated = { ...prev };
+
+      // Safety reset before applying updates
+      if (now - updated.lastMinuteReset > 60000) {
+        updated.requestsPerMinute = 0;
+        updated.tokensPerMinute = 0;
+        updated.lastMinuteReset = now;
+      }
+      if (now - updated.lastDayReset > 86400000) {
+        updated.requestsPerDay = 0;
+        updated.lastDayReset = now;
+      }
+
+      if (isRequest) {
+        updated.requestsPerMinute += 1;
+        updated.requestsPerDay += 1;
+      }
+      updated.tokensPerMinute += tokens;
+
+      localStorage.setItem(`aalok_quota_${selectedModelId}`, JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const getQuotaStatus = () => {
+    const modelInfo = AI_MODELS.find(m => m.id === selectedModelId);
+    if (!modelInfo) return { isBlocked: false, reason: '' };
+
+    // Update quota resets before checking (in case 5s interval hasn't fired yet)
+    const now = Date.now();
+    let currentQuota = { ...quota };
+    if (now - currentQuota.lastMinuteReset > 60000) {
+      currentQuota.requestsPerMinute = 0;
+      currentQuota.tokensPerMinute = 0;
+    }
+    if (now - currentQuota.lastDayReset > 86400000) {
+      currentQuota.requestsPerDay = 0;
+    }
+
+    if (currentQuota.requestsPerMinute >= modelInfo.rpm) {
+      return { isBlocked: true, reason: 'RPM limit reached' };
+    }
+    if (currentQuota.requestsPerDay >= modelInfo.rpd) {
+      return { isBlocked: true, reason: 'RPD limit reached' };
+    }
+    if (currentQuota.tokensPerMinute >= modelInfo.tpm) { // Although it's unlikely to hit TPM before RPM
+      return { isBlocked: true, reason: 'TPM limit reached' };
+    }
+
+    return { isBlocked: false, reason: '' };
+  };
+
   
   // Tools Config State
   const [useSearch, setUseSearch] = useState(false);
@@ -245,6 +393,23 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     // Allow empty text if we have an attachment
     if ((!textToSend && !attachment) || !process.env.API_KEY) return;
 
+    // Quota Checker Check
+    const modelInfo = AI_MODELS.find(m => m.id === selectedModelId);
+    if (!modelInfo) return;
+
+    const currentQuota = getQuotaStatus();
+    if (currentQuota.isBlocked) {
+      alert(`Quota Exceeded: ${currentQuota.reason}. Please try again later or switch models.`);
+      return;
+    }
+
+    // Estimate words in input + attachment preview
+    const wordsInInput = textToSend.split(/s+/).filter(word => word.length > 0).length;
+    // Estimate 50 words per image/pdf attachment (simplified token estimation for vision/pdf)
+    const attachmentWords = attachment ? 50 : 0;
+    updateQuota(true, wordsInInput + attachmentWords);
+
+
     const userMsgId = Date.now().toString();
     
     // Display User Message
@@ -270,7 +435,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const model = 'gemini-2.5-flash'; 
+      const model = selectedModelId;
       
       const systemInstruction = getSystemInstruction();
 
@@ -318,10 +483,12 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       let fullText = '';
       let groundingMetadata = null;
 
+      let streamOutputWords = 0;
       for await (const chunk of streamResult) {
         const c = chunk as GenerateContentResponse;
         const chunkText = c.text || '';
         fullText += chunkText;
+        streamOutputWords += chunkText.split(/\s+/).filter(word => word.length > 0).length;
         
         if (c.candidates?.[0]?.groundingMetadata) {
             groundingMetadata = c.candidates[0].groundingMetadata;
@@ -337,6 +504,8 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
       setMessages(prev => prev.map(msg => 
         msg.id === botMsgId ? { ...msg, isStreaming: false } : msg
       ));
+
+      updateQuota(false, streamOutputWords); // Add tokens from model output
 
     } catch (error) {
       console.error("Chat Error:", error);
@@ -462,6 +631,39 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                                     {/* IOS-style Toggle */}
                                     <div className={`w-9 h-5 rounded-full relative transition-colors duration-300 ${useSearch ? 'bg-green-500' : 'bg-stone-300'}`}>
                                         <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-300 ${useSearch ? 'translate-x-4.5' : 'translate-x-0.5'}`} style={{ transform: useSearch ? 'translateX(18px)' : 'translateX(2px)' }}></div>
+                                    </div>
+                                </div>
+
+                                {/* Model Switcher Section */}
+                                <div className="mt-2 border-t border-stone-100 pt-2">
+                                    <div className="px-2 py-1 mb-1 flex justify-between items-center">
+                                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-stone-400">AI Model</h4>
+                                        <span className="text-[9px] text-stone-400 font-mono bg-stone-100 px-1.5 py-0.5 rounded">
+                                            {quota.requestsPerMinute} RPM
+                                        </span>
+                                    </div>
+                                    <div className="space-y-1">
+                                        {AI_MODELS.map(model => (
+                                            <div
+                                                key={model.id}
+                                                onClick={() => setSelectedModelId(model.id)}
+                                                className={`flex flex-col p-2 rounded-xl cursor-pointer transition-colors ${selectedModelId === model.id ? 'bg-indigo-50 border border-indigo-100' : 'hover:bg-stone-50 border border-transparent'}`}
+                                            >
+                                                <div className="flex justify-between items-center">
+                                                    <div className="flex items-center gap-2">
+                                                        <div className={`w-2 h-2 rounded-full ${selectedModelId === model.id ? 'bg-indigo-500 shadow-[0_0_5px_rgba(99,102,241,0.5)]' : 'bg-stone-300'}`}></div>
+                                                        <span className={`text-xs font-bold ${selectedModelId === model.id ? 'text-indigo-700' : 'text-stone-600'}`}>
+                                                            {model.name}
+                                                        </span>
+                                                    </div>
+                                                    {selectedModelId === model.id && <Icons.Check />}
+                                                </div>
+                                                <div className="flex gap-2 mt-1 pl-4 opacity-60">
+                                                    <span className="text-[9px] text-stone-500 font-mono">{model.rpm} RPM</span>
+                                                    <span className="text-[9px] text-stone-500 font-mono">{model.rpd} RPD</span>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
@@ -668,15 +870,25 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
                     />
                     
                     {/* Send Button */}
-                    <div className="pb-1 pr-1">
+                    <div className="pb-1 pr-1 relative group">
                         <button 
                             onClick={() => handleSend()}
-                            disabled={isLoading || isRecording || (!input.trim() && !attachment)}
-                            className="p-2.5 rounded-full bg-stone-900 text-white hover:bg-indigo-600 transition-colors disabled:opacity-30 disabled:hover:bg-stone-900 disabled:cursor-not-allowed transform active:scale-95 shadow-md"
+                            disabled={isLoading || isRecording || (!input.trim() && !attachment) || getQuotaStatus().isBlocked}
+                            className={`p-2.5 rounded-full bg-stone-900 text-white transition-colors transform active:scale-95 shadow-md
+                                ${getQuotaStatus().isBlocked
+                                    ? 'opacity-30 cursor-not-allowed bg-red-900'
+                                    : 'hover:bg-indigo-600 disabled:opacity-30 disabled:hover:bg-stone-900 disabled:cursor-not-allowed'}
+                            `}
                             aria-label="Send message"
                         >
                             <Icons.Send />
                         </button>
+                        {getQuotaStatus().isBlocked && (
+                            <div className="absolute bottom-full right-0 mb-2 w-max max-w-[200px] px-2 py-1 bg-red-600 text-white text-[10px] rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                                Quota Exceeded: {getQuotaStatus().reason}
+                                <div className="absolute -bottom-1 right-3 w-2 h-2 bg-red-600 transform rotate-45"></div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
