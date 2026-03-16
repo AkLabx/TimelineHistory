@@ -220,6 +220,8 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
   const [isRecording, setIsRecording] = useState(false);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -535,6 +537,26 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     setAttachment(null);
   };
 
+  // Handle click outside to close
+  useEffect(() => {
+    const handleClickOutsideChat = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        chatWindowRef.current &&
+        !chatWindowRef.current.contains(event.target as Node) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutsideChat);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideChat);
+    };
+  }, [isOpen]);
+
   // Suggestions based on context
   const getSuggestions = () => {
     if (activeContext.id && KINGS_DATA[activeContext.id]) {
@@ -550,6 +572,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
     <>
       {/* Floating Action Button */}
       <button
+        ref={toggleButtonRef}
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-50 group flex items-center justify-center transition-all duration-500
             ${isOpen 
@@ -571,6 +594,7 @@ const GlobalChat: React.FC<GlobalChatProps> = ({ activeContext }) => {
 
       {/* Chat Window */}
       <div 
+        ref={chatWindowRef}
         className={`fixed bottom-24 right-6 z-50 w-[90vw] md:w-[380px] h-[600px] max-h-[75vh] bg-white rounded-3xl shadow-2xl flex flex-col border border-white/20 overflow-hidden transition-all duration-300 origin-bottom-right
             ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-10 pointer-events-none'}
         `}
