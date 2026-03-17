@@ -1,5 +1,4 @@
-
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, Suspense } from 'react';
 import { ViewState } from './types';
 import { useNavigation } from './hooks/useNavigation';
 import { useSearch } from './hooks/useSearch';
@@ -10,14 +9,19 @@ import { getLocalized } from './src/utils/language';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import Timeline from './components/Timeline';
-import EraDetail from './components/EraDetail';
-import FigureDetail from './components/FigureDetail';
-import SearchModal from './components/SearchModal';
-import CompareModal from './components/CompareModal';
-import CompareView from './components/CompareView';
 import Footer from './components/Footer';
-import SamvadChat from './components/SamvadChat';
-import GlobalChat from './components/GlobalChat';
+
+// Lazy load large components that are not immediately visible
+const EraDetail = React.lazy(() => import('./components/EraDetail'));
+const FigureDetail = React.lazy(() => import('./components/FigureDetail'));
+const SearchModal = React.lazy(() => import('./components/SearchModal'));
+const CompareModal = React.lazy(() => import('./components/CompareModal'));
+const CompareView = React.lazy(() => import('./components/CompareView'));
+const SamvadChat = React.lazy(() => import('./components/SamvadChat'));
+const GlobalChat = React.lazy(() => import('./components/GlobalChat'));
+
+// Simple loading fallback
+const LoadingFallback = () => <div className="flex justify-center items-center p-8 text-orange-500">Loading...</div>;
 
 /**
  * The main application component.
@@ -98,76 +102,87 @@ export default function App() {
       )}
 
       <main className="flex-grow relative">
-        {navigation.view === ViewState.DASHBOARD && (
-          <Dashboard onSelectPeriod={navigation.selectPeriod} />
-        )}
+        <Suspense fallback={<LoadingFallback />}>
+          {navigation.view === ViewState.DASHBOARD && (
+            <Dashboard onSelectPeriod={navigation.selectPeriod} />
+          )}
 
-        {navigation.view === ViewState.COMPARE && navigation.compareIds[0] && navigation.compareIds[1] && (
-          <CompareView 
-            id1={navigation.compareIds[0]!} 
-            id2={navigation.compareIds[1]!} 
-            onClose={navigation.goHome} 
-          />
-        )}
-        
-        {/* Render Timeline & Details if we are in a detail view and have ANY valid selection */}
-        {(navigation.view === ViewState.DETAIL || navigation.view === ViewState.TIMELINE) && (navigation.selectedPeriod || navigation.selectedFigure) && (
-          <>
-            {/* Timeline persists showing the Context Period */}
-            <Timeline 
-              activePeriodId={navigation.selectedPeriod ? navigation.selectedEntityId : (activeContext.id && KINGS_DATA[activeContext.id] ? Object.keys(DYNASTY_DATA).find(key => DYNASTY_DATA[key] === activeContext.period) || null : null)} 
+          {navigation.view === ViewState.COMPARE && navigation.compareIds[0] && navigation.compareIds[1] && (
+            <CompareView
+              id1={navigation.compareIds[0]!}
+              id2={navigation.compareIds[1]!}
+              onClose={navigation.goHome}
             />
-            
-            {navigation.selectedFigure ? (
-              <FigureDetail 
-                figure={navigation.selectedFigure} 
-                figureId={navigation.selectedEntityId!}
-                onSelectPeriod={navigation.selectPeriod}
-                onSelectFigure={navigation.selectFigure}
-                onOpenSamvad={() => setSamvadFigureId(navigation.selectedEntityId!)}
+          )}
+
+          {/* Render Timeline & Details if we are in a detail view and have ANY valid selection */}
+          {(navigation.view === ViewState.DETAIL || navigation.view === ViewState.TIMELINE) && (navigation.selectedPeriod || navigation.selectedFigure) && (
+            <>
+              {/* Timeline persists showing the Context Period */}
+              <Timeline
+                activePeriodId={navigation.selectedPeriod ? navigation.selectedEntityId : (activeContext.id && KINGS_DATA[activeContext.id] ? Object.keys(DYNASTY_DATA).find(key => DYNASTY_DATA[key] === activeContext.period) || null : null)}
               />
-            ) : (
-               /* Safe check for EraDetail */
-               navigation.selectedPeriod && (
-                  <EraDetail 
-                    period={navigation.selectedPeriod}
-                    periodId={navigation.selectedEntityId!}
-                    onSelectFigure={navigation.selectFigure}
-                    onSelectPeriod={navigation.selectPeriod}
-                  />
-               )
-            )}
-          </>
-        )}
+
+              {navigation.selectedFigure ? (
+                <FigureDetail
+                  figure={navigation.selectedFigure}
+                  figureId={navigation.selectedEntityId!}
+                  onSelectPeriod={navigation.selectPeriod}
+                  onSelectFigure={navigation.selectFigure}
+                  onOpenSamvad={() => setSamvadFigureId(navigation.selectedEntityId!)}
+                />
+              ) : (
+                 /* Safe check for EraDetail */
+                 navigation.selectedPeriod && (
+                    <EraDetail
+                      period={navigation.selectedPeriod}
+                      periodId={navigation.selectedEntityId!}
+                      onSelectFigure={navigation.selectFigure}
+                      onSelectPeriod={navigation.selectPeriod}
+                    />
+                 )
+              )}
+            </>
+          )}
+        </Suspense>
       </main>
 
       <Footer />
 
-      {/* Global AI Assistant (Itihaskar) */}
-      <GlobalChat activeContext={activeContext} />
+      {/* Modals and Overlays wrapped in Suspense */}
+      <Suspense fallback={null}>
+        {/* Global AI Assistant (Itihaskar) */}
+        <GlobalChat activeContext={activeContext} />
 
-      <SearchModal 
-        isOpen={search.isOpen}
-        onClose={() => search.setIsOpen(false)}
-        query={search.query}
-        setQuery={search.setQuery}
-        results={search.results}
-        onSelectPeriod={navigation.selectPeriod}
-        onSelectFigure={navigation.selectFigure}
-      />
+        {search.isOpen && (
+          <SearchModal
+            isOpen={search.isOpen}
+            onClose={() => search.setIsOpen(false)}
+            query={search.query}
+            setQuery={search.setQuery}
+            results={search.results}
+            onSelectPeriod={navigation.selectPeriod}
+            onSelectFigure={navigation.selectFigure}
+          />
+        )}
 
-      <CompareModal 
-        isOpen={isCompareModalOpen}
-        onClose={() => setIsCompareModalOpen(false)}
-        onStartComparison={navigation.startComparison}
-      />
+        {isCompareModalOpen && (
+          <CompareModal
+            isOpen={isCompareModalOpen}
+            onClose={() => setIsCompareModalOpen(false)}
+            onStartComparison={navigation.startComparison}
+          />
+        )}
 
-      {/* Samvad Chat Drawer */}
-      <SamvadChat 
-        isOpen={!!samvadFigureId}
-        onClose={() => setSamvadFigureId(null)}
-        figureId={samvadFigureId}
-      />
+        {/* Samvad Chat Drawer */}
+        {!!samvadFigureId && (
+          <SamvadChat
+            isOpen={!!samvadFigureId}
+            onClose={() => setSamvadFigureId(null)}
+            figureId={samvadFigureId!}
+          />
+        )}
+      </Suspense>
     </div>
   );
 };
