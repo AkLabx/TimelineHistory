@@ -259,3 +259,9 @@ summary.king-summary::-webkit-details-marker { display: none; }
    background-image: linear-gradient(to right, #eff6ff, #eef2ff); /* blue-50 to indigo-50 */
    border-color: #dbeafe;
 }
+/* Add shimmer effect for button */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
