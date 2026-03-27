@@ -10,6 +10,8 @@ import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import Timeline from './components/Timeline';
 import Footer from './components/Footer';
+import Onboarding from './components/Onboarding';
+
 
 // Lazy load large components that are not immediately visible
 const EraDetail = React.lazy(() => import('./components/EraDetail'));
@@ -30,6 +32,16 @@ const LoadingFallback = () => <div className="flex justify-center items-center p
  * @returns The complete App React Element.
  */
 export default function App() {
+
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState<boolean>(() => {
+    return localStorage.getItem('hasCompletedOnboarding') === 'true';
+  });
+
+  const handleOnboardingComplete = () => {
+    localStorage.setItem('hasCompletedOnboarding', 'true');
+    setHasCompletedOnboarding(true);
+  };
+
   const navigation = useNavigation();
   const search = useSearch();
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
@@ -60,6 +72,11 @@ export default function App() {
     }
     return { period: null, id: null };
   }, [navigation.selectedPeriod, navigation.selectedFigure, navigation.selectedEntityId]);
+
+
+  if (!hasCompletedOnboarding) {
+    return <Onboarding onComplete={handleOnboardingComplete} />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-stone-50">
