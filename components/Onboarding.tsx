@@ -19,7 +19,7 @@ const iconVariants = {
     opacity: 1,
     transition: {
       duration: 1.5,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     }
   }
 };
@@ -90,9 +90,9 @@ const slideVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      x: { type: "spring", stiffness: 300, damping: 30 },
+      x: { type: "spring" as const, stiffness: 300, damping: 30 },
       opacity: { duration: 0.2 },
-      scale: { duration: 0.4, type: "spring", bounce: 0.4 }
+      scale: { duration: 0.4, type: "spring" as const, bounce: 0.4 }
     }
   },
   exit: (direction: number) => ({
@@ -101,7 +101,7 @@ const slideVariants = {
     opacity: 0,
     scale: 0.9,
     transition: {
-      x: { type: "spring", stiffness: 300, damping: 30 },
+      x: { type: "spring" as const, stiffness: 300, damping: 30 },
       opacity: { duration: 0.2 }
     }
   })
@@ -194,7 +194,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 max-w-xl mx-auto w-full relative h-full">
+      <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 max-w-xl mx-auto w-full relative">
 
         {/* Loading Spinner Overlay */}
         <AnimatePresence>
@@ -214,6 +214,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
             )}
         </AnimatePresence>
 
+        <div className="w-full grid place-items-center">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentSlide}
@@ -226,7 +227,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
             onDragEnd={handleDragEnd}
-            className="absolute inset-x-4 sm:inset-x-8 top-1/2 -translate-y-1/2 flex flex-col items-center text-center bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
+            className="col-start-1 row-start-1 w-full max-w-[90%] sm:max-w-md mx-auto flex flex-col items-center text-center bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
           >
             {/* Glossy shine effect on card */}
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/10 to-transparent pointer-events-none rounded-t-[2.5rem]" />
@@ -254,6 +255,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
             </motion.p>
           </motion.div>
         </AnimatePresence>
+        </div>
       </div>
 
       {/* Footer Navigation */}
