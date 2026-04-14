@@ -1,5 +1,6 @@
 import React, { useMemo, useState, Suspense } from 'react';
 import { ViewState } from './types';
+import { MindmapView } from './src/components/Map3D/MindmapView';
 import { useNavigation } from './hooks/useNavigation';
 import { useSearch } from './hooks/useSearch';
 import { DYNASTY_DATA, KINGS_DATA } from './data';
@@ -45,6 +46,7 @@ export default function App() {
   const navigation = useNavigation();
   const search = useSearch();
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+  const [isMindmapOpen, setIsMindmapOpen] = useState(false);
   const [samvadFigureId, setSamvadFigureId] = useState<string | null>(null);
   const { language } = useLanguage();
 
@@ -121,7 +123,7 @@ export default function App() {
       <main className="flex-grow relative">
         <Suspense fallback={<LoadingFallback />}>
           {navigation.view === ViewState.DASHBOARD && (
-            <Dashboard onSelectPeriod={navigation.selectPeriod} />
+            <Dashboard onSelectPeriod={navigation.selectPeriod} onOpenMindmap={() => setIsMindmapOpen(true)} />
           )}
 
           {navigation.view === ViewState.COMPARE && navigation.compareIds[0] && navigation.compareIds[1] && (
@@ -200,6 +202,11 @@ export default function App() {
           />
         )}
       </Suspense>
+
+      {/* 3D Map Overlay */}
+      {isMindmapOpen && (
+        <MindmapView onClose={() => setIsMindmapOpen(false)} />
+      )}
     </div>
   );
 };
