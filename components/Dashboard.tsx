@@ -10,6 +10,7 @@ import { getLocalized } from '../src/utils/language';
 interface DashboardProps {
   /** Callback to handle selecting a historical period. */
   onSelectPeriod: (id: string) => void;
+  onOpenMindmap?: () => void;
 }
 
 /**
@@ -100,7 +101,7 @@ const DashboardCard: React.FC<{ card: any, index: number, onSelect: (id: string)
  * @param props - The component props.
  * @returns The rendered dashboard.
  */
-const Dashboard: React.FC<DashboardProps> = ({ onSelectPeriod }) => {
+const Dashboard: React.FC<DashboardProps> = ({ onSelectPeriod, onOpenMindmap }) => {
   const { language } = useLanguage();
 
   return (
@@ -113,6 +114,20 @@ const Dashboard: React.FC<DashboardProps> = ({ onSelectPeriod }) => {
             {getLocalized(PART_DATA, 'subtitle', language)}
         </p>
         <div className="w-32 h-1.5 bg-gradient-to-r from-orange-400 to-amber-600 mx-auto rounded-full mt-10"></div>
+      </div>
+
+
+      <div className="flex justify-center mb-12 animate-in fade-in duration-1000 delay-300">
+        <button
+          onClick={onOpenMindmap}
+          className="group relative px-8 py-4 bg-slate-900 text-white rounded-full font-bold shadow-2xl overflow-hidden hover:scale-105 transition-all duration-300 ring-2 ring-indigo-500/50 hover:ring-indigo-400"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+          <div className="relative flex items-center gap-3">
+            <span className="text-xl">🌌</span>
+            <span>{language === 'en' ? 'Open 3D Mindmap (SOTA)' : '३डी माइंडमैप खोलें (SOTA)'}</span>
+          </div>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12">
