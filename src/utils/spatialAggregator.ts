@@ -17,14 +17,14 @@ export function buildSpatialGraph(): { nodes: Record<string, Node3DData>, eras: 
     const startY = calculateYCoordinate(startYear);
     const endY = calculateYCoordinate(endYear);
     const yPos = calculateYCoordinate(midYear);
-    const xPos = Math.sin(eraIndex * 1.5) * 20;
+    const xPos = (eraIndex - (PART_DATA.timelineCards.length / 2)) * 100;
     nodes[card.target] = { id: card.target, type: 'era', title: card.title, title_en: card.title_en, period: periodStr, imageUrl: card.imageUrl, x: xPos, y: yPos, z: 0, startY: startY, endY: endY, children: [] };
     eraList.push(card.target);
     eraIndex++;
   }
   for (const [eraId, dynastyData] of Object.entries(DYNASTY_DATA)) {
     if (nodes[eraId]) {
-       let parallelOffset = -30;
+       let parallelOffset = -60;
        for (const item of dynastyData.items || []) {
          if (item.type === 'dynasty-details' && item.summary) {
             const summaryAny = item.summary as any;
@@ -35,7 +35,7 @@ export function buildSpatialGraph(): { nodes: Record<string, Node3DData>, eras: 
             if (dynastyId) {
                 nodes[eraId].children.push(dynastyId);
                 nodes[dynastyId] = { id: dynastyId, type: 'dynasty', title: item.summary.title, title_en: summaryAny.title_en, period: periodStr, x: nodes[eraId].x + parallelOffset, y: calculateYCoordinate(midYear), z: 50, startY: calculateYCoordinate(startYear), endY: calculateYCoordinate(endYear), parentId: eraId, children: item.subItems || [] };
-                parallelOffset += 60;
+                parallelOffset += 120;
             }
          }
        }
@@ -63,8 +63,9 @@ export function buildSpatialGraph(): { nodes: Record<string, Node3DData>, eras: 
             midYearY = parent.startY + (parent.endY - parent.startY) * progress;
         }
         const index = parent.children.indexOf(kingId);
-        const spread = 20;
-        const xOffset = (index % 2 === 0 ? 1 : -1) * (spread + (index * 5));
+        const totalKings = parent.children.length;
+        const spread = 40;
+        const xOffset = (index - (totalKings / 2)) * spread;
         nodes[kingId] = { id: kingId, type: 'king', title: kingData.summary?.title || '', title_en: summaryAny?.title_en || '', period: reignStr, imageUrl: kingData.imageUrl, x: parent.x + xOffset, y: midYearY, z: 100, startY: midYearY, endY: midYearY, parentId: parentDynastyId, children: [] };
     }
   }

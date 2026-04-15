@@ -26,7 +26,7 @@ export const Node3D: React.FC<Node3DProps> = ({ node, onClick, isExpanded, isAct
         <meshStandardMaterial color={color} emissive={color} emissiveIntensity={isActive ? 0.8 : (hovered ? 0.5 : 0.2)} roughness={0.2} metalness={0.8} />
       </mesh>
       <Html distanceFactor={100} zIndexRange={[100, 0]} transform>
-         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className={`px-4 py-2 rounded-xl backdrop-blur-md border border-white/20 shadow-2xl pointer-events-none ${isActive ? 'bg-white/90 text-slate-900' : 'bg-slate-900/80 text-white'} flex flex-col items-center justify-center min-w-[120px] text-center`} style={{ transform: 'translate3d(-50%, -150%, 0)' }}>
+         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} onClick={(e) => { e.stopPropagation(); onClick(node.id); }} className={`px-4 py-2 rounded-xl backdrop-blur-md border border-white/20 shadow-2xl pointer-events-auto cursor-pointer ${isActive ? 'bg-white/90 text-slate-900' : 'bg-slate-900/80 text-white'} flex flex-col items-center justify-center min-w-[120px] text-center`} style={{ transform: 'translate3d(-50%, -150%, 0)' }}>
             <h3 className="text-lg font-bold truncate max-w-[200px] font-hindi">{node.title}</h3>
             {node.title_en && <p className="text-xs opacity-80">{node.title_en}</p>}
             <p className="text-xs font-mono mt-1 text-amber-300">{node.period}</p>
